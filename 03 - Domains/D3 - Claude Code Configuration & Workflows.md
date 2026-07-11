@@ -333,14 +333,17 @@ flowchart TD
 claude -p "Review this PR for security issues"
 
 # With structured output for automated processing
-claude -p "Review src/" --output-format json --json-schema schema.json
+claude -p "Review src/" --output-format json --json-schema '{"type":"object","properties":{"issues":{"type":"array"}},"required":["issues"]}'
 ```
 
 | Flag | Purpose |
 |------|---------|
 | `-p` / `--print` | Non-interactive mode; exits after completing. **Required for CI** (prevents hanging on input prompts) |
 | `--output-format json` | Machine-parseable JSON output |
-| `--json-schema <file>` | Enforce a specific JSON structure on output |
+| `--json-schema <schema>` | Enforce a specific JSON structure on output |
+
+> [!WARNING] Exam Trap: `--json-schema` Takes Inline JSON, Not a File Path
+> `--json-schema` accepts an **inline JSON Schema string**, not a file path — `--json-schema schema.json` does not load a file. Pass the schema directly, e.g. `--json-schema '{"type":"object", ...}'`. Source: `code.claude.com/docs/en/cli-reference`.
 
 > [!WARNING] Exam Trap: CI Flag Name
 > The flag is `-p` or `--print` (not `--non-interactive`). Without it, Claude Code waits for input and **hangs in CI**.
@@ -421,7 +424,7 @@ A: When conventions apply to files spread across multiple directories (e.g., all
 A: `-p` or `--print`. Without it, Claude Code waits for user input and hangs in automated pipelines.
 
 **Q: How do you produce machine-parseable structured output from Claude Code in CI?**
-A: Use `--output-format json` with `--json-schema <schema-file>` to enforce a specific JSON structure.
+A: Use `--output-format json` with `--json-schema '<inline schema>'` — the flag takes an inline JSON Schema string, not a file path.
 
 **Q: Why is an independent Claude Code instance better than self-review for catching bugs?**
 A: A model retains its generation reasoning context within the same session, making it less likely to question its own decisions. An independent instance with no prior context catches more subtle issues.

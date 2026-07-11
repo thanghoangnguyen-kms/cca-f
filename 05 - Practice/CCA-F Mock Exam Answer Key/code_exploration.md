@@ -18,7 +18,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** The model selects tools by reading their descriptions; a specialized tool with a thin description will lose to a built-in with a rich one. Invest in detailed, behavior-specific tool descriptions before adding routing logic or removing tools.
 
-**Sources:** [1] Tool use with Claude — Best practices for tool definitions: https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview
+**Sources:** [1] Tool use with Claude — Best practices for tool definitions: https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview
 
 ---
 
@@ -72,7 +72,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** `--continue` = the most recent session in this directory; `--resume` = pick a specific prior session (by name/ID). Use `--resume` when the target isn't the most recent.
 
-**Sources:** [1] CLI reference — resume/continue flags: https://docs.anthropic.com/en/docs/claude-code/cli-reference — [2] Work with sessions: https://docs.claude.com/en/docs/agent-sdk/sessions
+**Sources:** [1] CLI reference — resume/continue flags: https://docs.claude.com/en/docs/claude-code/cli-reference — [2] Work with sessions: https://docs.claude.com/en/docs/agent-sdk/sessions
 
 ---
 
@@ -216,7 +216,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Specialized tools win adoption through detailed descriptions that state when to prefer them and their exact I/O — not through classifiers or by crippling general tools.
 
-**Sources:** [1] Tool use with Claude — Best practices for tool definitions (descriptions are the most important factor): https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview
+**Sources:** [1] Tool use with Claude — Best practices for tool definitions (descriptions are the most important factor): https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview
 
 ---
 

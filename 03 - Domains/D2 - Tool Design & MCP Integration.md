@@ -151,17 +151,20 @@ For high-frequency cross-role needs: provide a **scoped constrained tool** inste
 
 | Value | Behavior | Use When |
 |-------|---------|---------|
-| `"auto"` | Model decides whether to call a tool or respond with text | Default; flexible |
-| `"any"` | Model **must** call a tool (any available) | Need guaranteed tool use, not text |
+| `{"type": "auto"}` | Model decides whether to call a tool or respond with text | Default; flexible |
+| `{"type": "any"}` | Model **must** call a tool (any available) | Need guaranteed tool use, not text |
 | `{"type": "tool", "name": "..."}` | Model **must** call this specific tool | Force a specific extraction step before others |
-| `"none"` | Model **cannot** call any tool | Force a text-only turn while tools stay defined |
+| `{"type": "none"}` | Model **cannot** call any tool | Force a text-only turn while tools stay defined |
+
+> [!NOTE] `tool_choice` Is Always an Object
+> The API requires **object form** for `tool_choice` — bare strings like `"auto"` are not valid. Use `{"type": "auto"}`, `{"type": "any"}`, `{"type": "none"}`, or `{"type": "tool", "name": "..."}`. (Matches D4 §4.3.)
 
 Add `"disable_parallel_tool_use": true` to any `tool_choice` value to cap the model at one tool call per turn (parallel tool use is on by default).
 
 > [!IMPORTANT] Exam Scenarios
-> - **Guarantee structured output** → `tool_choice: "any"`
+> - **Guarantee structured output** → `tool_choice: {"type": "any"}`
 > - **Ensure metadata extraction before enrichment** → `tool_choice: {"type": "tool", "name": "extract_metadata"}`
-> - **Then process follow-up steps** → subsequent turns with `"auto"`
+> - **Then process follow-up steps** → subsequent turns with `tool_choice: {"type": "auto"}`
 
 ---
 
@@ -373,7 +376,7 @@ A: Transient errors (timeouts, unavailability) are `isRetryable: true`. Validati
 A: No — an empty result array with `isError: false` means the query succeeded but no matching data was found. Only set `isError: true` when something actually went wrong.
 
 **Q: What `tool_choice` value guarantees the model calls a tool instead of responding with text?**
-A: `"any"` — forces the model to call at least one available tool.
+A: `{"type": "any"}` — forces the model to call at least one available tool. (`tool_choice` is always an object, never a bare string.)
 
 **Q: What are the two MCP configuration scopes and their file locations?**
 A: Project scope → `.mcp.json` (version-controlled, team-shared). User scope → `~/.claude.json` (personal, not version-controlled).

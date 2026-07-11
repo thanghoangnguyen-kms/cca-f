@@ -21,8 +21,10 @@ tool_choice ordering, enums, confidence routing & segment evals, `custom_id`.
 - **`custom_id`**: carries correlation/metadata and matches each result back to
   its request (**batch results may not be in input order**). Use it to retry
   **only** the failed items.
-- `context_length_exceeded` → **chunk the input** and merge partial extractions.
-  (It's an *input* problem; raising `max_tokens`, which is *output*, won't help.)
+- A context-length error (e.g. `context_length_exceeded` — exact error-string
+  name illustrative/unverified) → **chunk the input** and merge partial
+  extractions. (It's an *input* problem; raising `max_tokens`, which is
+  *output*, won't help.)
 
 ### Structured output & schema design
 - Reliable JSON = **strict output schema (tool `input_schema`) + explicit
@@ -100,7 +102,7 @@ tool_choice ordering, enums, confidence routing & segment evals, `custom_id`.
 | High volume, archived, no latency need | **Batch API** (50% off) |
 | Must fire alert within N minutes | **Synchronous API** (batch can't guarantee it) |
 | Choose batching interval for an SLA | `wait + 24h ≤ SLA` with **margin** |
-| Retry only failed batch records | **`custom_id`**; chunk input if `context_length_exceeded` |
+| Retry only failed batch records | **`custom_id`**; chunk input on a context-length error (`context_length_exceeded` — name illustrative) |
 | Inconsistent format / splitting / granularity | **Diverse few-shot examples** |
 | Model invents values for absent fields | Instruct **return null when not stated** |
 | Retry keeps failing on one pattern | If info is **absent from input**, retry can't fix it |
@@ -125,7 +127,7 @@ tool_choice ordering, enums, confidence routing & segment evals, `custom_id`.
 - **Endlessly expanding an enum** / switching to free-form / lossy mapping.
 - Automating on **aggregate accuracy**; **random sampling** for error coverage.
 - Trusting **uncalibrated** model confidence.
-- Raising **`max_tokens`** to fix a `context_length_exceeded` (that's input).
+- Raising **`max_tokens`** to fix a context-length error (e.g. `context_length_exceeded` — exact name illustrative) (that's input).
 
 ---
 

@@ -31,8 +31,8 @@ A: `POST /v1/messages` (the Messages API) — tool use and structured output are
 **Q: Is the Messages API stateful or stateless? What does that imply?**
 A: Stateless — you must resend the full conversation history with every request; the server does not retain prior turns for you.
 
-**Q: What are the six `stop_reason` values and what does each mean?**
-A: `end_turn` (done — terminate loop), `tool_use` (execute tool, continue loop), `max_tokens` (hit output cap, response may be truncated), `pause_turn` (server-tool loop paused, resume the request), `stop_sequence` (hit a configured stop string), and `refusal` (safety decline — check `stop_details`).
+**Q: What are the primary `stop_reason` values and what does each mean?**
+A: `end_turn` (done — terminate loop), `tool_use` (execute tool, continue loop), `max_tokens` (hit output cap, response may be truncated), `pause_turn` (server-tool loop paused, resume the request), `stop_sequence` (hit a configured stop string), `refusal` (safety decline — check `stop_details`), and `model_context_window_exceeded` (Claude 4.5+ only — context window exhausted; distinct from `max_tokens`, which caps output, not total context).
 
 **Q: How is thinking depth controlled on current models, and what changed from the old API?**
 A: Use `thinking: {type: "adaptive"}` with depth set via `output_config: {effort: "low"|"medium"|"high"|"xhigh"|"max"}` (default `high`). The old `thinking: {type: "enabled", budget_tokens: N}` is deprecated and returns a 400 error on Fable 5, Opus 4.7/4.8, and Sonnet 5.
@@ -152,7 +152,7 @@ A: The instructions were written to user scope (`~/.claude/CLAUDE.md`), which is
 A: No — they load on demand, only when Claude reads files within that subdirectory.
 
 **Q: What is the `@import` chain depth limit for CLAUDE.md?**
-A: 5 hops maximum.
+A: 4 hops maximum.
 
 **Q: What does `context: fork` do in a SKILL.md frontmatter?**
 A: Runs the skill in an isolated subagent context so verbose intermediate output stays contained — only the final summary returns to the main session.

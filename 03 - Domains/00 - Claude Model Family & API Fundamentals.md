@@ -70,7 +70,7 @@ flowchart TD
 
 ### Tokenizer Change (Important!)
 > [!WARNING] Tokenizer Shift from Claude Opus 4.7+
-> Starting with Claude Opus 4.7 (including Fable 5 and Mythos 5), the tokenizer changed.
+> Starting with Claude Opus 4.7 (including Fable 5, Mythos 5, **and Sonnet 5**), the tokenizer changed.
 > The **same text produces ~30% MORE tokens** compared to models before Opus 4.7.
 > This affects cost estimates and context window calculations.
 
@@ -249,6 +249,9 @@ Claude Code sessions operate under a permission mode that controls what Claude c
 | `auto` | Everything (with safety checks) | Long tasks, reducing prompt fatigue |
 | `dontAsk` | Only pre-approved tools | CI and scripts |
 | `bypassPermissions` | Everything | **Isolated containers/VMs only** |
+
+> [!NOTE] `default` Mode: CLI Convenience vs Agent SDK Semantics
+> The "Reads only" auto-approve for `default` reflects interactive-CLI convenience. In the **Agent SDK**, `default` = **no auto-approvals**; any unmatched tool call triggers the `canUseTool` callback instead of being silently approved.
 
 ### Switching Modes
 

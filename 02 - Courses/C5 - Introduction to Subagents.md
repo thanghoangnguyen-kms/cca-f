@@ -108,7 +108,7 @@ flowchart TD
 
 - **When NOT to use subagents**
   - Simple tasks the coordinator can already answer from its own context (e.g. a quick follow-up summary) — spawning a subagent here just re-sends context and wastes tokens
-  - Multi-agent orchestration costs roughly 15× the tokens of a single-agent chat, so it should be reserved for tasks that genuinely need parallelism or exceed a single context window
+  - Multi-agent orchestration costs roughly 15× the tokens of a single-agent chat (confirmed against Anthropic's "How we built our multi-agent research system" engineering post), so it should be reserved for tasks that genuinely need parallelism or exceed a single context window
 
 ---
 

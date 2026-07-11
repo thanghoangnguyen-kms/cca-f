@@ -45,7 +45,7 @@ On resume with changes → **communicate the delta** (which files changed).
 ## 5. Hooks
 | Hook | Fires | Use for |
 |---|---|---|
-| **PreToolCall** | before a tool runs | block/validate (compliance gates) |
+| **PreToolUse** | before a tool runs | block/validate (compliance gates) |
 | **PostToolUse** | after a tool runs | normalize output, log, fix format |
 
 Prompt = soft guidance; **hook/code = enforcement.**
@@ -65,7 +65,8 @@ tool returns permission/business error.
 
 **SLA math**: `worst case = max wait before batching + 24h`. Keep margin
 (SLA 30h → batch every 4h = 28h). `custom_id` matches results (order not
-guaranteed) & retries only failures. `context_length_exceeded` → **chunk input**
+guaranteed) & retries only failures. A context-length error
+(`context_length_exceeded` — name illustrative/unverified) → **chunk input**
 (not `max_tokens`, which is output).
 
 ## 8. Tool count per agent
@@ -121,7 +122,8 @@ avoid `sed -i`.
 
 ## 17. CLAUDE.md vs settings.json
 **CLAUDE.md** (committed) = architecture rules, naming, forbidden patterns,
-testing expectations. **`.claude/settings.json`** = MCP servers, env vars,
+testing expectations. **`.claude/settings.json`** = enables/gates MCP servers
+(defined in `.mcp.json`, e.g. via `enabledMcpjsonServers`), plus env vars,
 commands/args.
 
 ## 18. CI / plan mode / `--bare`
@@ -131,8 +133,9 @@ commands/args.
   background prefetch, keychain reads, CLAUDE.md auto-discovery.
 
 ## 19. Skills frontmatter
-`name` · `description` (when to use) · `context` (`inherit` = main; `fork` =
-separate) · `allowed-tools` · `argument-hint`.
+`name` · `description` (when to use) · `context` (`fork` = separate subagent;
+omit = main conversation — `inherit` is not a `context` value) · `allowed-tools`
+· `argument-hint`.
 
 ## 20. The golden rule (again — it's that important)
 **MUST always happen → CODE.** **Usually right → PROMPT.**

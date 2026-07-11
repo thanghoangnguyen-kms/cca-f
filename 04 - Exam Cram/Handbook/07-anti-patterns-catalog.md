@@ -22,7 +22,7 @@ one of these, it's almost certainly **wrong**. Grouped by theme.
   (cap is a safety ceiling only).
 - ❌ **Not appending** the assistant turn or tool results before re-invoking.
 - ❌ Returning tool errors as **ambiguous strings** or **empty success**;
-  throwing an **uncaught exception**. ✅ `isError=true` + structured metadata.
+  throwing an **uncaught exception**. ✅ `isError=true` (API field: `is_error`; `isError` is MCP/TS camelCase) + structured metadata.
 
 ## C. Tools & architecture
 

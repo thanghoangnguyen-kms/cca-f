@@ -78,7 +78,7 @@ graph LR
   - Model tiers (current): Fable 5, Opus 4.8/4.7, Sonnet 5, Haiku 4.5 (Mythos 5 = Project Glasswing only; Sonnet 4.6 = previous gen)
   - Context windows (1M except Haiku 200k), pricing, latency trade-offs
   - Messages API request/response structure: `role`, `content`, `model`, `max_tokens`, `stop_reason`
-  - Adaptive thinking vs Extended thinking vs Standard
+  - Adaptive thinking vs Extended thinking vs Standard (fixed-`budget_tokens` "extended thinking" is **legacy** on current models — deprecated on Opus 4.6/Sonnet 4.6, and rejected with HTTP 400 on Fable 5, Opus 4.8/4.7, and Sonnet 5; adaptive thinking — `thinking: {type: "adaptive"}` + `output_config.effort` — is the current mechanism)
 - [ ] **Read:** https://code.claude.com/docs/en/overview — understand what Claude Code is
 
 ---
@@ -144,7 +144,7 @@ graph LR
   - **2.3 Tool Distribution Across Agents**
     - Too many tools (18 vs 4-5) degrades selection reliability
     - Give agents only tools needed for their role
-    - `tool_choice` options: `"auto"`, `"any"`, forced `{"type": "tool", "name": "..."}`
+    - `tool_choice` options (always an object): `{"type": "auto"}`, `{"type": "any"}`, forced `{"type": "tool", "name": "..."}`
   - **2.4 MCP Server Integration**
     - Project-level scoping: `.mcp.json` (shared via version control)
     - User-level: `~/.claude.json` (personal/experimental)
@@ -221,7 +221,7 @@ graph LR
     - Show acceptable patterns vs genuine issues to calibrate
   - **4.3 Structured Output via Tool Use + JSON Schemas**
     - `tool_use` with JSON schema = most reliable structured output
-    - `tool_choice: "any"` = guarantees a tool is called (not conversational text)
+    - `tool_choice: {"type": "any"}` = guarantees a tool is called (not conversational text)
     - Forced selection: `{"type": "tool", "name": "extract_metadata"}`
     - Optional/nullable fields when source may not contain data
     - Enum with `"other"` + detail string for extensible categorization
@@ -232,7 +232,7 @@ graph LR
   - **4.5 Batch Processing Strategies**
     - Message Batches API: 50% cost, up to 24h window, no latency SLA
     - Use for: nightly reports, weekly audits — NOT pre-merge blocking checks
-    - No multi-turn tool calling within a single batch request
+    - Multi-turn conversations & server-side tool use ARE supported in a batch (same agentic loop as sync Messages); only an interactive *client-executed* tool round-trip can't happen mid-request — and that's true of any single Messages call, not batch-specific
     - `custom_id` for correlating request/response pairs
   - **4.6 Multi-Instance & Multi-Pass Review**
     - Self-review limitation: model retains generation reasoning context

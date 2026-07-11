@@ -30,7 +30,7 @@ concept chapters 3, 13.)
   model discretion") → a **hook that intercepts the tool call** and blocks/
   redirects. Fires **every time**, independent of the model. A 3% prompt-failure
   rate → hook drives it to 0.
-- **PreToolCall hook** = check/block **before** a tool runs (e.g. don't allow
+- **PreToolUse hook** = check/block **before** a tool runs (e.g. don't allow
   `lookup_order` before verifying the customer).
 - **PostToolUse hook** = normalize output, log, fix format **after** a tool runs.
 
@@ -89,12 +89,12 @@ concept chapters 3, 13.)
 |---|---|
 | Returning customer + stale tool result keeps being cited | New session + structured summary + fresh tool calls |
 | "Compliance / cannot be left to model discretion" | **Hook intercepts the tool call** (deterministic) |
-| Block a tool until a precondition is met | **PreToolCall hook** |
+| Block a tool until a precondition is met | **PreToolUse hook** |
 | Normalize/log tool output after the fact | **PostToolUse hook** |
 | Design "needs a human" trigger | **Clear NL criteria** (explicit request / policy exception / no progress) |
 | Hand off to a human who can't see the transcript | Structured brief: **ID + root cause + amount + recommended action** |
 | Errors handled inconsistently (over-retry, mis-escalate) | Structured metadata: **category + isRetryable + cause** in the tool result |
-| Communicate a backend error to the agent | `isError=true` + readable message in `content` |
+| Communicate a backend error to the agent | `isError=true` (API field: `is_error`; `isError` is MCP/TS camelCase) + readable message in `content` |
 | A tool times out mid-flow but you have partial value | **Graceful degradation**: deliver value, be honest, offer options |
 | Agent "forgot" earlier verification answers | You aren't re-sending the **full `messages` array** |
 | Long multi-issue session near context limit | Compact resolved threads; keep active thread verbatim |
@@ -120,8 +120,8 @@ concept chapters 3, 13.)
 ## Key phrases to recognize
 
 "stateless / re-send the messages array" · "stale tool_result poisons reasoning" ·
-"cannot be left to model discretion → hook" · "PreToolCall / PostToolUse" ·
-"structured handoff brief" · "errorCategory + isRetryable" · "isError" ·
+"cannot be left to model discretion → hook" · "PreToolUse / PostToolUse" ·
+"structured handoff brief" · "errorCategory + isRetryable" · "isError (API field: is_error)" ·
 "graceful degradation" · "compact resolved threads, keep active verbatim" ·
 "prune to task-relevant fields."
 

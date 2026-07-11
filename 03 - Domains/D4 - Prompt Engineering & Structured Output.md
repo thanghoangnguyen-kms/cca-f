@@ -282,8 +282,12 @@ This enables you to systematically analyze which patterns produce false positive
 | **Latency SLA** | ❌ None — no guaranteed latency |
 | **Batch size limit** | 100,000 requests OR 256 MB, whichever is first |
 | **Result availability** | 29 days after creation |
-| **Multi-turn tool calling** | ❌ Not supported within a single batch request |
+| **Multi-turn conversations & tool use** | ✅ Supported — batch runs the same server-side agentic loop as the synchronous Messages API |
 | **ZDR eligible** | ❌ Not eligible for Zero Data Retention |
+
+> [!IMPORTANT] Exam Rule: What Batch Actually Can't Do
+> Multi-turn conversations and server-side tool use (e.g., web search, code execution) work fine inside a single batch request — the batch runs the same agentic loop as a sync `messages.create` call.
+> What you *cannot* do is an interactive, **client-executed** tool round-trip mid-request (model calls a tool → your code executes it → you send the result back — all within one "turn"). That limitation is true of **any single Messages API call**, sync or batch — it isn't something batch uniquely lacks.
 
 ```mermaid
 flowchart LR
@@ -443,7 +447,7 @@ For 20k+ token inputs:
 - [ ] Know schema design rules (nullable fields, `"unclear"` enum, `"other"` + detail)
 - [ ] Know when retries work vs don't work
 - [ ] Know the self-correction cross-check field pattern
-- [ ] Know Batch API: 50% cost, 24h window, no latency SLA, no multi-turn tool calling
+- [ ] Know Batch API: 50% cost, 24h window, no latency SLA; multi-turn conversations & tool use ARE supported (same agentic loop as sync Messages)
 - [ ] Know the `custom_id` format and purpose
 - [ ] Know when to use batch vs synchronous API
 - [ ] Know the self-review limitation and independent instance solution
@@ -477,8 +481,8 @@ A: When the required information simply doesn't exist in the source document. Re
 **Q: What are the Batch API's three key characteristics?**
 A: 50% cost savings, up to 24-hour processing window, no guaranteed latency SLA.
 
-**Q: Can you do multi-turn tool calling within a single Batch API request?**
-A: No — the Batch API does not support multi-turn tool calling within a single request.
+**Q: Can you do multi-turn conversations and tool use within a single Batch API request?**
+A: Yes — batch runs the same server-side agentic loop as the synchronous Messages API, so multi-turn conversations and tool use (including server-side tools) are supported. What's not possible is an interactive, client-executed tool round-trip mid-request — but that's true of any single Messages call, not something specific to batch.
 
 **Q: Why is an independent review instance better than self-review?**
 A: The model retains its generation reasoning context in the same session, making it biased toward its own decisions. An independent instance with no prior context catches more subtle issues.

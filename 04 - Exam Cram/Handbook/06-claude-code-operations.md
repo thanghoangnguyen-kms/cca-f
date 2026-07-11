@@ -16,8 +16,10 @@ mode, `--bare`, skills, and default tool selection. (Concept chapters 6, 7, 8, 9
   standard envelope; error codes follow a taxonomy; don't call
   `client.messages.create` directly in business logic; don't return `None` from
   a tool; don't use an iteration cap as the main loop terminator.
-- **`.claude/settings.json`** ≠ CLAUDE.md: it configures **MCP servers, env
-  vars, commands/args** — the runtime wiring, not the coding rules.
+- **`.claude/settings.json`** ≠ CLAUDE.md: MCP servers are **defined** in
+  `.mcp.json` (project) or user config; `settings.json` only **enables/gates**
+  them (e.g. `enabledMcpjsonServers`), plus **env vars, commands/args** — the
+  runtime wiring, not the coding rules.
 
 ### CI/CD — non-interactive mode
 - In non-interactive environments (e.g. GitHub Actions), Claude Code **hangs** if
@@ -48,12 +50,13 @@ mode, `--bare`, skills, and default tool selection. (Concept chapters 6, 7, 8, 9
 |---|---|
 | `name` | Skill name |
 | `description` | What the skill does — helps Claude know **when** to use it |
-| `context` | Which context the skill runs in |
+| `context` | Only valid value is `fork` (isolated subagent context); omit the field to run in the main conversation |
 | `allowed-tools` | Which tools the skill may use |
 | `argument-hint` | Suggested input when invoking the skill |
 
-Context modes: **`inherit`** = run in the main conversation context; **`fork`** =
-run in a separate context / sub-agent.
+Context modes: omit `context` = run in the main conversation context;
+**`context: fork`** = run in a separate context / sub-agent. (`inherit` is
+**not** a `context` value — it's a value of the separate `model` field.)
 
 ### Default tool selection (Claude Code built-ins)
 | Situation | Tool |
@@ -78,7 +81,7 @@ run in a separate context / sub-agent.
 |---|---|
 | Claude Code hangs in GitHub Actions | Use `claude -p --output-format json` |
 | Where do architecture/naming/forbidden rules live? | **CLAUDE.md** (committed) |
-| Where do MCP servers / env vars live? | **`.claude/settings.json`** |
+| Where are MCP servers defined vs. enabled? | **Defined** in `.mcp.json` (project)/user config; **enabled/gated** via `.claude/settings.json` (`enabledMcpjsonServers`) |
 | Unfamiliar codebase / high-risk change | **Plan mode** first |
 | Need full manual control, no hooks/memory/auto-CLAUDE.md | **`--bare`** |
 | Skill should run isolated from main context | Frontmatter `context: fork` |
@@ -99,9 +102,10 @@ run in a separate context / sub-agent.
 
 ## Key phrases to recognize
 
-"CLAUDE.md (committed) vs settings.json (MCP/env)" · "`-p` / `--print` /
-`--output-format json`" · "plan mode for unfamiliar/high-risk" · "`--bare`
-skips hooks/LSP/memory/CLAUDE.md" · "skill `context: inherit` vs `fork`" ·
+"CLAUDE.md (committed) vs settings.json (MCP enable/gate, env)" · "`-p` /
+`--print` / `--output-format json`" · "plan mode for unfamiliar/high-risk" ·
+"`--bare` skips hooks/LSP/memory/CLAUDE.md" · "skill `context: fork` vs
+omitted (main conversation)" ·
 "Edit vs Write vs Grep vs Glob."
 
 ## Sources

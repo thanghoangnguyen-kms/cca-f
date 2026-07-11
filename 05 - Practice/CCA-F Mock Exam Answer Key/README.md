@@ -4,6 +4,9 @@ Authoritative answer key + explanations for all **60 questions** of the
 [CyberSkill CCAF Practice exam](https://claude-certified-architect-mock-exam-cyberskill.vercel.app/#exam),
 grounded in official Anthropic / Claude documentation and engineering posts.
 
+> [!NOTE] This is a different exam from `../CCA-F-practice-exam-questions.md`
+> This answer key is for the CyberSkill mock exam only. The vault's other practice bank, [../CCA-F-practice-exam-questions.md](../CCA-F-practice-exam-questions.md), is a separate, independently-numbered set of questions — its Q_N numbers do not correspond to the Q1–Q60 numbers used in this folder.
+
 Each question entry contains:
 - **Correct answer** + one-line statement
 - **Why it's correct** (cited)
@@ -20,7 +23,8 @@ Each question entry contains:
 | Customer support | Q31–Q45 | [customer_support.md](customer_support.md) |
 | Extraction pipeline | Q46–Q60 | [extraction_pipeline.md](extraction_pipeline.md) |
 
-Raw question bank (questions + options): [../CCA-F-practice-exam-questions.md](../CCA-F-practice-exam-questions.md)
+> [!WARNING] Different exam — do not cross-reference by question number
+> [../CCA-F-practice-exam-questions.md](../CCA-F-practice-exam-questions.md) is a **separate** practice bank (a `certificationpractice.com` set), not the raw text of the CyberSkill mock this answer key covers. Its question numbering does **not** align with the Q1–Q60 numbering used here — treat the two as independent exams.
 
 ## Cross-domain themes
 

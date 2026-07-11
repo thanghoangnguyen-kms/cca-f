@@ -62,7 +62,7 @@
 **Key takeaway:** Before trusting a confidence gate, disaggregate accuracy by segment (document type × field); aggregate metrics conceal localized failure modes.
 
 **Sources:**
-- [1] Building a multi-agent research system — evaluation of agents — https://www.anthropic.com/engineering/built-multi-agent-research-system
+- [1] Building a multi-agent research system — evaluation of agents — https://www.anthropic.com/engineering/multi-agent-research-system
 
 ---
 
@@ -276,7 +276,7 @@
 **Key takeaway:** With limited review capacity, use calibrated field-level confidence to concentrate human attention where errors cluster — random sampling measures but doesn't cover.
 
 **Sources:**
-- [1] Building a multi-agent research system — evaluation / calibration — https://www.anthropic.com/engineering/built-multi-agent-research-system
+- [1] Building a multi-agent research system — evaluation / calibration — https://www.anthropic.com/engineering/multi-agent-research-system
 - [2] Reduce hallucinations — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
 
 ---

@@ -56,7 +56,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Escalation context should be a structured, self-contained brief (who / root cause / amount / recommended action)—synthesis over raw replay.
 
-**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [5] https://www.anthropic.com/engineering/built-multi-agent-research-system
+**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [5] https://www.anthropic.com/engineering/multi-agent-research-system
 
 ---
 
@@ -200,7 +200,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Mid-process escalation = inline structured brief (customer + order + issue + why escalating), not a raw dump and not a policy-violating attempt.
 
-**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [5] https://www.anthropic.com/engineering/built-multi-agent-research-system
+**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [5] https://www.anthropic.com/engineering/multi-agent-research-system
 
 ---
 
@@ -281,6 +281,6 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 - [2] Context windows (statelessness, compaction, context editing) — https://docs.claude.com/en/docs/build-with-claude/context-windows
 - [3] Claude Code best practices (compaction/summarization) — https://www.anthropic.com/engineering/claude-code-best-practices
 - [4] Customer support agent use-case guide — https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
-- [5] How we built our multi-agent research system (delegation/handoff) — https://www.anthropic.com/engineering/built-multi-agent-research-system
+- [5] How we built our multi-agent research system (delegation/handoff) — https://www.anthropic.com/engineering/multi-agent-research-system
 - [6] Reduce hallucinations / strengthen guardrails — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
 - [7] Tool use — handling errors (is_error pattern) — https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors

@@ -89,11 +89,11 @@ For multi-turn conversations via the API: always pass the **complete conversatio
 |---------|---------|
 | `/clear` | Start fresh — clears context completely |
 | `/compact` | Summarize conversation, reducing tokens while preserving key info |
-| `/usage` | Check current token usage in session |
-| `/rename` | Rename session before clearing so it's findable later |
+| `/usage` | Show API usage stats and costs for the current session (aliases: `/cost`, `/stats`) |
+| `/rename` | Rename the current session so it's findable later |
 
-> [!WARNING] Unverified — confirm against official study guide
-> `/clear` and `/compact` are confirmed Claude Code commands. The exact names `/usage` (token usage in a session — may instead be `/context` or `/cost`) and `/rename` (session rename) could not be confirmed against `code.claude.com/docs`; verify before relying on the precise slash-command name for the exam.
+> [!NOTE] Confirmed Commands
+> `/usage` and `/rename` are confirmed Claude Code commands (source: `code.claude.com/docs/en/commands`). `/usage` displays API usage statistics and cost; `/cost` and `/stats` are aliases for it. `/rename` renames the current session.
 
 ---
 
@@ -319,8 +319,8 @@ flowchart LR
 
 The `PreCompact` hook runs before compaction, letting you inspect or customize what is preserved. Compaction can trigger automatically as context fills, or manually via `/compact`.
 
-> [!WARNING] Unverified — confirm against official study guide
-> The claim that "skill descriptions are **not re-injected** after `/compact` (only skills you actually invoked get preserved)" could not be confirmed against `code.claude.com/docs`. Verify the exact post-compaction skill-injection behavior before relying on it for the exam.
+> [!IMPORTANT] Post-Compaction Skill Re-Injection (Confirmed)
+> After `/compact`, the full skill catalog is **not** re-injected. Only skills that were actually **invoked** before compaction get their content re-attached — each truncated to roughly **5,000 tokens**, with the **oldest invoked skill dropped first** once the budget is exceeded. Source: `code.claude.com/docs/en/context-window`.
 
 ---
 

@@ -48,7 +48,7 @@ Prompts change *probability*. Code changes *outcome*. Triggers that force the
 | "97% accurate in aggregate, safe to automate?" | First **disaggregate by segment/field** — aggregate hides failures |
 | High volume, no tight latency | **Batch API** (50% cheaper, up to 24h window) |
 | Tight latency / user waiting | **Synchronous Messages API** |
-| Retry only failed batch items | Use **`custom_id`**; fix `context_length_exceeded` by **chunking input** |
+| Retry only failed batch items | Use **`custom_id`**; fix a context-length error (e.g. `context_length_exceeded` — exact string illustrative/unverified) by **chunking input** |
 | Non-interactive / CI (GitHub Actions) | `claude -p --output-format json` (missing `-p` = hangs) |
 | Unfamiliar large codebase | **Grep entry points → read → follow imports** incrementally (just-in-time) |
 
