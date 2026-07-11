@@ -6,7 +6,7 @@ tags:
   - domain-2
   - api-fundamentals
 date: 2026-07-11
-status: not-started
+status: done
 ---
 
 # 🎓 Building with the Claude API

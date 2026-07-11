@@ -5,7 +5,7 @@ tags:
   - api
   - models
 date: 2026-06-16
-status: needs-review
+status: done
 domain: "Week 1 Foundations"
 ---
 

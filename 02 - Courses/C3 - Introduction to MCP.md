@@ -5,7 +5,7 @@ tags:
   - domain-2
   - mcp
 date: 2026-07-11
-status: not-started
+status: done
 ---
 
 # 🎓 Introduction to Model Context Protocol (MCP)

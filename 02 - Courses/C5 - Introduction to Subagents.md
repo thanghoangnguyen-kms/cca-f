@@ -6,7 +6,7 @@ tags:
   - subagents
   - orchestration
 date: 2026-07-11
-status: not-started
+status: done
 ---
 
 # 🎓 Introduction to Subagents

@@ -6,7 +6,7 @@ tags:
   - domain-2
   - platform-fundamentals
 date: 2026-07-11
-status: not-started
+status: done
 ---
 
 # 🎓 Claude Platform 101

@@ -6,7 +6,7 @@ tags:
   - fundamentals
   - prompt-engineering
 date: 2026-07-11
-status: not-started
+status: done
 ---
 
 # 🎓 Claude 101

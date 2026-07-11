@@ -5,7 +5,7 @@ tags:
   - tool-design
   - mcp
 date: 2026-06-16
-status: needs-review
+status: done
 domain: "2 of 5"
 ---
 

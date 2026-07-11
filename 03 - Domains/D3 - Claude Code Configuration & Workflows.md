@@ -6,7 +6,7 @@ tags:
   - configuration
   - workflows
 date: 2026-06-16
-status: in-progress
+status: done
 domain: "3 of 5"
 ---
 

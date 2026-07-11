@@ -6,8 +6,8 @@ tags:
   - structured-output
   - batch-processing
 date: 2026-06-16
-status: in-progress
-domain: "4 of 5"
+status: done
+domain: 4 of 5
 ---
 
 # 📝 Domain 4: Prompt Engineering & Structured Output

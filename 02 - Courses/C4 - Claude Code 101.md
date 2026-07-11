@@ -5,7 +5,7 @@ tags:
   - claude-code
   - domain-3
 date: 2026-07-11
-status: not-started
+status: done
 ---
 
 # 🎓 Claude Code 101
