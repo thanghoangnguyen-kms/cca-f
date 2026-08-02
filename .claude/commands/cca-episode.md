@@ -55,13 +55,12 @@ Then append, per vault convention:
 - `## ✅ Practice Checklist` — checkbox list of self-test criteria
 - `*Next: [[EP<NN+1> - <Title>]]*` — link the next episode's folder name even if it doesn't exist yet
 
-### Vault conventions — mandatory
+### Episode-specific note shape
 
-- **Frontmatter:** `tags` (include `CCA-F`, `domain-<n>`, `youtube-course`), `date` (today), `status: not-started`, `domain: "N of 5"`, `source:` (channel + episode).
-- **Header block:** `[!NOTE] Exam Coverage` callout naming the domain + exam weight + task statements, then a line with `**Back to:** [[CCA-F Study Roadmap]] · **Domain note:** [[D<N> - ...]] · **Deck:** [[EP<NN> - Flashcards]]`, then source URL / level / question-mix, then `**Previous:** [[EP<NN-1> - ...]]`.
-- **Callouts:** `[!NOTE]` `[!TIP]` `[!WARNING]` (anti-patterns) `[!IMPORTANT]` (must-know) `[!EXAMPLE]`. Use ❌ / ✅ for wrong-vs-right.
-- **Links:** `[[wikilinks]]` only for internal notes. Never `[text](path)`.
-- **Code-format** every exam term: API fields (`stop_reason`), tool names (`Task`), SDK objects (`AgentDefinition`), config files (`CLAUDE.md`), CLI flags (`--resume`), env vars (`ANTHROPIC_API_KEY`).
+General vault conventions — callouts, `[[wikilinks]]`, code-formatting of exam terms — live in AGENTS.md (read in Step 0) and are **not** repeated here. Two things are specific to episode notes:
+
+- **Frontmatter:** the standard keys plus `youtube-course` in `tags` and `source:` (channel + episode).
+- **Header block:** `[!NOTE] Exam Coverage` callout naming the domain + exam weight + task statements, then `**Back to:** [[CCA-F Study Roadmap]] · **Domain note:** [[D<N> - ...]] · **Deck:** [[EP<NN> - Flashcards]]`, then source URL / level / question-mix, then `**Previous:** [[EP<NN-1> - ...]]`.
 
 ---
 
