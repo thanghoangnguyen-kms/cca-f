@@ -59,7 +59,7 @@ Peace Of Code's full-course episodes, one folder per episode (`06 - Youtube Cour
 **Domain 1 — Agentic Architecture & Orchestration**
 - ✅ [[EP01 - Agentic Loops & stop_reason]]
 - ✅ [[EP02 - Multi-Agent Systems & Coordinator Patterns]]
-- ⬜ EP03 - Subagent Context Passing & Session Management
+- ✅ [[EP03 - Subagent Context Passing & Session Management]]
 - ⬜ EP04 - Multi-Agent System in Python (Claude SDK)
 - ⬜ EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition
 

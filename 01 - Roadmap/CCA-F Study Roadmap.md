@@ -90,7 +90,7 @@ graph LR
 
 **Primary Resource:** SkillJar Claude Platform 101 (Agent Loop modules) + Intro to Subagents course · Course notes: [[C2 - Claude Platform 101]], [[C5 - Introduction to Subagents]]
 
-**Companion episodes (folder 06):** [[EP01 - Agentic Loops & stop_reason]] · [[EP02 - Multi-Agent Systems & Coordinator Patterns]] · EP03 - Subagent Context Passing & Session Management · EP04 - Multi-Agent System in Python (Claude SDK) · EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition
+**Companion episodes (folder 06):** [[EP01 - Agentic Loops & stop_reason]] · [[EP02 - Multi-Agent Systems & Coordinator Patterns]] · [[EP03 - Subagent Context Passing & Session Management]] · EP04 - Multi-Agent System in Python (Claude SDK) · EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition
 
 - [ ] [[D1 - Agentic Architecture & Orchestration]]
   - **1.1 Agentic Loop Lifecycle**
