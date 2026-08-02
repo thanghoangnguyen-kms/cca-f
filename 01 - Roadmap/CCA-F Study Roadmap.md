@@ -61,6 +61,7 @@ graph LR
 | **Anthropic Cookbooks**                     | Domains 2, 4 | https://github.com/anthropics/claude-cookbooks                        |
 | **CertSafari Practice Questions**           | All domains  | https://www.certsafari.com/anthropic/claude-certified-architect       |
 | **Preporato Practice Tests**                | All domains  | https://preporato.com/exams/cca-f                                     |
+| **Peace Of Code — YouTube Course**          | All domains  | 20 episodes + bonus in `06 - Youtube Course/`, start at [[EP01 - Agentic Loops & stop_reason]] |
 
 ---
 
@@ -88,6 +89,8 @@ graph LR
 > **Goal:** Master multi-agent systems, the agentic loop, session management, and task decomposition.
 
 **Primary Resource:** SkillJar Claude Platform 101 (Agent Loop modules) + Intro to Subagents course · Course notes: [[C2 - Claude Platform 101]], [[C5 - Introduction to Subagents]]
+
+**Companion episodes (folder 06):** [[EP01 - Agentic Loops & stop_reason]] · [[EP02 - Multi-Agent Systems & Coordinator Patterns]] · EP03 - Subagent Context Passing & Session Management · EP04 - Multi-Agent System in Python (Claude SDK) · EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition
 
 - [ ] [[D1 - Agentic Architecture & Orchestration]]
   - **1.1 Agentic Loop Lifecycle**
@@ -130,6 +133,8 @@ graph LR
 
 **Primary Resource:** SkillJar MCP course + Claude Platform 101 MCP module + Claude Cookbooks (tool_use/) · Course note: [[C3 - Introduction to MCP]]
 
+**Companion episodes (folder 06):** EP06 - Tool Descriptions & Tool Misrouting · EP07 - Agent Error Handling & tool_choice · EP08 - MCP Servers, Config & Cline · EP09 - Claude Built-in Tools
+
 - [ ] [[D2 - Tool Design & MCP Integration]]
   - **2.1 Effective Tool Interface Design**
     - Tool description = primary LLM selection mechanism
@@ -166,6 +171,8 @@ graph LR
 > **Goal:** Master CLAUDE.md hierarchy, slash commands, skills, path-scoped rules, plan mode, CI/CD.
 
 **Primary Resource:** FlorianBruniaux Ultimate Guide (architecture + configuration sections) + SkillJar Claude Code 101 · Course note: [[C4 - Claude Code 101]]
+
+**Companion episodes (folder 06):** EP10 - CLAUDE.md Hierarchy & Config Rules · EP11 - Custom Slash Commands & Skills · EP12 - Plan Mode vs Execute · EP13 - Claude Code CI-CD Pipelines
 
 - [ ] [[D3 - Claude Code Configuration & Workflows]]
   - **3.1 CLAUDE.md Hierarchy & Modular Organization**
@@ -210,6 +217,8 @@ graph LR
 > **Goal:** Master structured outputs, few-shot prompting, batch processing, and context reliability patterns.
 
 **Primary Resource:** SkillJar "Building with the Claude API" (Prompt Engineering + Structured Output + RAG modules) · Course note: [[C6 - Building with the Claude API]]
+
+**Companion episodes (folder 06):** EP14 - Prompt Engineering - Explicit Criteria & False Positives · EP15 - Few-Shot Prompting · EP16 - Structured Output & JSON Schema · EP17 - Batch API & Multi-Pass Review · EP18 - Why AI Agents Forget (Context Engineering) · EP19 - Subagent Error Propagation & Context Management · EP20 - When AI Needs a Human
 
 - [ ] [[D4 - Prompt Engineering & Structured Output]]
   - **4.1 Explicit Criteria to Reduce False Positives**
@@ -282,6 +291,7 @@ graph LR
   - https://www.certsafari.com/anthropic/claude-certified-architect
 - [ ] **Preporato practice tests:** https://preporato.com/exams/cca-f
 - [ ] **FlorianBruniaux 271-question quiz:** https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/quiz
+- [ ] **YouTube course wrap-up:** Bonus - Exam Questions Solved & Exam Traps (folder 06)
 - [ ] [[Weak Areas Deep Dive]] — notes from practice test mistakes
 
 ---
