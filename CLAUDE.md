@@ -49,7 +49,7 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 
 Resolution: video vs vault note → **the note wins** (flag it, leave `01`–`05` alone). Video vs docs → **docs win** (show both, name the exam answer). Note vs docs → **docs win** — that's a real finding; surface it loudly and fix the note with a source citation.
 
-**Scope of work vs scope of authority are different things.** Episode tasks write to `06` only — no background audits of `01`–`05`, no reconciling verified notes to match a video. But if official docs contradict a vault note while you're passing through, that outranks the note: report it prominently, don't bury it.
+**Scope of work vs scope of authority are different things.** Episode tasks write to `06` only — no background audits of `01`–`05`, no reconciling verified notes to match a video. One narrow, **link-only** exception: after authoring an episode, flip its `⬜` → `✅` and wikilink it in `00 - START HERE.md` and `CCA-F Study Roadmap.md`, or the note is unreachable. But if official docs contradict a vault note while you're passing through, that outranks the note: report it prominently, don't bury it.
 
 See AGENTS.md § Research & Content Sources for the source table, the **known corrections** to recheck (`stop_reason` value count, the `Task`→`Agent` rename, `AgentDefinition` required fields, subagent nesting), and two fetching gotchas that will otherwise waste a cycle. Mark anything unconfirmed `> [!WARNING] Unverified`.
 

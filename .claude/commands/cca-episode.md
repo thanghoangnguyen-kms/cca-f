@@ -5,7 +5,7 @@ argument-hint: <path-to-transcript.md>
 
 # CCA-F Episode → Study Guide + Flashcards
 
-Build a study guide and a flashcard deck from the lecture transcript at **$1**, place them in the matching episode folder in the CCA-F vault, and reconcile every exam-critical claim against official Anthropic docs.
+Build a study guide and a flashcard deck from the lecture transcript at **$1**, place them in the matching episode folder in the CCA-F vault, reconcile every exam-critical claim against official Anthropic docs, and link the new notes into the vault's indexes so they're reachable.
 
 **`<vault>` below means the directory containing `AGENTS.md`** — either the current directory or its `CCA-F/` subdirectory, depending on where the session was started. Resolve it once, up front; every path in this command is relative to it.
 
@@ -114,7 +114,48 @@ Use `[!IMPORTANT]` when the correction is a must-know rather than a trap. Tag pu
 
 ---
 
-## Step 4 — Validate before reporting
+## Step 4 — Reconcile the vault's index links
+
+**A new episode note is invisible until the indexes link to it.** Writing the two files in `06` is not the end of the job — the vault's entry points still list the episode as unwritten plain text, so nothing navigates to it.
+
+> [!IMPORTANT] Narrow, deliberate exception to the write-scope rule
+> AGENTS.md § *Scope of work vs scope of authority* restricts episode tasks to `06 - Youtube Course/`. This step is the **one sanctioned exception**, and it is **link-only**: flip a status marker and wrap an existing episode name in `[[...]]`. Do **not** edit prose, add sections, or reconcile any other content in `01`–`05` while you are in these files.
+
+**Exactly two files carry per-episode entries.** Update both, then stop looking.
+
+### 1 — `<vault>/00 - START HERE.md`, § "YouTube Course companion (folder 06)"
+
+Flip the status marker and wikilink the name. `⬜` = folder pre-created, not yet authored; `✅` = written.
+
+```diff
+- - ⬜ EP03 - Subagent Context Passing & Session Management
++ - ✅ [[EP03 - Subagent Context Passing & Session Management]]
+```
+
+### 2 — `<vault>/01 - Roadmap/CCA-F Study Roadmap.md`, the `**Companion episodes (folder 06):**` line
+
+Same idea, but there is **no status marker** here — written episodes are wikilinked, unwritten ones stay plain text in the `·`-separated run. Don't compute which week the episode belongs to: **find the companion line that already contains the episode's plain-text name and wrap it in place.**
+
+```diff
+- ... [[EP02 - Multi-Agent Systems & Coordinator Patterns]] · EP03 - Subagent Context Passing & Session Management · EP04 - Multi-Agent System in Python (Claude SDK) ...
++ ... [[EP02 - Multi-Agent Systems & Coordinator Patterns]] · [[EP03 - Subagent Context Passing & Session Management]] · EP04 - Multi-Agent System in Python (Claude SDK) ...
+```
+
+### The one way this goes wrong
+
+**The wikilink text must exactly match the note's filename — which is the folder name, not the transcript's `title:`.** Folder titles are shortened (Step 0.4), so copying the transcript title produces a link Obsidian renders but cannot resolve. Copy the folder name.
+
+### Files that need *no* per-episode update
+
+`README.md`, `CLAUDE.md`, and `AGENTS.md` describe `06 - Youtube Course/` structurally (`EP<NN> - <Title>/`) and carry no episode list. Domain notes `D1`–`D5` are linked *from* episode notes, never the reverse — do not add backlinks.
+
+### If the episode has no pre-created entry
+
+Both indexes pre-list all 20 episodes plus the bonus. If the name is genuinely absent (a retitled or added episode), insert it in episode-number order — under the matching domain heading in START HERE, and in the companion line of the week covering that domain in the Roadmap — matching the surrounding format exactly.
+
+---
+
+## Step 5 — Validate before reporting
 
 - [ ] All 7 sections present and non-empty
 - [ ] Key Terms ≥ 8 rows
@@ -125,6 +166,9 @@ Use `[!IMPORTANT]` when the correction is a must-know rather than a trap. Tag pu
 - [ ] Every exam-critical claim either matches official docs or carries a conflict callout with a source URL
 - [ ] `[[wikilinks]]` used throughout; prev/next/domain/deck links all present
 - [ ] Shared deck card count unchanged unless a stale card was deliberately edited
+- [ ] `00 - START HERE.md` — episode flipped `⬜` → `✅` and wikilinked
+- [ ] `CCA-F Study Roadmap.md` — episode wikilinked in its companion-episodes line
+- [ ] Both index wikilinks match the note's **filename** exactly (folder name, not transcript title)
 
 ---
 
@@ -133,6 +177,7 @@ Use `[!IMPORTANT]` when the correction is a must-know rather than a trap. Tag pu
 Keep it short. Lead with the two file links, then:
 - Question/card counts
 - **Every conflict found in Step 2** — what the lecture said, what the docs say, which to use for the exam
+- Index files reconciled (Step 4), in one line — or which one you couldn't and why
 - Transcription artifacts flagged
 - Cards excluded as duplicates, and any shared-deck card edited
 - Anything left unverified, stated plainly
@@ -144,3 +189,5 @@ Keep it short. Lead with the two file links, then:
 - Do not invent exam content; mark elaboration `(expansion)` and unknowns `[!WARNING] Unverified`
 - Do not silently pick a side when the video and the docs conflict — show both
 - Do not use `[text](path)` links inside vault notes
+- Do not treat Step 4 as licence to edit `01`–`05` generally — it is link-only, on two named files
+- Do not finish with the episode listed as `⬜` or as plain text in either index
