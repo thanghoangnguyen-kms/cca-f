@@ -72,7 +72,7 @@ A: Claude wants to call a tool — execute it, feed the result back as the next 
 A: No. Subagent context is isolated by default; the coordinator must explicitly inject relevant context into each subagent's prompt.
 
 **Q: What must be in `allowedTools` for a coordinator to invoke subagents without permission prompts?**
-A: `"Task"`.
+A: `"Task"` — the exam-safe answer. Renamed to `"Agent"` in Claude Code v2.1.63; `"Task"` remains a backward-compatible alias and still appears in the `system:init` tools list and in `permission_denials`. Detection code should match both.
 
 **Q: What are the required fields of an `AgentDefinition`?**
 A: `description` (how Claude decides when to invoke it) and `prompt` (the subagent's role/expertise/constraints). Optional fields include `tools`, `disallowedTools`, `model`, `skills`, and `memory`.
