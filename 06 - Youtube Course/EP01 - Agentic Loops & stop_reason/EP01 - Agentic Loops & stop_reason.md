@@ -5,7 +5,7 @@ tags:
   - agentic-architecture
   - youtube-course
 date: 2026-08-02
-status: not-started
+status: done
 domain: "1 of 5"
 source: "Peace Of Code — Claude Certified Architect Full Course Ep 01"
 ---

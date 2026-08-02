@@ -105,8 +105,8 @@ Use `[!IMPORTANT]` when the correction is a must-know rather than a trap. Tag pu
 
 **File:** `<vault>/06 - Youtube Course/EP<NN> - <Title>/EP<NN> - Flashcards.md`
 
-1. **Read `<vault>/04 - Exam Cram/Flashcards.md` first and dedupe against it.** Skip any card the shared deck already covers. Do not append to the shared deck — episode decks stay in their episode folder.
-2. Name the skipped topics explicitly in the deck's header callout, so it's clear they were deliberate, not missed.
+1. **Make the deck self-contained — do not dedupe against `04 - Exam Cram/Flashcards.md`.** Overlap with the vault-wide deck is expected and fine. This deck must stand alone as a complete review of the episode, so never omit a card just because it exists elsewhere. Still never *append* to the shared deck.
+2. **Apply the quality bar** (AGENTS.md § When writing flashcard notes). Test every card: *could someone who skimmed the note without understanding it still answer this?* If yes, rewrite or cut. Cards must be atomic, self-contained, not guessable from their own phrasing, and have one defensible answer. Prefer *why* / *when* / *what breaks* over *what is it called* — except for exact identifiers the exam checks literally (`stop_reason` values, field names, tool names), which stay plain recall.
 3. If a shared-deck card is contradicted by **official docs** (not merely by the video), edit it in place — don't add a competing card — cite the doc URL, and flag it prominently in the summary as a change to verified content. If only the *video* disagrees, leave the card alone.
 4. Format per vault convention: `**Q: <question>**` on one line, `A: <answer>` on the next, grouped under `## Domain N — <topic>` headers. Answers 1–3 sentences; a table is fine where it earns its place.
 5. Frontmatter mirrors the study guide's but adds the `flashcards` tag.

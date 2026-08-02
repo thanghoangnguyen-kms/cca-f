@@ -6,7 +6,7 @@ tags:
   - flashcards
   - youtube-course
 date: 2026-08-02
-status: not-started
+status: done
 domain: "1 of 5"
 source: "Peace Of Code — Claude Certified Architect Ep 02"
 ---
@@ -14,7 +14,7 @@ source: "Peace Of Code — Claude Certified Architect Ep 02"
 # 🃏 EP02 Flashcards — Multi-Agent Systems & Coordinator Patterns
 
 > [!NOTE] How to Use This Deck
-> Active-recall cards drawn from [[EP02 - Multi-Agent Systems & Coordinator Patterns]]. Cover the `A:` line and answer before revealing. These are **episode-specific** — the vault-wide deck is [[Flashcards]], and four cards already covered there are deliberately **not** repeated: subagent context inheritance, `"Task"` in `allowedTools`, the required `AgentDefinition` fields, and how to spawn in parallel. Review those there.
+> Active-recall cards drawn from [[EP02 - Multi-Agent Systems & Coordinator Patterns]]. Cover the `A:` line and answer before revealing. This deck is **self-contained** — it covers the episode in full, so some cards overlap with the vault-wide [[Flashcards]] deck by design. Study either on its own.
 >
 > **Related:** [[D1 - Agentic Architecture & Orchestration]] · [[EP01 - Flashcards]] · [[Critical Terms Glossary]] · [[CCA-F Study Roadmap]]
 
@@ -42,6 +42,12 @@ A: Coordinator ✅ (required — no spawn tool, no delegation). Standard worker 
 
 **Q: The lecture calls the spawn tool `Task`. What is it actually called now?**
 A: Renamed **`Task` → `Agent`** in Claude Code v2.1.63. Current SDK emits `"Agent"` in `tool_use` blocks; `"Task"` survives in the `system:init` tools list and `permission_denials[].tool_name`. **Exam answer: `"Task"`.** Real code: use `"Agent"`, and match both when parsing.
+
+**Q: How do you spawn subagents in parallel rather than sequentially?**
+A: Emit **multiple spawn-tool calls in a single coordinator response** — one assistant message carrying several sibling `tool_use` blocks. Calls spread across separate turns run sequentially, not in parallel.
+
+**Q: Do subagents inherit the coordinator's conversation history?**
+A: **No.** Each starts a fresh context and receives nothing of the parent's conversation or tool results. The coordinator must inject anything the subagent needs.
 
 **Q: Give the wall-clock formulas for parallel vs sequential subagent spawning.**
 A: $T_{\text{parallel}} = \max(S_1 \ldots S_n)$ — the slowest single subagent. $T_{\text{sequential}} = \sum S_i$ — runtimes add. Sequential defeats the purpose of multi-agent entirely.

@@ -5,7 +5,7 @@ tags:
   - flashcards
   - youtube-course
 date: 2026-08-02
-status: not-started
+status: done
 domain: "1 of 5"
 source: "Peace Of Code — Claude Certified Architect Full Course Ep 01"
 ---
@@ -13,13 +13,22 @@ source: "Peace Of Code — Claude Certified Architect Full Course Ep 01"
 # 🃏 EP01 Flashcards — Agentic Loops & `stop_reason`
 
 > [!NOTE] How to Use This Deck
-> Active-recall cards drawn from [[EP01 - Agentic Loops & stop_reason]]. Cover the `A:` line and answer before revealing. These are **episode-specific** — the vault-wide deck is [[Flashcards]], and cards already covered there (the two headline `stop_reason` values, API statelessness) are deliberately **not** repeated here.
+> Active-recall cards drawn from [[EP01 - Agentic Loops & stop_reason]]. Cover the `A:` line and answer before revealing. This deck is **self-contained** — it covers the episode in full, so some cards overlap with the vault-wide [[Flashcards]] deck by design. Study either on its own.
 >
 > **Related:** [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[Critical Terms Glossary]] · [[CCA-F Study Roadmap]]
 
 ---
 
 ## Domain 1 — Agentic Architecture
+
+**Q: What are the two `stop_reason` values that drive a client-side tool loop, and what does each instruct you to do?**
+A: `tool_use` — Claude wants to act; execute the requested tools, append results, continue the loop. `end_turn` — Claude has finished this turn; extract the text blocks and break. `end_turn` is the only valid primary exit.
+
+**Q: The Claude API is stateless. What does that force you to do on every request?**
+A: Resend the **entire conversation history** from the first message onward — nothing is stored server-side between calls. The messages array *is* the agent's memory.
+
+**Q: Why is `stop_reason` the only safe loop-termination signal?**
+A: Everything else measures the wrong thing. Claude's wording varies between calls, a `tool_use` turn may carry no text block at all, content type describes payload shape rather than intent, and an iteration cap describes elapsed effort rather than completion. Only `stop_reason` reports why Claude actually stopped.
 
 **Q: What are the three message roles, and which is set only once per conversation?**
 A: `system`, `user`, `assistant`. The `system` role — the persona/instruction block — is set once at the start, not re-sent per message.

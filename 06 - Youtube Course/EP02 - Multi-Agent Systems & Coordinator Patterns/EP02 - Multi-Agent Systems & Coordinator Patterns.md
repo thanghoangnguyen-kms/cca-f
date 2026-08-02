@@ -6,7 +6,7 @@ tags:
   - multi-agent
   - youtube-course
 date: 2026-08-02
-status: not-started
+status: done
 domain: "1 of 5"
 source: "Peace Of Code — Claude Certified Architect Ep 02"
 ---

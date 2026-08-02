@@ -29,7 +29,7 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 
 1. **Two link conventions coexist — match the file you're editing.** Everything uses `[[wikilinks]]` **except** `04 - Exam Cram/Handbook/`, which is plain GitHub Markdown with relative `[text](file.md)` links. Keep that folder intact as a unit so its links don't break.
 2. **Episode notes repeat their folder name** — `EP01 - Foo/EP01 - Foo.md` — because Obsidian resolves `[[wikilinks]]` by filename. Don't "tidy" this.
-3. **Never append episode flashcards to the vault-wide `Flashcards.md`.** Episode decks stay in their episode folder and dedupe against the shared one.
+3. **Never append episode flashcards to the vault-wide `Flashcards.md`.** Episode decks stay in their episode folder and are **self-contained** — overlap with the shared deck is expected, so don't dedupe against it.
 
 ## Conventions (summary — see AGENTS.md for the spec)
 

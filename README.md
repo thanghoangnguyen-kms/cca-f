@@ -27,8 +27,10 @@ Content lives in numbered folders by study order:
 | `03 - Domains/` | `00 - Model Family & API Fundamentals` + `D1`–`D5` per-domain deep dives |
 | `04 - Exam Cram/` | `Flashcards.md`, `Critical Terms Glossary.md`, and `Handbook/` (scenario-based cram, `00`–`08`) |
 | `05 - Practice/` | `Weak Areas Deep Dive.md`, a practice question bank, and a worked mock-exam answer key |
+| `06 - Youtube Course/` | Per-episode notes for the Peace Of Code course — `EP<NN> - <Title>/` folders, each with a study guide + its own flashcard deck |
+| `youtube-transcript/` | **Read-only source material** — third-party auto-generated transcripts. Never edited or linked to from study notes |
 
-Agent/authoring conventions live in [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md).
+Agent/authoring conventions live in [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md). Agent tooling — slash commands and skills — lives in `.claude/` (version-controlled) with parallel copies for non-Claude agents in `.agents/skills/`; `skills-lock.json` pins the external `baoyu-youtube-transcript` skill.
 
 ## Conventions
 
@@ -41,6 +43,7 @@ Agent/authoring conventions live in [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](C
 1. Open the folder in Obsidian (wikilinks, callouts, and Mermaid diagrams render natively).
 2. Start at [`00 - START HERE.md`](00%20-%20START%20HERE.md), then follow the [study roadmap](01%20-%20Roadmap/CCA-F%20Study%20Roadmap.md).
 3. Use `04 - Exam Cram/` for last-mile review and `05 - Practice/` to self-test.
+4. Working with an AI agent (Claude Code, Copilot CLI)? Start the session from inside `CCA-F/` so it discovers `.claude/commands/` and `.claude/skills/`, then run `/cca-episode <transcript-path>` to generate a new episode study guide + deck from a `youtube-transcript/` source.
 
 ---
 
