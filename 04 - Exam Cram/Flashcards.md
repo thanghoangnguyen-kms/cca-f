@@ -120,8 +120,8 @@ A: Transient (`isRetryable: true`), Validation (`false`), Business/policy (`fals
 **Q: How many tools per agent is reliable, and how many degrades selection?**
 A: 4–5 tools per agent is reliable; 10+ degrades selection reliability; 18+ causes significant tool misuse.
 
-**Q: What are the two MCP configuration scopes and their file locations?**
-A: Project scope → `.mcp.json` (version-controlled, team-shared). User scope → `~/.claude.json` (personal, not shared via version control).
+**Q: What are the three MCP configuration scopes and their file locations?**
+A: **Local** (the default) → `~/.claude.json` under that project's path, private to you and that project. **Project** → `.mcp.json` at the repo root, version-controlled and team-shared. **User** → `~/.claude.json` at top level, private, all your projects. Precedence: `local` → `project` → `user`, with no field merging. ([docs](https://code.claude.com/docs/en/mcp), checked 2026-08-04)
 
 **Q: What is the MCP tool naming convention?**
 A: `mcp__{server-name}__{tool-name}` — e.g., `mcp__github__list_issues`.
@@ -175,8 +175,8 @@ A: The model retains its own generation reasoning context, making it less likely
 **Q: When should you use path-scoped `.claude/rules/` files instead of a subdirectory CLAUDE.md?**
 A: When conventions apply to files spread across multiple directories (e.g., all `*.test.tsx` files anywhere) — a single `paths:`-scoped rule file targets by pattern regardless of location.
 
-**Q: What does `/memory` do?**
-A: Shows which CLAUDE.md and memory files are currently loaded — used to diagnose inconsistent behavior across sessions.
+**Q: Claude seems to ignore your CLAUDE.md. Which command verifies it actually loaded — `/memory` or `/context`?**
+A: `/context` — check the list under **Memory files**. `/memory` only lists memory-file *locations* (including files that don't exist yet) and opens them for editing, so it reports a path whether or not anything loaded. ([docs](https://code.claude.com/docs/en/memory#view-and-edit-with-memory), checked 2026-08-04)
 
 ---
 

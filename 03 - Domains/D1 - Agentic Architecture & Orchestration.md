@@ -36,16 +36,30 @@ flowchart TD
     D -->|"tool_use"| F["Execute tools"]
     F --> G["Feed tool results back"]
     G --> B
+    D -->|"pause_turn"| H["Append assistant turn, re-send to resume"]
+    H --> B
+    D -->|"the other four"| I["Not loop control — handle and exit"]
 ```
 
-### Key stop_reason Values
+The loop continues on **three** stop reasons only: `tool_use` and `pause_turn` re-enter it, `end_turn` leaves it cleanly. The remaining four each need their own handling — see the table below.
+
+### stop_reason Values
+
+**Seven** values exist. **↻** marks the **three that drive loop control** — those are the only ones a loop continues on.
 
 | `stop_reason` | Meaning | Action |
 |---------------|---------|--------|
-| `"tool_use"` | Claude wants to call a tool | Execute tool, return result, continue loop |
-| `"end_turn"` | Claude finished; no more tool calls | Terminate loop |
-| `"max_tokens"` | Output token limit reached | Handle truncation |
+| ↻ `"tool_use"` | Claude wants to call a tool | Execute tool, return result, continue loop |
+| ↻ `"end_turn"` | Claude finished; no more tool calls | Terminate loop |
+| ↻ `"pause_turn"` | A **server-side tool** paused a long-running turn | Append the assistant turn and re-send to resume — do **not** add a "Continue." message |
+| `"max_tokens"` | Output token limit reached | Handle truncation; raise `max_tokens` or stream |
 | `"stop_sequence"` | Hit a configured stop sequence | Terminate |
+| `"refusal"` | Declined for safety reasons | **`content` may be empty** — check `stop_reason` *before* reading `content`. Inspect `stop_details` |
+| `"model_context_window_exceeded"` | Context window exhausted (distinct from `max_tokens`) | Compact or split the conversation |
+
+> [!IMPORTANT] The three-of-seven split is the exam-testable fact
+> A loop that branches only on `end_turn` and `tool_use` is the classic tutorial shape and it **fails silently in production**: `pause_turn` matches neither branch, so a `while True` loop spins forever; `refusal` returns empty `content`, so extracting the final text raises. Handle all seven; continue on three.
+> Source: [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons) · checked 2026-08-03 · see [[EP04 - Multi-Agent System in Python (Claude SDK)]] §3.5 for a worked failure trace
 
 > [!WARNING] Anti-Patterns (Exam Trap!)
 > ❌ **Arbitrary iteration caps** as the PRIMARY stopping mechanism
@@ -250,13 +264,27 @@ Use `PostToolUse` to normalize heterogeneous data before the model processes it:
 - Different field names → standardized schema
 
 ```python
-# PostToolUse hook normalizes MCP tool results
+# PostToolUse hook normalizes tool results before the model sees them
 async def normalize_timestamps(input_data, tool_use_id, context):
     result = input_data["tool_result"]
     if "unix_timestamp" in result:
         result["iso_date"] = convert_unix_to_iso(result["unix_timestamp"])
-    return {"modifiedToolResult": result}
+    return {
+        "hookSpecificOutput": {
+            "hookEventName": "PostToolUse",
+            "updatedToolOutput": result,   # REPLACES the result before Claude sees it
+        }
+    }
 ```
+
+> [!IMPORTANT] `PostToolUse` output fields — replace vs append
+> - **`updatedToolOutput`** — *replaces* the tool's output before Claude sees it. Works for **any** tool in **both** SDKs.
+> - **`additionalContext`** — *appends* information to the tool result instead of replacing it.
+> - **`updatedMCPToolOutput`** — the older field, replaces **MCP tool output only**, and is **deprecated**.
+> - Return **`{}`** to pass through unchanged.
+>
+> Both live inside `hookSpecificOutput`, tagged with `hookEventName`. There is no bare `modifiedToolResult` return value.
+> Source: [Hooks in the SDK](https://code.claude.com/docs/en/agent-sdk/hooks) → *Outputs* · checked 2026-08-03 · see [[EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition]] §3.4
 
 ### Key Pattern: `PreToolUse` for Compliance Enforcement
 

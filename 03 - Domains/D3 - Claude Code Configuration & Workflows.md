@@ -102,9 +102,17 @@ An alternative to a monolithic CLAUDE.md for large projects:
 - Rules without `paths:` frontmatter load at launch with same priority as `.claude/CLAUDE.md`
 - Rules with `paths:` frontmatter are **path-scoped** (see Section 3.3)
 
-### `/memory` Command
+### `/memory` vs `/context` — Two Different Commands
 
-Use `/memory` to verify which memory files are currently loaded and diagnose inconsistent behavior across sessions.
+| Command | What it does |
+|---------|--------------|
+| **`/context`** | Shows what **actually loaded** this session — check the list under **Memory files**. If a file is missing there, Claude can't see it. |
+| `/memory` | Lists memory-file **locations** across user and project scope — **including files that don't exist yet** — toggles auto memory, and opens a selected file in your editor. |
+
+> [!WARNING] Exam Trap: Which Command Verifies Loading
+> **`/context` is the load check, not `/memory`.** Because `/memory` reports locations rather than load state, it lists a path whether or not anything loaded — so it cannot diagnose a file that failed to load.
+> The `InstructionsLoaded` hook logs exactly which instruction files loaded, when, and why — the tool for debugging path-scoped rules and lazily-loaded nested files.
+> Source: https://code.claude.com/docs/en/memory#view-and-edit-with-memory (checked 2026-08-04)
 
 ### CLAUDE.md Size Guidelines
 

@@ -197,14 +197,35 @@ Example: server `"github"` + tool `"list_issues"` → `mcp__github__list_issues`
 
 ### Configuration Scopes
 
-| Scope | File Location | Shared? | Use For |
-|-------|--------------|---------|---------|
-| **Project** | `.mcp.json` at project root | ✅ Version-controlled, team-wide | Shared team tooling |
-| **User** | `~/.claude.json` | ❌ Personal only | Personal/experimental servers |
+There are **three** scopes, and only one of them is shared:
+
+| Scope | File Location | Loads In | Shared? | Use For |
+|-------|--------------|----------|---------|---------|
+| **Local** *(default)* | `~/.claude.json`, under that project's path | Current project only | ❌ Personal only | Personal/experimental servers, credentials you don't want committed |
+| **Project** | `.mcp.json` at project root | Current project only | ✅ Version-controlled, team-wide | Shared team tooling |
+| **User** | `~/.claude.json`, at top level | **All** your projects | ❌ Personal only | Personal utilities you want everywhere |
+
+> [!IMPORTANT] Local and user scope share one file
+> Both live in `~/.claude.json` — what distinguishes them is **where in the file** the entry sits. Local-scoped servers are nested under `projects."<project path>"`; user-scoped servers sit at the top level. Neither is version-controlled.
+>
+> Note also that MCP "local scope" is unrelated to general local *settings*: MCP local-scoped servers live in `~/.claude.json`, while `.claude/settings.local.json` holds project settings.
 
 > [!WARNING] Exam Trap
-> User-level (`~/.claude.json`) settings are NOT shared via version control.
-> If a new team member doesn't have an MCP server, check whether it was configured at user scope instead of project scope.
+> **`claude mcp add` defaults to `local` scope**, so a server added without an explicit `--scope` is written to `~/.claude.json` under the current project's path — it works perfectly for you, in that project only, and is invisible to everyone else.
+> If a new team member doesn't have an MCP server, the most likely cause is **local** scope (the default), not user scope. Either way the fix is the same: move it to `.mcp.json` at the project root with `--scope project`, and commit that file.
+>
+> Committing `.mcp.json` is necessary but **not sufficient** — Claude Code prompts for approval before using project-scoped servers from `.mcp.json`. Reset approval choices with `claude mcp reset-project-choices`.
+
+### Scope Precedence
+
+When the same server **name** is defined at more than one scope, Claude Code connects once, using the highest-precedence definition:
+
+**`local` → `project` → `user` → plugin-provided → claude.ai connectors**
+
+> [!WARNING] Scopes do not merge
+> The **entire entry** from the winning scope is used — fields are never merged across scopes. A stale local-scope entry silently beats a correct project-scope one, and you cannot override just a URL or just a token from a higher scope. The three scopes match duplicates by **name**; plugins and connectors match by **endpoint**.
+
+*Scopes, precedence, and the approval requirement verified against [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) on 2026-08-04.*
 
 ### Environment Variable Expansion
 
@@ -290,9 +311,11 @@ claude mcp remove github # Remove a server
 
 | Scope | Stored In | Who Can Use |
 |-------|-----------|------------|
-| `local` (default) | Current project, current user only | You only |
+| `local` (default) | `~/.claude.json`, under that project's path | You only, in that project |
 | `project` | `.mcp.json` (version-controlled) | Whole team |
-| `user` | `~/.claude.json` | You, all projects |
+| `user` | `~/.claude.json`, at top level | You, all projects |
+
+Same three scopes as § *Configuration Scopes* above — see there for precedence and the project-scope approval requirement.
 
 ---
 
@@ -351,7 +374,8 @@ In custom tool definitions, `readOnlyHint: true` signals the tool has no side ef
 - [ ] Can distinguish access failure from valid empty result
 - [ ] Know why too many tools degrades agent reliability (4-5 optimal)
 - [ ] Know the `tool_choice` values (`auto`, `any`, specific `tool`, `none`) and when to use each
-- [ ] Know the 2 MCP configuration scopes and their file locations
+- [ ] Know the 3 MCP configuration scopes, their file locations, and that `local` is the default
+- [ ] Know the scope precedence order, and that entries never merge across scopes
 - [ ] Know `${VAR_NAME}` expansion syntax in `.mcp.json`
 - [ ] Know the 4 MCP transport types and when to use each
 - [ ] Know the MCP tool naming convention (`mcp__{server}__{tool}`)
@@ -378,8 +402,11 @@ A: No — an empty result array with `isError: false` means the query succeeded 
 **Q: What `tool_choice` value guarantees the model calls a tool instead of responding with text?**
 A: `{"type": "any"}` — forces the model to call at least one available tool. (`tool_choice` is always an object, never a bare string.)
 
-**Q: What are the two MCP configuration scopes and their file locations?**
-A: Project scope → `.mcp.json` (version-controlled, team-shared). User scope → `~/.claude.json` (personal, not version-controlled).
+**Q: What are the three MCP configuration scopes, their file locations, and which is the default?**
+A: **Local** (the default) → `~/.claude.json` under that project's path, private, that project only. **Project** → `.mcp.json` at the repo root, version-controlled and team-shared. **User** → `~/.claude.json` at top level, private, all your projects.
+
+**Q: A teammate clones the repo and has no MCP tools. What is the most likely cause?**
+A: The server was added at **local** scope — the default — so it sits in your `~/.claude.json` and was never committed. Move it to `.mcp.json` with `--scope project`; the teammate then also has to **approve** the project-scoped servers.
 
 **Q: How do credentials get injected into `.mcp.json` without committing secrets?**
 A: Environment variable expansion syntax: `"GITHUB_TOKEN": "${GITHUB_TOKEN}"`.

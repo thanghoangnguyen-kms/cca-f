@@ -60,31 +60,31 @@ Peace Of Code's full-course episodes, one folder per episode (`06 - Youtube Cour
 - ✅ [[EP01 - Agentic Loops & stop_reason]]
 - ✅ [[EP02 - Multi-Agent Systems & Coordinator Patterns]]
 - ✅ [[EP03 - Subagent Context Passing & Session Management]]
-- ⬜ EP04 - Multi-Agent System in Python (Claude SDK)
-- ⬜ EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition
+- ✅ [[EP04 - Multi-Agent System in Python (Claude SDK)]]
+- ✅ [[EP05 - PreToolUse, PostToolUse Hooks & Task Decomposition]]
 
 **Domain 2 — Tool Design & MCP Integration**
-- ⬜ EP06 - Tool Descriptions & Tool Misrouting
-- ⬜ EP07 - Agent Error Handling & tool_choice
-- ⬜ EP08 - MCP Servers, Config & Cline
-- ⬜ EP09 - Claude Built-in Tools
+- ✅ [[EP06 - Tool Descriptions & Tool Misrouting]]
+- ✅ [[EP07 - Agent Error Handling & tool_choice]]
+- ✅ [[EP08 - MCP Servers, Config & Cline]]
+- ✅ [[EP09 - Claude Built-in Tools]]
 
 **Domain 3 — Claude Code Configuration & Workflows**
-- ⬜ EP10 - CLAUDE.md Hierarchy & Config Rules
-- ⬜ EP11 - Custom Slash Commands & Skills
-- ⬜ EP12 - Plan Mode vs Execute
-- ⬜ EP13 - Claude Code CI-CD Pipelines
+- ✅ [[EP10 - CLAUDE.md Hierarchy & Config Rules]]
+- ✅ [[EP11 - Custom Slash Commands & Skills]]
+- ✅ [[EP12 - Plan Mode vs Execute]]
+- ✅ [[EP13 - Claude Code CI-CD Pipelines]]
 
 **Domain 4 — Prompt Engineering & Structured Output**
-- ⬜ EP14 - Prompt Engineering - Explicit Criteria & False Positives
+- ✅ [[EP14 - Prompt Engineering - Explicit Criteria & False Positives]]
 - ⬜ EP15 - Few-Shot Prompting
-- ⬜ EP16 - Structured Output & JSON Schema
-- ⬜ EP17 - Batch API & Multi-Pass Review
+- ✅ [[EP16 - Structured Output & JSON Schema]]
+- ✅ [[EP17 - Batch API & Multi-Pass Review]]
 
 **Domain 5 — Context Management & Reliability**
-- ⬜ EP18 - Why AI Agents Forget (Context Engineering)
-- ⬜ EP19 - Subagent Error Propagation & Context Management
-- ⬜ EP20 - When AI Needs a Human
+- ✅ [[EP18 - Why AI Agents Forget (Context Engineering)]]
+- ✅ [[EP19 - Subagent Error Propagation & Context Management]]
+- ✅ [[EP20 - When AI Needs a Human]]
 
 **Bonus (cross-domain)**
 - ⬜ Bonus - Exam Questions Solved & Exam Traps
