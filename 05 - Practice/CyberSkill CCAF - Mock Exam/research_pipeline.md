@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - practice-exam
+  - answer-key
+  - research-pipeline
+date: 2026-08-24
+status: done
+---
+
 # research_pipeline — CCAF Study Guide
 
 > Domain scope: orchestrator–worker (lead agent + specialized subagents) research pipelines. The recurring theme across these questions is that **the coordinator/lead agent is the hub**: subagents are context-isolated, communicate only through what the coordinator explicitly puts in their prompts, return condensed structured artifacts, and are delegated *goals* rather than *procedures*. Citations below map to Anthropic engineering posts and the Claude API docs (see each question's Sources block).

@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - domain-2
+  - domain-5
+date: 2026-08-24
+status: done
+---
+
 # 04 — Customer Support Agents
 
 Covers: statelessness, deterministic guardrails/hooks, escalation, structured

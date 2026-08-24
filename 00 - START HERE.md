@@ -18,14 +18,14 @@ This is the single entry point. Everything is organized into numbered folders by
 
 ## 🗺️ The path
 
-| # | Folder | What's inside | Start with |
-|---|--------|---------------|-----------|
-| 01 | **Roadmap** | The 6-week study plan, resources, progress tracker | [[CCA-F Study Roadmap]] |
-| 02 | **Courses** | One lesson-doc per required training course — *what to know & memorize after finishing it* | See course list ↓ |
-| 03 | **Domains** | Deep-dive notes for each of the 5 exam domains + API fundamentals | [[00 - Claude Model Family & API Fundamentals]] |
-| 04 | **Exam Cram** | Memorize-by-heart material: golden rules, glossary, flashcards, scenario handbook | [[Flashcards]] · [[Critical Terms Glossary]] |
-| 05 | **Practice** | 60-question mock exam + worked answer key + your weak-areas mistake log | [[Weak Areas Deep Dive]] · [[CCA-F-practice-exam-questions]] |
-| 06 | **Youtube Course** | Per-episode study guides + flashcard decks from the Peace Of Code course, one folder per episode, mapped to the 5 domains | [[EP01 - Agentic Loops & stop_reason]] |
+| #   | Folder             | What's inside                                                                                                             | Start with                                                   |
+| --- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| 01  | **Roadmap**        | The 6-week study plan, resources, progress tracker                                                                        | [[CCA-F Study Roadmap]]                                      |
+| 02  | **Courses**        | One lesson-doc per required training course — *what to know & memorize after finishing it*                                | See course list ↓                                            |
+| 03  | **Domains**        | Deep-dive notes for each of the 5 exam domains + API fundamentals                                                         | [[00 - Claude Model Family & API Fundamentals]]              |
+| 04  | **Exam Cram**      | Memorize-by-heart material: golden rules, glossary, flashcards, scenario handbook                                         | [[Flashcards]] · [[Critical Terms Glossary]]                 |
+| 05  | **Practice**       | Three 60-question exam sets (one folder each) + your weak-areas mistake log                                               | [[Weak Areas Deep Dive]] · [[CCA-F-practice-exam-questions]] |
+| 06  | **Youtube Course** | Per-episode study guides + flashcard decks from the Peace Of Code course, one folder per episode, mapped to the 5 domains | [[EP01 - Agentic Loops & stop_reason]]                       |
 
 ---
 

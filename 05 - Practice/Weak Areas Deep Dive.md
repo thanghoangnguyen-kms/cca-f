@@ -18,9 +18,12 @@ status: in-progress
 
 ## 📥 Practice sources
 
-**In this vault:**
-- [[CCA-F-practice-exam-questions]] — 60-question practice bank (in `05 - Practice/`)
-- **CCA-F Mock Exam Answer Key/** — worked answers + explanations for a **separate** 60-question mock exam (the CyberSkill CCAF Practice exam), grouped by scenario (research pipeline, code exploration, customer support, extraction pipeline). Its Q1–Q60 numbering does **not** match [[CCA-F-practice-exam-questions]] — these are two different exams, not a question bank + matching answer key.
+**In this vault** — see [README.md](README.md) for the full map:
+- **CyberSkill CCAF - New Mock Exam/** — 60 questions **plus** a matched worked key split by domain. The only complete question+answer pair here; start with this one.
+- **CyberSkill CCAF - Mock Exam/** — worked answers only (its question file was never captured), same four domains. A **second sitting of the same bank** as New Mock Exam: 40 of 60 questions coincide, under different numbers.
+- [[CCA-F-practice-exam-questions]] — a third bank (certificationpractice.com #2564), 60 questions, **no answer key yet**.
+
+> [!WARNING] All three number their questions Q1–Q60 and none of the numberings match. Never cross-reference a question by number across sets.
 
 **External:**
 - **CertSafari** — 614 questions: https://www.certsafari.com/anthropic/claude-certified-architect

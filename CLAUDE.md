@@ -21,7 +21,7 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 | `02 - Courses/` | `C1`–`C6`, one lesson-doc per required training course |
 | `03 - Domains/` | `00 - Claude Model Family & API Fundamentals.md` + `D1`–`D5` domain deep dives |
 | `04 - Exam Cram/` | `Flashcards.md` (vault-wide deck), `Critical Terms Glossary.md`, `Handbook/` |
-| `05 - Practice/` | Mistake log, practice questions, mock exam answer key |
+| `05 - Practice/` | Mistake log + three exam sets, one folder each named `<source> - <set>`, `README.md` per folder. The two CyberSkill folders are separate sittings of one bank (40/60 overlap) — **kept separate deliberately**. Their answer keys share the **same four** domain filenames, so those folders link internally with relative MD, not `[[wikilinks]]` |
 | `06 - Youtube Course/` | `EP<NN> - <Title>/` — one folder per episode, each holding a study guide + its own deck |
 | `youtube-transcript/` | **Source material — read-only input, never edit, never link to from notes** |
 

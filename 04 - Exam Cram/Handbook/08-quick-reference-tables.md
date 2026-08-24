@@ -1,3 +1,12 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - quick-reference
+date: 2026-08-24
+status: done
+---
+
 # 08 — Quick-Reference Tables (all in one place)
 
 Print this and [`00`](00-golden-rules-cheatsheet.md). Everything factual you might need to recall fast.

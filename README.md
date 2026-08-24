@@ -26,7 +26,7 @@ Content lives in numbered folders by study order:
 | `02 - Courses/` | `C1`–`C6` — one lesson-doc per required training course |
 | `03 - Domains/` | `00 - Model Family & API Fundamentals` + `D1`–`D5` per-domain deep dives |
 | `04 - Exam Cram/` | `Flashcards.md`, `Critical Terms Glossary.md`, and `Handbook/` (scenario-based cram, `00`–`08`) |
-| `05 - Practice/` | `Weak Areas Deep Dive.md`, a practice question bank, and a worked mock-exam answer key |
+| `05 - Practice/` | `Weak Areas Deep Dive.md` (mistake log) + three exam sets, a folder each: `CyberSkill CCAF - New Mock Exam/` (questions + matched key), `CyberSkill CCAF - Mock Exam/` (key only), `CCA-F Question Bank/` (questions only) |
 | `06 - Youtube Course/` | Per-episode notes for the Peace Of Code course — `EP<NN> - <Title>/` folders, each with a study guide + its own flashcard deck |
 | `youtube-transcript/` | **Read-only source material** — third-party auto-generated transcripts. Never edited or linked to from study notes |
 

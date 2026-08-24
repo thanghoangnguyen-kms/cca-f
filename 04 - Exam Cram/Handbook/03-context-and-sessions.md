@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - domain-5
+date: 2026-08-24
+status: done
+domain: "5 of 5"
+---
+
 # 03 — Context Management & Sessions (Code Exploration)
 
 Covers: context degradation, scratchpads/compaction, sessions (resume/fork/fresh),

@@ -1,3 +1,11 @@
+---
+tags:
+  - CCA-F
+  - practice-exam
+date: 2026-08-24
+status: not-started
+---
+
 # Anthropic Claude Certified Architect Foundations (CCA-F) — Practice Exam
 
 _Source: certificationpractice.com — practice exam #2564. 60 of 60 questions captured. Answers not marked._

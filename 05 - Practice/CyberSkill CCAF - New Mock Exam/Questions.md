@@ -6,21 +6,21 @@ date: 2026-08-23
 status: not-started
 ---
 
-# Practice 05 — Questions
+# New Mock Exam — Questions
 
 > [!NOTE] What this is
-> A 60-question CCA-F sitting drawn from the [CyberSkill practice bank](https://practice.cyberskill.world/practice/ccaf/practice) on 2026-08-23 (sitting `7039f634`). Questions and **all** answer options are reproduced here; the correct answer is deliberately **not** marked. Work through this file first, then check [[Answer Key]].
+> A 60-question CCA-F sitting drawn from the [CyberSkill practice bank](https://practice.cyberskill.world/practice/ccaf/practice) on 2026-08-23 (sitting `7039f634`). Questions and **all** answer options are reproduced here; the correct answer is deliberately **not** marked. Work through this file first, then check the answer key — split by domain under [Answer Key/](README.md#files), indexed in [README.md](README.md).
 >
-> Domain mix: `code_exploration` 15 · `customer_support` 14 · `extraction_pipeline` 16 · `research_pipeline` 15.
+> Domain mix: `code_exploration` 15 · `customer_support` 14 · `extraction_pipeline` 16 · `research_pipeline` 15. Each question's domain line links to the answer file that covers it — **don't click through until you've committed to an answer.**
 
 > [!WARNING] Independently numbered
-> `Q1`–`Q60` here are **this sitting's** numbering. They do **not** line up with [[CCA-F-practice-exam-questions]] or with the `Q1`–`Q60` used in `CCA-F Mock Exam Answer Key/`, even where a question recurs — the bank re-draws and re-orders on every sitting.
+> `Q1`–`Q60` here are **this sitting's** numbering. They do **not** line up with the sibling `CyberSkill CCAF - Mock Exam/` sitting (same bank, 40/60 of these questions recur there under different numbers) or with the unrelated [[CCA-F-practice-exam-questions]] bank. Never carry a question number between sets.
 
 ---
 
 ## Question 1
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 Your agent has spent 25 minutes exploring a game engine's rendering subsystem—reading shader code, buffer management, and frame synchronization logic. An engineer now asks it to understand how the physics engine integrates with rendering for collision debug overlays. You notice recent responses reference "typical rendering patterns" rather than the specific VulkanPipeline and FrameGraph classes it discovered earlier.
 What's the most effective approach?
@@ -34,7 +34,7 @@ What's the most effective approach?
 
 ## Question 2
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 You're implementing the escalation logic for when the agent should call `escalate_to_human`. Your team proposes four different approaches for triggering escalation.
 Which approach will most reliably identify cases that genuinely require human intervention?
@@ -48,7 +48,7 @@ Which approach will most reliably identify cases that genuinely require human in
 
 ## Question 3
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 An extractor pulls line items and an invoice total from a receipt. The strongest integrity check before accepting the output is to:
 
@@ -61,7 +61,7 @@ An extractor pulls line items and an invoice total from a receipt. The strongest
 
 ## Question 4
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 After your daily batch of 10,000 documents completes, 300 documents (3%) failed with "`context_length_exceeded`" errors. The results file identifies each failure by `custom_id`.
 What's the most cost-effective approach to process these failures?
@@ -75,7 +75,7 @@ What's the most cost-effective approach to process these failures?
 
 ## Question 5
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 Three sub-agents searched overlapping territory and several findings repeat across their reports. Before synthesis, the coordinator should:
 
@@ -88,7 +88,7 @@ Three sub-agents searched overlapping territory and several findings repeat acro
 
 ## Question 6
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 When the agent calls `lookup_order` and receives order details showing the item was purchased 45 days ago, how does the agentic loop determine whether to call `process_refund` or `escalate_to_human` next?
 
@@ -101,7 +101,7 @@ When the agent calls `lookup_order` and receives order details showing the item 
 
 ## Question 7
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 An agent is dropped into an unfamiliar repository and asked to add a feature. The best way to orient without burning context is to:
 
@@ -114,7 +114,7 @@ An agent is dropped into an unfamiliar repository and asked to add a feature. Th
 
 ## Question 8
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 When implementing your `lookup_order` MCP tool, the backend sometimes returns errors (e.g., "Order not found" or temporary database failures).
 What is the correct pattern for communicating these errors back to the agent?
@@ -128,7 +128,7 @@ What is the correct pattern for communicating these errors back to the agent?
 
 ## Question 9
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 A README says the auth check happens in one module, but the agent must be sure before changing it. The agent should:
 
@@ -141,7 +141,7 @@ A README says the auth check happens in one module, but the agent must be sure b
 
 ## Question 10
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 Before renaming a widely used function, an agent needs to know what a change would break. The right move is to:
 
@@ -154,7 +154,7 @@ Before renaming a widely used function, an agent needs to know what a change wou
 
 ## Question 11
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 An engineer asks your agent to identify untested code paths in a legacy payment processing module spanning 45 files. After reading the first 8 source files, the agent's responses are becoming noticeably less accurate—it's forgetting previously discussed code patterns and hasn't yet located all test files or traced critical payment flows.
 What's the most effective approach to complete this investigation?
@@ -168,7 +168,7 @@ What's the most effective approach to complete this investigation?
 
 ## Question 12
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 After adding an MCP server with specialized code refactoring tools (`extract_function`, `rename_variable`, `inline_function`), you notice the agent still uses basic text manipulation via Write and Bash sed commands for refactoring tasks. The MCP server is connected and healthy. Examining the configuration, you find each MCP tool has a minimal description like "`extract_function`: extracts a function from code."
 What's the most effective way to improve adoption of the MCP refactoring tools?
@@ -182,7 +182,7 @@ What's the most effective way to improve adoption of the MCP refactoring tools?
 
 ## Question 13
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your pipeline uses a tool called `extract_metadata` with a JSON schema for paper details. You've also defined `lookup_citations` and `verify_doi` tools for enrichment. During testing, you notice that when users include requests like "extract the metadata and tell me how cited it is," Claude sometimes calls `lookup_citations` first, which fails because it needs the DOI that `extract_metadata` would provide.
 What's the most effective way to ensure structured metadata extraction happens first?
@@ -196,7 +196,7 @@ What's the most effective way to ensure structured metadata extraction happens f
 
 ## Question 14
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 A single source file is thousands of lines long and the agent needs one function from it. The agent should:
 
@@ -209,7 +209,7 @@ A single source file is thousands of lines long and the agent needs one function
 
 ## Question 15
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 Production logs reveal inconsistent error handling: when `lookup_order` fails, the agent sometimes retries 5+ times (wasteful when the order ID doesn't exist), sometimes escalates immediately (premature for temporary network issues), and sometimes asks users for clarification (inappropriate when the issue is a backend permission error). Investigation shows your MCP tool returns uniform error responses: {"isError": true, "content": [{"type": "text", "text": "Operation failed"}]}. The agent cannot distinguish between error types.
 What's the most effective improvement?
@@ -223,7 +223,7 @@ What's the most effective improvement?
 
 ## Question 16
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 Your `process_refund` tool returns two types of errors: technical errors ("503 Service Unavailable", "Connection timeout") that are transient (5% of calls), and business errors ("Order exceeds 30-day return window", "Item already refunded") that are permanent (12% of calls). Monitoring shows the agent wastes 3-4 turns retrying business errors that can never succeed. Currently, both error types return only a plain text message to Claude.
 What's the most effective way to reduce wasted retries while improving customer-facing response quality?
@@ -237,7 +237,7 @@ What's the most effective way to reduce wasted retries while improving customer-
 
 ## Question 17
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 A research agent must gather facts from eight independent web sources and produce one synthesis. None of the sources depend on each other. Which dispatch pattern stays fast without flooding the coordinator context?
 
@@ -250,7 +250,7 @@ A research agent must gather facts from eight independent web sources and produc
 
 ## Question 18
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Documents arrive continuously throughout business hours and need structured data extracted. To reduce costs, you want to use the `Message Batches API` (50% discount, up-to-24-hour processing window). Your SLA specifies that extraction results must be available within 30 hours of document arrival with 99.9% reliability.
 Which batching strategy is most appropriate?
@@ -264,7 +264,7 @@ Which batching strategy is most appropriate?
 
 ## Question 19
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your extraction system processes two document types: standard monthly reports (archived after processing) and urgent exception reports (must trigger business alerts within 30 minutes of receipt). Both use the same JSON schema. You want to minimize API costs while meeting latency requirements.
 How should you architect the processing pipeline?
@@ -278,7 +278,7 @@ How should you architect the processing pipeline?
 
 ## Question 20
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 An engineer who just joined the team asks the agent to help them understand the authentication and authorization architecture before making security improvements. The codebase has 800+ files across multiple services.
 What exploration strategy will most effectively build understanding, given Claude built-in tools and context limits?
@@ -292,7 +292,7 @@ What exploration strategy will most effectively build understanding, given Claud
 
 ## Question 21
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your extraction uses tool use with a JSON schema where `property_type` is defined as an enum: ['house', 'apartment', 'condo', 'townhouse']. After deployment, 8% of extractions fail schema validation. Investigation reveals listings mention many uncommon property types—"studio", "loft", "duplex", "mobile home", "tiny house", "converted warehouse"—and new types continue appearing regularly.
 What's the most effective long-term solution?
@@ -306,7 +306,7 @@ What's the most effective long-term solution?
 
 ## Question 22
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 A contract is too long to fit in one context window, and you need fields from across the whole document. The dependable approach is to:
 
@@ -319,7 +319,7 @@ A contract is too long to fit in one context window, and you need fields from ac
 
 ## Question 23
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 A customer asks a simple question that the agent can answer directly from the knowledge base. The agent should:
 
@@ -332,7 +332,7 @@ A customer asks a simple question that the agent can answer directly from the kn
 
 ## Question 24
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 You are designing how sub-agents report findings so the final research output can be audited later. Each finding should travel with:
 
@@ -345,7 +345,7 @@ You are designing how sub-agents report findings so the final research output ca
 
 ## Question 25
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 A user is expanding the research system beyond its single web search agent by adding specialized data sources. They add a financial API agent that returns structured JSON with revenue, margins, and growth rates; a news monitoring agent that returns prose summaries of recent developments; and a patent analysis agent that returns structured lists of technology areas. The synthesis agent combines these into executive briefings. Currently, it converts everything to bullet points, causing financial comparisons to lose tabular clarity and news summaries to lose narrative flow.
 What change would most improve briefing quality?
@@ -359,7 +359,7 @@ What change would most improve briefing quality?
 
 ## Question 26
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 A customer returns 4 hours after their initial session about the same billing dispute. The previous 32-turn session contains `lookup_order` results showing "Status: PENDING, Expected resolution: 24-48 hours." In testing, you observe that when resuming sessions with stale tool results, the agent often references the outdated data in responses (e.g., "I see your refund is still being processed") even after subsequent fresh tool calls return different information.
 What approach most reliably handles returning customers?
@@ -373,7 +373,7 @@ What approach most reliably handles returning customers?
 
 ## Question 27
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your system extracts event metadata (date, location, organizer, `attendee_count`) from news articles using a JSON schema with all nullable fields. During evaluation, you observe the model frequently generates plausible but incorrect values for fields not mentioned in the article—for example, outputting "500" for `attendee_count` when the source contains no attendance information.
 What's the most effective way to reduce these false extractions?
@@ -387,7 +387,7 @@ What's the most effective way to reduce these false extractions?
 
 ## Question 28
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 In production, final reports frequently contain claims without proper source attribution. Investigation shows that while the web search and document analysis agents correctly attach citations to their outputs, the synthesis agent loses track of which sources support which conclusions when combining findings.
 What's the most effective architectural change?
@@ -401,7 +401,7 @@ What's the most effective architectural change?
 
 ## Question 29
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 The coordinator provides detailed step-by-step instructions to the web search subagent, specifying exact search queries, source priorities, and date filters. Production monitoring reveals three issues: (1) the subagent reports "insufficient results" rather than trying alternative approaches when pre-specified searches fail, (2) research quality drops for emerging topics that don't match expected patterns, and (3) the subagent rarely surfaces valuable tangential sources.
 What's the most effective way to improve subagent adaptability?
@@ -415,7 +415,7 @@ What's the most effective way to improve subagent adaptability?
 
 ## Question 30
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 The agent verifies customer identity through a multi-step process before resetting passwords. During testing, you notice that after the customer answers the third verification question, the agent asks them to provide their name again, as if the earlier exchange never happened.
 What's the most likely cause of this behavior?
@@ -429,7 +429,7 @@ What's the most likely cause of this behavior?
 
 ## Question 31
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 An engineer used the agent yesterday to analyze a legacy authentication module, identifying two distinct refactoring approaches: extracting a microservice versus refactoring in-place. Today, they want to explore both approaches in depth—having the agent propose specific code changes for each—before deciding which to implement.
 What's the most effective way to structure this exploration?
@@ -443,7 +443,7 @@ What's the most effective way to structure this exploration?
 
 ## Question 32
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 In production, you observe that simple fact-checking queries (e.g., "What year was the Paris Climate Agreement signed?") traverse all four subagents sequentially, consuming 40+ seconds and significant tokens per query. Complex comparative research benefits from the full pipeline. Your query distribution is diverse and evolving as users discover new applications.
 What's the most effective approach to optimize for varying query complexity?
@@ -457,7 +457,7 @@ What's the most effective approach to optimize for varying query complexity?
 
 ## Question 33
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your extraction pipeline processes restaurant menus and must output structured JSON with fields for item names, descriptions, prices, and dietary tags. Some menus use inconsistent formatting—prices as "$12" vs "12.00", dietary info as icons vs text.
 What's the most reliable approach?
@@ -471,7 +471,7 @@ What's the most reliable approach?
 
 ## Question 34
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 A research agent keeps spawning follow-up searches and the run is not converging. The most reliable way to prevent an endless loop is to:
 
@@ -484,7 +484,7 @@ A research agent keeps spawning follow-up searches and the run is not converging
 
 ## Question 35
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 After implementing tool use with strict schema definitions, JSON syntax errors are eliminated, but 5% of extractions still have valid JSON with empty arrays or null values for required fields like citations and methodology. Spot-checking reveals that source documents contain this information, but in varied formats—inline citations vs. bibliographies, methodology sections vs. details embedded in introductions.
 What's the most effective way to address these failures?
@@ -498,7 +498,7 @@ What's the most effective way to address these failures?
 
 ## Question 36
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 An invoice extractor reads dates like 03/04/2025 that could be March 4 or April 3. The design that avoids silent errors is to:
 
@@ -511,7 +511,7 @@ An invoice extractor reads dates like 03/04/2025 that could be March 4 or April 
 
 ## Question 37
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 After integrating a local MCP server providing code analysis tools (`analyze_dependencies`, `find_dead_code`, `calculate_complexity`), you verify the server is healthy and tools appear in the tools/list response. However, you observe that the agent consistently uses Grep to search for import statements instead of calling `analyze_dependencies`—even when users explicitly ask about "code dependencies." Examining tool definitions reveals:
 MCP: `analyze_dependencies` - "Analyzes dependency graph"
@@ -527,7 +527,7 @@ What's the most effective approach to improve the agent's selection of MCP tools
 
 ## Question 38
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 An engineer asks the agent to understand how the caching layer works before adding a new cache invalidation trigger. After initial Grep searches, the agent has identified that caching logic spans 15 files including decorators, middleware, and service classes (~8,000 lines total).
 What's the most effective next step for building understanding while managing context constraints?
@@ -541,7 +541,7 @@ What's the most effective next step for building understanding while managing co
 
 ## Question 39
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 Your agent needs to insert a new helper function into the middle of a 150-line utility module, between two existing functions. The Edit tool fails because its `old_string` parameter cannot find unique text to match — the file has repetitive docstrings, variable names, and structural patterns.
 What's the most reliable way to complete this insertion?
@@ -555,7 +555,7 @@ What's the most reliable way to complete this insertion?
 
 ## Question 40
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 A support agent order-status tool returns data that looks stale and contradicts what the customer sees. The agent should:
 
@@ -568,7 +568,7 @@ A support agent order-status tool returns data that looks stale and contradicts 
 
 ## Question 41
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 Compliance requires that refunds exceeding $500 must automatically escalate to a human agent—this rule cannot be left to model discretion. Despite clear system prompt instructions, production logs show the agent occasionally processes high-value refunds directly (3% failure rate).
 How should you achieve guaranteed compliance?
@@ -582,7 +582,7 @@ How should you achieve guaranteed compliance?
 
 ## Question 42
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 Your codebase exploration tool stores session IDs to allow engineers to continue investigations across work sessions. An engineer spent an hour yesterday analyzing a legacy authentication module, building context about its architecture and dependencies. They want to continue today. The session ID is valid, but version control shows 3 of the 12 files the agent previously read were modified overnight by a teammate's merge.
 What approach best balances efficiency and accuracy?
@@ -596,7 +596,7 @@ What approach best balances efficiency and accuracy?
 
 ## Question 43
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 When researching "renewable energy adoption," the web search agent returns recent statistics (2024: 35% adoption) while the document analysis agent extracts data from internal reports (2022: 18% adoption). The synthesis agent incorrectly flags these as contradictory sources rather than recognizing the data shows growth over time.
 What change would best enable the synthesis agent to correctly interpret such temporal differences?
@@ -610,7 +610,7 @@ What change would best enable the synthesis agent to correctly interpret such te
 
 ## Question 44
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 During testing, you observe that in extended exploration sessions (30+ minutes), the agent starts giving inconsistent answers about code structure it discussed earlier. Engineers report having to repeat context about modules they've already explored.
 What's the most effective approach to address this?
@@ -624,7 +624,7 @@ What's the most effective approach to address this?
 
 ## Question 45
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 A frustrated customer demands a refund that the policy does not allow. The best response is to:
 
@@ -637,7 +637,7 @@ A frustrated customer demands a refund that the policy does not allow. The best 
 
 ## Question 46
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 A field the schema expects is simply not present in the source document. The extractor should:
 
@@ -650,7 +650,7 @@ A field the schema expects is simply not present in the source document. The ext
 
 ## Question 47
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 After the web search agent and document analysis agent complete their tasks, the coordinator invokes the synthesis agent. However, the synthesis agent responds that it cannot complete the task because no research findings were provided.
 What is the most likely cause of this issue?
@@ -664,7 +664,7 @@ What is the most likely cause of this issue?
 
 ## Question 48
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 Production reviews reveal inconsistent handling of uncertainty in final reports. Sometimes conflicting subagent findings are synthesized into a single confident statement (losing nuance), while other times reports over-hedge with excessive qualifications (becoming unhelpful). When the web search agent returns "industry analysts estimate $50B market size (methodology varies)" and the document analysis agent returns "peer-reviewed study estimates 35B(±7B, 95% CI)," the coordinator either picks one arbitrarily or produces vague statements like "the market may be 35B−50B depending on factors."
 What systematic approach best addresses this?
@@ -678,7 +678,7 @@ What systematic approach best addresses this?
 
 ## Question 49
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your extraction system implements automatic retries when validation fails. On each retry, the specific validation error is appended to the prompt. This retry-with-error-feedback approach resolves most failures within 2-3 attempts.
 For which failure pattern would additional retries be LEAST effective?
@@ -692,7 +692,7 @@ For which failure pattern would additional retries be LEAST effective?
 
 ## Question 50
 
-_Domain: `code_exploration`_
+_Domain: [`code_exploration`](Answer%20Key/code_exploration.md)_
 
 An engineer's exploration subagent spent 30 minutes analyzing a legacy payment system, reading 47 files and documenting data flows. The session was interrupted when the engineer's connection dropped. While away, a teammate merged a PR that renamed two utility functions. The engineer wants to continue the same exploration.
 What's the most effective approach?
@@ -706,7 +706,7 @@ What's the most effective approach?
 
 ## Question 51
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 After deployment, you find that 12% of extractions contain semantic errors that pass JSON schema validation (e.g., a duration like "30 minutes" incorrectly placed in an ingredient quantity field). Human reviewers have capacity to check only 20% of extractions.
 Which approach most effectively allocates reviewer attention?
@@ -720,7 +720,7 @@ Which approach most effectively allocates reviewer attention?
 
 ## Question 52
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 Two sub-agents return conflicting figures for the same metric, each with moderate confidence. Before the coordinator writes the final answer, the best move is to:
 
@@ -733,7 +733,7 @@ Two sub-agents return conflicting figures for the same metric, each with moderat
 
 ## Question 53
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 Production monitoring shows that follow-up queries like "summarize what we learned about market trends" consistently take 40+ seconds. Investigation reveals the coordinator spawns the synthesis subagent for each summarization request, passing 80K+ tokens of accumulated findings. The coordinator already has these findings in its context from orchestrating the research.
 What's the most effective way to improve response time for these follow-up summaries?
@@ -747,7 +747,7 @@ What's the most effective way to improve response time for these follow-up summa
 
 ## Question 54
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 Your agent has called `lookup_order` multiple times while investigating a customer's return requests. Each response includes 40+ fields (items, shipping details, payment info, status history). Tool outputs now represent the majority of the conversation's context. The customer mentions two more orders they want to discuss.
 What's the most effective approach before making additional lookups?
@@ -761,7 +761,7 @@ What's the most effective approach before making additional lookups?
 
 ## Question 55
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 When analyzing complex legal cases that cite multiple precedents, the document analysis subagent processes each sequentially. A landmark case citing 12 precedents takes over 3 minutes to analyze completely.
 What's the most effective way to reduce this latency while preserving the coordinator's ability to monitor and debug the system?
@@ -775,7 +775,7 @@ What's the most effective way to reduce this latency while preserving the coordi
 
 ## Question 56
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your system has been operating with 100% human review for 3 months. Analysis shows that extractions with model confidence >90% have 97% accuracy overall. To reduce reviewer workload, you plan to automate high-confidence extractions. Before deploying, what validation step is most critical?
 
@@ -788,7 +788,7 @@ Your system has been operating with 100% human review for 3 months. Analysis sho
 
 ## Question 57
 
-_Domain: `extraction_pipeline`_
+_Domain: [`extraction_pipeline`](Answer%20Key/extraction_pipeline.md)_
 
 Your extraction system parses e-commerce product descriptions to extract specifications like dimensions, weight, and materials into JSON. Despite having a well-defined schema, the model inconsistently extracts the "materials" field—sometimes returning "cotton blend", other times "Cotton/Polyester mix", and occasionally omitting the field when material information is clearly present in the source.
 What's the most effective way to improve extraction consistency?
@@ -802,7 +802,7 @@ What's the most effective way to improve extraction consistency?
 
 ## Question 58
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 A user asks a support agent for specific legal advice about a contract dispute. The right behavior is to:
 
@@ -815,7 +815,7 @@ A user asks a support agent for specific legal advice about a contract dispute. 
 
 ## Question 59
 
-_Domain: `customer_support`_
+_Domain: [`customer_support`](Answer%20Key/customer_support.md)_
 
 An agent has tried three times to resolve a billing issue and the customer is still stuck. The right next step is to:
 
@@ -828,7 +828,7 @@ An agent has tried three times to resolve a billing issue and the customer is st
 
 ## Question 60
 
-_Domain: `research_pipeline`_
+_Domain: [`research_pipeline`](Answer%20Key/research_pipeline.md)_
 
 The web search agent has gathered several relevant sources for a research topic. The document analysis agent now needs to examine these sources.
 How does information typically flow between these two specialized subagents?

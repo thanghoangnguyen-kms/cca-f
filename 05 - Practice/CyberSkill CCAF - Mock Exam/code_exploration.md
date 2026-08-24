@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - practice-exam
+  - answer-key
+  - code-exploration
+date: 2026-08-24
+status: done
+---
+
 # code_exploration — CCAF Study Guide
 
 This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF mock exam. The domain centers on three recurring themes: (1) **tool selection is driven by tool descriptions** — the model picks tools by reading their descriptions, so weak descriptions lose to rich built-ins; (2) **context is the fundamental constraint** during long explorations — manage it with scratchpads, compaction, and subagents rather than brute-force reading; and (3) **session lifecycle** — `--resume`/`--continue` keep accumulated context, `fork_session` branches it cleanly, and you communicate deltas (changed files) rather than re-reading everything.

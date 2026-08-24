@@ -1,3 +1,11 @@
+---
+tags:
+  - CCA-F
+  - handbook
+date: 2026-08-24
+status: done
+---
+
 # Claude Certified Architect (CCA-F) — Study Handbook
 
 A memorization-first handbook distilled from the CCA-F mock exam (60 questions,

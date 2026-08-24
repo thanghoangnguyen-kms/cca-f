@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - practice-exam
+  - answer-key
+  - extraction-pipeline
+date: 2026-08-24
+status: done
+---
+
 # extraction_pipeline — CCAF Study Guide
 
 > Domain scope: the 15 questions tagged `— extraction_pipeline` (Q46–Q60).

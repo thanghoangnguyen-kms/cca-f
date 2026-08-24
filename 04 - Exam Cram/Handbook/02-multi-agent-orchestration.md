@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - domain-1
+date: 2026-08-24
+status: done
+domain: "1 of 5"
+---
+
 # 02 — Multi-Agent Orchestration (Research Pipeline)
 
 Covers: hub-and-spoke, coordinator/subagent communication, delegation, parallel

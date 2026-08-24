@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - domain-3
+date: 2026-08-24
+status: done
+domain: "3 of 5"
+---
+
 # 06 — Claude Code Operations
 
 Covers: CLAUDE.md hierarchy, settings.json, CI/CD non-interactive mode, plan

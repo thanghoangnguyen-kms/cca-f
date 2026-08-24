@@ -286,7 +286,9 @@ graph LR
   - Key CLI flags: `--resume`, `--print`, `--output-format json`, `--json-schema`
   - Key commands: `/memory`, `/compact`
   - Key patterns: `stop_reason`, `isError`, `tool_choice`, `custom_id`, `AgentDefinition`, `PostToolUse`, `fork_session`
-- [ ] **In-vault mock exam:** [[CCA-F-practice-exam-questions]] (60 Qs) + the **CCA-F Mock Exam Answer Key** (worked answers by scenario, in `05 - Practice/`)
+- [ ] **In-vault New Mock Exam:** `05 - Practice/CyberSkill CCAF - New Mock Exam/` — 60 Qs **with** a matched worked key by scenario domain (45/60 verified against the source grader). The one complete set; do this first.
+- [ ] **In-vault mock exam:** `05 - Practice/CyberSkill CCAF - Mock Exam/` — worked answers by scenario, question file never captured. A second sitting of the *same* bank as New Mock Exam (40/60 overlap, different numbering).
+- [ ] **In-vault question bank:** [[CCA-F-practice-exam-questions]] (60 Qs, certificationpractice.com) — **no answer key yet**
 - [ ] **CertSafari practice:** Do all 614 questions by domain
   - https://www.certsafari.com/anthropic/claude-certified-architect
 - [ ] **Preporato practice tests:** https://preporato.com/exams/cca-f

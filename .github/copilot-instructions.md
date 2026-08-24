@@ -31,10 +31,13 @@ CCA-F/
 │   ├── Flashcards.md                ← vault-wide deck, grouped by domain
 │   ├── Critical Terms Glossary.md
 │   └── Handbook/                    ← scenario-based cram (00–08, plain MD links)
-├── 05 - Practice/
+├── 05 - Practice/                    ← one folder per exam set, `<source> - <set>`
+│   ├── README.md                     ← index; overlap matrix for the three sets
 │   ├── Weak Areas Deep Dive.md       ← personal mistake log
-│   ├── CCA-F-practice-exam-questions.md
-│   └── CCA-F Mock Exam Answer Key/
+│   ├── CyberSkill CCAF - New Mock Exam/  ← Questions.md + Answer Key/<domain>.md
+│   ├── CyberSkill CCAF - Mock Exam/  ← answers only; 2nd sitting of the SAME bank
+│   │                                    (40/60 overlap) — kept separate, do NOT merge
+│   └── CCA-F Question Bank/          ← certificationpractice.com; questions, no key
 ├── 06 - Youtube Course/             ← per-episode notes from the Peace Of Code course
 │   └── EP<NN> - <Title>/            ← one folder per episode (pre-created)
 │       ├── EP<NN> - <Title>.md      ← study guide (filename repeats folder name)

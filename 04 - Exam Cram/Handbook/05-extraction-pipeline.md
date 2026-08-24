@@ -1,3 +1,13 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - domain-4
+date: 2026-08-24
+status: done
+domain: "4 of 5"
+---
+
 # 05 — Extraction Pipeline
 
 Covers: batch vs synchronous, schema design, few-shot, grounding/null,

@@ -1,3 +1,14 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - domain-1
+  - domain-2
+date: 2026-08-24
+status: done
+domain: "1 of 5"
+---
+
 # 01 — Agentic Loop & Tool Design
 
 Covers: the tool-use loop, tool descriptions as routing, structured errors,

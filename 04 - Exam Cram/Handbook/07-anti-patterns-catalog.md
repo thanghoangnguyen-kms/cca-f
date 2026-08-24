@@ -1,3 +1,12 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - anti-patterns
+date: 2026-08-24
+status: done
+---
+
 # 07 — Anti-Patterns Catalog (recognize the wrong answer instantly)
 
 Most distractors on the exam are recycled from this list. If an option matches

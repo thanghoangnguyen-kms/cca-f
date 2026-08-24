@@ -1,3 +1,12 @@
+---
+tags:
+  - CCA-F
+  - handbook
+  - golden-rules
+date: 2026-08-24
+status: done
+---
+
 # 00 — Golden Rules Cheat Sheet (LEARN BY HEART)
 
 This one page answers a large share of the exam. If you memorize nothing else,
