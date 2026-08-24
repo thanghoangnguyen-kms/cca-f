@@ -98,11 +98,11 @@ POST /v1/messages
 
 ### Required Fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `model` | string | Model API ID (e.g., `claude-opus-4-8`, `claude-sonnet-5`) |
-| `max_tokens` | number | Max tokens to generate; **models may stop before this** |
-| `messages` | array | Array of `{role, content}` objects |
+| Field        | Type   | Description                                               |
+| ------------ | ------ | --------------------------------------------------------- |
+| `model`      | string | Model API ID (e.g., `claude-opus-4-8`, `claude-sonnet-5`) |
+| `max_tokens` | number | Max tokens to generate; **models may stop before this**   |
+| `messages`   | array  | Array of `{role, content}` objects                        |
 
 ### Optional Fields
 

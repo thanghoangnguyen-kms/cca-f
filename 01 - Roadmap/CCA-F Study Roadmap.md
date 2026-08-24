@@ -218,7 +218,7 @@ graph LR
 
 **Primary Resource:** SkillJar "Building with the Claude API" (Prompt Engineering + Structured Output + RAG modules) · Course note: [[C6 - Building with the Claude API]]
 
-**Companion episodes (folder 06):** [[EP14 - Prompt Engineering - Explicit Criteria & False Positives]] · EP15 - Few-Shot Prompting · [[EP16 - Structured Output & JSON Schema]] · [[EP17 - Batch API & Multi-Pass Review]] · [[EP18 - Why AI Agents Forget (Context Engineering)]] · [[EP19 - Subagent Error Propagation & Context Management]] · [[EP20 - When AI Needs a Human]]
+**Companion episodes (folder 06):** [[EP14 - Prompt Engineering - Explicit Criteria & False Positives]] · [[EP15 - Few-Shot Prompting]] · [[EP16 - Structured Output & JSON Schema]] · [[EP17 - Batch API & Multi-Pass Review]] · [[EP18 - Why AI Agents Forget (Context Engineering)]] · [[EP19 - Subagent Error Propagation & Context Management]] · [[EP20 - When AI Needs a Human]]
 
 - [ ] [[D4 - Prompt Engineering & Structured Output]]
   - **4.1 Explicit Criteria to Reduce False Positives**
@@ -291,7 +291,7 @@ graph LR
   - https://www.certsafari.com/anthropic/claude-certified-architect
 - [ ] **Preporato practice tests:** https://preporato.com/exams/cca-f
 - [ ] **FlorianBruniaux 271-question quiz:** https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/quiz
-- [ ] **YouTube course wrap-up:** Bonus - Exam Questions Solved & Exam Traps (folder 06)
+- [ ] **YouTube course wrap-up:** [[Bonus - Exam Questions Solved & Exam Traps]] (folder 06)
 - [ ] [[Weak Areas Deep Dive]] — notes from practice test mistakes
 
 ---

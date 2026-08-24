@@ -186,7 +186,7 @@ A: `/context` — check the list under **Memory files**. `/memory` only lists me
 A: They don't specify which category of issue to skip. Explicit categorical criteria with concrete code examples (e.g., "flag only when claimed behavior contradicts actual code") are what actually improve precision.
 
 **Q: How many few-shot examples are typically recommended, and what should they show?**
-A: 2–4 targeted examples, wrapped in `<example>`/`<examples>` tags. They should demonstrate exact output format and the reasoning behind ambiguous decisions, not just correct outputs.
+A: **2–4** targeted examples (exam answer), wrapped in `<example>`/`<examples>` tags. Official docs say *"include 3–5 examples for best results"* — 3–4 satisfies both, so use that in real code. They should demonstrate exact output format and the reasoning behind ambiguous decisions, not just correct outputs.
 
 **Q: What's the most reliable mechanism for guaranteed schema-compliant structured output?**
 A: Tool use with a JSON schema (or `output_config.format` with `type: "json_schema"`) — this eliminates JSON syntax errors via constrained decoding. Plain "respond as JSON" prompting gives no such guarantee.

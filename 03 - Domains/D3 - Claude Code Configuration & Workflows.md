@@ -28,12 +28,12 @@ domain: "3 of 5"
 
 ### The CLAUDE.md Hierarchy (Load Order: Broad → Specific)
 
-| Scope | Location | Shared? | Purpose |
-|-------|----------|---------|---------|
-| **Managed policy** | macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md` · Linux: `/etc/claude-code/CLAUDE.md` · Win: `C:\Program Files\ClaudeCode\CLAUDE.md` | All users on machine | Company-wide: security policies, compliance |
-| **User** | `~/.claude/CLAUDE.md` | ❌ You only, all projects | Personal preferences, tooling shortcuts |
-| **Project** | `./CLAUDE.md` or `./.claude/CLAUDE.md` | ✅ Team via version control | Architecture, coding standards, workflows |
-| **Local** | `./CLAUDE.local.md` | ❌ You only, current project (gitignored) | Sandbox URLs, personal test data |
+| Scope              | Location                                                                                                                                        | Shared?                                  | Purpose                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------- |
+| **Managed policy** | macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md` · Linux: `/etc/claude-code/CLAUDE.md` · Win: `C:\Program Files\ClaudeCode\CLAUDE.md` | All users on machine                     | Company-wide: security policies, compliance |
+| **User**           | `~/.claude/CLAUDE.md`                                                                                                                           | ❌ You only, all projects                 | Personal preferences, tooling shortcuts     |
+| **Project**        | `./CLAUDE.md` or `./.claude/CLAUDE.md`                                                                                                          | ✅ Team via version control               | Architecture, coding standards, workflows   |
+| **Local**          | `./CLAUDE.local.md`                                                                                                                             | ❌ You only, current project (gitignored) | Sandbox URLs, personal test data            |
 
 > [!IMPORTANT] Load Order Rule
 > Files are concatenated in order from **root → working directory**. More specific instructions appear later in context. `CLAUDE.local.md` is appended after `CLAUDE.md` at each level.
@@ -104,10 +104,10 @@ An alternative to a monolithic CLAUDE.md for large projects:
 
 ### `/memory` vs `/context` — Two Different Commands
 
-| Command | What it does |
-|---------|--------------|
-| **`/context`** | Shows what **actually loaded** this session — check the list under **Memory files**. If a file is missing there, Claude can't see it. |
-| `/memory` | Lists memory-file **locations** across user and project scope — **including files that don't exist yet** — toggles auto memory, and opens a selected file in your editor. |
+| Command        | What it does                                                                                                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`/context`** | Shows what **actually loaded** this session — check the list under **Memory files**. If a file is missing there, Claude can't see it.                                     |
+| `/memory`      | Lists memory-file **locations** across user and project scope — **including files that don't exist yet** — toggles auto memory, and opens a selected file in your editor. |
 
 > [!WARNING] Exam Trap: Which Command Verifies Loading
 > **`/context` is the load check, not `/memory`.** Because `/memory` reports locations rather than load state, it lists a path whether or not anything loaded — so it cannot diagnose a file that failed to load.
@@ -116,11 +116,11 @@ An alternative to a monolithic CLAUDE.md for large projects:
 
 ### CLAUDE.md Size Guidelines
 
-| Recommendation | Detail |
-|---------------|--------|
-| Target size | Under 200 lines per file |
-| Instructions are context, not config | More specific + concise = more reliably followed |
-| HTML comments stripped | `<!-- notes -->` are removed before injection — use for maintainer notes without spending tokens |
+| Recommendation                       | Detail                                                                                           |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Target size                          | Under 200 lines per file                                                                         |
+| Instructions are context, not config | More specific + concise = more reliably followed                                                 |
+| HTML comments stripped               | `<!-- notes -->` are removed before injection — use for maintainer notes without spending tokens |
 
 ---
 
@@ -161,17 +161,17 @@ Summarize changes in 2-3 bullets, flag risks (missing error handling, hardcoded 
 
 ### SKILL.md Frontmatter Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `description` | Recommended | When to use this skill — Claude uses this to auto-invoke |
-| `argument-hint` | No | Shown during autocomplete: `[issue-number]`, `[filename] [format]` |
-| `context: fork` | No | Run skill in **isolated subagent context** — output doesn't pollute main session |
-| `allowed-tools` | No | Tools Claude can use without permission during this skill |
-| `disallowed-tools` | No | Tools **removed** from Claude's pool while skill is active |
-| `disable-model-invocation` | No | `true` = Claude never auto-triggers; manual `/name` only |
-| `user-invocable` | No | `false` = hidden from `/` menu (background knowledge only) |
-| `model` | No | Override model for this skill's turn |
-| `paths` | No | Glob patterns — only auto-invoked when working with matching files |
+| Field                      | Required    | Description                                                                      |
+| -------------------------- | ----------- | -------------------------------------------------------------------------------- |
+| `description`              | Recommended | When to use this skill — Claude uses this to auto-invoke                         |
+| `argument-hint`            | No          | Shown during autocomplete: `[issue-number]`, `[filename] [format]`               |
+| `context: fork`            | No          | Run skill in **isolated subagent context** — output doesn't pollute main session |
+| `allowed-tools`            | No          | Tools Claude can use without permission during this skill                        |
+| `disallowed-tools`         | No          | Tools **removed** from Claude's pool while skill is active                       |
+| `disable-model-invocation` | No          | `true` = Claude never auto-triggers; manual `/name` only                         |
+| `user-invocable`           | No          | `false` = hidden from `/` menu (background knowledge only)                       |
+| `model`                    | No          | Override model for this skill's turn                                             |
+| `paths`                    | No          | Glob patterns — only auto-invoked when working with matching files               |
 
 > [!IMPORTANT] `context: fork` — Key Exam Concept
 > Running a skill with `context: fork` creates an **isolated subagent** for the skill:

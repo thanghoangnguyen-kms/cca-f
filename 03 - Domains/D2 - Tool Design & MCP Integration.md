@@ -32,13 +32,13 @@ Minimal or vague descriptions → unreliable tool selection, especially among si
 
 ### What a Good Tool Description Includes
 
-| Element | Why It Matters |
-|---------|----------------|
-| **Purpose** — what the tool does | Baseline disambiguation |
-| **Input formats** — expected data types, units, constraints | Prevents invalid calls |
-| **Example queries** | Calibrates model intuition for edge cases |
-| **Edge cases and boundaries** | Tells model what this tool does NOT handle |
-| **When to use vs alternatives** | Resolves ambiguity when tools overlap |
+| Element                                                     | Why It Matters                             |
+| ----------------------------------------------------------- | ------------------------------------------ |
+| **Purpose** — what the tool does                            | Baseline disambiguation                    |
+| **Input formats** — expected data types, units, constraints | Prevents invalid calls                     |
+| **Example queries**                                         | Calibrates model intuition for edge cases  |
+| **Edge cases and boundaries**                               | Tells model what this tool does NOT handle |
+| **When to use vs alternatives**                             | Resolves ambiguity when tools overlap      |
 
 ### Anti-Patterns
 
@@ -76,12 +76,12 @@ raise Exception("Service unavailable")
 
 ### Error Categories
 
-| Category | Description | `isRetryable` |
-|----------|-------------|--------------|
-| **Transient** | Timeouts, service unavailability | `true` |
-| **Validation** | Invalid input format or value | `false` |
-| **Business** | Policy violation (e.g., refund limit exceeded) | `false` |
-| **Permission** | Insufficient access rights | `false` |
+| Category       | Description                                    | `isRetryable` |
+| -------------- | ---------------------------------------------- | ------------- |
+| **Transient**  | Timeouts, service unavailability               | `true`        |
+| **Validation** | Invalid input format or value                  | `false`       |
+| **Business**   | Policy violation (e.g., refund limit exceeded) | `false`       |
+| **Permission** | Insufficient access rights                     | `false`       |
 
 ### What to Include in a Structured Error
 
@@ -247,12 +247,12 @@ Credentials in `.mcp.json` use `${VAR_NAME}` syntax — never commit secrets dir
 
 ### Transport Types
 
-| Transport | Config Key | Use For |
-|-----------|-----------|---------|
-| **stdio** | `command` + `args` | Local processes on same machine |
+| Transport                    | Config Key            | Use For                                     |
+| ---------------------------- | --------------------- | ------------------------------------------- |
+| **stdio**                    | `command` + `args`    | Local processes on same machine             |
 | **HTTP** (`streamable-http`) | `type: "http"`, `url` | Cloud-hosted / remote servers (recommended) |
-| **SSE** | `type: "sse"`, `url` | Legacy; SSE is deprecated — prefer HTTP |
-| **WebSocket** | `type: "ws"`, `url` | Bidirectional / event-pushing servers |
+| **SSE**                      | `type: "sse"`, `url`  | Legacy; SSE is deprecated — prefer HTTP     |
+| **WebSocket**                | `type: "ws"`, `url`   | Bidirectional / event-pushing servers       |
 
 > [!TIP] How to pick transport
 > - Docs give you a **command to run** → `stdio`

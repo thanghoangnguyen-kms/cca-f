@@ -70,7 +70,12 @@ Few-shot examples:
 
 ### How Many Examples
 
-**2–4 targeted examples** for ambiguous scenarios is the recommended range.
+**2–4 targeted examples** for ambiguous scenarios is the recommended range — and the **exam answer**.
+
+> [!IMPORTANT] Official docs say 3–5 — checked 2026-08-05
+> Anthropic's prompting guidance states: *"Include 3–5 examples for best results."* The ranges overlap at **3–4**, so writing 3 or 4 examples satisfies both. Answer **2–4** on the exam; use **3–4** in real code.
+> More importantly, the docs locate the pattern-matching failure differently: examples must be *"diverse — cover edge cases and vary enough that Claude doesn't pick up unintended patterns."* **Unintended pattern-matching is driven by example similarity, not example count** — four near-identical examples match worse than six well-spread ones. Treat the count cap as a proxy for a diversity budget.
+> Source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
 
 > [!TIP] Example Design
 > For ambiguous classification scenarios, show the reasoning:
@@ -439,7 +444,7 @@ For 20k+ token inputs:
 - [ ] Know why explicit categorical criteria beat confidence-based filtering
 - [ ] Know the strategy for handling high false positive categories
 - [ ] Know what `<examples>` tag wrapping accomplishes in few-shot prompts
-- [ ] Know how many few-shot examples are recommended (2-4)
+- [ ] Know how many few-shot examples are recommended (exam: 2–4; official docs: 3–5)
 - [ ] Know what few-shot examples prevent (inconsistency, hallucination in extraction)
 - [ ] Know tool use + JSON schema = most reliable structured output mechanism
 - [ ] Know that strict schemas prevent syntax errors, NOT semantic errors
@@ -461,7 +466,7 @@ For 20k+ token inputs:
 A: They're too vague — they don't specify what category of issue to skip. Explicit categorical criteria (e.g., "flag only when claimed behavior contradicts actual code") are what actually improve precision.
 
 **Q: How many few-shot examples are recommended, and what should they demonstrate?**
-A: 2–4 examples. They should demonstrate exact output format, reasoning for ambiguous cases, and how to handle edge cases — not just correct outputs.
+A: **2–4 examples** (exam answer; official docs say 3–5, so 3–4 satisfies both). They should demonstrate exact output format, reasoning for ambiguous cases, and how to handle edge cases — not just correct outputs.
 
 **Q: What's the most reliable way to get schema-compliant structured output from Claude?**
 A: Tool use (`tool_use`) with a JSON schema. This eliminates JSON syntax errors via constrained decoding.

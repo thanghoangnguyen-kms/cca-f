@@ -77,7 +77,7 @@ Peace Of Code's full-course episodes, one folder per episode (`06 - Youtube Cour
 
 **Domain 4 — Prompt Engineering & Structured Output**
 - ✅ [[EP14 - Prompt Engineering - Explicit Criteria & False Positives]]
-- ⬜ EP15 - Few-Shot Prompting
+- ✅ [[EP15 - Few-Shot Prompting]]
 - ✅ [[EP16 - Structured Output & JSON Schema]]
 - ✅ [[EP17 - Batch API & Multi-Pass Review]]
 
@@ -87,7 +87,7 @@ Peace Of Code's full-course episodes, one folder per episode (`06 - Youtube Cour
 - ✅ [[EP20 - When AI Needs a Human]]
 
 **Bonus (cross-domain)**
-- ⬜ Bonus - Exam Questions Solved & Exam Traps
+- ✅ [[Bonus - Exam Questions Solved & Exam Traps]]
 
 > [!TIP] Source transcripts
 > Raw captions live in `youtube-transcript/` — read-only input, never study content. Generate new episode notes with `/cca-episode <transcript-path>` (run from inside `CCA-F/`).

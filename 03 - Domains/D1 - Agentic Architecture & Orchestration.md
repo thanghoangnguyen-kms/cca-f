@@ -47,15 +47,15 @@ The loop continues on **three** stop reasons only: `tool_use` and `pause_turn` r
 
 **Seven** values exist. **↻** marks the **three that drive loop control** — those are the only ones a loop continues on.
 
-| `stop_reason` | Meaning | Action |
-|---------------|---------|--------|
-| ↻ `"tool_use"` | Claude wants to call a tool | Execute tool, return result, continue loop |
-| ↻ `"end_turn"` | Claude finished; no more tool calls | Terminate loop |
-| ↻ `"pause_turn"` | A **server-side tool** paused a long-running turn | Append the assistant turn and re-send to resume — do **not** add a "Continue." message |
-| `"max_tokens"` | Output token limit reached | Handle truncation; raise `max_tokens` or stream |
-| `"stop_sequence"` | Hit a configured stop sequence | Terminate |
-| `"refusal"` | Declined for safety reasons | **`content` may be empty** — check `stop_reason` *before* reading `content`. Inspect `stop_details` |
-| `"model_context_window_exceeded"` | Context window exhausted (distinct from `max_tokens`) | Compact or split the conversation |
+| `stop_reason`                     | Meaning                                               | Action                                                                                              |
+| --------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| ↻ `"tool_use"`                    | Claude wants to call a tool                           | Execute tool, return result, continue loop                                                          |
+| ↻ `"end_turn"`                    | Claude finished; no more tool calls                   | Terminate loop                                                                                      |
+| ↻ `"pause_turn"`                  | A **server-side tool** paused a long-running turn     | Append the assistant turn and re-send to resume — do **not** add a "Continue." message              |
+| `"max_tokens"`                    | Output token limit reached                            | Handle truncation; raise `max_tokens` or stream                                                     |
+| `"stop_sequence"`                 | Hit a configured stop sequence                        | Terminate                                                                                           |
+| `"refusal"`                       | Declined for safety reasons                           | **`content` may be empty** — check `stop_reason` *before* reading `content`. Inspect `stop_details` |
+| `"model_context_window_exceeded"` | Context window exhausted (distinct from `max_tokens`) | Compact or split the conversation                                                                   |
 
 > [!IMPORTANT] The three-of-seven split is the exam-testable fact
 > A loop that branches only on `end_turn` and `tool_use` is the classic tutorial shape and it **fails silently in production**: `pause_turn` matches neither branch, so a `while True` loop spins forever; `refusal` returns empty `content`, so extracting the final text raises. Handle all seven; continue on three.
@@ -120,12 +120,12 @@ All inter-subagent communication routes **through** the coordinator — subagent
 
 ### Rules
 
-| Rule | Detail |
-|------|--------|
-| **Context isolation** | Subagents do NOT inherit coordinator's conversation history automatically |
-| **Context injection** | You must explicitly pass context into subagent prompts |
+| Rule                      | Detail                                                                                  |
+| ------------------------- | --------------------------------------------------------------------------------------- |
+| **Context isolation**     | Subagents do NOT inherit coordinator's conversation history automatically               |
+| **Context injection**     | You must explicitly pass context into subagent prompts                                  |
 | **Communication routing** | All inter-subagent comms route through coordinator (for observability + error handling) |
-| **Coordinator roles** | Decompose task → Delegate → Aggregate results → Decide next subagent |
+| **Coordinator roles**     | Decompose task → Delegate → Aggregate results → Decide next subagent                    |
 
 > [!WARNING] Anti-Pattern
 > ❌ Overly narrow task decomposition → incomplete coverage of broad research topics
@@ -371,10 +371,10 @@ async for message in query(prompt="..."):
 
 ### When to Resume vs Start Fresh
 
-| Scenario | Recommendation |
-|----------|---------------|
-| Prior context is mostly still valid | Resume the session |
-| Files have been modified since last session | Inform agent about specific changes, then resume |
+| Scenario                                      | Recommendation                                                                            |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Prior context is mostly still valid           | Resume the session                                                                        |
+| Files have been modified since last session   | Inform agent about specific changes, then resume                                          |
 | Prior tool results are stale / session is old | **Start fresh + inject structured summary** — more reliable than resuming with stale data |
 
 > [!TIP] Exam Key Point
@@ -390,18 +390,18 @@ async for message in query(prompt="..."):
 
 ## ✅ Domain 1 Practice Checklist
 
-- [ ] Can explain the agentic loop step-by-step with correct message types
-- [ ] Know all `stop_reason` values and what action each triggers
-- [ ] Know the anti-patterns for loop termination
-- [ ] Can describe coordinator–subagent architecture and isolation rules
-- [ ] Know `AgentDefinition` fields (required vs optional)
-- [ ] Know why `"Task"` must be in `allowedTools` (renamed to `"Agent"` in v2.1.63; `"Task"` still valid)
-- [ ] Can distinguish `continue` vs `resume` vs `fork`
-- [ ] Know all hook events + their Python/TS availability
-- [ ] Can explain `PostToolUse` normalization pattern
-- [ ] Can explain `PreToolUse` compliance enforcement pattern
-- [ ] Know when to use hooks vs prompt instructions
-- [ ] Can distinguish prompt chaining vs dynamic decomposition
+- [x] Can explain the agentic loop step-by-step with correct message types
+- [x] Know all `stop_reason` values and what action each triggers
+- [x] Know the anti-patterns for loop termination
+- [x] Can describe coordinator–subagent architecture and isolation rules
+- [x] Know `AgentDefinition` fields (required vs optional)
+- [x] Know why `"Task"` must be in `allowedTools` (renamed to `"Agent"` in v2.1.63; `"Task"` still valid)
+- [x] Can distinguish `continue` vs `resume` vs `fork`
+- [x] Know all hook events + their Python/TS availability
+- [x] Can explain `PostToolUse` normalization pattern
+- [x] Can explain `PreToolUse` compliance enforcement pattern
+- [x] Know when to use hooks vs prompt instructions
+- [x] Can distinguish prompt chaining vs dynamic decomposition
 
 ---
 
