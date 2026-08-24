@@ -32,7 +32,7 @@ domain: All
 
 ## Part 1 — Golden rule → questions
 
-The 28 trigger rows from [[00-golden-rules-cheatsheet]], with the questions that test each one. **Read down the Hits column: that is your study priority order.**
+All 29 trigger rows from [[00-golden-rules-cheatsheet]], with the questions that test each one. **Read down the Hits column: that is your study priority order.**
 
 | Golden rule (trigger → answer) | Hits | New Mock | Old Mock |
 |---|:--:|---|---|
@@ -71,10 +71,18 @@ Four principles appear in the keys with **no** matching trigger row. Candidates 
 | Conflicting sources → verify against the **primary** source; state the conflict, never average it | 2 | N-Q40, N-Q52 |
 | `Edit`'s unique-match contract can't be met → **Read → modify → Write**, stop tuning `old_string` | 2 | N-Q39, O-Q29 |
 | Crash mid-run → persist **compact structured per-agent artifacts**, coordinator re-injects | 1 | O-Q1 |
-| A coordinator can only delegate if its **allowed tools** include the subagent-spawning tool | 1 | O-Q15 |
+| A coordinator that reasons about delegating but never acts is **missing the spawn tool from `AgentDefinition.tools`** | 1 | O-Q15 |
 
-> [!WARNING] Unverified — recheck `O-Q15` before memorizing it
-> That entry names the subagent-spawning tool **`Task`**. `AGENTS.md` § Research & Content Sources lists the **`Task` → `Agent` rename** as a known correction to recheck against official docs. The *principle* (delegation requires the tool in `allowed_tools`) is sound; the **tool name may be stale**. Verify against docs.claude.com before trusting the string on exam day.
+> [!IMPORTANT] `O-Q15` — resolved, and the mechanism is sharper than the key states it
+> The old key attributes the silent no-op to the coordinator's **allowed tools**. [[02-multi-agent-orchestration]] (corrected against docs 2026-08-24) draws the distinction the exam actually tests:
+>
+> - Spawn tool absent from **`AgentDefinition.tools`** → the tool isn't in the session at all, so **no prompt and no error — just silence**. This is the `O-Q15` scenario.
+> - Spawn tool merely absent from **`allowedTools`** → you get a **permission prompt**, not silence.
+>
+> On the tool's *name*, the Handbook now hedges deliberately: **`Task`/`Agent`**. `AGENTS.md` lists the `Task` → `Agent` rename as a known correction, and it is still not pinned to one string — so learn the **mechanism**, and don't bet on the name.
+
+> [!NOTE] This cluster is no longer unmapped
+> The Handbook gained a row for it in [[02-multi-agent-orchestration]] on 2026-08-24. It stays listed here because [[00-golden-rules-cheatsheet]] — the page this index maps against — still has no trigger row for it.
 
 ---
 
@@ -125,7 +133,7 @@ Ranked by how often the bank tests them. **Anything at 6+ is a near-certain exam
 19. **Conflicting sources → primary source wins** — 2 · `N-Q40, 52` — surface with full context only when you can't resolve it.
 20. **`Edit` unique-match unmeetable → Read → modify → Write** — 2 · `N-Q39` · `O-Q29`.
 21. **Crash recovery = compact structured artifacts** — 1 · `O-Q1` — the coordinator re-injects relevant state.
-22. **Allowed tools gate delegation** — 1 · `O-Q15` — see the ⚠ above on the tool's name.
+22. **A coordinator can't delegate a tool it doesn't have** — 1 · `O-Q15` — spawn tool missing from `AgentDefinition.tools` fails **silently**; missing from `allowedTools` merely prompts. See the callout in Part 1.
 
 ---
 
