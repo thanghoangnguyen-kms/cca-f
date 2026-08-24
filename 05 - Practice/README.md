@@ -21,7 +21,10 @@ Three independent exam sets plus your personal mistake log.
 | [CyberSkill CCAF - Mock Exam/](CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | CyberSkill CCAF, earlier sitting | ❌ never captured | ✅ worked, 4 domains |
 | [CCA-F Question Bank/](CCA-F%20Question%20Bank/README.md) | certificationpractice.com #2564 | ✅ 60, unmarked | ❌ **none yet** |
 
-Plus [[Weak Areas Deep Dive]] — your mistake log. Start and end there.
+Plus two standalone notes at the root:
+
+- [[Weak Areas Deep Dive]] — your mistake log. Start and end there.
+- [[Answer Patterns Index]] — the two CyberSkill keys read *sideways*: 120 explanations grouped into 22 recurring principles, each tied to a trigger row in [[00-golden-rules-cheatsheet]], with drill sets and the four rules neither sitting tests.
 
 ## How they relate
 
@@ -52,6 +55,7 @@ Both use the same four scenario domains, and both use the same four filenames �
 ## Gaps worth filling
 
 - **`CCA-F Question Bank/` has no answer key** — 60 questions, nothing worked. The largest gap here.
+- **Neither CyberSkill sitting tests D3 / Claude Code ops** — no `CLAUDE.md` hierarchy, hooks, plan mode, `.mcp.json` scoping, or `claude -p` in CI, and no `stop_reason` item either. A blind spot in this source, not in the exam; see [[Answer Patterns Index]] § Part 1.
 - **New Mock Exam has 15 unverified answers** — the grader quota reopens **2026-08-31**; one more sitting should close most of it.
 
 ## Suggested loop
@@ -59,6 +63,7 @@ Both use the same four scenario domains, and both use the same four filenames �
 1. Work a set from its questions file **without** the key open.
 2. Grade against the domain answer files.
 3. Log every miss in [[Weak Areas Deep Dive]] — capture *why* the right answer is right.
-4. Follow the takeaways back into [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[D3 - Claude Code Configuration & Workflows]] · [[D4 - Prompt Engineering & Structured Output]] · [[D5 - Context Management & Reliability]].
+4. Look the miss up in [[Answer Patterns Index]] and drill its whole pattern — the other 4–10 questions testing the same rule, across both sittings.
+5. Follow the takeaways back into [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[D3 - Claude Code Configuration & Workflows]] · [[D4 - Prompt Engineering & Structured Output]] · [[D5 - Context Management & Reliability]].
 
 **Back to:** [[00 - START HERE]] · [[CCA-F Study Roadmap]]
