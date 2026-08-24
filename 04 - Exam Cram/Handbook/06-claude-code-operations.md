@@ -58,11 +58,17 @@ mode, `--bare`, skills, and default tool selection. (Concept chapters 6, 7, 8, 9
 ### Skills frontmatter
 | Field | Meaning |
 |---|---|
-| `name` | Skill name |
+| `name` | Display label in skill listings; the `/command` comes from the **directory name** (plugin skills excepted) |
 | `description` | What the skill does — helps Claude know **when** to use it |
 | `context` | Only valid value is `fork` (isolated subagent context); omit the field to run in the main conversation |
-| `allowed-tools` | Which tools the skill may use |
+| `allowed-tools` | **Pre-approves** the listed tools for the invoking turn — no permission prompt. Does **NOT** restrict: every other tool stays callable under normal permission settings. Grant clears on your next message |
+| `disallowed-tools` | The field that actually **restricts** — removes tools from Claude's pool while the skill is active |
 | `argument-hint` | Suggested input when invoking the skill |
+
+> `allowed-tools` is an **allow-list, not a whitelist-only sandbox.** Classic
+> distractor: "restrict a skill to Read and Grep" is `disallowed-tools` (or deny
+> rules), never `allowed-tools`.
+> Source: <https://code.claude.com/docs/en/skills> (checked 2026-08-24)
 
 Context modes: omit `context` = run in the main conversation context;
 **`context: fork`** = run in a separate context / sub-agent. (`inherit` is

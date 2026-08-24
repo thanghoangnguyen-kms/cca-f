@@ -15,9 +15,16 @@ Print this and [`00`](00-golden-rules-cheatsheet.md). Everything factual you mig
 
 ## 1. The agentic loop
 1. Send request → 2. check `stop_reason` → 3. if `tool_use`, execute tool(s) →
-4. append **assistant message + tool results** → 5. repeat until **`end_turn`**.
+4. append **assistant message + tool results** → 5. if `pause_turn`, append the
+response **as-is** and re-send → 6. repeat until **`end_turn`**.
 Handle **all** `tool_use` blocks in a response; return **all** `tool_result`s.
 `MAX_ITERATIONS` = safety ceiling only.
+
+**Seven `stop_reason` values; only three drive loop control.**
+Continue on **`tool_use`** (execute + append results) and **`pause_turn`** (append
+unchanged, re-send). Stop on **`end_turn`**. The other four all stop too, but mean
+something went wrong: `max_tokens` (output cap — handle truncation),
+`stop_sequence`, `refusal` (check `stop_details`), `model_context_window_exceeded`.
 
 ## 2. `tool_choice` modes
 | Mode | Text reply? | Must use a tool? | Specific tool? |
@@ -79,9 +86,16 @@ guaranteed) & retries only failures. A context-length error
 (not `max_tokens`, which is output).
 
 ## 8. Tool count per agent
-~**4–5 tools per agent**. More → split into specialized agents. Avoid "god agent".
+~**4–5 tools per agent** (exam answer). More → split into specialized agents.
+Avoid "god agent".
 Wrong tool used → **architecture first** (reduce/split) → **tool description** →
 **prompt last**.
+
+Docs numbers, if a question cites them: selection accuracy "degrades once you
+exceed **30–50** available tools"; **10+** tools is the threshold for reaching for
+the **tool search tool** (`defer_loading: true`); **3–5** is how many tools to keep
+**non-deferred**, not a cap per agent. Don't confuse the three.
+Source: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool> (checked 2026-08-24)
 
 ## 9. Structured output recipe
 Define tool `input_schema` → force with `tool_choice` → **validate** → on fail,

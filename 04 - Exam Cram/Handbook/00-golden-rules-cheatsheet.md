@@ -33,7 +33,7 @@ Prompts change *probability*. Code changes *outcome*. Triggers that force the
 |---|---|
 | "compliance / must always / cannot rely on the model" | Deterministic **hook / gate in code**, not a prompt |
 | Agent picks the **wrong tool** | Improve **tool descriptions** first (architecture > prompt); if too many tools, **split into specialized agents** |
-| Agent has **too many tools** (e.g. 18) | Split into specialized subagents (**~4–5 tools per agent**) |
+| Agent has **too many tools** (e.g. 15+) | Split into specialized subagents (**~4–5 tools per agent** — the exam answer; docs put measured degradation past **30–50** available tools) |
 | "return JSON reliably / structured output" | Define a **tool input schema + `tool_choice`** to force it; then validate |
 | Force a **specific tool first** | `tool_choice: {"type":"tool","name":"..."}` on turn 1, then back to `auto` |
 | Loop **won't stop / stops too early** | Stop on `stop_reason == "end_turn"`; iteration cap is only a safety ceiling |

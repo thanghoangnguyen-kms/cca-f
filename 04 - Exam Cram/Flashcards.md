@@ -3,7 +3,7 @@ tags:
   - CCA-F
   - exam-cram
   - flashcards
-date: 2026-07-11
+date: 2026-08-24
 status: done
 ---
 
@@ -16,11 +16,20 @@ status: done
 
 ## Fundamentals
 
-**Q: What is the current (2026-07) Claude model lineup and their API IDs?**
-A: Claude Fable 5 (`claude-fable-5`), Claude Mythos 5 (`claude-mythos-5`, Project Glasswing only), Claude Opus 4.8 (`claude-opus-4-8`), Claude Opus 4.7 (`claude-opus-4-7`), Claude Sonnet 5 (`claude-sonnet-5`), Claude Sonnet 4.6 (`claude-sonnet-4-6`), Claude Haiku 4.5 (`claude-haiku-4-5`).
+**Q: Name the five current Claude models and their API IDs.**
+A: Claude Fable 5 (`claude-fable-5`), Claude Mythos 5 (`claude-mythos-5`, Project Glasswing only), Claude Opus 5 (`claude-opus-5`), Claude Sonnet 5 (`claude-sonnet-5`), Claude Haiku 4.5 (`claude-haiku-4-5`). ([docs](https://platform.claude.com/docs/en/about-claude/models/overview), checked 2026-08-24)
 
-**Q: Which model is the default / most-used model, and which is most capable?**
-A: `claude-opus-4-8` is the default/most-used model. `claude-fable-5` is the most capable model.
+**Q: Which Claude models are now legacy rather than current?**
+A: The whole Opus 4.x line — Opus 4.8 (`claude-opus-4-8`), 4.7 (`claude-opus-4-7`), 4.6 (`claude-opus-4-6`), 4.5 — plus Sonnet 4.6 (`claude-sonnet-4-6`) and Sonnet 4.5. Still available, no longer recommended for new work.
+
+**Q: Which model do the docs tell you to start with when you're unsure?**
+A: `claude-opus-5` — "start with Claude Opus 5 for complex agentic coding and enterprise work." Reach for `claude-fable-5` only when you need the highest available capability.
+
+**Q: Which model is the most capable widely released one?**
+A: `claude-fable-5`. (Mythos 5 shares its specs and pricing but is invitation-only under Project Glasswing, so it isn't "widely released".)
+
+**Q: Claude Sonnet 5 launched at $2/$10 as introductory pricing through 2026-08-31. What happens on 2026-09-01?**
+A: Nothing — $2/$10 became the standard price and the scheduled rise to $3/$15 was cancelled. ([docs](https://platform.claude.com/docs/en/about-claude/pricing), checked 2026-08-24)
 
 **Q: What is the context window and max output for the current model lineup?**
 A: All models except Haiku have a 1M-token context window and 128K max output. Haiku 4.5 has a 200K context window and 64K max output.
@@ -35,7 +44,7 @@ A: Stateless — you must resend the full conversation history with every reques
 A: `end_turn` (done — terminate loop), `tool_use` (execute tool, continue loop), `max_tokens` (hit output cap, response may be truncated), `pause_turn` (server-tool loop paused, resume the request), `stop_sequence` (hit a configured stop string), `refusal` (safety decline — check `stop_details`), and `model_context_window_exceeded` (Claude 4.5+ only — context window exhausted; distinct from `max_tokens`, which caps output, not total context).
 
 **Q: How is thinking depth controlled on current models, and what changed from the old API?**
-A: Use `thinking: {type: "adaptive"}` with depth set via `output_config: {effort: "low"|"medium"|"high"|"xhigh"|"max"}` (default `high`). The old `thinking: {type: "enabled", budget_tokens: N}` is deprecated and returns a 400 error on Fable 5, Opus 4.7/4.8, and Sonnet 5.
+A: Use `thinking: {type: "adaptive"}` with depth set via `output_config: {effort: "low"|"medium"|"high"|"xhigh"|"max"}` (default `high`). The old `thinking: {type: "enabled", budget_tokens: N}` is deprecated on the 4.6 models and **rejected with 400 on Claude 4.7 and later** — Fable 5, Mythos 5, Opus 5, Opus 4.7/4.8, Sonnet 5. ([docs](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting), checked 2026-08-24)
 
 **Q: How do you enforce structured output on the current API, and what's deprecated?**
 A: Use `output_config: {format: {type: "json_schema", schema: {...}}}`. The old top-level `output_format` field is deprecated. `strict: true` on a tool definition guarantees valid tool inputs.
@@ -50,7 +59,7 @@ A: `POST /v1/messages/batches`, asynchronous, 50% of standard cost, up to 100K r
 A: Mark a content block `cache_control: {type: "ephemeral"}`. Caching is a prefix match — any byte change earlier in the prefix invalidates everything cached after it. Reads cost ~0.1x, writes cost ~1.25x, default TTL 5 minutes. Verify hits via `usage.cache_read_input_tokens`.
 
 **Q: What happened to assistant-turn prefilling?**
-A: It's removed — a last-assistant-turn prefill now returns a 400 error on Fable 5, Opus 4.6/4.7/4.8, and Sonnet 4.6/5. Use structured outputs or system-prompt instructions instead.
+A: It's removed — a last-assistant-turn prefill returns a 400 error on **Claude 4.6 and later**: Fable 5, Mythos 5, Opus 5, Opus 4.6/4.7/4.8, Sonnet 4.6/5. Use structured outputs or system-prompt instructions instead. ([docs](https://platform.claude.com/docs/en/about-claude/models/migration-guide), checked 2026-08-24)
 
 **Q: What is the golden heuristic for choosing code vs. prompt to enforce a behavior?**
 A: If something MUST always happen, enforce it in **code** (hook / gate / schema validation / deterministic routing). If something should USUALLY be right, guide it with a **prompt** (instructions / examples / tool descriptions). Prompts shift probability; code guarantees outcomes.
@@ -117,8 +126,11 @@ A: No — if `isError: false`, an empty array means the query succeeded but no m
 **Q: What are the four MCP error categories and are they retryable?**
 A: Transient (`isRetryable: true`), Validation (`false`), Business/policy (`false`), Permission (`false`).
 
-**Q: How many tools per agent is reliable, and how many degrades selection?**
-A: 4–5 tools per agent is reliable; 10+ degrades selection reliability; 18+ causes significant tool misuse.
+**Q: The course teaches ~4–5 tools per agent as the reliable ceiling. At what count do official docs say tool selection actually degrades?**
+A: "Claude's ability to pick the right tool degrades once you exceed **30–50** available tools." **Exam answer: ~4–5 per agent, split into specialized agents beyond that.** ([docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool), checked 2026-08-24)
+
+**Q: Docs cite both "10 or more tools" and "3–5 tools" around tool search. What does each number actually mean?**
+A: **10+** is when to reach for the tool search tool. **3–5** is how many of your most-used tools to keep non-deferred, so Claude can call them without searching first. Neither is a cap on how many tools an agent may hold.
 
 **Q: What are the three MCP configuration scopes and their file locations?**
 A: **Local** (the default) → `~/.claude.json` under that project's path, private to you and that project. **Project** → `.mcp.json` at the repo root, version-controlled and team-shared. **User** → `~/.claude.json` at top level, private, all your projects. Precedence: `local` → `project` → `user`, with no field merging. ([docs](https://code.claude.com/docs/en/mcp), checked 2026-08-04)

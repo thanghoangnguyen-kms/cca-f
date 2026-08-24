@@ -23,11 +23,29 @@ tool distribution, and structured output. (Maps to concept chapters 1, 4, 5, 6, 
 2. Check **`stop_reason`**.
 3. If `stop_reason == "tool_use"` → execute the tool(s).
 4. **Append BOTH the assistant message AND the tool results** to the conversation.
-5. Repeat until `stop_reason == "end_turn"`.
+5. If `stop_reason == "pause_turn"` → append the assistant response **as-is** and
+   re-send. No tool to execute; the server-side loop just hit its iteration cap.
+6. Repeat until `stop_reason == "end_turn"`.
 
 - **`stop_reason` is the most important control signal in the loop.**
 - The primary stop condition is **`end_turn`**, NOT a loop counter.
 - `MAX_ITERATIONS` is only a **safety ceiling**, never the main termination.
+
+#### All seven `stop_reason` values — three drive the loop
+
+| Value | Loop action |
+|---|---|
+| `end_turn` | **Stop.** Claude finished naturally. |
+| `tool_use` | **Continue** — execute tool(s), append assistant message + `tool_result`s. |
+| `pause_turn` | **Continue** — append the response unchanged and re-send (server-tool loop paused). |
+| `max_tokens` | Stop; handle truncation. Hit the *output* cap. |
+| `stop_sequence` | Stop; a configured stop string matched. |
+| `refusal` | Stop; safety decline — check `stop_details`. |
+| `model_context_window_exceeded` | Stop; context window exhausted (distinct from `max_tokens`). |
+
+Only `tool_use` and `pause_turn` require another API call. A loop that stops on
+everything except `end_turn` silently truncates on `pause_turn`.
+Source: <https://platform.claude.com/docs/en/api/handling-stop-reasons> (checked 2026-08-24)
 - If a response has **multiple `tool_use` blocks**, you must handle **all** of
   them and return **all** matching `tool_result`s before continuing the loop.
 - How the loop "decides" the next tool: the tool result is appended to

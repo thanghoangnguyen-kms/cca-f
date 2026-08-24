@@ -3,7 +3,7 @@ tags:
   - CCA-F
   - exam-cram
   - glossary
-date: 2026-07-11
+date: 2026-08-24
 status: done
 ---
 
@@ -19,15 +19,15 @@ status: done
 | Term | Domain | What it does / why it matters |
 |---|---|---|
 | **Messages API** (`POST /v1/messages`) | Fundamentals | The single endpoint for everything — text, tools, structured output, streaming. Not separate APIs per feature. |
-| `model` | Fundamentals | Required request field. Always use the exact model ID string (e.g. `claude-opus-4-8`); never append date suffixes to aliases. |
+| `model` | Fundamentals | Required request field. Always use the exact model ID string (e.g. `claude-opus-5`); never append date suffixes to aliases. |
 | `max_tokens` | Fundamentals | Required request field — the output token cap for the response. |
 | `messages` | Fundamentals | Required request field — ordered list of `{role, content}` turns. The API is **stateless**: you resend full history every turn. |
 | `system` | Fundamentals | Optional field — system prompt, kept separate from the `messages` array. |
 | `stop_reason` | Fundamentals | Field on the response indicating why generation stopped. Values: `end_turn` (done — terminate loop), `tool_use` (execute tool, append result, continue loop), `max_tokens` (hit output cap — handle truncation), `stop_sequence` (hit a configured stop string), `pause_turn` (server-tool loop paused mid-turn — resume the request), `refusal` (safety decline — check `stop_details`), `model_context_window_exceeded` (Claude 4.5+ only — context window exhausted, distinct from `max_tokens`'s output cap). |
 | `tool_choice` | Fundamentals / D2 / D4 | Controls how Claude uses tools: `{"type":"auto"}` (default — model decides), `{"type":"any"}` (must call some tool), `{"type":"tool","name":...}` (force one specific tool), `{"type":"none"}` (no tool calls). |
 | `output_config` | Fundamentals / D4 | Request field controlling both output format and thinking effort. `output_config.format` replaces the deprecated top-level `output_format`. `output_config.effort` (`low`\|`medium`\|`high`\|`xhigh`\|`max`) controls thinking depth (default `high`; `xhigh` best for coding/agentic work). |
-| Adaptive thinking (`thinking: {type:"adaptive"}`) | Fundamentals | Current thinking mode on Claude 4.6+. The old `thinking: {type:"enabled", budget_tokens:N}` is deprecated on 4.6 and returns **400** on Fable 5 / Opus 4.7 / 4.8 / Sonnet 5. |
-| Prefill removal | Fundamentals | Last-assistant-turn prefills now return **400** on Fable 5 / Opus 4.6-4.8 / Sonnet 4.6/5. Use structured outputs or system-prompt instructions instead. |
+| Adaptive thinking (`thinking: {type:"adaptive"}`) | Fundamentals | Current thinking mode. **Learn the rule, not the model list:** the old `thinking: {type:"enabled", budget_tokens:N}` is *deprecated* on the **4.6** models (requests still succeed) and **rejected with 400 on Claude 4.7 and later** — which includes Fable 5, Mythos 5, Opus 5, Opus 4.7/4.8, Sonnet 5. Haiku 4.5 still supports it. ([docs](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting), checked 2026-08-24) |
+| Prefill removal | Fundamentals | Last-assistant-turn prefills return **400** on **Claude 4.6 and later** — Fable 5, Mythos 5, Opus 5, Opus 4.6-4.8, Sonnet 4.6/5. Use structured outputs or system-prompt instructions instead. ([docs](https://platform.claude.com/docs/en/about-claude/models/migration-guide), checked 2026-08-24) |
 | `cache_control: {type:"ephemeral"}` | Fundamentals / D5 | Marks a content block as cacheable. Prefix match — any byte change earlier in the prefix invalidates everything after it. Default TTL 5 min (extended TTL: 1h, explicit). ~0.1x read cost, ~1.25x write cost. Verify with `usage.cache_read_input_tokens`. |
 | `--print` / `-p` | Fundamentals / D3 | CLI flag for non-interactive mode; required in CI/automated pipelines — without it Claude Code waits for input and hangs. |
 | `--output-format json` | Fundamentals / D3 | CLI flag for machine-parseable JSON output; combine with `--json-schema <file>` to enforce structure in CI. |
@@ -84,7 +84,8 @@ status: done
 | `@import` | D3 | Syntax for pulling modular files into `CLAUDE.md` (avoids one monolithic file). Has a depth limit on import chains — know it's finite for the exam. |
 | `/memory` | D3 | Slash command that shows which `CLAUDE.md`/memory files are currently loaded — used to diagnose inconsistent behavior across sessions. |
 | `context: fork` | D3 | SKILL.md frontmatter field. Runs the skill in an **isolated subagent context** so its output doesn't pollute the main session's context window. |
-| `allowed-tools` (SKILL.md) | D3 | Frontmatter field restricting which tools a skill may use. |
+| `allowed-tools` (SKILL.md) | D3 | Frontmatter field that **pre-approves** the listed tools for the turn that invokes the skill, so Claude uses them without a permission prompt. It does **not** restrict: every other tool stays callable and normal permission settings still govern it. The grant clears on your next message. ([docs](https://code.claude.com/docs/en/skills), checked 2026-08-24) |
+| `disallowed-tools` (SKILL.md) | D3 | The field that actually **restricts** — removes the listed tools from Claude's available pool while the skill is active. Also clears on your next message. Don't confuse with `allowed-tools`. |
 | `argument-hint` (SKILL.md) | D3 | Frontmatter field documenting expected slash-command arguments. |
 | Path-scoped rules (`.claude/rules/`) | D3 | Rules with `paths:` frontmatter that load only for matching files — preferred over subdirectory `CLAUDE.md` when instructions should apply narrowly rather than always-on-demand. |
 | Plan mode | D3 | Claude Code mode for proposing a plan before executing — used for higher-risk or exploratory changes. |
@@ -128,22 +129,38 @@ status: done
 
 ---
 
-## Model Lineup — verbatim from grounding brief (as of 2026-07)
+## Model Lineup (checked 2026-08-24)
 
 > [!IMPORTANT] Use EXACT model ID strings; never append date suffixes to aliases.
+
+> [!WARNING] Verify this table before exam day
+> This is the fastest-rotting section in the vault — it has already crossed one model launch. Re-check against [the models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing) rather than trusting the values below.
+
+**Current models**
 
 | Model | Model ID | Context | Max output | Input $/1M | Output $/1M |
 |---|---|---|---|---|---|
 | Claude Fable 5 | `claude-fable-5` | 1M | 128K | $10.00 | $50.00 |
 | Claude Mythos 5 (Project Glasswing only) | `claude-mythos-5` | 1M | 128K | $10.00 | $50.00 |
-| Claude Opus 4.8 | `claude-opus-4-8` | 1M | 128K | $5.00 | $25.00 |
-| Claude Opus 4.7 | `claude-opus-4-7` | 1M | 128K | $5.00 | $25.00 |
-| Claude Sonnet 5 | `claude-sonnet-5` | 1M | 128K | $3.00 ($2.00 intro thru 2026-08-31) | $15.00 ($10.00 intro) |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | 1M | 128K | $3.00 | $15.00 |
+| Claude Opus 5 | `claude-opus-5` | 1M | 128K | $5.00 | $25.00 |
+| Claude Sonnet 5 | `claude-sonnet-5` | 1M | 128K | $2.00 | $10.00 |
 | Claude Haiku 4.5 | `claude-haiku-4-5` | 200K | 64K | $1.00 | $5.00 |
 
-- **Default / most-used model:** `claude-opus-4-8`. **Most capable:** `claude-fable-5`.
-- The Claude 5 family, Opus 4.8, and Haiku 4.5 are the newest generations.
+**Legacy models** — still available, no longer recommended for new work
+
+| Model | Model ID | Context | Max output | Input $/1M | Output $/1M |
+|---|---|---|---|---|---|
+| Claude Opus 4.8 | `claude-opus-4-8` | 1M | 128K | $5.00 | $25.00 |
+| Claude Opus 4.7 | `claude-opus-4-7` | 1M | 128K | $5.00 | $25.00 |
+| Claude Opus 4.6 | `claude-opus-4-6` | 1M | 128K | $5.00 | $25.00 |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | 1M | 128K | $3.00 | $15.00 |
+
+- **Default / most-used model:** `claude-opus-5` — docs: "If you're unsure which model to use, start with Claude Opus 5 for complex agentic coding and enterprise work." **Most capable:** `claude-fable-5` ("Anthropic's most capable widely released model").
+- Current generation: Fable 5, Mythos 5, Opus 5, Sonnet 5, Haiku 4.5. The Opus 4.x line and Sonnet 4.6 are now **legacy**.
+- **Sonnet 5 is $2 / $10 flat.** The $3 / $15 increase once scheduled for 2026-09-01 **will not occur** — the introductory price became the standard price. Any answer implying a September price rise is wrong.
+- Max output figures are for the synchronous Messages API. On the Batch API, Opus 5 / 4.8 / 4.7 / 4.6 and Sonnet 5 / 4.6 reach **300K** output tokens via the `output-300k-2026-03-24` beta header.
+
+*Sources: [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) · [pricing](https://platform.claude.com/docs/en/about-claude/pricing), checked 2026-08-24. Corrected from a stale 2026-07 lineup that omitted Opus 5, named `claude-opus-4-8` as the default, and carried the cancelled Sonnet 5 price rise.*
 
 ---
 

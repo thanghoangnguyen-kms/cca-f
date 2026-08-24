@@ -67,9 +67,15 @@ prompt alone. Never expect a subagent to infer the coordinator's context.
   known location; on resume the coordinator loads them and **re-injects** the
   relevant state into each prompt. (The LeadResearcher persists its plan to
   Memory so work survives a context reset.)
-- Subagents are spawned via the **`Task` tool** — if `Task` isn't in
-  `allowedTools`, the coordinator can *narrate* delegation but nothing runs
-  (no error, no execution).
+- Subagents are spawned via the **`Task` tool** — renamed to **`Agent`** in Claude
+  Code v2.1.63, with `Task` still a valid alias and the **exam-safe answer**.
+  Include it in `allowedTools` so delegation auto-approves.
+- **`allowedTools` is an auto-approve list, not a restriction list.** Omitting the
+  spawn tool doesn't silently disable delegation — the call falls through to your
+  permission prompt, or is denied in `dontAsk` mode. The *silent* failure ("agent
+  works without it, no prompt, no error") comes from a different surface: leaving
+  a tool out of `AgentDefinition.tools`.
+  Source: <https://code.claude.com/docs/en/agent-sdk/subagents> (checked 2026-08-24)
 
 ### Provenance / citations (don't lose the mapping)
 - Keep **content summaries separate from source metadata** (URLs, doc names,
@@ -101,7 +107,7 @@ prompt alone. Never expect a subagent to infer the coordinator's context.
 | Sequential processing of N items is slow | Coordinator spawns **parallel subagents**, each a subset, then aggregates |
 | Citations missing / attribution lost | Structured **claim→source mappings**, preserved through merges |
 | Two data points look contradictory across time | Include **dates** in structured output |
-| Coordinator reasons about delegating but nothing executes | `Task` tool not in **`allowedTools`** |
+| Coordinator reasons about delegating but nothing executes | Spawn tool (`Task`/`Agent`) missing from **`AgentDefinition.tools`** — the tool isn't in the session at all, so no prompt and no error. (If it's merely absent from `allowedTools`, you get a permission prompt instead, not silence.) |
 
 ---
 
