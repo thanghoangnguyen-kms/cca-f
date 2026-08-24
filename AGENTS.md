@@ -49,17 +49,20 @@ CCA-F/
 │   ├── Critical Terms Glossary.md
 │   └── Handbook/                    ← scenario-based cram (00–08, plain MD links)
 ├── 05 - Practice/                   ← one folder per exam set, `<source> - <set>`; notes at the root
-│   ├── README.md                    ← index; overlap matrix for the three sets
+│   ├── README.md                    ← index; overlap matrix for the four sets
 │   ├── Weak Areas Deep Dive.md      ← personal mistake log
 │   ├── CyberSkill CCAF - New Mock Exam/   ← questions + matched key
 │   │   ├── README.md · Questions.md
 │   │   └── Answer Key/<domain>.md   ← 4 scenario domains
+│   ├── CyberSkill CCAF - Timed Mock 2026-08-24/  ← 3rd sitting; stems only (no options),
+│   │   └── README.md · Questions.md             all 60 answers grader-authoritative
 │   ├── CyberSkill CCAF - Mock Exam/     ← key only; 2nd sitting of the SAME bank (40/60
 │   │   └── README.md · <domain>.md        overlap) — kept separate, do NOT merge
 │   └── CCA-F Question Bank/         ← certificationpractice.com; questions only, no key
 │       └── README.md · CCA-F-practice-exam-questions.md
-│   # the two answer-key folders share the same 4 domain filenames, so they link
-│   # internally with relative MD, not [[wikilinks]] — keep each folder intact
+│   # the THREE answer-key folders share the same 4 domain filenames, so they link
+│   # with relative MD, not [[wikilinks]] — from anywhere, not just inside a set
+│   # folder (Answer Patterns Index sits at the root and does the same). Keep intact
 ├── 06 - Youtube Course/             ← per-episode notes from the Peace Of Code course
 │   └── EP<NN> - <Title>/            ← one folder per episode (pre-created)
 │       ├── EP<NN> - <Title>.md      ← study guide (filename repeats folder name)

@@ -21,7 +21,7 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 | `02 - Courses/` | `C1`–`C6`, one lesson-doc per required training course |
 | `03 - Domains/` | `00 - Claude Model Family & API Fundamentals.md` + `D1`–`D5` domain deep dives |
 | `04 - Exam Cram/` | `Flashcards.md` (vault-wide deck), `Critical Terms Glossary.md`, `Handbook/` |
-| `05 - Practice/` | Mistake log + three exam sets, one folder each named `<source> - <set>`, `README.md` per folder. The two CyberSkill folders are separate sittings of one bank (40/60 overlap) — **kept separate deliberately**. Their answer keys share the **same four** domain filenames, so those folders link internally with relative MD, not `[[wikilinks]]` |
+| `05 - Practice/` | Mistake log + four exam sets, one folder each named `<source> - <set>`, `README.md` per folder. **Three** of them are separate sittings of one CyberSkill bank (N↔O 40/60 · N↔T 48/60 · O↔T 42/60) — **kept separate deliberately**. Their answer keys share the **same four** domain filenames, so anything targeting those filenames uses relative MD, not `[[wikilinks]]` — including from the folder root |
 | `06 - Youtube Course/` | `EP<NN> - <Title>/` — one folder per episode, each holding a study guide + its own deck |
 | `youtube-transcript/` | **Source material — read-only input, never edit, never link to from notes** |
 
@@ -36,7 +36,7 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 - Internal links: `[[Note Name]]`, never `[text](path)`.
 - Callouts: `[!NOTE]` `[!TIP]` `[!WARNING]` (anti-patterns) `[!IMPORTANT]` (must-know) `[!EXAMPLE]`. Use ❌ / ✅ for wrong-vs-right.
 - Code-format every exam term: API fields (`stop_reason`), tool names (`Task`), SDK objects (`AgentDefinition`), config files (`CLAUDE.md`, `.mcp.json`), CLI flags (`--resume`), hooks (`PreToolUse`).
-- YAML frontmatter on every note: `tags`, `date`, `status`, `domain`.
+- YAML frontmatter on every note: `tags`, `date`, `status`, and `domain` **only where the note maps to a single domain** — omit `domain` for notes that span domains (AGENTS.md § Note Frontmatter Template). Practice answer keys carry a scenario tag instead.
 - Domain notes (`D1`–`D5`) have a required opening and closing shape — AGENTS.md § Content Rules.
 
 ## Authority hierarchy

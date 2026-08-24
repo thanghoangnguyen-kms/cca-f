@@ -54,6 +54,16 @@ concept chapters 3, 13.)
 - Model **self-reported confidence** is not a safety mechanism unless calibrated.
 - When a clear escalation trigger fires, **hand off immediately** — don't keep processing.
 
+### Scope boundaries (distinct from escalation)
+- Regulated professional advice — **legal, medical, tax, immigration** — is
+  **out of scope, always.** Name the boundary plainly, then route to the right
+  resource or a human. Don't hedge, don't stonewall, don't "best effort."
+- Refuse the **task**, keep helping the **person**. Declining *in-scope* work is
+  a failure; declining *out-of-scope* work is correct.
+- Scope is a **safety** property, not a helpfulness trade-off: the agent is
+  outside its competence *and* its authorization, so a confident answer is
+  worse than none.
+
 ### Structured handoff to a human
 - The human **won't see the transcript.** Pass a **self-contained structured
   brief: customer ID + root cause + amount + recommended action.**
@@ -110,6 +120,7 @@ concept chapters 3, 13.)
 | Long multi-issue session near context limit | Compact resolved threads; keep active thread verbatim |
 | Verbose tool outputs flooding context | **Prune to task-relevant fields** before more calls |
 | Frustrated customer, no context yet | One empathetic, **targeted question** |
+| Customer requests legal / medical / tax advice | **Out of scope** — state the limit, route to a resource or human |
 
 ---
 

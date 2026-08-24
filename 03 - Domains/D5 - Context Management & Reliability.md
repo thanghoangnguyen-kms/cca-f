@@ -103,7 +103,7 @@ For multi-turn conversations via the API: always pass the **complete conversatio
 
 | Trigger | Action |
 |---------|--------|
-| Customer **explicitly requests a human agent** | Escalate **immediately** — no investigation first |
+| Customer **explicitly requests a human agent** | Acknowledge the request, ask **one** targeted question to scope the issue, then escalate — never a cold handoff, never silent investigation |
 | Policy is **ambiguous or silent** on customer's specific case | Escalate (policy gap, not just complexity) |
 | Unable to make **meaningful progress** | Escalate |
 | Complex case but agent **can resolve it** | Offer to resolve first; escalate only if customer reiterates |
@@ -113,7 +113,8 @@ For multi-turn conversations via the API: always pass the **complete conversatio
 ```mermaid
 flowchart TD
     A["Customer message"] --> B{"Explicitly requests<br/>a human agent?"}
-    B -->|Yes| E["Escalate immediately<br/>(no investigation)"]
+    B -->|Yes| S["Acknowledge + ask ONE<br/>targeted question"]
+    S --> E["Escalate"]
     B -->|No| C{"Policy silent or<br/>ambiguous on case?"}
     C -->|Yes| E
     C -->|No| D{"Can agent make<br/>meaningful progress?"}
@@ -127,9 +128,17 @@ flowchart TD
 
 > [!WARNING] Do not gate escalation on sentiment or self-reported confidence scores — branch only on the explicit conditions above.
 
-> [!IMPORTANT] Exam Rule: Immediate Escalation
-> When a customer **explicitly requests a human**, honor it immediately — do NOT first attempt to investigate or resolve. This is non-negotiable.
-> Offer to resolve → only if issue is straightforwardly solvable AND customer hasn't explicitly demanded a human.
+> [!IMPORTANT] Exam Rule: Honor the request — but scope the issue in one question first
+> An explicit request for a human is a **real escalation trigger**; never talk the customer out of it, and never quietly investigate instead. But the graded behaviour is **not** a cold handoff: acknowledge the frustration and ask **one** targeted question to establish what the issue actually is, then escalate with that context.
+>
+> One question does not override the request — it is what makes the handoff useful, because the human receives a scoped problem rather than a transcript. Two failure modes flank the right answer:
+> - ❌ **Cold handoff** — escalate with nothing known, so the human restarts from zero.
+> - ❌ **Silent investigation** — fire `get_customer` / `lookup_order` before you know what you are looking for. The tool calls have no target, and the customer waits while the agent works on the wrong thing.
+> - ✅ **Acknowledge → one targeted question → escalate with a structured summary.**
+>
+> Offer to *resolve* rather than escalate only if the issue is straightforwardly solvable AND the customer has not explicitly demanded a human.
+>
+> Corrected 2026-08-24: this note previously read "escalate immediately — do NOT investigate or resolve — non-negotiable," which contradicted [[04-customer-support]] and is the keyed-wrong answer in the CyberSkill bank. See [[Weak Areas Deep Dive]].
 
 ### Unreliable Escalation Triggers
 
@@ -500,7 +509,7 @@ A: Numerical values, specific dates, order/customer IDs, amounts, and customer-s
 A: Models reliably process information at the beginning and end of long inputs but may omit findings from the middle. Mitigation: place key summaries at the beginning, use explicit section headers.
 
 **Q: When a customer explicitly requests a human agent, what should the agent do?**
-A: Escalate immediately — no investigation or resolution attempt first. Explicit human requests are honored unconditionally.
+A: Honor the request — but acknowledge it and ask **one** targeted question to scope the issue first, then escalate with that context. One question is not investigation-instead-of-escalation; it is what stops the human receiving a cold handoff. Never fire tool calls before you know what the issue is.
 
 **Q: When should a multi-agent system escalate due to policy, vs due to complexity?**
 A: Escalate when the policy is ambiguous or silent on the customer's specific request (a policy gap). Don't escalate just because a case is complex — if the agent can resolve it, offer resolution first.

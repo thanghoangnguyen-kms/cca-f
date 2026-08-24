@@ -6,7 +6,6 @@ tags:
   - answer-key
 date: 2026-08-24
 status: done
-domain: All
 ---
 
 # 🧭 Answer Patterns Index
@@ -14,25 +13,32 @@ domain: All
 **Back to:** [[00 - START HERE]] · [[CCA-F Study Roadmap]] · [README.md](README.md)
 
 > [!NOTE] What this is
-> The two CyberSkill answer keys explain **why each answer is right, one question at a time**. This note reads those 120 explanations *sideways* — grouping them into the handful of principles they actually test, and tying each principle back to the trigger rows in [[00-golden-rules-cheatsheet]].
+> The three CyberSkill answer keys explain **why each answer is right, one question at a time**. This note reads those 180 explanations *sideways* — grouping them into the handful of principles they actually test, and tying each principle back to the trigger rows in [[00-golden-rules-cheatsheet]].
 >
 > Use it to drill **one pattern across many questions** instead of grinding Q1→Q60. That's what builds transfer to a question you've never seen.
 
 ## Notation
 
-| Tag | Set | Questions |
-|---|---|---|
-| **N-Q##** | [CyberSkill CCAF - New Mock Exam](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) — has the question text | 60 |
-| **O-Q##** | [CyberSkill CCAF - Mock Exam](CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) — answers only, but every entry cites a docs URL | 60 |
+| Tag | Set | Questions | Fidelity |
+|---|---|---|---|
+| **N-Q##** | [CyberSkill CCAF - New Mock Exam](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) | 60 | stems + **all four options**; 57/60 grader-confirmed |
+| **O-Q##** | [CyberSkill CCAF - Mock Exam](CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | 60 | answers only, stems paraphrased; every entry cites a docs URL |
+| **T-Q##** | [CyberSkill CCAF - Timed Mock 2026-08-24](CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) | 60 | stems only, **no options**; 60/60 grader-authoritative |
 
 > [!WARNING] Numbers never cross sets
-> `N-Q7` and `O-Q7` are different questions. The two sittings draw from the same bank (**40 of 60 overlap**) but renumber and reorder every time. This note groups by **principle**, not by item identity — where the same principle appears in both sets, expect that some pairs are literally the same item under two numbers and others are two different questions teaching one rule. Don't try to pair them off.
+> `N-Q7`, `O-Q7` and `T-Q7` are different questions. The three sittings draw from the same bank (**N↔O 40/60 · N↔T 48/60 · O↔T 42/60**) but renumber and reorder every time. This note groups by **principle**, not by item identity — where the same principle appears in both sets, expect that some pairs are literally the same item under two numbers and others are two different questions teaching one rule. Don't try to pair them off.
+
+> [!WARNING] What `T-Q` items can and cannot be used for
+> ✅ They **count toward hit frequency** in Parts 1 and 2, and they drill well as **open response** — read the stem, state the principle, compare against the keyed answer.
+> ❌ They contribute **nothing** to the multiple-choice drill sets in Part 3, and nothing to the four-failure-modes analysis at the foot of this note — both depend on distractors, which that sitting's review page never exposed.
+>
+> Where a `T-Q` item is the *same item* as an `N-Q` one (48 of 60 are), drill the `N-Q` number for MCQ and use the `T-Q` entry only as answer confirmation.
 
 ---
 
 ## Part 1 — Golden rule → questions
 
-All 29 trigger rows from [[00-golden-rules-cheatsheet]], with the questions that test each one. **Read down the Hits column: that is your study priority order.**
+The trigger rows from [[00-golden-rules-cheatsheet]], with the questions that test each one. Six rows were **added** to that sheet on 2026-08-24 off the back of the third sitting; they appear in § *Clusters* below rather than in this table until it is recolumned for `T-Q`. **Read down the Hits column: that is your study priority order.**
 
 | Golden rule (trigger → answer) | Hits | New Mock | Old Mock |
 |---|:--:|---|---|
@@ -60,18 +66,24 @@ All 29 trigger rows from [[00-golden-rules-cheatsheet]], with the questions that
 | **Non-interactive / CI** → `claude -p --output-format json` | 0 ⚠ | — | — |
 
 > [!IMPORTANT] The four ⚠ rows are in the cheat sheet but **untested by either sitting**
-> That is not permission to skip them — these two sittings are one bank, and `stop_reason` and `claude -p` are core published objectives. It does mean the CyberSkill sets **cannot** rehearse them, so drill those four from [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]] and [[D3 - Claude Code Configuration & Workflows]] instead. Both sittings are also silent on the whole of **D3/Claude Code ops** (`CLAUDE.md` hierarchy, hooks, plan mode, `.mcp.json` scoping) — a real blind spot in this practice source.
+> That is not permission to skip them — these two sittings are one bank, and `stop_reason` and `claude -p` are core published objectives. It does mean the CyberSkill sets **cannot** rehearse them, so drill those four from [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]] and [[D3 - Claude Code Configuration & Workflows]] instead. The sittings are also silent on most of **D3/Claude Code ops** — no `CLAUDE.md` hierarchy, plan mode, or `.mcp.json` scoping. **Hooks are the exception and *are* tested:** a hook is the keyed answer on the compliance/$500 item in `N-Q41` and `O-Q34`, scored at 4 hits in the table above. Session lifecycle and the built-in tools are covered too. A partial blind spot, then, not a total one.
 
 ### Clusters the cheat sheet has no row for
 
-Four principles appear in the keys with **no** matching trigger row. Candidates for adding to [[00-golden-rules-cheatsheet]]:
+Principles that appear in the keys with **no** matching trigger row. The bottom six were **added to [[00-golden-rules-cheatsheet]] on 2026-08-24** — marked ✅ — after the third sitting showed four of them being missed.
 
-| Principle | Hits | Questions |
-|---|:--:|---|
-| Conflicting sources → verify against the **primary** source; state the conflict, never average it | 2 | N-Q40, N-Q52 |
-| `Edit`'s unique-match contract can't be met → **Read → modify → Write**, stop tuning `old_string` | 2 | N-Q39, O-Q29 |
-| Crash mid-run → persist **compact structured per-agent artifacts**, coordinator re-injects | 1 | O-Q1 |
-| A coordinator that reasons about delegating but never acts is **missing the spawn tool from `AgentDefinition.tools`** | 1 | O-Q15 |
+| Principle | Hits | Questions | In `00`? |
+|---|:--:|---|:--:|
+| **Agent reasons wrongly about data → ask what it wasn't told; fix the upstream output contract** | 4 | T-Q47, T-Q49, T-Q15, N-Q28 | ✅ added |
+| Conflicting sources → verify against the **primary** source; state the conflict, never average it | 3 | N-Q40, N-Q52, T-Q30 | — |
+| `Edit`'s unique-match contract can't be met → **Read → modify → Write**, stop tuning `old_string` | 3 | N-Q39, O-Q29, T-Q9 | — |
+| Crash mid-run → persist **compact structured per-agent artifacts**, coordinator re-injects | 2 | O-Q1, T-Q51 | — |
+| A coordinator that reasons about delegating but never acts is **missing the spawn tool from `AgentDefinition.tools`** | 2 | O-Q15, T-Q8 | — |
+| **Normalize noise, never signal** — no calibration layer, common intermediate format, or all-to-bullets | 2 | T-Q21, T-Q54 | ✅ added |
+| **The loop has no decision tree** — the `tool_result` is appended and the *model* reasons | 1 | T-Q18 | ✅ added |
+| **Regulated professional advice → name the limit plainly, route on** | 1 | T-Q19 | ✅ added |
+| **Scope the problem before calling tools** — one targeted question, not a blind lookup | 1 | T-Q23 | ✅ added |
+| **Summarize vs structure** — in-session pressure → compact inactive spans; across a boundary → structured fields | 2 | T-Q41, T-Q16 | ✅ added |
 
 > [!IMPORTANT] `O-Q15` — resolved, and the mechanism is sharper than the key states it
 > The old key attributes the silent no-op to the coordinator's **allowed tools**. [[02-multi-agent-orchestration]] (corrected against docs 2026-08-24) draws the distinction the exam actually tests:
@@ -86,7 +98,7 @@ Four principles appear in the keys with **no** matching trigger row. Candidates 
 
 ---
 
-## Part 2 — The 22 principles behind 120 questions
+## Part 2 — The 22 principles behind 180 questions
 
 Ranked by how often the bank tests them. **Anything at 6+ is a near-certain exam topic.**
 
@@ -124,7 +136,7 @@ Ranked by how often the bank tests them. **Anything at 6+ is a near-certain exam
 14. **Never automate on an aggregate you haven't decomposed** — 4 · `N-Q51, 56` · `O-Q48, 59`
     Segment by document type × field. Route scarce human review by *calibrated* risk, not random sampling.
 
-### Tier 3 — one item each way, but cheap to memorize (1–2 hits)
+### Tier 3 — thin coverage, but cheap to memorize (1–3 hits)
 
 15. **Delegate goals and quality bars, not procedures** — 2 · `N-Q29` · `O-Q12` — procedural delegation caps a sub-agent at your foresight.
 16. **The API is stateless** — 2 · `N-Q30` · `O-Q37` — "the agent forgot" means the history wasn't resent.
@@ -161,6 +173,8 @@ Do each set back to back in one sitting, then write the shared rule from memory 
 
 **Letter frequency across the New Mock key: B ×26, C ×15, D ×11, A ×8.** B is 43% of the key; A is 13%.
 
+**The 2026-08-24 sitting replicates it independently: B ≈ 43% again, A lowest.** Two samples, same skew — so this is a property of how the bank is authored, not of one draw.
+
 > [!WARNING] This is an authoring artifact, not an exam property
 > The bank's items are written as "naive option A → correct option B." Do not carry a letter bias into the real exam. Its only legitimate use is as a **last-resort tiebreaker** on a question you genuinely cannot reason through — and if you're using it more than once or twice, the fix is Part 2, not the coin flip.
 
@@ -171,13 +185,16 @@ Do each set back to back in one sitting, then write the shared rule from memory 
 3. **Information thrown away, then reconstructed** — post-hoc citations, an `analyze_error` tool to re-derive what the server already knew, retries to recover data that was never in the input.
 4. **Complexity that doesn't pay** — spawning a subagent for work the coordinator already holds, nesting fan-out, enlarging the context window instead of chunking.
 
-Learning to *name the failure mode* is faster than remembering 120 answers. Full catalogue: [[07-anti-patterns-catalog]].
+Learning to *name the failure mode* is faster than remembering 180 answers.
+
+> [!NOTE] This analysis draws on `N-Q` and `O-Q` only
+> Naming a failure mode requires seeing the wrong options. The 2026-08-24 sitting exposed none, so `T-Q` items cannot feed this section — see the fidelity warning above. The 2026-08-24 misses did, however, confirm a **fifth** recurring shape worth adding to your own watch-list: **an option that adds a component** (calibration layer, conversion layer, classification step, extra context layer, post-processing normalizer) where the fix is to repair the existing contract. It is now anti-pattern #12 in [[00-golden-rules-cheatsheet]]. Full catalogue: [[07-anti-patterns-catalog]].
 
 ---
 
 ## Related notes
 
-- [[Weak Areas Deep Dive]] — log misses here; the **"Recurring traps I keep falling for"** section is still empty, and Part 2's tier list is the natural seed for it
+- [[Weak Areas Deep Dive]] — log misses here; its **Recurring traps I keep falling for** table now carries confirmed rows from the 2026-08-24 sitting, seeded from Part 2’s tiers
 - [[00-golden-rules-cheatsheet]] · [[07-anti-patterns-catalog]] · [[08-quick-reference-tables]]
 - [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[D3 - Claude Code Configuration & Workflows]] · [[D4 - Prompt Engineering & Structured Output]]
 - [[Flashcards]] · [[Critical Terms Glossary]]

@@ -246,8 +246,11 @@ A: Claude references "typical patterns" instead of specific findings, gives inco
 **Q: What is the "lost in the middle" effect, and how do you mitigate it?**
 A: Models reliably attend to the beginning and end of long inputs but may deprioritize the middle. Mitigate by placing key-findings summaries at the start and using explicit section headers.
 
-**Q: When a customer explicitly requests a human agent, what should happen?**
-A: Escalate immediately, with no investigation or resolution attempt first — this is a non-negotiable trigger, unlike general case complexity.
+**Q: A support agent is asked for specific legal advice on a live contract dispute. Why is a careful, hedged answer still the wrong behavior?**
+A: Scope is a safety property, not a helpfulness trade-off — the agent is outside its competence *and* its authorization, so a confident answer is worse than none. Name the boundary plainly and route to the right resource or a human. Same rule for medical, tax, and immigration advice.
+
+**Q: A frustrated customer demands a human before the agent has called any tools. Why is "gather account context, then escalate" the wrong move?**
+A: Nothing is known yet about *what* the issue is, so the tool calls have no target and the customer waits while the agent works on the wrong thing. Acknowledge the frustration, ask **one** targeted question to scope the issue, then escalate with that context. An explicit request for a human is still a real trigger — one question honors it, a cold handoff wastes the human's time.
 
 **Q: Are sentiment analysis or self-reported model confidence reliable escalation triggers?**
 A: No — frustrated tone doesn't equal case complexity, and a model's self-reported confidence doesn't equal actual complexity. Use explicit business rules with few-shot examples instead.

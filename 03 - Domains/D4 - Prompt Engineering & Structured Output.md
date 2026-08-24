@@ -332,7 +332,15 @@ When individual requests fail:
 
 ### SLA Calculation Pattern
 
-Example: 30-hour SLA + 24-hour batch window → must submit within **6-hour** windows (30 - 24 = 6 hours maximum delay before batch start).
+Compute **max wait before submission + 24h ≤ SLA**, then check that a failed or expired batch could still be resubmitted inside the SLA. **Both** conditions must hold.
+
+Example: 30-hour SLA + 24-hour batch limit → `30 − 24 = 6`, so 6 hours is the *absolute* ceiling on pre-submission delay. **Do not submit on a 6-hour cadence** — it lands exactly on the SLA with zero margin, so a single expired batch breaches it. Batch every **4 hours** (4 + 24 = 28h, 2h of headroom for one resubmission).
+
+> [!IMPORTANT] 24 hours is an expiration, not a worst-case latency
+> Most batches finish within an hour, but requests still incomplete at 24 hours return with result type `expired` and must be resubmitted from scratch — they do not merely arrive late. No SLA is documented: "processing may be slowed down based on current demand and your request volume." A reliability target such as 99.9% therefore makes retry headroom **mandatory**, not merely prudent. Resubmit only the failed `custom_id`s.
+> Source: <https://platform.claude.com/docs/en/build-with-claude/batch-processing> · checked 2026-08-24
+>
+> Corrected 2026-08-24: this section previously prescribed 6-hour windows, contradicting [[00-golden-rules-cheatsheet]] and [[05-extraction-pipeline]], which correctly teach 4h with a 2h buffer.
 
 ### Optimize Before Batch Submission
 

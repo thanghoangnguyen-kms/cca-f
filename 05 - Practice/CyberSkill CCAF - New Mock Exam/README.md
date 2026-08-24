@@ -25,17 +25,28 @@ Each answer entry gives the **correct answer with its full text**, why it wins, 
 > [!NOTE] Question numbers are the sitting's own, and they interleave
 > Unlike the older `CyberSkill CCAF - Mock Exam` sitting (where Q1–Q15 are all one domain), this sitting's questions arrive shuffled. `Q1` is `code_exploration`, `Q2` is `customer_support`, and so on. The domain files keep the **original** numbers so they line up with [Questions.md](Questions.md) — which means the numbers inside each domain file are not contiguous.
 
-## Verification status — 45/45 exact match
+## Verification status — 57/60 grader-confirmed, 0 corrections
 
-On 2026-08-23 this key was checked against the practice site's own grader. The grade endpoint returns the authoritative `correct_key` for every item in a sitting, and item IDs are stable across sittings — so a fresh sitting reveals the true answers for whichever items it redraws. One sitting covered **45 of these 60 questions, and all 45 matched this key exactly**.
+The grade endpoint returns the authoritative `correct_key` for every item in a sitting, and item IDs are stable across sittings — so a fresh sitting reveals the true answers for whichever items it redraws.
+
+- **2026-08-23** — a sitting covered **45** of these 60 items. All 45 matched this key.
+- **2026-08-24** — the [Timed Mock](../CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) redrew **12 of the remaining 15** (the nine 📘 items other than Q16/Q55, plus three of the four 🤔). All 12 matched. The pairings are tabulated in that folder.
+
+**No answer in this key has ever needed correcting.** Because the 2026-08-24 sitting was graded before being compared with this folder, the agreement is not circular.
 
 | Mark | Meaning | Count | Questions |
 |---|---|---|---|
-| ✅ | Confirmed by the site's grader | 45 | Q1, 3–10, 12–15, 17–25, 28–33, 35–43, 47–49, 52, 53, 56, 57, 59 |
-| 📘 | Matches the doc-verified key in `CyberSkill CCAF - Mock Exam/` | 11 | Q2, 11, 16, 26, 27, 44, 50, 51, 54, 55, 60 |
-| 🤔 | Reasoned judgment — the only real uncertainty | 4 | Q34, Q45, Q46, Q58 |
+| ✅ | Confirmed by the site's grader | **57** | **All except Q16, Q45, Q55** |
+| 📘 | Matches the doc-verified key in `CyberSkill CCAF - Mock Exam/` only | 2 | Q16, Q55 |
+| 🤔 | Reasoned judgment — the last remaining uncertainty | 1 | Q45 |
 
-The guest quota is **1 mock per 7 days**, so the remaining 15 could not be redrawn. That window reopens **2026-08-31**; one more sitting should close most of the gap.
+The **three still-open items** were not redrawn by either later sitting:
+
+| Q | Topic | Status |
+|---|---|---|
+| Q16 | `process_refund`: transient technical vs permanent business errors | 📘 — matches the older doc-verified key |
+| Q55 | Sequential precedent analysis, 3-minute latency | 📘 — matches the older doc-verified key |
+| Q45 | Frustrated customer, policy-disallowed refund | 🤔 — reasoned only |
 
 ## Answer grid
 
@@ -52,12 +63,19 @@ The guest quota is **1 mock per 7 days**, so the remaining 15 could not be redra
 | 9 | B | 19 | D | 29 | D | 39 | D | 49 | D | 59 | B |
 | 10 | B | 20 | C | 30 | C | 40 | B | 50 | D | 60 | C |
 
-> [!IMPORTANT] The **newer** of two sittings from the same bank — kept deliberately separate
-> The sibling [../CyberSkill CCAF - Mock Exam/](../CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) is an earlier sitting of the **same item bank** — measured overlap is **40 of 60 questions**. Its question file was never captured, so it is answers only.
+> [!IMPORTANT] The **middle** of three sittings from the same bank — kept deliberately separate
+> Two siblings draw from the **same item bank** as this folder:
 >
-> The two are **not merged and should not be merged**: each sitting has its own internally consistent `Q1`–`Q60`, and the bank re-draws and re-orders on every sitting. `Q7` here is not `Q7` there. Expect to meet the same question twice under two different numbers.
+> | Sibling | Sat | Overlap with this folder | Has questions? |
+> |---|---|---|---|
+> | [../CyberSkill CCAF - Mock Exam/](../CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | earlier | **40 / 60** | ❌ answers only |
+> | [../CyberSkill CCAF - Timed Mock 2026-08-24/](../CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) | 2026-08-24 | **48 / 60** | ⚠️ stems only, no options |
 >
-> Unrelated third set: [../CCA-F Question Bank/](../CCA-F%20Question%20Bank/README.md) — a certificationpractice.com bank, **1/60** overlap with this sitting.
+> All three are **not merged and should not be merged**: each sitting has its own internally consistent `Q1`–`Q60`, and the bank re-draws and re-orders on every sitting. `Q7` here is not `Q7` in either sibling. Expect to meet the same question under three different numbers — that repetition is useful revision, and it is what allowed 57 of these 60 answers to be independently confirmed.
+>
+> This folder is the only one quoting all four options per item.
+>
+> Unrelated fourth set: [../CCA-F Question Bank/](../CCA-F%20Question%20Bank/README.md) — a certificationpractice.com bank, **1/60** overlap with this sitting.
 
 ## Conventions in this folder
 

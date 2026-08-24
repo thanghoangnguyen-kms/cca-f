@@ -60,6 +60,12 @@ Prompts change *probability*. Code changes *outcome*. Triggers that force the
 | Retry only failed batch items | Use **`custom_id`**; fix a context-length error (e.g. `context_length_exceeded` — exact string illustrative/unverified) by **chunking input** |
 | Non-interactive / CI (GitHub Actions) | `claude -p --output-format json` (missing `-p` = hangs) |
 | Unfamiliar large codebase | **Grep entry points → read → follow imports** incrementally (just-in-time) |
+| Agent **reasons wrongly about data** it was given (calls a trend a contradiction, loses a citation) | Ask **what it wasn't told** — fix the **upstream output contract** (add dates, source metadata, units). Never bolt a compensating rule onto the consumer |
+| "How does the loop decide the **next** tool call?" | The `tool_result` is appended to `messages`, the whole conversation is resent, and **the model reasons**. There is **no decision tree / router** inside the loop |
+| Heterogeneous inputs + an option offering a **normalization layer** (calibrate to 0–1, common intermediate format, all-to-bullets) | **Normalize noise** (units, casing, date format), **never signal** (methodology, confidence *kind*, content type). Render each type natively; separate well-established from contested |
+| Customer asks for **regulated professional advice** (legal / medical / tax / immigration) | Say plainly it is **outside what support can advise on**, then route to the right resource or a human — never a best-effort opinion |
+| Customer **demands a human before anything is known** (no tools called yet) | Acknowledge, ask **one targeted question** to scope the issue, *then* escalate. Not a cold handoff, not silent investigation |
+| Context pressure — is the fix **summarize** or **structure**? | **In-session, one conversation** → compact the inactive spans, keep the active issue verbatim. **Across a boundary** (human handoff, crash resume, another agent) → structured fields |
 
 ---
 
@@ -108,6 +114,12 @@ Example: SLA 30h → batch every **4h** (4 + 24 = 28h, 2h buffer) beats every 6h
 8. Relying on **model self-reported confidence** that isn't calibrated.
 9. Automating on **aggregate accuracy** without checking per segment/field.
 10. Making missing fields **required** (forces hallucination) instead of null.
+11. Producing **best-effort regulated advice** (legal/medical/tax) instead of
+    naming the scope limit and routing on.
+12. Adding a **component** (calibration layer, conversion layer, classification
+    step, extra context layer, post-processing normalizer) when the fix is to
+    repair the existing **contract**. If two options differ mainly in that one
+    adds infrastructure, the simpler one is usually right.
 
 ---
 

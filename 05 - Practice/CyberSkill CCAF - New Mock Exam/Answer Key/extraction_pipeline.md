@@ -17,8 +17,9 @@ status: done
 
 **Answers:** **Q3** B · **Q4** B · **Q13** C · **Q18** C · **Q19** D · **Q21** B · **Q22** B · **Q27** B · **Q33** D · **Q35** D · **Q36** B · **Q46** B · **Q49** D · **Q51** A · **Q56** A · **Q57** D
 
-**Verification:** Q3 ✅ · Q4 ✅ · Q13 ✅ · Q18 ✅ · Q19 ✅ · Q21 ✅ · Q22 ✅ · Q27 📘 · Q33 ✅ · Q35 ✅ · Q36 ✅ · Q46 🤔 · Q49 ✅ · Q51 📘 · Q56 ✅ · Q57 ✅
-_✅ confirmed by the practice site's grader · 📘 matches the doc-verified key in `CyberSkill CCAF - Mock Exam/` · 🤔 reasoned judgment, not yet confirmed_
+**Verification:** Q3 ✅ · Q4 ✅ · Q13 ✅ · Q18 ✅ · Q19 ✅ · Q21 ✅ · Q22 ✅ · Q27 ✅ · Q33 ✅ · Q35 ✅ · Q36 ✅ · Q46 ✅ · Q49 ✅ · Q51 ✅ · Q56 ✅ · Q57 ✅
+_✅ confirmed by the practice site's grader · 📘 matches the doc-verified key in `CyberSkill CCAF - Mock Exam/` only · 🤔 reasoned judgment, not yet confirmed_
+_Twelve items were upgraded 📘/🤔 → ✅ on 2026-08-24 when the [Timed Mock 2026-08-24](../../CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) sitting redrew them; all twelve matched this key exactly. Folder total: **57/60 ✅**._
 
 ---
 

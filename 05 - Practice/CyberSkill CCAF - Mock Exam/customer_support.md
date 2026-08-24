@@ -8,7 +8,7 @@ date: 2026-08-24
 status: done
 ---
 
-with# customer_support — CCAF Study Guide
+# customer_support — CCAF Study Guide
 
 This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF mock exam. Each entry restates the scenario, defends the keyed answer against Anthropic guidance, explains every distractor, and gives a portable takeaway.
 

@@ -13,12 +13,14 @@ Authoritative answer key + explanations for all **60 questions** of the
 [CyberSkill CCAF Practice exam](https://claude-certified-architect-mock-exam-cyberskill.vercel.app/#exam),
 grounded in official Anthropic / Claude documentation and engineering posts.
 
-> [!IMPORTANT] The **older** of two sittings from the same bank — kept deliberately separate
+> [!IMPORTANT] The **oldest** of three sittings from the same bank — kept deliberately separate
 > This is the **CyberSkill mock exam** sitting; its question file was never captured, so this folder is answers only. The sibling [../CyberSkill CCAF - New Mock Exam/](../CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) is a **second sitting of the same item bank** — measured overlap is **40 of 60 questions**.
 >
 > The two are **not merged and should not be merged**: each sitting has its own internally consistent `Q1`–`Q60` numbering, and combining them would break both. Expect to meet the same question twice under two different numbers; that repetition is useful revision, not an error.
 >
-> Unrelated third set: [../CCA-F Question Bank/](../CCA-F%20Question%20Bank/README.md) — a certificationpractice.com bank, **0/60** overlap with this folder.
+> A **third sitting** was added on 2026-08-24: [../CyberSkill CCAF - Timed Mock 2026-08-24/](../CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md), overlapping this folder **42/60**. Ten of its items that are absent from `New Mock Exam` appear here, and **all ten agree with this key** — ten independent confirmations of the answers below.
+>
+> Unrelated fourth set: [../CCA-F Question Bank/](../CCA-F%20Question%20Bank/README.md) — a certificationpractice.com bank, **0/60** overlap with this folder.
 >
 > Because `../CyberSkill CCAF - New Mock Exam/Answer Key/` uses the **same four filenames** as this folder, both link internally with relative Markdown rather than `[[wikilinks]]`, which would be ambiguous. Keep each folder intact as a unit.
 
