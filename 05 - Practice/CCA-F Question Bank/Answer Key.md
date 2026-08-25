@@ -16,7 +16,9 @@ status: done
 >
 > Confidence is high — 55 of the 60 restate a principle the vault already has a sourced answer for — but treat a disagreement between this key and a grader-authoritative one as **this key losing**, and log it in [[Weak Areas Deep Dive]].
 >
-> **Four items are flagged 🔶** where the bank's own wording is technically wrong even though the intended answer is clear: Q14, Q21, Q51, Q55. Read those rebuttals — the exam will not phrase them that way.
+> **Five items are flagged 🔶** where the bank's own wording is technically wrong even though the intended answer is clear: Q14, Q16, Q21, Q51, Q55. Read those rebuttals — the exam will not phrase them that way.
+>
+> **Verification pass, 2026-08-25.** All 60 answers were re-checked in four independent adversarial passes against current official docs, the blueprint, and the official Exam Guide key. **No keyed letter changed.** The pass corrected ~31 section cross-references, rebuilt the domain and pattern tables, and fixed five rationale defects — most importantly the `allowedTools` identifier in Q16, an over-absolute claim in Q42, and an undocumented "documented fallback" in Q60.
 
 ---
 
@@ -29,7 +31,7 @@ status: done
 | 3 | **D** | 13 | **B** | 23 | **A** | 33 | **C** | 43 | **D** | 53 | **A** |
 | 4 | **B** | 14 | **A** 🔶 | 24 | **D** | 34 | **D** | 44 | **D** | 54 | **A** |
 | 5 | **C** | 15 | **A** | 25 | **B** | 35 | **D** | 45 | **B** | 55 | **D** 🔶 |
-| 6 | **C** | 16 | **B** | 26 | **A** | 36 | **C** | 46 | **B** | 56 | **C** |
+| 6 | **C** | 16 | **B** 🔶 | 26 | **A** | 36 | **C** | 46 | **B** | 56 | **C** |
 | 7 | **B** | 17 | **A** | 27 | **D** | 37 | **C** | 47 | **C** | 57 | **D** |
 | 8 | **D** | 18 | **D** | 28 | **D** | 38 | **A** | 48 | **B** | 58 | **C** |
 | 9 | **C** | 19 | **B** | 29 | **A** | 39 | **D** | 49 | **D** | 59 | **D** |
@@ -42,15 +44,17 @@ status: done
 
 ## Coverage by domain
 
+Assignments follow the vault's own `## N.M` subdomain headings, which mirror the blueprint's task statements 1:1.
+
 | Domain | Questions | Count |
 |---|---|---|
-| **D1** — Agentic architecture & orchestration | 3, 16, 20, 23, 28, 29, 30, 31, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 | 19 |
-| **D2** — Tool design & MCP integration | 5, 8, 22, 26, 27, 32, 33, 34, 35, 49 | 10 |
-| **D3** — Claude Code configuration & workflows | 1, 9, 12, 37, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60 | 15 |
-| **D4** — Prompt engineering & structured output | 2, 4, 6, 7, 13, 17, 19, 21, 36, 58 | 10 |
-| **D5** — Context management & reliability | 10, 11, 14, 15, 18, 24, 25 | 7 |
+| **D1** — Agentic architecture & orchestration | 16, 28, 29, 30, 31, 39, 40, 41, 42, 43, 44, 45, 47, 48 | 14 |
+| **D2** — Tool design & MCP integration | 5, 8, 22, 26, 27, 32, 33, 34, 35, 37, 49, 60 | 12 |
+| **D3** — Claude Code configuration & workflows | 1, 12, 50, 51, 52, 53, 54, 55, 56, 57, 59 | 11 |
+| **D4** — Prompt engineering & structured output | 2, 4, 6, 7, 13, 15, 17, 19, 20, 21, 36, 58 | 12 |
+| **D5** — Context management & reliability | 3, 9, 10, 11, 14, 18, 23, 24, 25, 38, 46 | 11 |
 
-D3 is **25% of this bank** — the exact material the three CyberSkill sittings barely touch. That is the single biggest reason to work this set: see [README.md](../README.md) § Gaps worth filling.
+**Claude Code operations are 13 of 60 (≈22%)** — the eleven D3 items plus the two built-in-tool items (Q37, Q60), which the vault files under `D2 §2.5`. That is still the largest concentration of Claude Code material in any sourced set here, and the main reason to work this bank: see [README.md](../README.md) § Gaps worth filling.
 
 ---
 
@@ -102,7 +106,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** terminate the whole workflow | Discards two successful retrievals over one transient timeout |
 | **C** block the coordinator on a background retry | Background retry that *blocks* is a contradiction, and it stalls a pipeline that already has usable data |
 
-**Takeaway.** Subagent failure contract: **recover locally, then surface structured error + partial results**. Never swallow, never over-escalate. See [[D1 - Agentic Architecture & Orchestration]] §1.6 · pairs with **Q38**.
+**Takeaway.** Subagent failure contract: **recover locally, then surface structured error + partial results**. Never swallow, never over-escalate. See [[D5 - Context Management & Reliability]] §5.3 · pairs with **Q38**.
 
 ---
 
@@ -160,13 +164,17 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 
 **Why B wins.** Tool use is the only option here where valid JSON is a **property of the API path**, not an outcome you hope for and then check. The model emits a structured `tool_use` content block whose `input` is already parsed — there is no text stage in which a bracket can go missing.
 
+> [!NOTE] Syntax validity and schema conformance are not the same guarantee
+> The `tool_use` path removes the *syntax* failure mode outright. **Exact schema conformance additionally requires `strict: true`** on the tool definition — without it the model can still drift, e.g. emitting a field you never asked for. The current API also ships a dedicated structured-outputs feature (`output_config.format`) that would beat option B if the bank had offered it; among these four, B is still the strongest.
+> Source: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
+
 | Distractor | Why it fails |
 |---|---|
 | **A** few-shot JSON examples | Raises the odds, guarantees nothing — still freeform text generation |
 | **C** parse-and-correct loop | Detects syntax errors after the fact; adds latency and cost, and can still fail to converge |
 | **D** template in the system prompt | Weakest of all — instruction only |
 
-**Takeaway.** "Strongest guarantee" of structure = **tool use / structured outputs**, never prompting. See [[D4 - Prompt Engineering & Structured Output]] §4.2.
+**Takeaway.** "Strongest guarantee" of structure = **tool use / structured outputs**, never prompting. See [[D4 - Prompt Engineering & Structured Output]] §4.3.
 
 ---
 
@@ -182,7 +190,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** system prompt instruction | Probabilistic; the stem already establishes the agent drifts |
 | **C** force `fetch_url` every turn | Makes it worse — now it must call the over-broad tool constantly |
 
-**Takeaway.** Scope capability at the **tool boundary**, not with instructions. Compare **Q27** (hook) — a hook is right when the tool must stay general and the rule is conditional on a *parameter*; a narrower tool is right when the whole capability is over-broad. See [[D2 - Tool Design & MCP Integration]] §2.2.
+**Takeaway.** Scope capability at the **tool boundary**, not with instructions. Compare **Q27** (hook) — a hook is right when the tool must stay general and the rule is conditional on a *parameter*; a narrower tool is right when the whole capability is over-broad. See [[D2 - Tool Design & MCP Integration]] §2.1 and §2.3.
 
 ---
 
@@ -198,7 +206,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** `/compact` repeatedly | Compaction is lossy by design. Repeated compaction of already-compacted context degrades the specifics further |
 | **D** raise `max_tokens` | `max_tokens` caps the **response** length; it has nothing to do with how much context is retained |
 
-**Takeaway.** Specific-becomes-generic ⇒ context exhausted ⇒ **externalize findings** (scratchpad, summary, fresh subagent). Confirmed by the Timed Mock's Q40 and Q58. See [[D5 - Context Management & Reliability]] §5.1.
+**Takeaway.** Specific-becomes-generic ⇒ context exhausted ⇒ **externalize findings** (scratchpad, summary, fresh subagent). Confirmed by the Timed Mock's Q40 and Q58. See [[D5 - Context Management & Reliability]] §5.4.
 
 ---
 
@@ -230,7 +238,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** cap lookups at three | Caps the *feature*, not the waste. The agent now fails at legitimate work |
 | **D** bigger context window | Buys time, not a fix — irrelevant content still degrades attention, and cost scales with it |
 
-**Takeaway.** **Filter tool output at the boundary before it enters context.** Summarize what you had to keep; don't keep what you never needed. See [[D5 - Context Management & Reliability]] §5.3.
+**Takeaway.** **Filter tool output at the boundary before it enters context.** Summarize what you had to keep; don't keep what you never needed. See [[D5 - Context Management & Reliability]] §5.1.
 
 ---
 
@@ -301,11 +309,11 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** `confidence_score` | Lets you filter by the model's self-assessment, which the stem never asked about — and which is uncalibrated anyway |
 | **D** `timestamp` | Correlates dismissals with time of day. Answers a question nobody asked |
 
-**Takeaway.** Design the structured field to answer **the analysis question you actually have**. See [[D4 - Prompt Engineering & Structured Output]] §4.2.
+**Takeaway.** Design the structured field to answer **the analysis question you actually have**. See [[D4 - Prompt Engineering & Structured Output]] §4.4.
 
 ---
 
-## Q16 — Synthesis subagent doing its own searches → **B**
+## Q16 — 🔶 Synthesis subagent doing its own searches → **B**
 
 **B.** Restrict its `allowedTools` to synthesis-relevant tools, removing search and retrieval.
 
@@ -317,7 +325,13 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** more context so it has "less reason" | Guesses at motive. Also enlarges the context of the agent whose job is to *compress* |
 | **D** `tool_choice: "any"` | Forces a tool call — including a search call. Actively worsens the problem |
 
-**Takeaway.** Scope every subagent to the **minimum tool set its role requires**. See [[D1 - Agentic Architecture & Orchestration]] §1.2.
+> [!WARNING] 🔶 `allowedTools` is not the field that restricts a subagent
+> The bank's option B says `allowedTools`, and it is the wrong identifier. On a subagent definition, **`tools` is the allowlist and `disallowedTools` the denylist** — those are what remove a capability. **`allowedTools` is a top-level option meaning "auto-approve without prompting"**: a permission-prompt bypass, not a capability removal. Strip a tool from `allowedTools` and the subagent can still call it; you just get a prompt.
+> The vault has this right already — `AgentDefinition` is `description` · `prompt` · `tools` · `disallowedTools` · `model` · `skills` · `memory`, with no `allowedTools` among them ([[Critical Terms Glossary]]), and the Handbook states it outright: *"`allowedTools` is an auto-approve list, not a restriction list."*
+> **B is still the answer** — restricting the tool set is the right mechanism — but write it as `tools` / `disallowedTools`.
+> Source: <https://code.claude.com/docs/en/sub-agents>
+
+**Takeaway.** Scope every subagent to the **minimum tool set its role requires**, via `tools` / `disallowedTools`. See [[D1 - Agentic Architecture & Orchestration]] §1.3.
 
 ---
 
@@ -333,7 +347,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** confidence score < 0.9 | Uncalibrated self-report, and confidence about a *number* says nothing about whether it *sums* |
 | **D** extract twice and average | Averages two possibly-wrong values into a definitely-wrong one, and destroys the evidence of disagreement |
 
-**Takeaway.** Extract the **inputs to the check**, then do the check in code. Never ask the model to certify itself. See [[D4 - Prompt Engineering & Structured Output]] §4.2.
+**Takeaway.** Extract the **inputs to the check**, then do the check in code. Never ask the model to certify itself. See [[D4 - Prompt Engineering & Structured Output]] §4.4.
 
 ---
 
@@ -349,7 +363,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** summarize every five turns | Summarization is **lossy** — it is likelier to blur order details than to sharpen them |
 | **C** cap sessions at two issues | Degrades the product to dodge the bug, and two issues can still be swapped |
 
-**Takeaway.** For facts that must stay exact across many turns, **externalize into structured state re-injected each turn**, don't rely on conversational recall. See [[D5 - Context Management & Reliability]] §5.4.
+**Takeaway.** For facts that must stay exact across many turns, **externalize into structured state re-injected each turn**, don't rely on conversational recall. See [[D5 - Context Management & Reliability]] §5.1.
 
 ---
 
@@ -365,7 +379,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** flagged it because it was unfamiliar | Would predict indiscriminate flagging of everything novel; the stem says it flagged the *problematic* pattern correctly |
 | **D** decomposed into exact sub-pattern matches | Describes template matching. If that were the mechanism, a new language would break it |
 
-**Takeaway.** Choose few-shot examples for the **principle** they demonstrate, not the surface they're written on. See [[D4 - Prompt Engineering & Structured Output]] §4.1.
+**Takeaway.** Choose few-shot examples for the **principle** they demonstrate, not the surface they're written on. See [[D4 - Prompt Engineering & Structured Output]] §4.2.
 
 ---
 
@@ -381,7 +395,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** review prompt lacked recursion criteria | Would improve the review, but doesn't explain why *this* reviewer was blind — a fresh instance with the same weak prompt does better |
 | **C** context window exhausted | Nothing in the stem suggests exhaustion, and the symptom would be vagueness (see **Q9**), not confident approval |
 
-**Takeaway.** **Multi-instance review** — generate in one context, review in a separate one. See [[D4 - Prompt Engineering & Structured Output]] § Multi-instance review · [[D5 - Context Management & Reliability]] §5.5.
+**Takeaway.** **Multi-instance review** — generate in one context, review in a separate one. See [[D4 - Prompt Engineering & Structured Output]] §4.6 · [[D5 - Context Management & Reliability]] §5.5.
 
 ---
 
@@ -418,7 +432,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** raise `max_tokens` | Accommodates the waste instead of removing it. `max_tokens` is a response cap anyway |
 | **D** preload all summaries into every system prompt | Thousands of articles into every invocation — the worst possible token profile, and most of it irrelevant to any given agent |
 
-**Takeaway.** Discovery/browsing → **MCP resource**. Action/mutation → **MCP tool**. See [[D2 - Tool Design & MCP Integration]] §2.3.
+**Takeaway.** Discovery/browsing → **MCP resource**. Action/mutation → **MCP tool**. See [[D2 - Tool Design & MCP Integration]] §2.4.
 
 ---
 
@@ -434,7 +448,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** omit the data point | Destroys information over a resolvable disagreement; the reader loses the range entirely |
 | **D** pick the more recent/authoritative | An editorial judgment the synthesis agent isn't positioned to make, and it silently discards a credible finding |
 
-**Takeaway.** Synthesis **preserves and labels** conflict; it doesn't resolve, average, or bury it. See [[D1 - Agentic Architecture & Orchestration]] §1.5.
+**Takeaway.** Synthesis **preserves and labels** conflict; it doesn't resolve, average, or bury it. See [[D5 - Context Management & Reliability]] §5.6.
 
 ---
 
@@ -485,7 +499,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** tell the agent to convert mentally | Probabilistic reasoning where deterministic transformation is available — the stem already shows it failing |
 | **D** few-shot examples of both formats | Same problem as C, with token cost added |
 
-**Takeaway.** Reshaping tool output before the model sees it is a **hook** job. `PostToolUse` = the normalization seam. See [[D2 - Tool Design & MCP Integration]] §2.5 · [[D1 - Agentic Architecture & Orchestration]] §1.5.
+**Takeaway.** Reshaping tool output before the model sees it is a **hook** job. `PostToolUse` = the normalization seam. See [[D1 - Agentic Architecture & Orchestration]] §1.5 · [[D2 - Tool Design & MCP Integration]] §2.4.
 
 ---
 
@@ -498,7 +512,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | Distractor | Why it fails |
 |---|---|
 | **A** three few-shot examples | Shifts likelihood. Non-zero failure rate |
-| **B** JSON schema `maximum: 500` on `amount` | **The strongest trap.** Schema constraints guide generation and can be validated — but they don't reliably *stop* the call, they give no supervisor-approval path, and a legitimate $800 refund now has no representable route at all |
+| **B** JSON schema `maximum: 500` on `amount` | **The strongest trap.** Sharper still than "unreliable": under structured outputs / strict tool use, `minimum` and `maximum` are **unsupported keywords** — stripped from the wire schema, so the constraint never reaches the model at all and survives only as client-side validation. It also gives no supervisor-approval path, and a legitimate $800 refund now has no representable route |
 | **C** bold "NEVER" in the system prompt | Emphasis is not enforcement |
 
 > [!IMPORTANT] The golden rule, in one line
@@ -523,7 +537,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!TIP] The discriminator between fixed and adaptive
 > **Known scope, stable steps → fixed pipeline** (and it's the better answer when offered, because it's cheaper and auditable). **Scope discovered during execution → adaptive.** The stem always tells you which; here it says so explicitly.
 
-**Takeaway.** Unknown scope ⇒ adaptive decomposition. See [[D1 - Agentic Architecture & Orchestration]] §1.1.
+**Takeaway.** Unknown scope ⇒ adaptive decomposition. See [[D1 - Agentic Architecture & Orchestration]] §1.6.
 
 ---
 
@@ -539,7 +553,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** pairwise comparison | O(n²) comparisons, and pairwise similarity is not the same as a systemic pattern |
 | **D** sample 5 and extrapolate | The stem requires evaluating **each** ticket. Extrapolation from 10% is not an audit |
 
-**Takeaway.** Per-item analysis → aggregate synthesis. Two passes, two contexts. See [[D1 - Agentic Architecture & Orchestration]] §1.1 · [[D4 - Prompt Engineering & Structured Output]] § Prompt chaining.
+**Takeaway.** Per-item analysis → aggregate synthesis. Two passes, two contexts. See [[D1 - Agentic Architecture & Orchestration]] §1.6 · [[D4 - Prompt Engineering & Structured Output]] §4.6.
 
 ---
 
@@ -644,7 +658,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** only for logging/observability | Backwards — structured errors change **agent behavior**, which is the whole point |
 | **C** MCP requires an error category | False. It's a design best practice, not a protocol requirement |
 
-**Takeaway.** Error metadata exists so the agent can pick a **recovery strategy**: `isRetryable` decides retry-versus-explain. See [[D2 - Tool Design & MCP Integration]] §2.6 · pairs with **Q49** and **Q38**.
+**Takeaway.** Error metadata exists so the agent can pick a **recovery strategy**: `isRetryable` decides retry-versus-explain. See [[D2 - Tool Design & MCP Integration]] §2.2 · pairs with **Q49** and **Q38**.
 
 ---
 
@@ -682,7 +696,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!TIP] The two-line rule for the built-in search tools
 > **Know the path/name → `Glob`. Know the text inside → `Grep`. Know neither → `Explore` subagent.** `Bash` is the fallback for what none of them do.
 
-**Takeaway.** Filename pattern ⇒ `Glob`. See [[D3 - Claude Code Configuration & Workflows]] § Built-in tools.
+**Takeaway.** Filename pattern ⇒ `Glob`. See [[D2 - Tool Design & MCP Integration]] §2.5.
 
 ---
 
@@ -698,7 +712,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** all other subagents halt | Subagents are independent; one failure doesn't block the others |
 | **D** forces infinite retry | Overstates it, and describes one possible bad outcome rather than the underlying defect |
 
-**Takeaway.** Same principle as **Q35**, one level up: error responses exist to let the **caller** pick a recovery strategy. See [[D1 - Agentic Architecture & Orchestration]] §1.6 · pairs with **Q3**.
+**Takeaway.** Same principle as **Q35**, one level up: error responses exist to let the **caller** pick a recovery strategy. See [[D5 - Context Management & Reliability]] §5.3 · pairs with **Q3**.
 
 ---
 
@@ -714,7 +728,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** forces the phrase before any tool use | Backwards; nothing compels output ordering |
 | **C** API error — text can't be inspected mid-conversation | False. Response text is fully available each turn |
 
-**Takeaway.** Loop control reads `stop_reason`. Never grep the prose. See [[D1 - Agentic Architecture & Orchestration]] §1.3.
+**Takeaway.** Loop control reads `stop_reason`. Never grep the prose. See [[D1 - Agentic Architecture & Orchestration]] §1.1.
 
 ---
 
@@ -733,7 +747,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!IMPORTANT] `stop_reason` values worth knowing
 > `end_turn` · `tool_use` · `max_tokens` · `stop_sequence` · `pause_turn` · `refusal` · `model_context_window_exceeded`. The two that drive the loop are `tool_use` and `end_turn`; `max_tokens` means your response was **truncated mid-generation**, not that the task finished.
 
-**Takeaway.** The agentic loop is a `stop_reason` switch. See [[D1 - Agentic Architecture & Orchestration]] §1.3.
+**Takeaway.** The agentic loop is a `stop_reason` switch. See [[D1 - Agentic Architecture & Orchestration]] §1.1.
 
 ---
 
@@ -749,7 +763,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** satisfy alternating-role validation | Real constraints exist on message structure, but they're a formatting consequence, not the purpose |
 | **C** deduplicate repeated tool calls | The API performs no such deduplication |
 
-**Takeaway.** Stateless API ⇒ the `messages` array **is** the model's memory. See [[D1 - Agentic Architecture & Orchestration]] §1.3.
+**Takeaway.** Stateless API ⇒ the `messages` array **is** the model's memory. See [[D1 - Agentic Architecture & Orchestration]] §1.1.
 
 ---
 
@@ -765,7 +779,12 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** shared memory store read concurrently | Bypasses the hub and introduces a race between a writer and a concurrent reader |
 | **D** shared message queue both agents poll | A different architecture entirely (event-driven), and it removes the coordinator from the flow |
 
-**Takeaway.** Hub-and-spoke: **all data flows through the coordinator.** Subagents never talk to each other. See [[D1 - Agentic Architecture & Orchestration]] §1.2.
+> [!WARNING] "Subagents can't talk to each other" is a design principle, not an SDK limit
+> Current Claude Code ships a **`SendMessage`** tool, and a subagent's initial context includes a **sibling roster** of the other named agents in the session — so peer-to-peer messaging genuinely exists. That does not move this answer: nothing in the stem grants `SendMessage`, and routing through the coordinator is what keeps context isolated and auditable. Answer exam items with the design principle; write code knowing the constraint isn't enforced.
+> Note also that **"hub-and-spoke" is course vocabulary (C5), not blueprint vocabulary** — [[Official Exam Blueprint]] task statement 1.2 says *"coordinator-subagent patterns"*.
+> Source: <https://code.claude.com/docs/en/tools-reference> · consistent with [[EP03 - Subagent Context Passing & Session Management]]
+
+**Takeaway.** Hub-and-spoke: **all data flows through the coordinator** — by design, not by enforcement. See [[D1 - Agentic Architecture & Orchestration]] §1.2 · course C5.
 
 ---
 
@@ -777,11 +796,14 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 
 | Distractor | Why it fails |
 |---|---|
-| **A** coordinator's window overflowed silently | Nothing silently drops; you'd get an explicit error. And the stem says the results **are** present |
+| **A** coordinator's window overflowed silently | The raw API surfaces this explicitly (`stop_reason: "model_context_window_exceeded"`, or a 400) rather than dropping content — though note Claude Code's auto-compaction *summarizes* rather than errors. Either way the stem says the results **are** present |
 | **B** encoding format problem | Invented failure mode |
 | **C** system prompt excludes external data | Invented; no such instruction is described |
 
-**Takeaway.** **No inheritance. Pass everything explicitly.** **Q45** is the same fact asked as "so what do I do about it." See [[D1 - Agentic Architecture & Orchestration]] §1.2.
+> [!TIP] The one documented exception
+> A **fork** is a subagent that inherits the entire conversation so far instead of starting fresh. Default subagent invocation is still isolated, so D is unaffected — but don't state the isolation rule as absolute.
+
+**Takeaway.** **No inheritance by default. Pass everything explicitly.** **Q45** is the same fact asked as "so what do I do about it." See [[D1 - Agentic Architecture & Orchestration]] §1.3.
 
 ---
 
@@ -797,7 +819,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **B** route to synthesis first to triage | Synthesis combines findings — it isn't a router, and it has nothing to synthesize yet |
 | **C** always run all four for consistency | The anti-pattern the stem is built to catch. Uniform pipelines waste the most on the simplest queries |
 
-**Takeaway.** Match pipeline depth to query complexity. See [[D1 - Agentic Architecture & Orchestration]] §1.1.
+**Takeaway.** Match pipeline depth to query complexity. See [[D1 - Agentic Architecture & Orchestration]] §1.2.
 
 ---
 
@@ -813,7 +835,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **C** database credentials to self-query | Adds infrastructure and an extra retrieval loop to move data you already hold |
 | **D** re-invoke the upstream agents | Redoes completed work, at full cost, with possibly different results |
 
-**Takeaway.** Stateless subagent + synthesis role ⇒ **pass complete findings in the prompt.** See [[D1 - Agentic Architecture & Orchestration]] §1.2.
+**Takeaway.** Stateless subagent + synthesis role ⇒ **pass complete findings in the prompt.** See [[D1 - Agentic Architecture & Orchestration]] §1.3.
 
 ---
 
@@ -832,7 +854,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!TIP] The recurring inter-agent rule
 > **Inter-agent boundaries carry structured data, not prose.** Prose is for humans at the end of the pipeline. Every hop between agents should move fields.
 
-**Takeaway.** Separate content from metadata at the producing agent. See [[D1 - Agentic Architecture & Orchestration]] §1.5.
+**Takeaway.** Separate content from metadata at the producing agent. See [[D5 - Context Management & Reliability]] §5.6.
 
 ---
 
@@ -867,7 +889,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!IMPORTANT] Parallel vs sequential — the one thing to check
 > Fan out when subtasks are **independent**. Keep it sequential when one subtask's output is another's input. Q48's three topics are independent; **Q21**'s two extraction steps are not.
 
-**Takeaway.** Independent subtopics ⇒ decompose → parallel → synthesize. See [[D1 - Agentic Architecture & Orchestration]] §1.1.
+**Takeaway.** Independent subtopics ⇒ decompose → parallel → synthesize. See [[D1 - Agentic Architecture & Orchestration]] §1.6.
 
 ---
 
@@ -886,7 +908,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!TIP] Read all three fields before choosing
 > Error-response items on this exam vary **category**, **`isRetryable`**, and **description** independently. An option with the right category and the wrong `isRetryable` is still wrong. Check every field.
 
-**Takeaway.** Business-rule failure ⇒ `validation` + `isRetryable: false` + an explanatory description. See [[D2 - Tool Design & MCP Integration]] §2.6 · pairs with **Q35**.
+**Takeaway.** Business-rule failure ⇒ `validation` + `isRetryable: false` + an explanatory description. See [[D2 - Tool Design & MCP Integration]] §2.2 · pairs with **Q35**.
 
 ---
 
@@ -894,7 +916,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 
 **C.** Split into focused topic files in `.claude/rules/` — `testing.md`, `api-conventions.md`, `deployment.md`.
 
-**Why C wins.** `.claude/rules/` is the documented alternative to a monolithic `CLAUDE.md`, and the option's three example filenames are the exam guide's own. It solves both stated problems at once: maintainability (one topic per file, per-file ownership) and reliability (smaller focused units, and rules gain the option of `paths:` scoping later).
+**Why C wins.** `.claude/rules/` is the documented alternative to a monolithic `CLAUDE.md`, and the option's three example filenames are exactly the topic-per-file shape the docs illustrate (their own set is `code-style.md`, `testing.md`, `security.md`). It solves both stated problems at once: maintainability (one topic per file, per-file ownership) and reliability (smaller focused units, and rules gain the option of `paths:` scoping later).
 
 | Distractor | Why it fails |
 |---|---|
@@ -941,7 +963,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 | **D** skill invoked on demand | Skills are **model-invoked or user-invoked capabilities**, not always-on conventions |
 
 > [!IMPORTANT] The Claude Code config decision tree
-> **Always on, every interaction** → `CLAUDE.md` or an unscoped `.claude/rules/` file. **Only when touching matching files** → `.claude/rules/` with `paths:`. **On demand, invoked by name** → `.claude/commands/` (slash command) or `.claude/skills/` (skill). **Deterministic enforcement on tool calls** → a hook.
+> **Always on, every interaction** → `CLAUDE.md` or an unscoped `.claude/rules/` file. **Only when touching matching files** → `.claude/rules/` with `paths:`. **On demand** → `.claude/commands/` (slash command) or `.claude/skills/` (skill) — invoked by name, and skills are also model-invoked when relevant. **Deterministic enforcement on tool calls** → a hook.
 
 **Takeaway.** "Automatically, every time" ⇒ always-loaded config, never an invoked one. See [[D3 - Claude Code Configuration & Workflows]] §3.1.
 
@@ -955,7 +977,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 
 | Distractor | Why it fails |
 |---|---|
-| **B** `SKILL.md` in `~/.claude/skills/` | User scope — that's one machine. Wrong location and wrong artifact type for a scaffolding command |
+| **B** `SKILL.md` in `~/.claude/skills/` | User scope — that's one machine, and the stem rules out per-machine setup. Note the *artifact type* is fine: custom commands have been **merged into skills**, so `.claude/skills/scaffold/SKILL.md` would create the same `/scaffold` — it is the `~/` that kills this option, nothing else |
 | **C** `~/.claude/commands/` + a wiki link | User scope again, plus per-machine manual setup — the exact thing ruled out |
 | **D** inline in root `CLAUDE.md` via `@import` | `@import` pulls file **contents into memory**; it does not define a slash command |
 
@@ -1048,7 +1070,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > [!IMPORTANT] Prose describes, examples specify
 > When the failure is **inconsistent output format**, reach for few-shot examples — in Claude Code, the API, and CI prompts alike. When the failure is **inconsistent decisions**, reach for explicit criteria *plus* examples (**Q10**).
 
-**Takeaway.** Format inconsistency ⇒ show examples, don't write more rules. See [[D4 - Prompt Engineering & Structured Output]] §4.1.
+**Takeaway.** Format inconsistency ⇒ show examples, don't write more rules. See [[D4 - Prompt Engineering & Structured Output]] §4.2.
 
 ---
 
@@ -1072,7 +1094,7 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 
 **D.** `Read` the full file, apply the modification, and `Write` the complete updated file.
 
-**Why D wins.** When the surrounding text is genuinely non-unique — identical boilerplate repeated across sections — `Read` → modify → `Write` is the documented fallback. It sidesteps uniqueness entirely by replacing the whole file with content you have verified.
+**Why D wins.** When the surrounding text is genuinely non-unique — identical boilerplate repeated across sections — `Read` → modify → `Write` is the remaining option. It sidesteps uniqueness entirely by replacing the whole file with content you have verified. (It is *not* a documented remedy; the docs name only the two in the warning below. It wins here because the other three options are worse.)
 
 | Distractor | Why it fails |
 |---|---|
@@ -1084,30 +1106,38 @@ D3 is **25% of this bank** — the exact material the three CyberSkill sittings 
 > The documented **first** remedies are a **longer `old_string`** carrying enough surrounding context to pin one occurrence, or **`replace_all: true`** when every occurrence should change. A whole-file `Write` is the last resort. D wins *here* only because the stem establishes that the boilerplate is identical across sections. On any item where a longer anchor would work, rewriting the file is the wrong answer.
 > Source: <https://code.claude.com/docs/en/tools-reference>
 
-**Takeaway.** No unique anchor available ⇒ `Read` → modify → `Write`. See [[D3 - Claude Code Configuration & Workflows]] § Built-in tools.
+**Takeaway.** No unique anchor available ⇒ `Read` → modify → `Write`. See [[D2 - Tool Design & MCP Integration]] §2.5.
 
 ---
 
 ## Cross-cutting patterns in this bank
 
-Read the key sideways and the 60 items collapse into about a dozen rules. Each row lists the questions that test it — drill them as a set.
+Read the key sideways and the 60 items collapse into about twenty rules. **Every question appears in at least one row**, so a miss can always be logged against a principle rather than a number — drill each row as a set.
 
 | Rule | Questions |
 |---|---|
-| **Deterministic requirement ⇒ code, not prompt** (hook, gate, interception) | 8, 16, 27, 47 |
-| **Vague quality adjectives are non-instructions** — replace with testable criteria | 4, 13, 36, 58 |
+| **Deterministic requirement ⇒ code, not prompt** (hook, gate, interception, capability removal) | 8, 16, 26, 27, 47 |
+| **Vague quality adjectives are non-instructions** — replace with testable criteria | 4, 10, 13 |
 | **Few-shot conveys judgment and format**, not lookup tables | 10, 19, 36, 58 |
-| **Structured output is guaranteed by tool use**, never by prompting | 6, 7, 17 |
+| **Schema constrains, prompt instructs** — normalization needs both | 6, 36 |
+| **Structured output is guaranteed by tool use**, never by prompting | 7 |
 | **Design the structured field to answer your actual question** | 15, 17, 46 |
 | **Tool descriptions drive selection**; overloaded tools get split | 32, 33, 34 |
 | **Error metadata exists to pick a recovery strategy** (`isRetryable`) | 3, 35, 38, 49 |
-| **Subagents inherit nothing — pass everything explicitly** | 43, 45, 46 |
-| **Hub-and-spoke: all data flows through the coordinator** | 42, 44, 48 |
+| **Subagents inherit nothing by default — pass everything explicitly** | 43, 45 |
+| **The coordinator owns routing and data flow** | 42, 48 |
+| **Per-item analysis, then aggregate synthesis** | 29, 48 |
 | **`stop_reason` drives the agentic loop** — never parse prose | 39, 40, 41 |
-| **Self-assessment is uncalibrated**; self-review in-session is compromised | 14, 17, 20, 25, 59 |
+| **Self-assessment is uncalibrated**; in-session self-review is compromised | 14, 17, 20, 25, 59 |
 | **Context degradation ⇒ externalize or filter**, don't instruct or upsize | 9, 11, 18 |
-| **Match effort to the task** — pipeline depth, plan vs direct, tool choice | 28, 37, 44, 56, 57 |
-| **Always-on config vs invoked config vs path-scoped rules** | 50, 52, 53, 54, 55 |
+| **Match effort to the task** — pipeline depth, plan vs direct execution | 28, 44, 56, 57 |
+| **Always-on vs invoked vs path-scoped configuration** | 50, 51, 52, 53, 54, 55 |
+| **Built-in tool mechanics** — `Glob` vs `Grep`; `Edit` uniqueness and its fallbacks | 37, 60 |
+| **MCP: adopt vs build, resources vs tools, normalize at the seam** | 5, 22, 26 |
+| **Batch API mechanics** — `custom_id`, per-request params, splitting into passes | 2, 21 |
+| **Session continuity** — resume a named session vs fork from a baseline | 30, 31 |
+| **CLI / CI invocation** — `-p`, `--output-format json`, `--json-schema` | 1, 12 |
+| **Synthesis preserves and labels conflict**; provenance survives only as structure | 23, 46 |
 | **Escalate on explicit request, no assessment step** | 24 |
 
 ## How to use this key
@@ -1115,8 +1145,8 @@ Read the key sideways and the 60 items collapse into about a dozen rules. Each r
 1. **Sit the 60 closed-book first.** Record your answers before opening this file — the grid at the top is deliberately the first thing you'd see, so scroll past it.
 2. **Grade against the grid**, then read the worked answer for every item you missed **and every item you got right by elimination**.
 3. **Log misses in [[Weak Areas Deep Dive]]** by *rule*, using the table above — not by question number. This bank's numbering corresponds to nothing else in the vault.
-4. **Read the four 🔶 items regardless of your answer.** Q14, Q21, Q51, and Q55 each contain a technical inaccuracy in the bank's own wording. Memorizing them as written would cost you marks.
-5. **Then drill D3.** A quarter of this bank is Claude Code configuration and workflow — the material the three CyberSkill sittings barely reach, and the subject of two of the six official scenarios.
+4. **Read the five 🔶 items regardless of your answer.** Q14, Q16, Q21, Q51, and Q55 each contain a technical inaccuracy in the bank's own wording. Memorizing them as written would cost you marks.
+5. **Then drill the Claude Code material.** Thirteen items (≈22%) cover configuration, workflow, and built-in tools — what the three CyberSkill sittings barely reach, and the subject of two of the six official scenarios.
 
 ---
 
