@@ -10,7 +10,7 @@ status: in-progress
 # 🎯 Weak Areas Deep Dive
 
 > [!NOTE] How to use this note
-> This is your **personal mistake log** — fill it in as you work through practice questions (CertSafari, Preporato, the FlorianBruniaux quiz). For each miss, capture *why* the right answer is right, not just what it was. Re-reading this note is the highest-leverage revision you can do before the exam.
+> This is your **personal mistake log** — fill it in as you work through practice questions, starting with the vault's **official** set ([Exam Guide - Sample Questions](Exam%20Guide%20-%20Sample%20Questions/README.md)) and then the third-party banks (CertSafari, Preporato, the FlorianBruniaux quiz). For each miss, capture *why* the right answer is right, not just what it was. Re-reading this note is the highest-leverage revision you can do before the exam.
 
 **Back to:** [[CCA-F Study Roadmap]] · [[00 - START HERE]]
 
@@ -19,12 +19,14 @@ status: in-progress
 ## 📥 Practice sources
 
 **In this vault** — see [README.md](README.md) for the full map:
+- **Exam Guide - Sample Questions/** — 12 questions from § 9 of the official exam guide, with Anthropic's own rationales rebutting every distractor. **The highest-authority key here: where it disagrees with a CyberSkill key, it wins** — and that disagreement is itself worth logging below.
+- **Vault-authored - Claude Code Scenario Drills/** — 20 questions covering official scenarios 2 and 5 (Claude Code + CI), which no third-party bank tests. **Written for this vault, not drawn from a bank:** topics are exam-accurate, difficulty is uncalibrated, so don't read a score here as a predicted exam score. Log misses tagged `D3`.
 - **CyberSkill CCAF - New Mock Exam/** — 60 questions **plus** a matched worked key split by domain. The only complete question+answer pair here; start with this one.
 - **CyberSkill CCAF - Mock Exam/** — worked answers only (its question file was never captured), same four domains. A **second sitting of the same bank** as New Mock Exam: 40 of 60 questions coincide, under different numbers.
-- **CyberSkill CCAF - Timed Mock 2026-08-24/** — a **third sitting** of that same bank, sat timed on 2026-08-24. **Scored 43/60 (71.67%), one mark below the 72% pass.** All 60 answers are grader-authoritative; stems captured but not the options, so it drills as open-response only. 48 of 60 coincide with New Mock Exam.
+- **CyberSkill CCAF - Timed Mock 2026-08-24/** — a **third sitting** of that same bank, sat timed on 2026-08-24. **Scored 43/60 (71.67%), one mark below CyberSkill's 72% bar** — which is the site's threshold, not the exam's scaled 720/1000 (see [[Official Exam Blueprint]] § 1). All 60 answers are grader-authoritative; stems captured but not the options, so it drills as open-response only. 48 of 60 coincide with New Mock Exam.
 - [[CCA-F-practice-exam-questions]] — an unrelated bank (certificationpractice.com #2564), 60 questions, **no answer key yet**.
 
-> [!WARNING] All four number their questions Q1–Q60 and none of the numberings match. Never cross-reference a question by number across sets.
+> [!WARNING] All four of the sets above number their questions Q1–Q60 and none of the numberings match. Never cross-reference a question by number across sets. (The official set numbers Q1–Q12 and the drill set Q1–Q20 — separate numberings again.)
 
 **External:**
 - **CertSafari** — 614 questions: https://www.certsafari.com/anthropic/claude-certified-architect

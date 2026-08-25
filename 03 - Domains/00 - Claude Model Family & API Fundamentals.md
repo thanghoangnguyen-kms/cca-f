@@ -14,7 +14,11 @@ domain: "Week 1 Foundations"
 > [!NOTE] Purpose
 > This note builds the foundational mental model needed before diving into the 5 exam domains. It covers model selection, API request anatomy, stop reasons, thinking modes, and permission modes — concepts that appear implicitly throughout D1–D5.
 
-**Back to:** [[CCA-F Study Roadmap]]
+> [!WARNING] Three sections here are officially **out of scope** — read them for context, don't revise them
+> The official blueprint excludes *"performance benchmarking or model comparison metrics"*, *"rate limiting, quotas, or API pricing calculations"*, and *"prompt caching implementation details (beyond knowing it exists)"*. That makes **The Claude Model Family (2026)**, **Cost & Rate Limits: Team Sizing Reference**, and **Prompt Caching** background, not exam material. Useful for building real systems; zero marks on exam day.
+> The rest — including **API Request Anatomy**, **Response Structure**, **Thinking Modes**, **Permission Modes**, **Claude Code: Key Surfaces**, and **Subagent Types** — *is* in scope and feeds D1–D5. Full list: [[Official Exam Blueprint]] § Out of scope.
+
+**Back to:** [[CCA-F Study Roadmap]] · [[Official Exam Blueprint]]
 
 ---
 
@@ -388,8 +392,11 @@ Average enterprise cost: **~$13/developer/active day** (~$150–250/month).
 
 ## ✅ Practice Checklist
 
-- [ ] Know the 5 model tiers and their API IDs
-- [ ] Know the context window for each model (1M for Opus/Sonnet; 200k for Haiku)
+> [!WARNING] Struck-through items are officially out of scope
+> They stay for real-world context. Don't revise them for the exam — see the scope callout at the top of this note and [[Official Exam Blueprint]] § 6.
+
+- [ ] ~~Know the 5 model tiers and their API IDs~~ — **out of scope**, context only
+- [ ] ~~Know the context window for each model (1M for Opus/Sonnet; 200k for Haiku)~~ — **out of scope**, context only
 - [ ] Know the 4 required/optional core API parameters
 - [ ] Know that `system` is a top-level param, NOT a message role
 - [ ] Know the `stop_reason` values (`end_turn`, `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`) and the action each triggers
@@ -400,7 +407,7 @@ Average enterprise cost: **~$13/developer/active day** (~$150–250/month).
 - [ ] Know that `bypassPermissions` deny/explicit-ask rules still apply
 - [ ] Know that `-p` / `--print` is required for CI non-interactive runs
 - [ ] Know that `Explore` and `Plan` built-in subagents skip CLAUDE.md
-- [ ] Know the prompt cache TTL options (5m default, 1h extended)
+- [ ] ~~Know the prompt cache TTL options (5m default, 1h extended)~~ — **out of scope** beyond knowing caching exists
 - [ ] Know that prefilled assistant responses are deprecated in Claude 4.6+
 
 ---

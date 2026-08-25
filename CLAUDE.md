@@ -17,11 +17,11 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 
 | Folder | Contents |
 |--------|----------|
-| `01 - Roadmap/` | `CCA-F Study Roadmap.md` — 6-week plan + progress tracker |
+| `01 - Roadmap/` | `Official Exam Blueprint.md` — **the authoritative exam spec** (weights, 30 task statements, 6 scenarios, in/out of scope) · `CCA-F Study Roadmap.md` — 6-week plan + progress tracker |
 | `02 - Courses/` | `C1`–`C6`, one lesson-doc per required training course |
 | `03 - Domains/` | `00 - Claude Model Family & API Fundamentals.md` + `D1`–`D5` domain deep dives |
 | `04 - Exam Cram/` | `Flashcards.md` (vault-wide deck), `Critical Terms Glossary.md`, `Handbook/` |
-| `05 - Practice/` | Mistake log + four exam sets, one folder each named `<source> - <set>`, `README.md` per folder. **Three** of them are separate sittings of one CyberSkill bank (N↔O 40/60 · N↔T 48/60 · O↔T 42/60) — **kept separate deliberately**. Their answer keys share the **same four** domain filenames, so anything targeting those filenames uses relative MD, not `[[wikilinks]]` — including from the folder root |
+| `05 - Practice/` | Mistake log + six exam sets, one folder each named `<source> - <set>`, `README.md` per folder. `Exam Guide - Sample Questions/` is **officially sourced and outranks every other key**; `Vault-authored - Claude Code Scenario Drills/` covers official scenarios 2 & 5 and is **written for this vault, not from a bank** — say so wherever it's cited. **Three** of the rest are separate sittings of one CyberSkill bank (N↔O 40/60 · N↔T 48/60 · O↔T 42/60) — **kept separate deliberately**. Their answer keys share the **same four** domain filenames, so anything targeting those filenames uses relative MD, not `[[wikilinks]]` — including from the folder root |
 | `06 - Youtube Course/` | `EP<NN> - <Title>/` — one folder per episode, each holding a study guide + its own deck |
 | `youtube-transcript/` | **Source material — read-only input, never edit, never link to from notes** |
 
@@ -41,8 +41,9 @@ Content lives in numbered folders by study order. `00 - START HERE.md` (root) is
 
 ## Authority hierarchy
 
-**Official Anthropic docs are the arbiter.** Everything else is ranked evidence:
+**The official CCA-F Exam Guide is the arbiter on the exam; official Anthropic docs are the arbiter on technical fact.** Everything else is ranked evidence:
 
+0. **[[Official Exam Blueprint]]** (`01 - Roadmap/`) — transcribed from the official exam guide v1.0. Authoritative on weights, structure, scope, and logistics
 1. **Official docs** — authoritative, beats everything including this vault
 2. **`01`–`05` notes** — verified against cited sources, but verified *at a point in time*; the SDK moves. High trust, not infallible
 3. **`06 - Youtube Course/` and `youtube-transcript/`** — unverified third-party auto-captions with known errors

@@ -20,7 +20,11 @@ response **as-is** and re-send → 6. repeat until **`end_turn`**.
 Handle **all** `tool_use` blocks in a response; return **all** `tool_result`s.
 `MAX_ITERATIONS` = safety ceiling only.
 
-**Seven `stop_reason` values; only three drive loop control.**
+**Exam answer: two values.** The official exam guide names only `tool_use`
+(continue) and `end_turn` (stop). If a question asks what drives the loop, that is
+the answer — nothing else is on the blueprint.
+
+**Production reality: seven values; three drive loop control.**
 Continue on **`tool_use`** (execute + append results) and **`pause_turn`** (append
 unchanged, re-send). Stop on **`end_turn`**. The other four all stop too, but mean
 something went wrong: `max_tokens` (output cap — handle truncation),

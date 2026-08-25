@@ -10,7 +10,8 @@ status: active
 # 🧭 START HERE — CCA-F Vault Map
 
 > [!NOTE] What this vault is
-> Study material for the **Claude Certified Architect – Foundations (CCA-F)** exam (Anthropic / Certiport). Passing score **720 / 1000**; multiple-choice + scenario-based; ~6 months practical experience assumed.
+> Study material for the **Claude Certified Architect – Foundations** exam — exam code **CCAR-F**, delivered by **Pearson VUE** (registration via the Anthropic Partner Academy). **60 items · 120 minutes · 4 scenarios drawn at random from a bank of 6.** Passing score **720 / 1000** scaled; multiple-choice + multiple-response; ~6 months practical experience assumed.
+> Every exam fact in this vault comes from [[Official Exam Blueprint]] — read it first.
 
 This is the single entry point. Everything is organized into numbered folders by study order.
 
@@ -20,22 +21,27 @@ This is the single entry point. Everything is organized into numbered folders by
 
 | #   | Folder             | What's inside                                                                                                             | Start with                                                   |
 | --- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| 01  | **Roadmap**        | The 6-week study plan, resources, progress tracker                                                                        | [[CCA-F Study Roadmap]]                                      |
+| 01  | **Roadmap**        | The official blueprint, the 6-week study plan, resources, progress tracker                                                | [[Official Exam Blueprint]] · [[CCA-F Study Roadmap]]        |
 | 02  | **Courses**        | One lesson-doc per required training course — *what to know & memorize after finishing it*                                | See course list ↓                                            |
 | 03  | **Domains**        | Deep-dive notes for each of the 5 exam domains + API fundamentals                                                         | [[00 - Claude Model Family & API Fundamentals]]              |
 | 04  | **Exam Cram**      | Memorize-by-heart material: golden rules, glossary, flashcards, scenario handbook                                         | [[Flashcards]] · [[Critical Terms Glossary]]                 |
-| 05  | **Practice**       | Four 60-question exam sets (one folder each) + your weak-areas mistake log                                               | [[Weak Areas Deep Dive]] · [[CCA-F-practice-exam-questions]] |
+| 05  | **Practice**       | Six exam sets (one folder each) + your weak-areas mistake log                                                             | [Exam Guide - Sample Questions](05%20-%20Practice/Exam%20Guide%20-%20Sample%20Questions/README.md) **(official — start here)** · [[Weak Areas Deep Dive]] |
 | 06  | **Youtube Course** | Per-episode study guides + flashcard decks from the Peace Of Code course, one folder per episode, mapped to the 5 domains | [[EP01 - Agentic Loops & stop_reason]]                       |
 
 ---
 
 ## 📚 The 5 exam domains
 
-1. [[D1 - Agentic Architecture & Orchestration]] — agent loop, multi-agent, subagents, hooks, sessions
-2. [[D2 - Tool Design & MCP Integration]] — tool interfaces, error responses, MCP servers, built-in tools
-3. [[D3 - Claude Code Configuration & Workflows]] — `CLAUDE.md` hierarchy, commands/skills, plan mode, CI/CD
-4. [[D4 - Prompt Engineering & Structured Output]] — explicit criteria, few-shot, JSON schemas, batch
-5. [[D5 - Context Management & Reliability]] — long context, escalation, error propagation, provenance
+| # | Domain | Weight | Covers |
+| --- | --- | --- | --- |
+| 1 | [[D1 - Agentic Architecture & Orchestration]] | **27%** | agent loop, multi-agent, subagents, hooks, sessions |
+| 2 | [[D2 - Tool Design & MCP Integration]] | **18%** | tool interfaces, error responses, MCP servers, built-in tools |
+| 3 | [[D3 - Claude Code Configuration & Workflows]] | **20%** | `CLAUDE.md` hierarchy, commands/skills, plan mode, CI/CD |
+| 4 | [[D4 - Prompt Engineering & Structured Output]] | **20%** | explicit criteria, few-shot, JSON schemas, batch |
+| 5 | [[D5 - Context Management & Reliability]] | **15%** | long context, escalation, error propagation, provenance |
+
+> [!TIP] Where the marks are
+> **D1 + D3 = 47%** of the exam. D5 is the lightest at 15%. The 30 task statements behind these weights are listed in [[Official Exam Blueprint]].
 
 ---
 
@@ -105,6 +111,6 @@ Peace Of Code's full-course episodes, one folder per episode (`06 - Youtube Cour
 
 ## 🔖 The night before
 
-Re-read only: [[00-golden-rules-cheatsheet|Golden Rules]] (in `04 - Exam Cram/Handbook/`), [[Critical Terms Glossary]], and [[Flashcards]].
+Re-read only: [[00-golden-rules-cheatsheet|Golden Rules]] (in `04 - Exam Cram/Handbook/`), [[Critical Terms Glossary]], [[Flashcards]], and the *Out-of-scope* list in [[Official Exam Blueprint]] — so you stop revising things the exam never asks.
 
 *Working conventions for this vault live in `AGENTS.md` (vault root).*

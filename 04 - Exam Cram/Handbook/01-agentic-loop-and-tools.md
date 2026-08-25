@@ -46,6 +46,13 @@ tool distribution, and structured output. (Maps to concept chapters 1, 4, 5, 6, 
 Only `tool_use` and `pause_turn` require another API call. A loop that stops on
 everything except `end_turn` silently truncates on `pause_turn`.
 Source: <https://platform.claude.com/docs/en/api/handling-stop-reasons> (checked 2026-08-24)
+
+**Exam scope (added 2026-08-25).** The official exam guide names only **two**
+`stop_reason` values — `tool_use` and `end_turn` — in task statement 1.1 and in
+its Technologies appendix. `pause_turn`, `refusal` and the rest appear nowhere in
+it. So on the exam, answer *"`end_turn` terminates, `tool_use` continues"*; the
+full seven-value table above is production correctness, not blueprint material.
+Learn both, and know which question you are being asked.
 - If a response has **multiple `tool_use` blocks**, you must handle **all** of
   them and return **all** matching `tool_result`s before continuing the loop.
 - How the loop "decides" the next tool: the tool result is appended to

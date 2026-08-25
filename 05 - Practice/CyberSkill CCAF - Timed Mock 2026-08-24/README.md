@@ -15,11 +15,11 @@ A 60-question **timed** CCA-F mock from the [CyberSkill practice bank](https://p
 | | |
 |---|---|
 | **Score** | **71.67% — 43/60** |
-| Pass mark | 72% |
+| Pass mark | 72% — **CyberSkill's own bar, not the exam's** (see [[Official Exam Blueprint]] § 1) |
 | Outcome | ❌ **Failed by one question.** 44/60 = 73.3% would have passed |
 
 > [!NOTE] One mark. That is the whole story of this sitting.
-> 72% of 60 is 43.2, so 44 correct is the pass. You scored 43. There is no need for a broad strategy change — six of the seventeen misses are in `customer_support`, and four of those are questions you can answer from rules you demonstrably already know (see the cross-references in each key). Fix that domain and this becomes a comfortable pass.
+> 72% of 60 is 43.2, so 44 correct is this site's pass. You scored 43. **The real exam does not work this way** — it scores 720 on a scaled 100–1,000 range, criterion-referenced and equated across forms, so no raw percentage maps cleanly onto it. Treat 72% as a practice target, not a prediction. There is no need for a broad strategy change — six of the seventeen misses are in `customer_support`, and four of those are questions you can answer from rules you demonstrably already know (see the cross-references in each key). Fix that domain and this becomes a comfortable pass.
 
 ## Domain breakdown
 

@@ -10,7 +10,9 @@ status: done
 # 🃏 Flashcards & Key Terms
 
 > [!NOTE] How to Use This Deck
-> Active-recall cards grouped by domain, plus a **Fundamentals** section for the model lineup and API basics. Cover the `A:` line and try to answer before revealing it. Cross-reference the source notes if a card doesn't click: [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]], [[D2 - Tool Design & MCP Integration]], [[D3 - Claude Code Configuration & Workflows]], [[D4 - Prompt Engineering & Structured Output]], [[D5 - Context Management & Reliability]], [[Critical Terms Glossary]]. Roadmap: [[CCA-F Study Roadmap]].
+> Active-recall cards grouped by domain, plus a **Fundamentals** section for the model lineup and API basics.
+>
+> **Scope warning:** the Fundamentals cards on **model lineup, model IDs, per-model context windows, pricing, and prompt-caching mechanics** are **out of scope** for the exam ([[Official Exam Blueprint]] § 6) — they are kept because they matter when building real systems. The `stop_reason`, `tool_choice`, batch, and code-vs-prompt cards in that section *are* in scope. This deck is night-before reading, so know which half you are revising. Cover the `A:` line and try to answer before revealing it. Cross-reference the source notes if a card doesn't click: [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]], [[D2 - Tool Design & MCP Integration]], [[D3 - Claude Code Configuration & Workflows]], [[D4 - Prompt Engineering & Structured Output]], [[D5 - Context Management & Reliability]], [[Critical Terms Glossary]]. Roadmap: [[CCA-F Study Roadmap]].
 
 ---
 

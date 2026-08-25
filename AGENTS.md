@@ -20,7 +20,7 @@ If `CLAUDE.md` and this file disagree, **this file wins** — then fix `CLAUDE.m
 ## 📌 Project Identity
 
 - **Vault name:** `CCA-F`
-- **Purpose:** Exam preparation for the **Claude Certified Architect – Foundations (CCA-F)** certification (Anthropic / Certiport)
+- **Purpose:** Exam preparation for the **Claude Certified Architect – Foundations** certification — exam code **CCAR-F**, an Anthropic credential delivered by **Pearson VUE**
 - **Format:** Obsidian vault — all notes are `.md` files with Obsidian-flavored Markdown
 
 ---
@@ -33,6 +33,8 @@ Content is organized into numbered folders by study order. **`00 - START HERE.md
 CCA-F/
 ├── 00 - START HERE.md              ← entry point (MOC); check this first
 ├── 01 - Roadmap/
+│   ├── Official Exam Blueprint.md  ← AUTHORITATIVE exam spec (weights, 30 task statements,
+│   │                                  6 scenarios, in/out of scope, logistics)
 │   └── CCA-F Study Roadmap.md      ← 6-week plan + progress tracker
 ├── 02 - Courses/                   ← one lesson-doc per required course
 │   ├── C1 - Claude 101.md
@@ -49,8 +51,12 @@ CCA-F/
 │   ├── Critical Terms Glossary.md
 │   └── Handbook/                    ← scenario-based cram (00–08, plain MD links)
 ├── 05 - Practice/                   ← one folder per exam set, `<source> - <set>`; notes at the root
-│   ├── README.md                    ← index; overlap matrix for the four sets
+│   ├── README.md                    ← index; overlap matrix for the six sets
 │   ├── Weak Areas Deep Dive.md      ← personal mistake log
+│   ├── Exam Guide - Sample Questions/    ← OFFICIAL (guide § 9); highest-authority key
+│   │   └── README.md · Questions.md · Answer Key.md
+│   ├── Vault-authored - Claude Code Scenario Drills/  ← official scenarios 2 & 5; written
+│   │   └── README.md · Questions.md · Answer Key/     for this vault, NOT from a bank
 │   ├── CyberSkill CCAF - New Mock Exam/   ← questions + matched key
 │   │   ├── README.md · Questions.md
 │   │   └── Answer Key/<domain>.md   ← 4 scenario domains
@@ -230,7 +236,8 @@ When generating or expanding content, prioritize these authoritative sources:
 | https://code.claude.com/docs/llms.txt | Full doc index — find specific pages |
 | https://platform.claude.com/docs/en/api/ | Claude API, models, `stop_reason`, tool use |
 | https://anthropic.skilljar.com | Official Anthropic courses |
-| https://www.certsafari.com/anthropic/claude-certified-architect | Exam domain breakdown + 614 practice questions |
+| **Official CCA-F Exam Guide** (Anthropic Partner Academy PDF, v1.0 · July 2026) | **The blueprint itself** — domain weights, all 30 task statements, the 6 scenarios, in-scope/out-of-scope lists, 12 sample questions. Transcribed into [[Official Exam Blueprint]] |
+| https://www.certsafari.com/anthropic/claude-certified-architect | Practice questions (614). **Not** authoritative for exam structure — the official guide is |
 | https://github.com/FlorianBruniaux/claude-code-ultimate-guide | Deep architecture, security, workflows |
 | https://github.com/anthropics/claude-cookbooks | Hands-on code examples |
 
@@ -242,7 +249,8 @@ When generating or expanding content, prioritize these authoritative sources:
 
 | Tier | Source | Trust |
 |------|--------|-------|
-| 1 | **Official Anthropic docs** (table above) | **Authoritative.** Beats everything, including this vault |
+| 0 | **Official CCA-F Exam Guide** | **Authoritative on the exam itself** — weights, structure, scope, logistics. Beats the docs on what is *tested*; the docs still win on what is *true* |
+| 1 | **Official Anthropic docs** (table above) | **Authoritative on technical fact.** Beats everything, including this vault |
 | 2 | `01`–`05` vault notes | **Verified** against cited sources — but verified *at a point in time*, and the SDK moves. High trust, not infallible |
 | 3 | `06 - Youtube Course/` · `youtube-transcript/` | **Unverified third-party.** Auto-captions of a YouTube course, with known errors |
 
@@ -271,7 +279,7 @@ The video course states these incorrectly. Each was verified against official do
 
 | Claim | Verified position |
 |-------|-------------------|
-| `stop_reason` values | **Seven** exist; **three** drive loop control: `end_turn`, `tool_use`, `pause_turn` |
+| `stop_reason` values | **Seven** exist in the docs; **three** drive loop control: `end_turn`, `tool_use`, `pause_turn`. **Scope:** the exam blueprint names only `tool_use` + `end_turn` — that is the exam answer; the seven-value table is production correctness. See [[Official Exam Blueprint]] § 5 |
 | Subagent spawn tool | Renamed **`Task` → `Agent`** in Claude Code v2.1.63. `Task` remains a valid alias and stays the **exam-safe answer** |
 | `AgentDefinition` required fields | **Only `description` + `prompt`.** The inner field is `tools`, not `allowedTools` |
 | Subagent nesting | **Allowed** by default (3 layers). Hub-and-spoke is a design principle, not an SDK constraint |

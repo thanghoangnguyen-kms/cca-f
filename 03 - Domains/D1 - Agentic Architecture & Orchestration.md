@@ -45,7 +45,7 @@ The loop continues on **three** stop reasons only: `tool_use` and `pause_turn` r
 
 ### stop_reason Values
 
-**Seven** values exist. **↻** marks the **three that drive loop control** — those are the only ones a loop continues on.
+**Seven** values exist in the docs. **↻** marks the **three a production loop continues on**. *For the exam, only `tool_use` and `end_turn` are on the blueprint — see the callout below.*
 
 | `stop_reason`                     | Meaning                                               | Action                                                                                              |
 | --------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
@@ -57,9 +57,10 @@ The loop continues on **three** stop reasons only: `tool_use` and `pause_turn` r
 | `"refusal"`                       | Declined for safety reasons                           | **`content` may be empty** — check `stop_reason` *before* reading `content`. Inspect `stop_details` |
 | `"model_context_window_exceeded"` | Context window exhausted (distinct from `max_tokens`) | Compact or split the conversation                                                                   |
 
-> [!IMPORTANT] The three-of-seven split is the exam-testable fact
-> A loop that branches only on `end_turn` and `tool_use` is the classic tutorial shape and it **fails silently in production**: `pause_turn` matches neither branch, so a `while True` loop spins forever; `refusal` returns empty `content`, so extracting the final text raises. Handle all seven; continue on three.
-> Source: [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons) · checked 2026-08-03 · see [[EP04 - Multi-Agent System in Python (Claude SDK)]] §3.5 for a worked failure trace
+> [!IMPORTANT] What the exam tests vs what production needs
+> **The official blueprint names only two values** — `"tool_use"` and `"end_turn"` — under task statement 1.1 and in its Technologies appendix. `pause_turn` and the rest are **not** on the syllabus. On exam day, the loop-control answer is `stop_reason: "end_turn"` terminates, `"tool_use"` continues; the anti-patterns below are what's actually being tested.
+> **In production the seven-value table still matters.** A loop that branches only on `end_turn` and `tool_use` is the classic tutorial shape and it **fails silently**: `pause_turn` matches neither branch, so a `while True` loop spins forever; `refusal` returns empty `content`, so extracting the final text raises. Handle all seven; continue on three.
+> Scope: [[Official Exam Blueprint]] · Source: [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons) · checked 2026-08-03 · see [[EP04 - Multi-Agent System in Python (Claude SDK)]] §3.5 for a worked failure trace
 
 > [!WARNING] Anti-Patterns (Exam Trap!)
 > ❌ **Arbitrary iteration caps** as the PRIMARY stopping mechanism

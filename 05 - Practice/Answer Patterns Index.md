@@ -13,6 +13,8 @@ status: done
 **Back to:** [[00 - START HERE]] · [[CCA-F Study Roadmap]] · [README.md](README.md)
 
 > [!NOTE] What this is
+> Scope: the **three CyberSkill answer keys** (180 explanations). The official [Exam Guide - Sample Questions](Exam%20Guide%20-%20Sample%20Questions/README.md) set is *not* folded in — it has its own pattern summary, and it outranks everything here on any disagreement.
+>
 > The three CyberSkill answer keys explain **why each answer is right, one question at a time**. This note reads those 180 explanations *sideways* — grouping them into the handful of principles they actually test, and tying each principle back to the trigger rows in [[00-golden-rules-cheatsheet]].
 >
 > Use it to drill **one pattern across many questions** instead of grinding Q1→Q60. That's what builds transfer to a question you've never seen.
@@ -24,6 +26,7 @@ status: done
 | **N-Q##** | [CyberSkill CCAF - New Mock Exam](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) | 60 | stems + **all four options**; 57/60 grader-confirmed |
 | **O-Q##** | [CyberSkill CCAF - Mock Exam](CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | 60 | answers only, stems paraphrased; every entry cites a docs URL |
 | **T-Q##** | [CyberSkill CCAF - Timed Mock 2026-08-24](CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) | 60 | stems only, **no options**; 60/60 grader-authoritative |
+| **G-Q##** | [Exam Guide - Sample Questions](Exam%20Guide%20-%20Sample%20Questions/README.md) | 12 | stems + all four options + **the exam author's own rationale**. Not part of the 180 read sideways below — cited here because it **outranks** every row in this note |
 
 > [!WARNING] Numbers never cross sets
 > `N-Q7`, `O-Q7` and `T-Q7` are different questions. The three sittings draw from the same bank (**N↔O 40/60 · N↔T 48/60 · O↔T 42/60**) but renumber and reorder every time. This note groups by **principle**, not by item identity — where the same principle appears in both sets, expect that some pairs are literally the same item under two numbers and others are two different questions teaching one rule. Don't try to pair them off.
@@ -66,7 +69,7 @@ The trigger rows from [[00-golden-rules-cheatsheet]], with the questions that te
 | **Non-interactive / CI** → `claude -p --output-format json` | 0 ⚠ | — | — |
 
 > [!IMPORTANT] The four ⚠ rows are in the cheat sheet but **untested by either sitting**
-> That is not permission to skip them — these two sittings are one bank, and `stop_reason` and `claude -p` are core published objectives. It does mean the CyberSkill sets **cannot** rehearse them, so drill those four from [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]] and [[D3 - Claude Code Configuration & Workflows]] instead. The sittings are also silent on most of **D3/Claude Code ops** — no `CLAUDE.md` hierarchy, plan mode, or `.mcp.json` scoping. **Hooks are the exception and *are* tested:** a hook is the keyed answer on the compliance/$500 item in `N-Q41` and `O-Q34`, scored at 4 hits in the table above. Session lifecycle and the built-in tools are covered too. A partial blind spot, then, not a total one.
+> That is not permission to skip them — these two sittings are one bank, and `stop_reason` and `claude -p` are core published objectives. It does mean the CyberSkill sets **cannot** rehearse them, so drill those four from [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]] and [[D3 - Claude Code Configuration & Workflows]] instead. The sittings are also silent on most of **D3/Claude Code ops** — no `CLAUDE.md` hierarchy, plan mode, or `.mcp.json` scoping; that gap is now partly covered by the [vault-authored Claude Code drills](Vault-authored%20-%20Claude%20Code%20Scenario%20Drills/README.md) and by official items G-Q4–Q6 and G-Q10–Q12. **Hooks are the exception and *are* tested:** a hook is the keyed answer on the compliance/$500 item in `N-Q41` and `O-Q34`, scored at 4 hits in the table above. Session lifecycle and the built-in tools are covered too. A partial blind spot, then, not a total one.
 
 ### Clusters the cheat sheet has no row for
 

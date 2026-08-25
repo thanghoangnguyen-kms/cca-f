@@ -14,22 +14,33 @@ status: active
 **Back to:** [[00 - START HERE]] · Course notes: [[C1 - Claude 101]] · [[C2 - Claude Platform 101]] · [[C3 - Introduction to MCP]] · [[C4 - Claude Code 101]] · [[C5 - Introduction to Subagents]] · [[C6 - Building with the Claude API]]
 
 > [!NOTE] About the CCA-F Exam
-> **Claude Certified Architect – Foundations (CCA-F)** certifies solution architects who design and implement production applications with Claude. It requires ~6 months of practical experience.
-> - **Format:** Multiple choice + scenario-based
-> - **Passing score:** 720 / 1000
-> - **Practice bank:** 614 questions (CertSafari)
+> **Claude Certified Architect – Foundations** (exam code **CCAR-F**) certifies solution architects who design and implement production applications with Claude. It assumes ~6 months of practical experience.
+> - **Items / time:** 60 items · 120 minutes
+> - **Format:** Multiple-choice and multiple-response; each item states how many responses to select
+> - **Structure:** **4 scenarios drawn at random from a bank of 6**
+> - **Passing score:** **720** scaled, on a 100–1,000 scale (criterion-referenced)
+> - **Delivery:** **Pearson VUE** — online-proctored or test center; register via the Anthropic Partner Academy
+> - **Fee / validity:** $125 USD · credential valid **12 months**
+> - **Retakes:** 14 / 30 / 90-day waits after attempts 1 / 2 / 3; max 4 attempts per rolling 12 months
+>
+> Full facts, all 30 task statements, and the out-of-scope list: [[Official Exam Blueprint]].
 
 ---
 
 ## 📌 Official Exam Domains
 
-| #   | Domain                                          | Weight |
-| --- | ----------------------------------------------- | ------ |
-| 1   | [[D1 - Agentic Architecture & Orchestration]]   | Core   |
-| 2   | [[D2 - Tool Design & MCP Integration]]          | Core   |
-| 3   | [[D3 - Claude Code Configuration & Workflows]]  | Core   |
-| 4   | [[D4 - Prompt Engineering & Structured Output]] | Core   |
-| 5   | [[D5 - Context Management & Reliability]]       | Core   |
+| #   | Domain                                          | Weight  | Items (of 60) |
+| --- | ----------------------------------------------- | ------- | ------------- |
+| 1   | [[D1 - Agentic Architecture & Orchestration]]   | **27%** | ~16           |
+| 2   | [[D2 - Tool Design & MCP Integration]]          | **18%** | ~11           |
+| 3   | [[D3 - Claude Code Configuration & Workflows]]  | **20%** | ~12           |
+| 4   | [[D4 - Prompt Engineering & Structured Output]] | **20%** | ~12           |
+| 5   | [[D5 - Context Management & Reliability]]       | **15%** | ~9            |
+
+*Weights are from the official exam guide v1.0 (July 2026) — see [[Official Exam Blueprint]]. Item counts are approximate: the blueprint states percentages of scored items, not fixed counts.*
+
+> [!TIP] Where to spend the remaining time
+> **D1 + D3 = 47%** of the exam. D5 is the lightest at 15%. Section percentages appear on your score report but **do not** determine pass/fail — only the total scaled score does.
 
 ---
 
@@ -77,7 +88,7 @@ graph LR
 - [ ] **SkillJar:** Claude Platform 101 — modules: "What is the Platform?", "Your first API call", "Choosing the right model" → note: [[C2 - Claude Platform 101]]
 - [ ] [[00 - Claude Model Family & API Fundamentals]]
   - Model tiers (current): Fable 5, Opus 4.8/4.7, Sonnet 5, Haiku 4.5 (Mythos 5 = Project Glasswing only; Sonnet 4.6 = previous gen)
-  - Context windows (1M except Haiku 200k), pricing, latency trade-offs
+  - Context windows (1M except Haiku 200k), pricing, latency trade-offs — *background only: model comparison and pricing are **out of scope**, see [[Official Exam Blueprint]] § 6*
   - Messages API request/response structure: `role`, `content`, `model`, `max_tokens`, `stop_reason`
   - Adaptive thinking vs Extended thinking vs Standard (fixed-`budget_tokens` "extended thinking" is **legacy** on current models — deprecated on Opus 4.6/Sonnet 4.6, and rejected with HTTP 400 on Fable 5, Opus 4.8/4.7, and Sonnet 5; adaptive thinking — `thinking: {type: "adaptive"}` + `output_config.effort` — is the current mechanism)
 - [ ] **Read:** https://code.claude.com/docs/en/overview — understand what Claude Code is
@@ -286,8 +297,10 @@ graph LR
   - Key CLI flags: `--resume`, `--print`, `--output-format json`, `--json-schema`
   - Key commands: `/memory`, `/compact`
   - Key patterns: `stop_reason`, `isError`, `tool_choice`, `custom_id`, `AgentDefinition`, `PostToolUse`, `fork_session`
+- [ ] **Official sample questions:** `05 - Practice/Exam Guide - Sample Questions/` — 12 items from § 9 of the exam guide, with Anthropic's own rationales rebutting every distractor. **The only officially-sourced questions in the vault — sit these first**, they calibrate you to the real house style.
+- [ ] **Claude Code scenario drills:** `05 - Practice/Vault-authored - Claude Code Scenario Drills/` — 20 items covering official **scenarios 2 and 5**, the two Claude-Code frames no sourced bank tests (~93% chance at least one appears). Vault-authored: exam-accurate topics, uncalibrated difficulty.
 - [ ] **In-vault New Mock Exam:** `05 - Practice/CyberSkill CCAF - New Mock Exam/` — 60 Qs **with** a matched worked key by scenario domain (**57/60** verified against the source grader). The one complete set; do this first.
-- [x] **In-vault timed mock, sat 2026-08-24:** `05 - Practice/CyberSkill CCAF - Timed Mock 2026-08-24/` — **scored 43/60 (71.67%), one mark below the 72% pass.** All 60 answers are grader-authoritative; stems captured but not the options. Third sitting of the same bank (48/60 overlap with New Mock Exam). Weakest domain `customer_support` at 8/14.
+- [x] **In-vault timed mock, sat 2026-08-24:** `05 - Practice/CyberSkill CCAF - Timed Mock 2026-08-24/` — **scored 43/60 (71.67%), one mark below CyberSkill's 72% bar** (the site's threshold — the exam scores 720 scaled on 100–1,000, see [[Official Exam Blueprint]] § 1). All 60 answers are grader-authoritative; stems captured but not the options. Third sitting of the same bank (48/60 overlap with New Mock Exam). Weakest domain `customer_support` at 8/14.
 - [ ] **In-vault mock exam:** `05 - Practice/CyberSkill CCAF - Mock Exam/` — worked answers by scenario, question file never captured. A second sitting of the *same* bank as New Mock Exam (40/60 overlap, different numbering).
 - [ ] **In-vault question bank:** [[CCA-F-practice-exam-questions]] (60 Qs, certificationpractice.com) — **no answer key yet**
 - [ ] **CertSafari practice:** Do all 614 questions by domain
@@ -382,4 +395,4 @@ graph LR
 
 ---
 
-*Last updated: 2026-06-16 · Based on official CertSafari study guide (614 questions)*
+*Last updated: 2026-08-25 · Exam facts from [[Official Exam Blueprint]] (official exam guide v1.0, July 2026). CertSafari is third-party practice material, not a spec source.*

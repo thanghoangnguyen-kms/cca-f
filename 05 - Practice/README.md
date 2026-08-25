@@ -8,12 +8,19 @@ status: in-progress
 
 # 05 - Practice — Index
 
-Four exam sets — three sittings of one CyberSkill bank, plus an unrelated bank — and your personal mistake log.
+Six exam sets — the **official** sample questions, three sittings of one CyberSkill bank, an unrelated bank, and a vault-authored set closing the Claude Code gap — plus your personal mistake log.
 
 > [!IMPORTANT] The organizing rule
 > **One folder per exam set, named `<source> - <set>`; standalone notes at the root.** Every set folder owns a `README.md`. Links *within* a set folder are relative Markdown so the folder stays portable as a unit; everything else in the vault uses `[[wikilinks]]`.
 
-## The four sets
+## Start here
+
+| Folder | Source | Why first |
+|---|---|---|
+| [Exam Guide - Sample Questions/](Exam%20Guide%20-%20Sample%20Questions/README.md) | **Official exam guide § 9** | ✅ 12 Qs, all four options, **Anthropic-authored rationales that rebut every distractor**. The only officially-sourced items in the vault — and the highest-authority key. Do these before anything else |
+| [Vault-authored - Claude Code Scenario Drills/](Vault-authored%20-%20Claude%20Code%20Scenario%20Drills/README.md) | Written from the official task statements | ⚠️ 20 Qs covering **official scenarios 2 and 5** — the two no sourced bank tests. Topics are exam-accurate; difficulty calibration is not. See its § Provenance |
+
+## The four third-party sets
 
 | Folder | Source | Questions | Answer key |
 |---|---|---|---|
@@ -48,7 +55,7 @@ Measured question overlap, every pairing:
 > [!IMPORTANT] The three CyberSkill sittings stay separate — by design
 > They draw from one item bank, so ~⅔ of their questions coincide, but each sitting has its own internally consistent `Q1`–`Q60` and the bank re-draws and re-orders every time. **Do not merge them** — it would break three numberings for no gain. Meeting the same question under three numbers is useful revision, and it is exactly what let 57 of the `New Mock Exam` answers be independently confirmed.
 >
-> And **never carry a question number between sets.** All four number `Q1`–`Q60`, and none of the numberings correspond.
+> And **never carry a question number between sets.** All four of *those* number `Q1`–`Q60`, and none of the numberings correspond. (The two sets in *Start here* number `Q1`–`Q12` and `Q1`–`Q20`.)
 
 ## The three domain-split answer keys
 
@@ -66,16 +73,22 @@ All three use the same four scenario domains, and all three use the same four fi
 ## Gaps worth filling
 
 - **`CCA-F Question Bank/` has no answer key** — 60 questions, nothing worked. **The largest remaining gap here.**
-- **None of the three CyberSkill sittings tests most of D3 / Claude Code ops** — no `CLAUDE.md` hierarchy, plan mode, `.mcp.json` scoping, or `claude -p` in CI, and no `stop_reason` item. Verified at full fidelity across the 60 `New Mock Exam` items and at stem/paraphrase fidelity across the other 120. **Hooks are the exception and *are* tested** — a hook is the keyed answer on the compliance/$500 item in two of the three sittings. Session lifecycle (`--resume` vs `--continue`, `fork_session`) and the built-in tools are covered too. A partial blind spot in this source, not in the exam; see [[Answer Patterns Index]] § Part 1.
+- **None of the three CyberSkill sittings tests most of D3 / Claude Code ops** — no `CLAUDE.md` hierarchy, plan mode, `.mcp.json` scoping, or `claude -p` in CI, and no `stop_reason` item. ⚠️ **Now partly covered** by [Vault-authored - Claude Code Scenario Drills/](Vault-authored%20-%20Claude%20Code%20Scenario%20Drills/README.md) — but with vault-authored questions, not sourced ones. Verified at full fidelity across the 60 `New Mock Exam` items and at stem/paraphrase fidelity across the other 120. **Hooks are the exception and *are* tested** — a hook is the keyed answer on the compliance/$500 item in two of the three sittings. Session lifecycle (`--resume` vs `--continue`, `fork_session`) and the built-in tools are covered too. A partial blind spot in this source, not in the exam; see [[Answer Patterns Index]] § Part 1.
 - **The 2026-08-24 sitting has no distractors** — 60 authoritative answers, but the site's review page never sends the unchosen options, so that folder cannot be drilled as multiple choice. In practice this bites on only **two** items: Q4 and Q10, the only ones with no sibling entry. The other 58 have full option lists or worked distractor rebuttals in `New Mock Exam` or `Mock Exam`.
 - **New Mock Exam's unverified answers: closed from 15 to 3.** The 2026-08-24 sitting redrew 12 of the 15 and every one matched, so that key now stands at 57/60 grader-confirmed. Still open: its Q16 and Q55 (📘 doc-verified only) and Q45 (🤔 reasoned only).
 
+> [!IMPORTANT] What the official blueprint says about this gap
+> The exam draws **4 scenarios from a bank of 6**, and two of the six — *Code Generation with Claude Code* and *Claude Code for Continuous Integration* — are exactly the D3 material these banks skip. **P(at least one appears) ≈ 93%.** See [[Official Exam Blueprint]] § 3.
+
 ## Suggested loop
 
+0. **Sit the [official sample questions](Exam%20Guide%20-%20Sample%20Questions/README.md) first** — twelve items, but they calibrate you to the real house style before third-party phrasing sets bad habits.
 1. Work a set from its questions file **without** the key open.
 2. Grade against the domain answer files.
 3. Log every miss in [[Weak Areas Deep Dive]] — capture *why* the right answer is right.
 4. Look the miss up in [[Answer Patterns Index]] and drill its whole pattern — the other 4–10 questions testing the same rule, across both sittings.
 5. Follow the takeaways back into [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[D3 - Claude Code Configuration & Workflows]] · [[D4 - Prompt Engineering & Structured Output]] · [[D5 - Context Management & Reliability]].
 
-**Back to:** [[00 - START HERE]] · [[CCA-F Study Roadmap]]
+6. Where a CyberSkill key disagrees with the [official key](Exam%20Guide%20-%20Sample%20Questions/Answer%20Key.md), **the official key wins** — and that disagreement belongs in [[Weak Areas Deep Dive]].
+
+**Back to:** [[00 - START HERE]] · [[CCA-F Study Roadmap]] · [[Official Exam Blueprint]]
