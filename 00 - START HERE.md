@@ -111,6 +111,6 @@ Peace Of Code's full-course episodes, one folder per episode (`06 - Youtube Cour
 
 ## 🔖 The night before
 
-Re-read only: [[00-golden-rules-cheatsheet|Golden Rules]] (in `04 - Exam Cram/Handbook/`), [[Critical Terms Glossary]], [[Flashcards]], and the *Out-of-scope* list in [[Official Exam Blueprint]] — so you stop revising things the exam never asks.
+Re-read only: [[00-golden-rules-cheatsheet|Golden Rules]] (in `04 - Exam Cram/Handbook/`), [[Critical Terms Glossary]], and [[Flashcards]] — starting with its **Exam Blueprint** section, which carries the weights, the six scenarios, the scoring model, and the out-of-scope list in card form.
 
 *Working conventions for this vault live in `AGENTS.md` (vault root).*

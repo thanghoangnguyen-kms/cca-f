@@ -667,8 +667,8 @@ Because **results can be returned in any order** and may not match submission or
 > [!TIP] Transcription artifacts
 > **"Tool calling, multi-turn is supported. But it only supports single-turn"** [09:59] — self-contradictory *and* factually wrong; see §3.3 · **"when comes to standard messages API… there is no guaranteed delivery time, it can take up to 24 hours"** [09:02] — he's reading the **batch** column while saying *standard* · **"Streaming is supported is not supported"** [10:36] = *not* supported (correct) · **"message patches API"** [19:47] = *batches* · **"customer ID"** throughout = `custom_id` · **"co- collate"** = *collate* · **"Cloud"/"clot"** = Claude · **"SQS in AWS Lambda, sorry, in AWS"** [18:15] — self-correction; SQS uses message-group IDs · **"episode number 11 or 12, I don't remember"** [29:23] — the CI/CD lecture is **[[EP13 - Claude Code CI-CD Pipelines]]** · **"breadth and depth or depth and breadth… might get confused a little bit here"** [33:38] — settled in §3.11.
 
-> [!WARNING] Unverified — the 20% figure
-> At [03:48] the host states Domain 4 is *"20% of the exam."* No official Anthropic source for per-domain exam weights was located, and the vault's `D1`–`D5` notes don't record percentages. Treat the number as the lecture's claim — confirm against the official study guide before relying on it to allocate revision time.
+> [!NOTE] Confirmed — the 20% figure is correct
+> At [03:48] the host states Domain 4 is *"20% of the exam."* **Verified 2026-08-25** against the official exam guide v1.0: Domain 4 (Prompt Engineering & Structured Output) is **20%**, joint-second with Domain 3. Full weighting — D1 27% · D2 18% · D3 20% · D4 20% · D5 15% — is transcribed in [[Official Exam Blueprint]] § 2. Safe to allocate revision time against it.
 
 ---
 

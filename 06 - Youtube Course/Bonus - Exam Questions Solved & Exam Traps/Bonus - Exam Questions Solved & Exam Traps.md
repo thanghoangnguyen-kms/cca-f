@@ -115,8 +115,8 @@ The host immediately argues against actually doing this [04:52] — and the arit
 
 **In your own words:** D1 is 27%, the D1+D3+D4 trio is 67%, and that trio alone is mathematically insufficient to pass — the weighting tells you what to revise *first*, not what to skip.
 
-> [!WARNING] Unverified — exam logistics, not technical fact
-> The percentage weights, the 720/1000 passing score [59:01], the count of twelve official sample questions, and the six-scenario map are all **exam-administration details** taken from the lecture's reading of the official syllabus. They cannot be verified against Anthropic's technical documentation, which does not describe the certification's scoring. The D1 = 27% figure is at least internally consistent with the rest of this vault's episode notes. Confirm all of these against the official CCA-F exam guide before relying on them.
+> [!NOTE] Confirmed — all four logistics claims check out
+> **Verified 2026-08-25** against the official exam guide v1.0, now transcribed as [[Official Exam Blueprint]]. The **percentage weights** (D1 27 · D2 18 · D3 20 · D4 20 · D5 15), the **720/1000 passing score** [59:01], the **twelve official sample questions**, and the **six-scenario map** are all correct as stated. Two refinements the lecture doesn't make: 720 is a **scaled** score on a 100–1,000 range (criterion-referenced, equated across forms) — not 72% of items correct; and the exam presents **4 of the 6 scenarios, drawn at random**. The worked arithmetic below stands.
 
 *See PQ 3, 15.*
 

@@ -10,9 +10,54 @@ status: done
 # 🃏 Flashcards & Key Terms
 
 > [!NOTE] How to Use This Deck
-> Active-recall cards grouped by domain, plus a **Fundamentals** section for the model lineup and API basics.
+> Active-recall cards grouped by domain, plus an **Exam Blueprint** section (weights, scenarios, scoring, scope — the literal-recall facts) and a **Fundamentals** section for the model lineup and API basics.
 >
 > **Scope warning:** the Fundamentals cards on **model lineup, model IDs, per-model context windows, pricing, and prompt-caching mechanics** are **out of scope** for the exam ([[Official Exam Blueprint]] § 6) — they are kept because they matter when building real systems. The `stop_reason`, `tool_choice`, batch, and code-vs-prompt cards in that section *are* in scope. This deck is night-before reading, so know which half you are revising. Cover the `A:` line and try to answer before revealing it. Cross-reference the source notes if a card doesn't click: [[00 - Claude Model Family & API Fundamentals]], [[D1 - Agentic Architecture & Orchestration]], [[D2 - Tool Design & MCP Integration]], [[D3 - Claude Code Configuration & Workflows]], [[D4 - Prompt Engineering & Structured Output]], [[D5 - Context Management & Reliability]], [[Critical Terms Glossary]]. Roadmap: [[CCA-F Study Roadmap]].
+
+---
+
+## Exam Blueprint
+
+*Source: [[Official Exam Blueprint]], transcribed from the official exam guide v1.0 (July 2026). These are the literal-recall facts the exam and your revision planning both depend on.*
+
+**Q: Rank the five domains by weight, and give the percentages.**
+A: D1 Agentic Architecture **27%** · D3 Claude Code Config **20%** · D4 Prompt Engineering **20%** · D2 Tool Design & MCP **18%** · D5 Context & Reliability **15%**. D1 is the heaviest; D5 the lightest.
+
+**Q: You have one evening left and want maximum marks per hour. Which two domains, and why?**
+A: **D1 + D3 = 47%** of the exam — nearly half between them. D5 *feels* hardest but is only 15%, so it is the wrong place to spend a final session.
+
+**Q: How many scenarios does the exam present, and out of how many?**
+A: **4, drawn at random from a bank of 6.** You cannot predict which four, so no scenario is safely skippable.
+
+**Q: Name the six exam scenarios.**
+A: 1 Customer Support Resolution Agent · 2 **Code Generation with Claude Code** · 3 Multi-Agent Research System · 4 Developer Productivity with Claude · 5 **Claude Code for CI** · 6 Structured Data Extraction. Scenarios 2 and 5 are the Claude-Code-centric pair that third-party banks don't test.
+
+**Q: Why is "I'll skip Domains 2 and 5" arithmetically fatal, not just risky?**
+A: A perfect score on D1 + D3 + D4 is 27 + 20 + 20 = **67%** — below the bar even before a single mistake elsewhere. The weighting tells you what to revise *first*, never what to skip.
+
+**Q: What exactly does a passing score of 720 mean — and what does it NOT mean?**
+A: **720 on a scaled 100–1,000 range**, criterion-referenced and equated across forms. It is **not** 72% of items correct, and per-domain percentages on your score report do **not** determine pass/fail — only the total scaled score does.
+
+**Q: Item count, item format, and time limit?**
+A: **60 items · 120 minutes.** Multiple-choice **and multiple-response** — each item states how many responses to select, so read that line before answering.
+
+**Q: How long is the credential valid, and what happens if you let it lapse?**
+A: **12 months.** Renew on time with a free, non-proctored assessment on the Partner Academy; **let it lapse and you retake the full exam at full fee**. Anthropic may also require a full retake if exam content changes significantly.
+
+**Q: You fail on the first attempt. How soon can you re-sit, and how many attempts do you get?**
+A: **14 days** after the 1st fail, **30** after the 2nd, **90** after the 3rd. Maximum **4 attempts per rolling 12 months**, fee payable each time.
+
+**Q: Which tool name does the exam expect for spawning subagents, and what must `allowedTools` contain?**
+A: **`Task`** — the guide names it three times and requires `allowedTools` to include `"Task"`. The SDK renamed it to `Agent` in Claude Code v2.1.63 with `Task` kept as an alias, but **`Task` is the exam answer**.
+
+**Q: How many `stop_reason` values are on the exam blueprint, and which?**
+A: **Two — `"tool_use"` (continue) and `"end_turn"` (terminate).** `pause_turn`, `refusal` and the rest appear nowhere in the guide. Seven exist in the docs and three drive a production loop; that is real, but it is not what the exam asks.
+
+**Q: Name five topics that are explicitly OUT of scope, so you stop revising them.**
+A: Model comparison/benchmarking · API pricing, rate limits and quotas · **prompt-caching implementation details** (beyond knowing it exists) · token counting and tokenization · vision, computer use, and streaming. Also out: fine-tuning, Constitutional AI/RLHF, embeddings and vector DBs, OAuth/key rotation, cloud-provider config, and MCP server hosting.
+
+**Q: MCP servers are in scope, but one whole aspect of them is not. Which?**
+A: **Deploying and hosting them** — infrastructure, networking, container orchestration. Designing MCP tools and resources, writing descriptions, structured errors, and `.mcp.json` scoping are all in scope; running the server is not.
 
 ---
 

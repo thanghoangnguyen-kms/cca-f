@@ -139,7 +139,7 @@ Walk the order-lookup case both ways. Happy path: the query arrives, Claude retu
 > | `refusal` | Declined on safety policy | Read `stop_details`; retry/fallback |
 > | `model_context_window_exceeded` | Filled the model's context window | Truncated — restructure conversation |
 >
-> **Three values drive loop control flow, not two** — `pause_turn` continues the loop and appears whenever *server-side* tools (web search, code execution) are in play. Re-send the response as-is; do **not** append a "Continue." user message. The demo agent uses only client-side tools, so it never sees it. Source: [Handling stop reasons](https://platform.claude.com/docs/en/api/handling-stop-reasons) · see also [[D1 - Agentic Architecture & Orchestration]] §1.1. **(expansion — not from the transcript)**
+> **Three values drive loop control flow in production, not two** — but note the official exam guide names only `tool_use` and `end_turn` ([[Official Exam Blueprint]] § 5), so *for the exam* the two-value model is correct. `pause_turn` continues the loop and appears whenever *server-side* tools (web search, code execution) are in play. Re-send the response as-is; do **not** append a "Continue." user message. The demo agent uses only client-side tools, so it never sees it. Source: [Handling stop reasons](https://platform.claude.com/docs/en/api/handling-stop-reasons) · see also [[D1 - Agentic Architecture & Orchestration]] §1.1. **(expansion — not from the transcript)**
 
 > [!TIP] Transcription artifact
 > The speaker repeatedly says "**enter**" where the field value is `end_turn`. Mentally substitute `end_turn` throughout the video.

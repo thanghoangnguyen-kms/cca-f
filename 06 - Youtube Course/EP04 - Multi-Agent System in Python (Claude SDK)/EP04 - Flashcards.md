@@ -50,7 +50,7 @@ A: A subagent runs **its own complete agentic loop** — the same `stop_reason` 
 ## Domain 1 — The Agentic Loop in Code
 
 **Q: How many `stop_reason` values exist, and which ones drive loop control?**
-A: **Seven** exist — `end_turn`, `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`, `model_context_window_exceeded`. **Three** drive loop control: `end_turn` (exit), `tool_use` (execute and continue), `pause_turn` (resume).
+A: **Seven** exist — `end_turn`, `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`, `model_context_window_exceeded`. **Three** drive a production loop: `end_turn` (exit), `tool_use` (execute and continue), `pause_turn` (resume). **On the exam, only two are on the blueprint:** `tool_use` continues, `end_turn` terminates.
 
 **Q: A loop branches only on `end_turn` and `tool_use`. It hangs forever in production. Which stop reason is responsible and what's the fix?**
 A: **`pause_turn`** — a server-side tool paused mid-turn matches neither branch, so `while True` spins with no progress. Fix: append the assistant turn and re-send to resume.

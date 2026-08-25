@@ -275,11 +275,13 @@ def run_subagent(role: str, tools: list[dict], prompt: str) -> str:
 >
 > Source: [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) · consistent with [[D1 - Agentic Architecture & Orchestration]] §1.1
 
-> [!WARNING] The loop's two-value `stop_reason` model is incomplete — verified against official docs
+> [!WARNING] The loop's two-value `stop_reason` model is incomplete *for production* — but it is the exam answer
 > The lecture treats `stop_reason` as effectively binary: `end_turn` or `tool_use`. Officially there are **seven** values — `end_turn`, `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`, and `model_context_window_exceeded` — of which **three drive loop control**: `end_turn` (exit), `tool_use` (execute and continue), and **`pause_turn`** (a server-side tool paused mid-turn; re-send the assistant turn to resume).
 >
-> A `while True` loop that only handles two values will **hang or silently truncate** on the other five: `max_tokens` returns a partial answer, `refusal` returns empty `content` (so `next(... b.text ...)` raises `StopIteration`), and `pause_turn` needs an explicit resume. **Exam answer: seven values, three drive loop control.** Real code: branch on all of them, and check `stop_reason` **before** indexing `content`.
-> Source: [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons) · consistent with [[00 - Claude Model Family & API Fundamentals]]; note [[D1 - Agentic Architecture & Orchestration]] §1.1 tabulates only the four *key* values by design.
+> A `while True` loop that only handles two values will **hang or silently truncate** on the other five: `max_tokens` returns a partial answer, `refusal` returns empty `content` (so `next(... b.text ...)` raises `StopIteration`), and `pause_turn` needs an explicit resume.
+>
+> **Exam answer: two — `tool_use` continues, `end_turn` terminates.** *(Corrected 2026-08-25.)* The official exam guide names only those two, in task statement 1.1 and in its Technologies appendix; `pause_turn` and `refusal` appear nowhere in it. So the lecture's binary model is what the exam rewards, and the seven-value table is production correctness. **Real code:** branch on all of them, and check `stop_reason` **before** indexing `content`.
+> Source: [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons) · scope per [[Official Exam Blueprint]] § 5 · consistent with [[D1 - Agentic Architecture & Orchestration]] §1.1.
 
 > [!TIP] Transcription artifacts in this episode
 > The auto-captions mangle several terms — recognise them so they don't cost you a re-watch:
@@ -686,7 +688,7 @@ $$\frac{9600 - 300}{9600} = \frac{9300}{9600} \approx 96.9\%$$
 | What differs per subagent | **role · tools · prompt** — three arguments, one function |
 | Tool definition fields | `name`, `description`, **`input_schema`** → `type` / `properties` / `required` |
 | Tool registry | `name` → Python callable. Schema advertises; registry dispatches |
-| `stop_reason` count | **Seven** values; **three** drive loop control: `end_turn`, `tool_use`, `pause_turn` |
+| `stop_reason` count | **Seven** values in the docs; **three** drive a production loop: `end_turn`, `tool_use`, `pause_turn`. **Exam: only `tool_use` + `end_turn`** are on the blueprint |
 | `tool_use` branch | Append **full** `response.content` → one `tool_result` per block with `tool_use_id` → **all in ONE** user message |
 | Tool error | `is_error: true` in the `tool_result` — let Claude recover, don't crash |
 | Tool scoping | Omitted tool = **absent from the session**. No prompt, no error |

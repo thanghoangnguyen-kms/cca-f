@@ -58,7 +58,7 @@ A: A runaway safety valve only. Hitting the cap is an **error condition** that s
 A: The `tool_use_id` — it must match exactly between the `tool_use` block in the assistant message and the `tool_result` block in the following user message.
 
 **Q: How many `stop_reason` values actually drive agentic-loop control flow?**
-A: **Three, not two.** `end_turn` exits, `tool_use` executes-and-continues, and **`pause_turn` continues** — it fires when a *server-side* tool loop hits its iteration limit (default 10). Re-send the response as-is; do **not** append a "Continue." user message. The remaining values (`max_tokens`, `stop_sequence`, `refusal`, `model_context_window_exceeded`) signal truncation or a halt.
+A: **In production, three — not two.** *(On the exam it is two: the blueprint names only `tool_use` and `end_turn`.)* `end_turn` exits, `tool_use` executes-and-continues, and **`pause_turn` continues** — it fires when a *server-side* tool loop hits its iteration limit (default 10). Re-send the response as-is; do **not** append a "Continue." user message. The remaining values (`max_tokens`, `stop_sequence`, `refusal`, `model_context_window_exceeded`) signal truncation or a halt.
 
 **Q: Claude returns three `tool_use` blocks in one message. How do you send the results back?**
 A: Execute them concurrently, then return **all three `tool_result` blocks in a single `user` message**. Splitting them across separate messages silently trains Claude to stop making parallel calls. Every `tool_use` id needs a matching result — for a failure, return `tool_result` with `is_error: true` rather than dropping it.
