@@ -25,12 +25,12 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 **B.** The conventions live in the tech lead's `~/.claude/CLAUDE.md` — user-level, not shared via version control.
 
-**Why B wins.** The hierarchy is **user-level** (`~/.claude/CLAUDE.md`) → **project-level** (`CLAUDE.md` at root or `.claude/CLAUDE.md`) → **directory-level** (subdirectory `CLAUDE.md`). Only project- and directory-level files travel with the repository. The stem's tell is *"worked ever since"* for the author and never for anyone else — that asymmetry is the signature of user-scoped configuration.
+**Why B wins.** The guide's hierarchy is **user-level** (`~/.claude/CLAUDE.md`) → **project-level** (`CLAUDE.md` at root or `.claude/CLAUDE.md`) → **directory-level** (subdirectory `CLAUDE.md`). Of these, only the project and directory files are committed and travel with the repository. *(Docs add two scopes the guide omits: a **managed-policy** scope above user level, and `CLAUDE.local.md`, which is project-scoped but gitignored — so "in the repo" and "project-scoped" aren't quite synonyms.)* The stem's tell is *"worked ever since"* for the author and never for anyone else — that asymmetry is the signature of user-scoped configuration.
 
 | Distractor | Why it fails |
 |---|---|
 | **A** run `/init` | `/init` generates a starter `CLAUDE.md`; it doesn't activate configuration that exists elsewhere. Nothing in the stem says the project file is missing |
-| **C** size truncation | Large files are a real maintainability concern, but truncation wouldn't affect one engineer and spare the rest — the symptom is per-user, not per-file |
+| **C** size truncation | The mechanism doesn't exist as described — docs say Claude Code loads a `CLAUDE.md` up to 4 MiB **in full and skips a larger one**; there is no silent truncation. And either way, a file-level problem can't affect one engineer and spare the rest — the symptom is per-user, not per-file |
 | **D** directory-level needs a first visit | Loosely **describes real behavior** — files above the working directory load at launch, while subdirectory files load **on demand** when Claude reads files there. But lazy loading works identically for every teammate, so it cannot explain why one engineer alone is affected |
 
 **Takeaway.** *"Works for me, not for the team"* → check user scope before anything else. Note D is true-but-irrelevant rather than false: the discriminator is the **asymmetry**, not the loading model. Exam guide: task statement 3.1, *"diagnosing configuration hierarchy issues"*. See [[D3 - Claude Code Configuration & Workflows]] §3.1 · [[EP10 - CLAUDE.md Hierarchy & Config Rules]].
@@ -41,7 +41,7 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 **C.** Run `/memory`.
 
-**Why C wins.** `/memory` is the command that shows **which memory files are loaded** — exactly the diagnostic for "which instructions are actually in effect". The exam guide names it under 3.1 for this purpose: *"verify which memory files are loaded and diagnose inconsistent behavior across sessions."*
+**Why C wins on the exam.** The guide names `/memory` for this under 3.1: *"using the `/memory` command to verify which memory files are loaded and diagnose inconsistent behavior across sessions."* That is the wording the exam is written against. *(In current docs `/memory` actually lists memory-file **locations**, including files that don't exist yet — see the callout below.)*
 
 | Distractor | Why it fails |
 |---|---|
@@ -102,7 +102,7 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 | Distractor | Why it fails |
 |---|---|
 | **A** `allowed-tools` | Governs **tool permissions**, not where output lands. Even on the guide's reading, narrowing tools doesn't stop a permitted `Grep` returning thousands of lines |
-| **C** `argument-hint` | Prompts for parameters at invocation. Unrelated to output volume |
+| **C** `argument-hint` | Concerns invocation arguments, not output volume. *(It shows an autocomplete hint — it does not actually prompt, despite the guide's wording. See the Q7 callout.)* |
 | **D** `model: haiku` | Changes who does the work, not where the transcript accumulates. Verbose output is verbose regardless of model |
 
 **Takeaway.** Three exam-named frontmatter options, three distinct jobs: `context: fork` = isolation · `allowed-tools` = tool permissions · `argument-hint` = invocation UX. The guide lists these as examples, **not** as the complete field set — see the Q6 drift callout. See [[D3 - Claude Code Configuration & Workflows]] §3.2 · [[EP11 - Custom Slash Commands & Skills]].
@@ -119,15 +119,15 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 |---|---|
 | **A** `PreToolUse` hook | In the guide's vocabulary, hooks belong to **Domain 1** (`PostToolUse`, "tool call interception") and `PreToolUse` never appears at all — so it is not what Domain 3 is testing here. **But see the drift callout: in shipping Claude Code this is a genuinely valid, and arguably better, answer.** |
 | **B** a `[!WARNING]` in the body | Prompt-layer. Shifts probability; guarantees nothing — the one rebuttal here that is solid in both the guide and the docs |
-| **C** `context: fork` | Isolates **context**, not **capability**. A forked sub-agent that can still call `Bash` can still drop a table |
+| **C** `context: fork` | As written in the stem — bare `context: fork`, no `agent:` — it isolates **context** while leaving `Bash` callable, so the migration can still drop a table. *(Not a blanket rule: pairing `context: fork` with an `agent:` does scope the execution environment's model, tools and permissions — see the callout.)* |
 
 > [!WARNING] Guide-current vs docs-current — this item's premise has drifted badly
 > Three things the guide's framing gets wrong about shipping Claude Code, all verified against current docs — and all easy to absorb as fact if you only read the guide:
-> 1. **`hooks` *is* a `SKILL.md` frontmatter field**, and all hook events are supported — the docs' own worked example is a `PreToolUse` matcher on `Bash` that blocks the call. Option A is not a fabricated mechanism.
+> 1. **`hooks` *is* a `SKILL.md` frontmatter field**, and all hook events are supported — the docs' worked example is a `PreToolUse` matcher on `Bash` that *runs a security validation script* (blocking then depends on the script: `PreToolUse` blocks on exit code 2). Option A is not a fabricated mechanism. **Caveat:** frontmatter hooks are registered *when the skill is invoked*, so they cannot gate that invocation — only the tool calls that follow.
 > 2. **`allowed-tools` grants, it does not restrict.** Docs: it *"does not restrict which tools are available: every tool remains callable."* The field that removes tools is **`disallowed-tools`**, which the exam guide never mentions.
 > 3. **The guide says frontmatter *"including"* `context: fork`, `allowed-tools`, `argument-hint`** — a non-exhaustive list, not a closed set of three. Real fields also include `model`, `disallowed-tools`, `hooks`, `paths`, `agent` and more.
 >
-> **Exam answer: `allowed-tools` (D)** — it is what the guide names. **Production answer:** a `PreToolUse` hook or `disallowed-tools`.
+> **Exam answer: `allowed-tools` (D)** — it is what the guide names. **Production answers**, in rough order of directness: **`disallowed-tools`** (removes tools from the pool), a **`PreToolUse` hook** (intercepts and can block), or **`context: fork` with an `agent:`** (scopes the forked environment's tools and permissions). Note too that `allowed-tools` grants are **turn-scoped** and a matching `ask`/`deny` permission rule still overrides them.
 > Source: https://code.claude.com/docs/en/skills · https://code.claude.com/docs/en/hooks · checked 2026-08-25
 
 **Takeaway.** The guide frames tool scoping as `allowed-tools`; answer that. But do not carry "a skill without `Bash` cannot call `Bash`" into real work — it is false. See [[D3 - Claude Code Configuration & Workflows]] §3.2.
@@ -144,10 +144,10 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 |---|---|
 | **B** required-parameters section in the body | The body is read **after** invocation, so it cannot surface anything at invocation time |
 | **C** `context: fork` | Isolation, not parameter collection |
-| **D** `PreToolUse` hook | Hooks *are* declarable in skill frontmatter (see Q6), but they fire on **tool calls**, not on skill invocation — and blocking is disproportionate to a missing argument |
+| **D** `PreToolUse` hook | Hooks *are* declarable in skill frontmatter (see Q6), and a `PreToolUse` hook matching `Skill` can even fire when Claude auto-invokes a skill. The decisive objection is **registration order**: a skill's own frontmatter hooks are registered *at* invocation, so they cannot gate the invocation that registers them. Blocking is also disproportionate to a missing argument |
 
 > [!WARNING] Guide-current vs docs-current — `argument-hint` displays, it does not prompt
-> Current docs define it as a *"hint shown during autocomplete to indicate expected arguments"* (e.g. `[issue-number]`). It does not prompt, block, or make an argument required — nothing in shipping Claude Code does what the guide's wording implies.
+> Current docs define it as a *"hint shown during autocomplete to indicate expected arguments"* (e.g. `[issue-number]`). It does not prompt, block, or make an argument required — **no frontmatter field does**. A skill *body* can still ask (validate and fail loudly, or use `AskUserQuestion`); what doesn't exist is a declarative way to require an argument.
 > **Exam answer: `argument-hint` (A).** In real skills, validate arguments in the body and fail loudly.
 > Source: https://code.claude.com/docs/en/skills · checked 2026-08-25
 

@@ -10,6 +10,9 @@ status: not-started
 
 _Source: certificationpractice.com — practice exam #2564. 60 of 60 questions captured. Answers not marked._
 
+> [!TIP] Sit these closed-book first
+> Worked answers live in [Answer Key.md](Answer%20Key.md) — it opens with a full answer grid, so record your 60 before you open it.
+
 ## Question 1
 
 A CI pipeline needs to run Claude Code to analyze pull requests and produce machine-parseable review findings that a downstream script posts as inline comments. Which combination of CLI flags ensures the output conforms to a predefined JSON structure?

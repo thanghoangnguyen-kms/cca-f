@@ -302,7 +302,7 @@ graph LR
 - [ ] **In-vault New Mock Exam:** `05 - Practice/CyberSkill CCAF - New Mock Exam/` — 60 Qs **with** a matched worked key by scenario domain (**57/60** verified against the source grader). The one complete set; do this first.
 - [x] **In-vault timed mock, sat 2026-08-24:** `05 - Practice/CyberSkill CCAF - Timed Mock 2026-08-24/` — **scored 43/60 (71.67%), one mark below CyberSkill's 72% bar** (the site's threshold — the exam scores 720 scaled on 100–1,000, see [[Official Exam Blueprint]] § 1). All 60 answers are grader-authoritative; stems captured but not the options. Third sitting of the same bank (48/60 overlap with New Mock Exam). Weakest domain `customer_support` at 8/14.
 - [ ] **In-vault mock exam:** `05 - Practice/CyberSkill CCAF - Mock Exam/` — worked answers by scenario, question file never captured. A second sitting of the *same* bank as New Mock Exam (40/60 overlap, different numbering).
-- [ ] **In-vault question bank:** [[CCA-F-practice-exam-questions]] (60 Qs, certificationpractice.com) — **no answer key yet**
+- [ ] **In-vault question bank:** [[CCA-F-practice-exam-questions]] (60 Qs, certificationpractice.com) — ✅ **worked answer key added 2026-08-25** (vault-reasoned, not grader-confirmed). **A quarter of it is D3** — the best sourced Claude Code drilling in the vault
 - [ ] **CertSafari practice:** Do all 614 questions by domain
   - https://www.certsafari.com/anthropic/claude-certified-architect
 - [ ] **Preporato practice tests:** https://preporato.com/exams/cca-f

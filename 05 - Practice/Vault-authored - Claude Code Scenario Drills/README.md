@@ -37,7 +37,9 @@ All 240 third-party questions in `05 - Practice/` map to the *other* four scenar
 ## Provenance — read this before trusting a single answer
 
 > [!IMPORTANT] These are **not** exam questions and not from any bank
-> Every item here is **written for this vault**, derived directly from the task statements, knowledge bullets, and skill bullets of the official exam guide v1.0 (July 2026), then checked against [[D3 - Claude Code Configuration & Workflows]], [[D4 - Prompt Engineering & Structured Output]], [[D5 - Context Management & Reliability]] and [[06-claude-code-operations]].
+> Every item here is **written for this vault**, derived directly from the task statements, knowledge bullets, and skill bullets of the official exam guide v1.0 (July 2026), then cross-checked against [[D3 - Claude Code Configuration & Workflows]], [[D4 - Prompt Engineering & Structured Output]], [[D5 - Context Management & Reliability]], [[06-claude-code-operations]] **and current Anthropic docs**.
+>
+> **That cross-check was added late, and it mattered.** The first draft of Q1, Q2, Q5, Q6 and Q7 contradicted the vault's own `D3` note and the live docs — asserting that `allowed-tools` restricts tools (it grants), that `argument-hint` prompts (it hints during autocomplete), and that `/context` was the wrong command (docs prescribe it). Two review passes caught these. Every affected item now carries a **guide-current vs docs-current** callout that gives the exam answer *and* the production truth, rather than teaching one as the other.
 >
 > **What that buys you:** every question maps to a real task statement, so the *topics* are exam-accurate.
 > **What it does not buy you:** the phrasing, difficulty calibration, and distractor craft of a real item. Do not read a score here as a predicted exam score. For calibrated difficulty use the [official sample questions](../Exam%20Guide%20-%20Sample%20Questions/README.md) — twelve items, but genuinely Anthropic-authored.
@@ -57,8 +59,8 @@ Where a fact is true in current docs but **beyond the exam guide** (`--bare` is 
 | 3 | 3.1 | `@import` for modular per-package standards |
 | 4 | 3.1 | Splitting a monolithic `CLAUDE.md` into `.claude/rules/` |
 | 5 | 3.2 | `context: fork` for verbose skill output |
-| 6 | 3.2 | `allowed-tools` to restrict destructive actions |
-| 7 | 3.2 | `argument-hint` for required parameters |
+| 6 | 3.2 | `allowed-tools` — the guide's tool-scoping answer (docs: it grants; `disallowed-tools` restricts) |
+| 7 | 3.2 | `argument-hint` — the guide's "required parameters" framing (docs: autocomplete hint only) |
 | 8 | 3.2 | Personal skill variants without affecting teammates |
 | 9 | 3.4 | Direct execution for well-scoped changes |
 | 10 | 3.5 | Concrete input/output examples over prose |

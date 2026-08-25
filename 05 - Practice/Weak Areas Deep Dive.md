@@ -24,7 +24,7 @@ status: in-progress
 - **CyberSkill CCAF - New Mock Exam/** — 60 questions **plus** a matched worked key split by domain. The only complete question+answer pair here; start with this one.
 - **CyberSkill CCAF - Mock Exam/** — worked answers only (its question file was never captured), same four domains. A **second sitting of the same bank** as New Mock Exam: 40 of 60 questions coincide, under different numbers.
 - **CyberSkill CCAF - Timed Mock 2026-08-24/** — a **third sitting** of that same bank, sat timed on 2026-08-24. **Scored 43/60 (71.67%), one mark below CyberSkill's 72% bar** — which is the site's threshold, not the exam's scaled 720/1000 (see [[Official Exam Blueprint]] § 1). All 60 answers are grader-authoritative; stems captured but not the options, so it drills as open-response only. 48 of 60 coincide with New Mock Exam.
-- [[CCA-F-practice-exam-questions]] — an unrelated bank (certificationpractice.com #2564), 60 questions, **no answer key yet**.
+- [[CCA-F-practice-exam-questions]] — an unrelated bank (certificationpractice.com #2564), 60 questions, now with a **vault-reasoned answer key** (no grader behind it). Log misses from it by *rule*, using that key's § Cross-cutting patterns — its `Q1`–`Q60` correspond to nothing else here.
 
 > [!WARNING] All four of the sets above number their questions Q1–Q60 and none of the numberings match. Never cross-reference a question by number across sets. (The official set numbers Q1–Q12 and the drill set Q1–Q20 — separate numberings again.)
 
