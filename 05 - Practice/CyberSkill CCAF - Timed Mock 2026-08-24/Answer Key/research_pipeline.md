@@ -12,7 +12,7 @@ status: done
 
 **15 answers** — Q8, 15, 21, 30, 32, 35, 44, 46, 47, 48, 49, 50, 51, 53, 54. Scored **10/15 (67%)**.
 
-Question numbers are this sitting's own and interleave with the other domains; they match [../Questions.md](../Questions.md). Back to [../README.md](../README.md).
+Question numbers are this sitting's own and interleave with the other domains; they match [../Questions.md](../Questions.md). Back to [../README.md](../README.md). Every entry now reproduces its stem verbatim from [../Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 > [!NOTE] Every answer here is grader-authoritative
 > These are the site's own `correct_key` values as rendered on the review page. Where an item was answered correctly, the correct answer *is* the recorded selection. Distractors were not recoverable — see [../README.md](../README.md) § Fidelity.
@@ -109,6 +109,11 @@ All five misses in this domain are the **same mistake**. Read them as one lesson
 The option shown is the keyed correct answer.
 
 ### Q8 — Coordinator reasons about delegating but never spawns
+
+> The coordinator agent has `AgentDefinition`s configured for all four specialized subagents, each with appropriate descriptions, prompts, and tool restrictions. During testing, you notice the coordinator correctly reasons about when to delegate—it generates messages like "I'll ask the web search agent to find sources on this topic"—but no subagent execution ever occurs. The coordinator then proceeds as if the delegation happened and continues with incomplete information. Logs show no errors.
+>
+> What is the most likely cause?
+
 **C.** The coordinator's `allowedTools` configuration doesn't include "`Task`", so while it can reason about delegation, it cannot invoke the tool required to spawn subagents.
 *Takeaway: the ability to spawn a subagent is a **tool permission**, not a config property of `AgentDefinition`. Reasoning about delegation with no error in the logs = the spawn tool was never grantable.*
 
@@ -122,14 +127,27 @@ The option shown is the keyed correct answer.
 > Source: <https://code.claude.com/docs/en/agent-sdk/subagents>
 
 ### Q15 — Synthesis loses which source supports which claim
+
+> In production, final reports frequently contain claims without proper source attribution. Investigation shows that while the web search and document analysis agents correctly attach citations to their outputs, the synthesis agent loses track of which sources support which conclusions when combining findings.
+>
+> What's the most effective architectural change?
+
 **B.** Require all subagents to output structured claim-source mappings that the synthesis agent must preserve and merge when combining findings from multiple sources.
 *Takeaway: provenance travels as structure. Compare **Q49**, where you answered the same question differently.*
 
 ### Q30 — Two subagents, conflicting figures, moderate confidence
+
+> Two sub-agents return conflicting figures for the same metric, each with moderate confidence. Before the coordinator writes the final answer, the best move is to:
+
 **C.** Run a focused check that re-fetches the metric from the primary source and resolves the conflict before synthesizing.
 *Takeaway: resolve conflicts by going back to the primary source, not by averaging or picking. Compare **Q21**: resolve where you can, expose the disagreement where you can't.*
 
 ### Q32 — How information flows between two subagents
+
+> The web search agent has gathered several relevant sources for a research topic. The document analysis agent now needs to examine these sources.
+>
+> How does information typically flow between these two specialized subagents?
+
 **C.** The coordinator agent receives the web search agent's output and includes relevant findings in the prompt when invoking the document analysis agent.
 *Takeaway: subagents are context-isolated, so findings reach a sibling only by the coordinator putting them in that sibling's prompt.*
 
@@ -138,14 +156,25 @@ The option shown is the keyed correct answer.
 > Source: <https://code.claude.com/docs/en/agent-sdk/subagents>
 
 ### Q35 — Research run not converging
+
+> A research agent keeps spawning follow-up searches and the run is not converging. The most reliable way to prevent an endless loop is to:
+
 **B.** Give the task an explicit budget and a coverage check, and stop once the questions are answered or the budget is spent.
 *Takeaway: termination needs both a **budget** (hard stop) and a **coverage check** (goal met). One alone either loops or stops early.*
 
 ### Q44 — Eight independent sources, one synthesis
+
+> A research agent must gather facts from eight independent web sources and produce one synthesis. None of the sources depend on each other. Which dispatch pattern stays fast without flooding the coordinator context?
+
 **B.** Dispatch eight sub-agents in parallel, each returning a short structured summary with citations, then synthesize from the summaries.
 *Takeaway: independent work fans out in parallel; each worker returns a **compact structured** result so the coordinator's context survives the fan-in.*
 
 ### Q46 — Generic `analyze_document` tool, 35% re-request rate
+
+> The document analysis agent has a single `analyze_document` tool that takes a document and a free-text instruction parameter. During evaluation, requests like "extract the key financial metrics" often return narrative summaries, while "summarize the methodology" sometimes returns raw data tables. The synthesis agent reports that 35% of analysis results require re-requests with clarified instructions.
+>
+> What's the most effective way to improve reliability?
+
 **A.** Split the generic tool into purpose-specific tools—`extract_data_points`, `summarize_content`, `verify_claim_against_source`—each with defined input/output contracts.
 *Takeaway: a free-text instruction parameter is an unspecified contract. Ambiguous output → **fix the I/O contract**.*
 
@@ -154,14 +183,25 @@ The option shown is the keyed correct answer.
 > Source: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
 
 ### Q48 — Three subagents, duplicate findings
+
+> Three sub-agents searched overlapping territory and several findings repeat across their reports. Before synthesis, the coordinator should:
+
 **C.** Merge the reports, collapse duplicate findings, and keep one cited instance of each.
 *Takeaway: dedupe before synthesis, and keep the citation on the surviving copy.*
 
 ### Q51 — Pipeline crashed at 12 of 28 documents
+
+> Your multi-agent research pipeline crashed after processing 12 of 28 documents. The web search agent had identified relevant sources, the document analysis agent had partially completed extraction, and the synthesizer had begun pattern identification. You need to resume processing without repeating work or losing fidelity of prior findings.
+>
+> What state management approach best balances information fidelity with context efficiency when restoring agent state?
+
 **C.** Have each agent persist a structured report to a known location. On resume, the coordinator loads the reports and injects relevant state into agent prompts.
 *Takeaway: durable structured artifacts at known paths are the resumable unit — not transcripts, not in-memory state.*
 
 ### Q53 — What each finding must travel with
+
+> You are designing how sub-agents report findings so the final research output can be audited later. Each finding should travel with:
+
 **B.** The claim plus a reference to its source (URL or document id and location).
 *Takeaway: claim + locator. Auditability needs the location, not just the document.*
 

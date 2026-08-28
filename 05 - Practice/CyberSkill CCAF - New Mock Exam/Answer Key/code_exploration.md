@@ -13,7 +13,7 @@ status: done
 [← New Mock Exam index](../README.md) · [Questions](../Questions.md)
 
 > [!NOTE] Scope
-> The **15** questions tagged `code_exploration` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q1` here is `Question 1` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**.
+> The **15** questions tagged `code_exploration` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q1` here is `Question 1` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**. Each entry now reproduces its question stem verbatim from [Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 **Answers:** **Q1** C · **Q7** B · **Q9** B · **Q10** B · **Q11** B · **Q12** D · **Q14** B · **Q20** C · **Q31** D · **Q37** D · **Q38** B · **Q39** D · **Q42** C · **Q44** A · **Q50** D
 
@@ -24,6 +24,10 @@ _Twelve items were upgraded 📘/🤔 → ✅ on 2026-08-24 when the [Timed Mock
 ---
 
 ### Q1 — code_exploration
+
+> Your agent has spent 25 minutes exploring a game engine's rendering subsystem—reading shader code, buffer management, and frame synchronization logic. An engineer now asks it to understand how the physics engine integrates with rendering for collision debug overlays. You notice recent responses reference "typical rendering patterns" rather than the specific VulkanPipeline and FrameGraph classes it discovered earlier.
+>
+> What's the most effective approach?
 
 **Correct: C — "Summarize key rendering findings, then spawn a sub-agent for physics exploration with that summary in its initial context."**
 
@@ -41,6 +45,8 @@ The symptom — generic "typical rendering patterns" instead of the `VulkanPipel
 
 ### Q7 — code_exploration
 
+> An agent is dropped into an unfamiliar repository and asked to add a feature. The best way to orient without burning context is to:
+
 **Correct: B — "Read the entry points and project structure, then search for the area the feature touches."**
 
 Progressive, targeted exploration: establish a cheap high-level map, then narrow to the specific region using search. You load only what you need, in the order that makes each next read informed.
@@ -56,6 +62,8 @@ Progressive, targeted exploration: establish a cheap high-level map, then narrow
 ---
 
 ### Q9 — code_exploration
+
+> A README says the auth check happens in one module, but the agent must be sure before changing it. The agent should:
 
 **Correct: B — "Confirm in the current code where the auth check actually runs, then make the change there."**
 
@@ -73,6 +81,8 @@ Documentation is a claim about the code; the code is the code. Before a security
 
 ### Q10 — code_exploration
 
+> Before renaming a widely used function, an agent needs to know what a change would break. The right move is to:
+
 **Correct: B — "Search the codebase for all references first, then plan the change across the call sites."**
 
 Enumerate the blast radius before you touch anything. The reference list *is* the change plan, and it lets you spot the hard cases (dynamic dispatch, re-exports, tests, string references) while it's still cheap to adjust the approach.
@@ -88,6 +98,10 @@ Enumerate the blast radius before you touch anything. The reference list *is* th
 ---
 
 ### Q11 — code_exploration
+
+> An engineer asks your agent to identify untested code paths in a legacy payment processing module spanning 45 files. After reading the first 8 source files, the agent's responses are becoming noticeably less accurate—it's forgetting previously discussed code patterns and hasn't yet located all test files or traced critical payment flows.
+>
+> What's the most effective approach to complete this investigation?
 
 **Correct: B — "Spawn subagents to investigate specific questions (e.g., 'find all test files for payment processing', 'trace refund flow dependencies') while the main agent coordinates findings and preserves high-level understanding."**
 
@@ -105,6 +119,10 @@ Sub-agents each get their own context window, so the expensive file-reading happ
 
 ### Q12 — code_exploration
 
+> After adding an MCP server with specialized code refactoring tools (`extract_function`, `rename_variable`, `inline_function`), you notice the agent still uses basic text manipulation via Write and Bash sed commands for refactoring tasks. The MCP server is connected and healthy. Examining the configuration, you find each MCP tool has a minimal description like "`extract_function`: extracts a function from code."
+>
+> What's the most effective way to improve adoption of the MCP refactoring tools?
+
 **Correct: D — "Enhance the MCP tool descriptions to explain when each tool is preferable to text manipulation and clarify expected inputs and outputs."**
 
 Tool selection is driven by the tool description — it's the only thing the model sees when choosing. "`extract_function`: extracts a function from code" gives it no reason to prefer that over `Write`, which it already understands well. Fix the input to the decision, and the decision fixes itself.
@@ -120,6 +138,8 @@ Tool selection is driven by the tool description — it's the only thing the mod
 ---
 
 ### Q14 — code_exploration
+
+> A single source file is thousands of lines long and the agent needs one function from it. The agent should:
 
 **Correct: B — "Search within the file for the function and read only that region and its immediate dependencies."**
 
@@ -137,6 +157,10 @@ Targeted reads. You get the function plus the context needed to understand it (i
 
 ### Q20 — code_exploration
 
+> An engineer who just joined the team asks the agent to help them understand the authentication and authorization architecture before making security improvements. The codebase has 800+ files across multiple services.
+>
+> What exploration strategy will most effectively build understanding, given Claude built-in tools and context limits?
+
 **Correct: C — "Use Grep to find authentication entry points, read those files, then follow imports and function calls to map the auth flow incrementally."**
 
 Grounded, incremental tracing. Each read is chosen by what the previous read revealed, so context is spent only on files that are provably on the auth path — the right approach for 800+ files with a finite window.
@@ -152,6 +176,10 @@ Grounded, incremental tracing. Each read is chosen by what the previous read rev
 ---
 
 ### Q31 — code_exploration
+
+> An engineer used the agent yesterday to analyze a legacy authentication module, identifying two distinct refactoring approaches: extracting a microservice versus refactoring in-place. Today, they want to explore both approaches in depth—having the agent propose specific code changes for each—before deciding which to implement.
+>
+> What's the most effective way to structure this exploration?
 
 **Correct: D — "Use `fork_session` to create two branches from yesterday's analysis, exploring one approach in each fork."**
 
@@ -169,6 +197,14 @@ Two explorations need the *same* starting context and must not contaminate each 
 
 ### Q37 — code_exploration
 
+> After integrating a local MCP server providing code analysis tools (`analyze_dependencies`, `find_dead_code`, `calculate_complexity`), you verify the server is healthy and tools appear in the tools/list response. However, you observe that the agent consistently uses Grep to search for import statements instead of calling `analyze_dependencies`—even when users explicitly ask about "code dependencies." Examining tool definitions reveals:
+>
+> MCP: `analyze_dependencies` - "Analyzes dependency graph"
+>
+> Built-in: Grep - "Search file contents for a pattern using regular expressions. Returns matching lines with line numbers and surrounding context."
+>
+> What's the most effective approach to improve the agent's selection of MCP tools?
+
 **Correct: D — "Expand MCP tool descriptions to detail capabilities and outputs—e.g., 'Builds dependency graph showing direct imports, transitive dependencies, and cycles.'"**
 
 Compare the two descriptions in the question: Grep's spells out behaviour *and* return shape, while `analyze_dependencies` says "Analyzes dependency graph" and stops. The model is picking rationally on the information it has. Describe what the tool builds and returns, and it becomes the obviously better choice for dependency questions.
@@ -184,6 +220,10 @@ Compare the two descriptions in the question: Grep's spells out behaviour *and* 
 ---
 
 ### Q38 — code_exploration
+
+> An engineer asks the agent to understand how the caching layer works before adding a new cache invalidation trigger. After initial Grep searches, the agent has identified that caching logic spans 15 files including decorators, middleware, and service classes (~8,000 lines total).
+>
+> What's the most effective next step for building understanding while managing context constraints?
 
 **Correct: B — "Analyze imports and class hierarchies to identify the base cache class, Read that file to understand the interface, then trace specific invalidation implementations."**
 
@@ -201,6 +241,10 @@ Structure-first. Find the abstraction that the decorators, middleware, and servi
 
 ### Q39 — code_exploration
 
+> Your agent needs to insert a new helper function into the middle of a 150-line utility module, between two existing functions. The Edit tool fails because its `old_string` parameter cannot find unique text to match — the file has repetitive docstrings, variable names, and structural patterns.
+>
+> What's the most reliable way to complete this insertion?
+
 **Correct: D — "Use Read to load the file, add the function at the appropriate location, then Write the updated file."**
 
 At 150 lines the whole file fits comfortably in context. Read it, place the function exactly where it belongs, and write the complete file back — no uniqueness constraint to satisfy, and full control over the insertion point.
@@ -216,6 +260,10 @@ At 150 lines the whole file fits comfortably in context. Read it, place the func
 ---
 
 ### Q42 — code_exploration
+
+> Your codebase exploration tool stores session IDs to allow engineers to continue investigations across work sessions. An engineer spent an hour yesterday analyzing a legacy authentication module, building context about its architecture and dependencies. They want to continue today. The session ID is valid, but version control shows 3 of the 12 files the agent previously read were modified overnight by a teammate's merge.
+>
+> What approach best balances efficiency and accuracy?
 
 **Correct: C — "Resume the session and inform the agent which specific files changed for targeted re-analysis."**
 
@@ -233,6 +281,10 @@ Keeps the 9 files' worth of still-valid understanding and corrects only the 3 th
 
 ### Q44 — code_exploration
 
+> During testing, you observe that in extended exploration sessions (30+ minutes), the agent starts giving inconsistent answers about code structure it discussed earlier. Engineers report having to repeat context about modules they've already explored.
+>
+> What's the most effective approach to address this?
+
 **Correct: A — "Have the agent maintain a scratchpad file that records key findings, referencing it for subsequent questions."**
 
 An external file is memory that doesn't decay with the context window. Findings written down during exploration stay retrievable at minute 45 exactly as they were at minute 5, and re-reading a compact scratchpad costs a fraction of re-reading the source files.
@@ -248,6 +300,10 @@ An external file is memory that doesn't decay with the context window. Findings 
 ---
 
 ### Q50 — code_exploration
+
+> An engineer's exploration subagent spent 30 minutes analyzing a legacy payment system, reading 47 files and documenting data flows. The session was interrupted when the engineer's connection dropped. While away, a teammate merged a PR that renamed two utility functions. The engineer wants to continue the same exploration.
+>
+> What's the most effective approach?
 
 **Correct: D — "Resume the subagent from its previous transcript and inform it about the renamed functions."**
 

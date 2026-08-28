@@ -12,7 +12,7 @@ status: done
 
 **15 answers** — Q2, 5, 6, 7, 10, 12, 13, 14, 17, 24, 25, 27, 31, 42, 59. Scored **10/15 (67%)**.
 
-Question numbers are this sitting's own and interleave with the other domains; they match [../Questions.md](../Questions.md). Back to [../README.md](../README.md).
+Question numbers are this sitting's own and interleave with the other domains; they match [../Questions.md](../Questions.md). Back to [../README.md](../README.md). Every entry now reproduces its stem verbatim from [../Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 > [!NOTE] Every answer here is grader-authoritative
 > These are the site's own `correct_key` values as rendered on the review page. Where an item was answered correctly, the correct answer *is* the recorded selection. Distractors were not recoverable — see [../README.md](../README.md) § Fidelity.
@@ -131,42 +131,84 @@ Question numbers are this sitting's own and interleave with the other domains; t
 The option shown is the keyed correct answer.
 
 ### Q2 — Menus with inconsistent price/dietary formatting
+
+> Your extraction pipeline processes restaurant menus and must output structured JSON with fields for item names, descriptions, prices, and dietary tags. Some menus use inconsistent formatting—prices as "$12" vs "12.00", dietary info as icons vs text.
+>
+> What's the most reliable approach?
+
 **D.** Define a strict output schema and include format normalization rules in your prompt.
 *Takeaway: schema constrains the shape; the prompt carries the normalization rules. Both, not either.*
 
 ### Q5 — Which failure retries help LEAST
+
+> Your extraction system implements automatic retries when validation fails. On each retry, the specific validation error is appended to the prompt. This retry-with-error-feedback approach resolves most failures within 2-3 attempts.
+>
+> For which failure pattern would additional retries be LEAST effective?
+
 **D.** The model extracts "et al." for co-authors when the full list exists only in an external document not in the input.
 *Takeaway: retry-with-error-feedback fixes model mistakes, never missing input. Information not in the context cannot be retried into existence.*
 
 ### Q6 — `lookup_citations` fires before `extract_metadata`
+
+> Your pipeline uses a tool called `extract_metadata` with a JSON schema for paper details. You've also defined `lookup_citations` and `verify_doi` tools for enrichment. During testing, you notice that when users include requests like "extract the metadata and tell me how cited it is," Claude sometimes calls `lookup_citations` first, which fails because it needs the DOI that `extract_metadata` would provide.
+>
+> What's the most effective way to ensure structured metadata extraction happens first?
+
 **C.** Set `tool_choice` to `{"type": "tool", "name": "extract_metadata"}` and process the enrichment requests in subsequent turns after receiving the extracted metadata.
 *Takeaway: `tool_choice` forces the first call. Real ordering dependencies are enforced turn-by-turn, not by prompt pleading.*
 
 ### Q7 — Standard monthly vs urgent 30-minute reports
+
+> Your extraction system processes two document types: standard monthly reports (archived after processing) and urgent exception reports (must trigger business alerts within 30 minutes of receipt). Both use the same JSON schema. You want to minimize API costs while meeting latency requirements.
+>
+> How should you architect the processing pipeline?
+
 **D.** Route standard reports to the `Batch API` for 50% cost savings, and route urgent exception reports to the real-time `Messages API`.
 *Takeaway: split by latency requirement, not by document type. Same schema, two transports.*
 
 ### Q10 — Five priority levels, no invented labels
+
+> An extractor must label each support ticket with one of five priority levels. To stop the model from inventing new labels, you should:
+
 **B.** Constrain the field to the five allowed values in the schema or tool definition, and reject anything else.
 *Takeaway: enforce closed vocabularies in the schema, not in prose. Compare **Q59** for when the vocabulary is genuinely open-ended.*
 
 ### Q12 — Contract longer than the context window
+
+> A contract is too long to fit in one context window, and you need fields from across the whole document. The dependable approach is to:
+
 **B.** Chunk the document with slight overlap, extract per chunk, then merge and reconcile the fields.
 *Takeaway: overlap exists so facts straddling a boundary survive; reconciliation is a required step, not optional.*
 
 ### Q17 — Strongest integrity check on a receipt
+
+> An extractor pulls line items and an invoice total from a receipt. The strongest integrity check before accepting the output is to:
+
 **B.** Verify that the line items sum to the extracted total, and on a mismatch retry or flag the record.
 *Takeaway: the same rule as **Q13** — cross-check derivable values and route disagreements.*
 
 ### Q24 — Schema field absent from the source
+
+> A field the schema expects is simply not present in the source document. The extractor should:
+
 **B.** Return null for that field and mark it as not found, leaving the rest of the extraction intact.
 *Takeaway: null + explicit not-found marker. One missing field must not fail the whole record.*
 
 ### Q25 — Plausible-but-invented `attendee_count`
+
+> Your system extracts event metadata (date, location, organizer, `attendee_count`) from news articles using a JSON schema with all nullable fields. During evaluation, you observe the model frequently generates plausible but incorrect values for fields not mentioned in the article—for example, outputting "500" for `attendee_count` when the source contains no attendance information.
+>
+> What's the most effective way to reduce these false extractions?
+
 **B.** Add prompt instructions to return null for any field where information is not directly stated in the source.
 *Takeaway: nullable in the schema is permission, not instruction. You must also tell the model to prefer null over a guess.*
 
 ### Q31 — "materials" extracted inconsistently
+
+> Your extraction system parses e-commerce product descriptions to extract specifications like dimensions, weight, and materials into JSON. Despite having a well-defined schema, the model inconsistently extracts the "materials" field—sometimes returning "cotton blend", other times "Cotton/Polyester mix", and occasionally omitting the field when material information is clearly present in the source.
+>
+> What's the most effective way to improve extraction consistency?
+
 **D.** Add few-shot examples showing 2-3 complete input-output pairs with standardized material description formats.
 *Takeaway: format inconsistency on a present field → few-shot. Same rule as **Q14**.*
 

@@ -13,7 +13,7 @@ status: done
 [← New Mock Exam index](../README.md) · [Questions](../Questions.md)
 
 > [!NOTE] Scope
-> The **14** questions tagged `customer_support` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q2` here is `Question 2` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**.
+> The **14** questions tagged `customer_support` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q2` here is `Question 2` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**. Each entry now reproduces its question stem verbatim from [Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 **Answers:** **Q2** A · **Q6** C · **Q8** B · **Q15** A · **Q16** A · **Q23** B · **Q26** B · **Q30** C · **Q40** B · **Q41** C · **Q45** B · **Q54** A · **Q58** B · **Q59** B
 
@@ -24,6 +24,10 @@ _Twelve items were upgraded 📘/🤔 → ✅ on 2026-08-24 when the [Timed Mock
 ---
 
 ### Q2 — customer_support
+
+> You're implementing the escalation logic for when the agent should call `escalate_to_human`. Your team proposes four different approaches for triggering escalation.
+>
+> Which approach will most reliably identify cases that genuinely require human intervention?
 
 **Correct: A — "Instruct the agent to escalate when the customer requests a human, when the issue requires policy exceptions, or when the agent cannot make meaningful progress."**
 
@@ -41,6 +45,8 @@ These three triggers cover the genuinely distinct reasons a human is needed — 
 
 ### Q6 — customer_support
 
+> When the agent calls `lookup_order` and receives order details showing the item was purchased 45 days ago, how does the agentic loop determine whether to call `process_refund` or `escalate_to_human` next?
+
 **Correct: C — "The order details are added to the conversation and the model reasons about which action to take."**
 
 That *is* the agentic loop: the tool result is appended to the message history, the whole conversation goes back to the model, and the model decides the next step (another tool call, or a final answer). The 45-day fact only influences behaviour because the model reads and reasons over it.
@@ -56,6 +62,10 @@ That *is* the agentic loop: the tool result is appended to the message history, 
 ---
 
 ### Q8 — customer_support
+
+> When implementing your `lookup_order` MCP tool, the backend sometimes returns errors (e.g., "Order not found" or temporary database failures).
+>
+> What is the correct pattern for communicating these errors back to the agent?
 
 **Correct: B — "Return the error message in the tool result content with the isError flag set to true."**
 
@@ -73,6 +83,10 @@ This is the defined tool-result error contract. The error stays *inside* the con
 
 ### Q15 — customer_support
 
+> Production logs reveal inconsistent error handling: when `lookup_order` fails, the agent sometimes retries 5+ times (wasteful when the order ID doesn't exist), sometimes escalates immediately (premature for temporary network issues), and sometimes asks users for clarification (inappropriate when the issue is a backend permission error). Investigation shows your MCP tool returns uniform error responses: {"isError": true, "content": [{"type": "text", "text": "Operation failed"}]}. The agent cannot distinguish between error types.
+>
+> What's the most effective improvement?
+
 **Correct: A — "Enhance error responses with structured metadata: include errorCategory (transient/validation/permission), isRetryable boolean, and a description of what caused the failure."**
 
 All three misbehaviours share one root cause: `"Operation failed"` carries no information to act on, so the model guesses. Structured metadata makes the right action derivable — `isRetryable: true` → retry, `permission` → escalate, `validation` → ask the customer.
@@ -88,6 +102,10 @@ All three misbehaviours share one root cause: `"Operation failed"` carries no in
 ---
 
 ### Q16 — customer_support
+
+> Your `process_refund` tool returns two types of errors: technical errors ("503 Service Unavailable", "Connection timeout") that are transient (5% of calls), and business errors ("Order exceeds 30-day return window", "Item already refunded") that are permanent (12% of calls). Monitoring shows the agent wastes 3-4 turns retrying business errors that can never succeed. Currently, both error types return only a plain text message to Claude.
+>
+> What's the most effective way to reduce wasted retries while improving customer-facing response quality?
 
 **Correct: A — "Return structured error responses with retryable: false for business errors and a customer-friendly explanation for Claude to use."**
 
@@ -105,6 +123,8 @@ One change solves both stated problems. `retryable: false` stops the 3–4 waste
 
 ### Q23 — customer_support
 
+> A customer asks a simple question that the agent can answer directly from the knowledge base. The agent should:
+
 **Correct: B — "Answer the question directly and clearly, and offer escalation only if the customer needs more."**
 
 The agent has the answer in the knowledge base. Answer it, and keep the escalation path visible without forcing it. That's first-contact resolution.
@@ -120,6 +140,10 @@ The agent has the answer in the knowledge base. Answer it, and keep the escalati
 ---
 
 ### Q26 — customer_support
+
+> A customer returns 4 hours after their initial session about the same billing dispute. The previous 32-turn session contains `lookup_order` results showing "Status: PENDING, Expected resolution: 24-48 hours." In testing, you observe that when resuming sessions with stale tool results, the agent often references the outdated data in responses (e.g., "I see your refund is still being processed") even after subsequent fresh tool calls return different information.
+>
+> What approach most reliably handles returning customers?
 
 **Correct: B — "Start a new session, inject a structured summary of the previous interaction (issue type, actions taken, resolution status), then make fresh tool calls before engaging."**
 
@@ -137,6 +161,10 @@ The stale `Status: PENDING` result stops being a problem once it isn't in contex
 
 ### Q30 — customer_support
 
+> The agent verifies customer identity through a multi-step process before resetting passwords. During testing, you notice that after the customer answers the third verification question, the agent asks them to provide their name again, as if the earlier exchange never happened.
+>
+> What's the most likely cause of this behavior?
+
 **Correct: C — "The conversation history isn't being passed in subsequent API requests."**
 
 The API is **stateless**. Every request must carry the full prior message list; the model has no server-side memory of the earlier turns. An agent that forgets the answer to question one by question three is the textbook signature of history not being resent.
@@ -152,6 +180,8 @@ The API is **stateless**. Every request must carry the full prior message list; 
 ---
 
 ### Q40 — customer_support
+
+> A support agent order-status tool returns data that looks stale and contradicts what the customer sees. The agent should:
 
 **Correct: B — "Tell the customer the system shows a possibly outdated status, and verify or escalate before committing to it."**
 
@@ -169,6 +199,10 @@ Two sources disagree and the agent can't yet tell which is right. Being transpar
 
 ### Q41 — customer_support
 
+> Compliance requires that refunds exceeding $500 must automatically escalate to a human agent—this rule cannot be left to model discretion. Despite clear system prompt instructions, production logs show the agent occasionally processes high-value refunds directly (3% failure rate).
+>
+> How should you achieve guaranteed compliance?
+
 **Correct: C — "Implement a hook to intercept tool calls; when the refund process amount exceeds $500, block it and invoke human escalation."**
 
 The requirement says the rule "cannot be left to model discretion," and a hook is the only option that removes discretion. It runs deterministically *before* the tool executes, so the 3% failure rate goes to 0% by construction — this is a control-plane problem, not a prompting problem.
@@ -184,6 +218,8 @@ The requirement says the rule "cannot be left to model discretion," and a hook i
 ---
 
 ### Q45 — customer_support
+
+> A frustrated customer demands a refund that the policy does not allow. The best response is to:
 
 **Correct: B — "Acknowledge the frustration, state the policy plainly, and offer the options that do exist."**
 
@@ -201,6 +237,10 @@ The complete response: recognise the emotion, be honest about the constraint, an
 
 ### Q54 — customer_support
 
+> Your agent has called `lookup_order` multiple times while investigating a customer's return requests. Each response includes 40+ fields (items, shipping details, payment info, status history). Tool outputs now represent the majority of the conversation's context. The customer mentions two more orders they want to discuss.
+>
+> What's the most effective approach before making additional lookups?
+
 **Correct: A — "Extract only return-relevant fields (items, purchase date, return window, status) from each existing order response, removing verbose details"**
 
 Prune before you add. The task is a return request, so shipping details, payment info, and status history are dead weight — dropping them reclaims most of the context while keeping everything the conversation actually uses, making room for the two new lookups.
@@ -217,6 +257,8 @@ Prune before you add. The task is a return request, so shipping details, payment
 
 ### Q58 — customer_support
 
+> A user asks a support agent for specific legal advice about a contract dispute. The right behavior is to:
+
 **Correct: B — "Say plainly this is outside what support can advise on, and point the user to the right resource or a human."**
 
 Legal advice on a contract dispute is outside a support agent's scope and carries real liability. Naming the boundary clearly and redirecting to somewhere that *can* help is honest and still useful.
@@ -232,6 +274,8 @@ Legal advice on a contract dispute is outside a support agent's scope and carrie
 ---
 
 ### Q59 — customer_support
+
+> An agent has tried three times to resolve a billing issue and the customer is still stuck. The right next step is to:
 
 **Correct: B — "Escalate to a human with the full history and what has been tried, so the customer does not start over."**
 

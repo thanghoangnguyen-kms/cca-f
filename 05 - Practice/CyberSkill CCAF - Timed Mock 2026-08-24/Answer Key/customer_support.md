@@ -12,7 +12,7 @@ status: done
 
 **14 answers** — Q1, 3, 16, 18, 19, 20, 23, 26, 33, 34, 36, 38, 41, 60. Scored **8/14 (57%)** — the weakest domain of this sitting.
 
-Question numbers are this sitting's own and interleave with the other domains; they match [../Questions.md](../Questions.md). Back to [../README.md](../README.md).
+Question numbers are this sitting's own and interleave with the other domains; they match [../Questions.md](../Questions.md). Back to [../README.md](../README.md). Every entry now reproduces its stem verbatim from [../Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 > [!NOTE] Scope and provenance
 > Every answer here is the site's own `correct_key` as rendered on the review page, not a reasoned reconstruction — where an item was answered correctly, the correct answer *is* the recorded selection. **Distractors are not recoverable:** the page renders only your selection and the correct option, so this key says why the right answer wins but not why *each* wrong option fails. See [../README.md](../README.md) § Fidelity.
@@ -54,7 +54,9 @@ This is the easiest question in the sitting and a free mark. Any option that has
 
 ### Q23 — Angry customer demanding a human immediately
 
-> "This is frustrating. I've explained my issue twice and nothing is being resolved. I want to talk to a real person NOW." The agent has not yet called any tools.
+> A customer sends: "This is frustrating. I've explained my issue twice and nothing is being resolved. I want to talk to a real person NOW." The agent has not yet called any tools to investigate their account.
+>
+> What should the agent do?
 
 - **Correct: A.** Acknowledge the frustration and ask one targeted question to understand the specific issue before escalating.
 - **You answered D.** "First call `get_customer` and `lookup_order` to gather account context, then escalate to a human agent."
@@ -72,6 +74,8 @@ This is the easiest question in the sitting and a free mark. Any option that has
 
 ### Q38 — Designing the escalation trigger
 
+> You're implementing the escalation logic for when the agent should call `escalate_to_human`. Your team proposes four different approaches for triggering escalation.
+>
 > Which approach will most reliably identify cases that genuinely require human intervention?
 
 - **Correct: A.** Instruct the agent to escalate when the customer requests a human, when the issue requires policy exceptions, or when the agent cannot make meaningful progress.
@@ -88,7 +92,9 @@ This is the easiest question in the sitting and a free mark. Any option that has
 
 ### Q41 — Three issues, one session, near the context limit
 
-> Refund (turns 1-15), subscription (16-30), payment method (31-45). At turn 48 the customer asks "What happened with my refund?"
+> A customer raises three separate issues during one session: a refund inquiry (turns 1-15), a subscription question (turns 16-30), and a payment method update (turns 31-45). At turn 48, the customer asks "What happened with my refund?" The conversation is approaching context limits.
+>
+> What strategy best maintains the agent's ability to address all issues throughout the session?
 
 - **Correct: C.** Summarize earlier turns into a narrative description, preserving full message history only for the active issue.
 - **You answered A.** "Extract and persist structured issue data (order IDs, amounts, statuses) into a separate context layer."
@@ -104,7 +110,9 @@ This is the easiest question in the sitting and a free mark. Any option that has
 
 ### Q60 — MCP tool error contract
 
-> When implementing your `lookup_order` MCP tool, the backend sometimes returns errors ("Order not found", temporary database failures). What is the correct pattern for communicating these errors back to the agent?
+> When implementing your `lookup_order` MCP tool, the backend sometimes returns errors (e.g., "Order not found" or temporary database failures).
+>
+> What is the correct pattern for communicating these errors back to the agent?
 
 - **Correct: B.** Return the error message in the tool result content with the `isError` flag set to `true`.
 - **You answered D.** "Return a success response with a `status` field indicating the error type."
@@ -133,34 +141,68 @@ This is the easiest question in the sitting and a free mark. Any option that has
 Recorded for completeness and re-drilling — the option shown is the keyed correct answer.
 
 ### Q1 — Stale tool data contradicting the customer
+
+> A support agent order-status tool returns data that looks stale and contradicts what the customer sees. The agent should:
+
 **B.** Tell the customer the system shows a possibly outdated status, and verify or escalate before committing to it.
 *Takeaway: surface uncertainty rather than asserting stale data as fact. Pairs with Q34.*
 
 ### Q3 — Simple question answerable from the knowledge base
+
+> A customer asks a simple question that the agent can answer directly from the knowledge base. The agent should:
+
 **B.** Answer the question directly and clearly, and offer escalation only if the customer needs more.
 *Takeaway: escalation is not a hedge. Don't route what you can resolve.*
 
 ### Q16 — Handing off a $847 refund beyond a $500 limit
+
+> After investigating a billing dispute over 25+ turns, you've identified that duplicate charges occurred due to a payment gateway timeout triggering retry logic. The required refund ($847) exceeds your $500 authorization limit. You need to call `escalate_to_human`, and the human agent won't have access to your conversation transcript.
+>
+> What context should you pass to enable effective resolution?
+
 **B.** A structured summary: customer ID, root cause, refund amount, and recommended action.
 *Takeaway: the human has no transcript. Hand off structured conclusions, not raw history — and include the recommendation.*
 
 ### Q20 — Uniform error responses defeating error handling
+
+> Production logs reveal inconsistent error handling: when `lookup_order` fails, the agent sometimes retries 5+ times (wasteful when the order ID doesn't exist), sometimes escalates immediately (premature for temporary network issues), and sometimes asks users for clarification (inappropriate when the issue is a backend permission error). Investigation shows your MCP tool returns uniform error responses: `{"isError": true, "content": [{"type": "text", "text": "Operation failed"}]}`. The agent cannot distinguish between error types.
+>
+> What's the most effective improvement?
+
 **A.** Enhance error responses with structured metadata: `errorCategory` (transient/validation/permission), `isRetryable` boolean, and a description of what caused the failure.
 *Takeaway: the agent can only branch on distinctions the tool actually reports. Read with **Q60**.*
 
 ### Q26 — Agent re-asks for a name mid-verification
+
+> The agent verifies customer identity through a multi-step process before resetting passwords. During testing, you notice that after the customer answers the third verification question, the agent asks them to provide their name again, as if the earlier exchange never happened.
+>
+> What's the most likely cause of this behavior?
+
 **C.** The conversation history isn't being passed in subsequent API requests.
 *Takeaway: the API is stateless. Amnesia between turns is almost always the caller failing to resend full history — not a model or context-limit problem.*
 
 ### Q33 — Tool outputs dominating the context
+
+> Your agent has called `lookup_order` multiple times while investigating a customer's return requests. Each response includes 40+ fields (items, shipping details, payment info, status history). Tool outputs now represent the majority of the conversation's context. The customer mentions two more orders they want to discuss.
+>
+> What's the most effective approach before making additional lookups?
+
 **A.** Extract only return-relevant fields (items, purchase date, return window, status) from each existing order response, removing verbose details.
 *Takeaway: prune tool results to the fields the task needs before adding more calls.*
 
 ### Q34 — Customer returns 4 hours later; stale tool results
+
+> A customer returns 4 hours after their initial session about the same billing dispute. The previous 32-turn session contains `lookup_order` results showing "Status: PENDING, Expected resolution: 24-48 hours." In testing, you observe that when resuming sessions with stale tool results, the agent often references the outdated data in responses (e.g., "I see your refund is still being processed") even after subsequent fresh tool calls return different information.
+>
+> What approach most reliably handles returning customers?
+
 **B.** Start a new session, inject a structured summary of the previous interaction (issue type, actions taken, resolution status), then make fresh tool calls before engaging.
 *Takeaway: resuming a session resurrects stale tool results, which then compete with fresh ones. Fresh session + summary + re-query.*
 
 ### Q36 — Three failed attempts on a billing issue
+
+> An agent has tried three times to resolve a billing issue and the customer is still stuck. The right next step is to:
+
 **B.** Escalate to a human with the full history and what has been tried, so the customer does not start over.
 *Takeaway: "no meaningful progress" is a genuine escalation trigger (**Q38**), and the handoff must carry what was already tried.*
 

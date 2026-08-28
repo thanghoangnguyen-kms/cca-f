@@ -18,11 +18,18 @@ status: done
 Primary domains per the official guide: **D3 (Claude Code Configuration & Workflows)** and **D4 (Prompt Engineering & Structured Output)**.
 
 > [!NOTE] Vault-authored, not from a bank
-> Derived from the exam guide's task statements 3.6, 4.1, 4.2, 4.4 and 4.6. See [../README.md](../README.md) § Provenance.
+> Derived from the exam guide's task statements 3.6, 4.1, 4.2, 4.4 and 4.6. See [../README.md](../README.md) § Provenance. Each entry now reproduces its question and options verbatim from [../Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 ---
 
 ## Q11 — Regex parsing prose findings keeps breaking → **B**
+
+> Your review job currently prints prose findings to the build log, and a brittle regex in your pipeline script tries to turn them into inline PR comments. It breaks whenever the phrasing shifts. What is the correct fix?
+>
+> - **A.** Instruct Claude in the prompt to always emit findings as a Markdown table with fixed columns
+> - **B.** Run the review with `--output-format json` and `--json-schema` to produce machine-parseable structured findings
+> - **C.** Switch the job to the Message Batches API, whose responses are already structured
+> - **D.** Pipe the output through a second Claude Code invocation that converts prose into JSON
 
 **B.** `--output-format json` with `--json-schema`.
 
@@ -39,6 +46,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q12 — Bot re-posts the same comments after each push → **C**
+
+> Your review job re-runs on every push. Developers complain that after pushing a fix, the bot re-posts the same comments it posted on the previous commit, alongside any new ones. How should the pipeline handle this?
+>
+> - **A.** Only run the review on the first push of a pull request
+> - **B.** Deduplicate posted comments in the pipeline by hashing the finding text
+> - **C.** Include the prior review findings in context and instruct Claude to report only new or still-unaddressed issues
+> - **D.** Reduce the review scope to the diff of the latest commit rather than the whole PR
 
 **C.** Include prior review findings in context and instruct Claude to report only new or still-unaddressed issues.
 
@@ -60,6 +74,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q13 — Generated tests duplicate existing coverage → **B**
 
+> Your CI test-generation job produces test cases that substantially duplicate scenarios the existing suite already covers. The generated tests are correct — just redundant. What is the most effective change?
+>
+> - **A.** Instruct the prompt to "avoid generating duplicate tests"
+> - **B.** Provide the existing test files in context so generation can see what is already covered
+> - **C.** Run generation through a second pass that removes duplicates before opening the PR
+> - **D.** Restrict generation to files whose test coverage is measured below a threshold
+
 **B.** Provide the existing test files in context.
 
 **Why B wins.** *"Providing existing test files in context so test generation avoids suggesting duplicate scenarios already covered"* is the exam guide's own phrasing. The model isn't producing bad tests — it can't see what already exists.
@@ -75,6 +96,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q14 — Where CI-invoked Claude Code should read team standards → **C**
+
+> The tests your CI job generates are syntactically fine but low-value: they assert trivia, ignore your fixture conventions, and don't reflect what your team considers worth testing. The criteria are repo-wide judgments about what your team considers worth testing, and don't attach to any one file path. Where should these standards, fixture conventions, and valuable-test criteria live so that CI-invoked Claude Code picks them up?
+>
+> - **A.** In the pipeline's prompt string, passed with `-p` on every invocation
+> - **B.** In `.claude/rules/` with a `paths:` glob matching the test files
+> - **C.** In `CLAUDE.md`, as project context for the repository
+> - **D.** In a skill under `.claude/skills/` that the pipeline invokes before generation
 
 **C.** `CLAUDE.md`.
 
@@ -95,6 +123,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q15 — Same session generates then reviews → **B**
 
+> Your pipeline generates an implementation, then — in the same session — asks Claude to review what it just produced. The reviews are consistently shallow and rarely find real problems. What is the root cause, and the fix?
+>
+> - **A.** The review prompt is under-specified; add explicit review criteria to the same session
+> - **B.** The model retains its generation reasoning and is unlikely to question its own decisions — use an independent review instance without that context
+> - **C.** The session has accumulated too much context; run `/compact` before the review step
+> - **D.** Reviews need extended thinking enabled; the same session is fine once it can reason longer
+
 **B.** The model retains its generation reasoning and won't question its own decisions — use an **independent review instance**.
 
 **Why B wins.** Task statements 3.6 and 4.6 both name it: a session that generated the code is *"less effective at reviewing its own changes compared to an independent review instance"*, and independent instances *"are more effective at catching subtle issues than self-review instructions or extended thinking."*
@@ -110,6 +145,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q16 — "Be conservative" doesn't cut false positives → **B**
+
+> Your review bot reports too many false positives. You've already added *"be conservative"* and *"only report high-confidence findings"* to the prompt, with no measurable improvement. What actually works?
+>
+> - **A.** Have the model attach a confidence score to each finding and filter below a threshold
+> - **B.** Write specific categorical criteria defining which issues to report (bugs, security) and which to skip (minor style, local patterns)
+> - **C.** Run the review three times and report only findings that appear in every run
+> - **D.** Lower the temperature so the model's judgments become more conservative
 
 **B.** Specific categorical criteria: which issues to report (bugs, security) versus skip (minor style, local patterns).
 
@@ -127,6 +169,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q17 — One bad category poisoning trust in four good ones → **C**
 
+> Of your five review categories, four are accurate and one — "comment accuracy" — is wrong most of the time. Developers have started ignoring *all* the bot's comments, including the accurate ones. You need a prompt rewrite for that category but it will take a sprint. What should you do meanwhile?
+>
+> - **A.** Keep all categories running; suppressing findings risks missing a real issue
+> - **B.** Post the comment-accuracy findings as non-blocking suggestions rather than review comments
+> - **C.** Temporarily disable the comment-accuracy category to restore trust while you improve its prompt
+> - **D.** Route comment-accuracy findings to a separate report only the tech lead reads
+
 **C.** Temporarily disable the comment-accuracy category while you improve its prompt.
 
 **Why C wins.** The exam guide names both the effect and the remedy: *"high false positive categories undermine confidence in accurate categories"*, and the skill is *"temporarily disabling high false-positive categories to restore developer trust while improving prompts for those categories."* Developer trust is the asset being protected.
@@ -142,6 +191,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q18 — Inconsistent severity labels → **B**
+
+> Severity labels from your review job are inconsistent: the same class of issue is marked `critical` in one PR and `minor` in another. Your prompt currently says *"assign a severity of critical, major, or minor based on impact."* What most improves consistency?
+>
+> - **A.** Reduce the scale to two levels — `blocking` and `non-blocking`
+> - **B.** Define explicit severity criteria with a concrete code example for each level
+> - **C.** Have a second Claude instance re-grade severities after the first pass
+> - **D.** Compute severity in the pipeline from the file path and change size, not from the model
 
 **B.** Explicit severity criteria with a concrete code example for each level.
 
@@ -159,6 +215,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q19 — Format inconsistent despite detailed instructions → **A**
 
+> Your findings are accurate but formatted inconsistently — some name a file and line, some don't; some suggest a fix, some only describe the problem. Your prompt already spells out the required format in detail. What is the most effective technique to get consistent, actionable output?
+>
+> - **A.** Add few-shot examples demonstrating the exact output shape: location, issue, severity, suggested fix
+> - **B.** Repeat the format requirements at both the start and end of the prompt
+> - **C.** Split each finding into its own request so the model has less to track
+> - **D.** Move the format requirements into `CLAUDE.md` so they're always loaded
+
 **A.** Few-shot examples showing location, issue, severity, suggested fix.
 
 **Why A wins.** The exam guide calls few-shot *"the most effective technique for achieving consistently formatted, actionable output when detailed instructions alone produce inconsistent results"* — and names that exact four-part shape as the example. The stem's *"already spells out the required format in detail"* is the precondition that selects few-shot over more instruction.
@@ -174,6 +237,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q20 — Systematically analyzing dismissed findings → **B**
+
+> Developers dismiss roughly a third of your bot's findings. You want to know *systematically* which code constructs are producing the dismissed ones, so you can target prompt fixes rather than guess. What should you change in the structured output?
+>
+> - **A.** Add a `confidence` field so you can correlate dismissals with low confidence
+> - **B.** Add a `detected_pattern` field recording which code construct triggered the finding
+> - **C.** Add a free-text `reasoning` field so you can read the model's justification per finding
+> - **D.** Add a `severity` field and analyze dismissals by severity level
 
 **B.** A `detected_pattern` field recording which code construct triggered the finding.
 

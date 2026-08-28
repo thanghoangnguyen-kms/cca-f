@@ -17,11 +17,18 @@ status: done
 Primary domains per the official guide: **D3 (Claude Code Configuration & Workflows)** and **D5 (Context Management & Reliability)**.
 
 > [!NOTE] Vault-authored, not from a bank
-> Every item is derived from the exam guide's own task statements and verified against `D3`. See [../README.md](../README.md) § Provenance.
+> Every item is derived from the exam guide's own task statements and verified against `D3`. See [../README.md](../README.md) § Provenance. Each entry now reproduces its question and options verbatim from [../Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 ---
 
 ## Q1 — New engineer doesn't get the team's conventions → **B**
+
+> A new engineer joins the team. Everyone else's Claude Code sessions consistently apply the team's error-handling conventions, but theirs doesn't — despite having pulled the same repository. The conventions were written by the tech lead six months ago and have worked ever since. What is the most likely cause?
+>
+> - **A.** The new engineer needs to run `/init` to generate project configuration before the conventions apply
+> - **B.** The conventions live in the tech lead's `~/.claude/CLAUDE.md`, which is user-level and not shared via version control
+> - **C.** The repository's `CLAUDE.md` exceeds the size limit and is being silently truncated for new sessions
+> - **D.** Directory-level `CLAUDE.md` files only load after a session has visited that directory once
 
 **B.** The conventions live in the tech lead's `~/.claude/CLAUDE.md` — user-level, not shared via version control.
 
@@ -38,6 +45,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q2 — Diagnosing inconsistent behavior across projects → **C**
+
+> Claude Code behaves inconsistently between two of your projects — in one it follows your personal commit-message convention, in the other it ignores it. Before changing any configuration, which command does the exam guide name for verifying **which memory files are loaded** across the two projects?
+>
+> - **A.** Run `/context` to see the token breakdown of the current session
+> - **B.** Run `/compact` to reset accumulated context, then re-test the behavior
+> - **C.** Run `/memory` to see which memory files are loaded
+> - **D.** Add `@import` statements to both projects so the configuration is explicit
 
 **C.** Run `/memory`.
 
@@ -60,6 +74,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q3 — Monorepo, eight packages, standards files already exist → **B**
 
+> A monorepo has eight packages. Each maintainer knows which coding standards apply to their package, and the standards documents already exist as separate Markdown files. The root `CLAUDE.md` has grown to include all of them and is now unwieldy. What is the most maintainable structure?
+>
+> - **A.** Keep everything in the root `CLAUDE.md` but reorganize under clear per-package headers
+> - **B.** Use `@import` in each package's `CLAUDE.md` to pull in only the standards files relevant to that package
+> - **C.** Move every standards file into `.claude/skills/` so Claude loads them on demand
+> - **D.** Duplicate the relevant standards inline into each package's `CLAUDE.md` so nothing depends on file resolution
+
 **B.** `@import` in each package's `CLAUDE.md`, pulling in only the relevant standards files.
 
 **Why B wins.** `@import` exists to keep `CLAUDE.md` **modular** — referencing external files instead of inlining them. The stem supplies both preconditions the exam guide names: the standards files already exist, and *"each maintainer knows which standards apply"* — maintainer domain knowledge driving selective inclusion.
@@ -75,6 +96,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q4 — One `CLAUDE.md` covering three unrelated topics → **A**
+
+> Your project's root `CLAUDE.md` has grown to cover testing conventions, API conventions, and deployment procedures in one file. You want the content organized by topic without losing coverage. What is the recommended approach?
+>
+> - **A.** Split it into topic-specific files in `.claude/rules/` — `testing.md`, `api-conventions.md`, `deployment.md`
+> - **B.** Split it into `.claude/commands/testing.md`, `.claude/commands/api.md`, and so on
+> - **C.** Move each topic into its own subdirectory `CLAUDE.md` at the directory where it applies
+> - **D.** Keep one file — splitting `CLAUDE.md` means only the last-loaded file takes effect
 
 **A.** Split into topic-specific files in `.claude/rules/`.
 
@@ -95,6 +123,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q5 — Skill floods the main conversation → **B**
 
+> You've built a `.claude/skills/` skill that analyzes the codebase and reports architectural findings. It works, but it dumps thousands of tokens of exploration output into the main conversation, and subsequent work in the session degrades. Which frontmatter option addresses this?
+>
+> - **A.** `allowed-tools: [Read, Grep, Glob]` to limit how much the skill can read
+> - **B.** `context: fork` to run the skill in an isolated sub-agent context
+> - **C.** `argument-hint` to require a narrower scope before the skill runs
+> - **D.** `model: haiku` so the exploration consumes fewer tokens
+
 **B.** `context: fork`.
 
 **Why B wins.** `context: fork` runs the skill in an **isolated sub-agent context**, so its output doesn't pollute the main conversation. The exam guide names verbose codebase analysis as the canonical case.
@@ -110,6 +145,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q6 — Restricting a skill's tool access → **D**
+
+> A team skill automates a database-migration workflow. During review, someone points out that a mis-generated step could run a destructive command. You want this handled by the skill's **configuration**, not by an instruction in its body. Which frontmatter field does the exam guide name for restricting a skill's tool access?
+>
+> - **A.** A `PreToolUse` hook in the skill's `SKILL.md` frontmatter
+> - **B.** A `[!WARNING]` block at the top of the skill body stating that destructive commands are forbidden
+> - **C.** `context: fork`, so any destructive action is contained to the sub-agent
+> - **D.** `allowed-tools` in the skill frontmatter, restricting it to the operations it legitimately needs
 
 **D.** `allowed-tools` in the skill frontmatter.
 
@@ -136,6 +178,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q7 — Skill invoked without required parameters → **A**
 
+> Developers keep invoking your `/scaffold` skill with no arguments, then getting a generic result because the skill doesn't know which component type to scaffold. You want Claude Code to prompt them for the parameter at invocation time. What do you add?
+>
+> - **A.** `argument-hint` frontmatter naming the expected parameter
+> - **B.** A required-parameters section in the skill body
+> - **C.** `context: fork`, so the skill can ask clarifying questions in isolation
+> - **D.** A `PreToolUse` hook that blocks the skill until arguments are supplied
+
 **A.** `argument-hint` frontmatter.
 
 **Why A wins on the exam.** The guide's skill bullet is the stem restated: *"using `argument-hint` frontmatter to prompt developers for required parameters when they invoke the skill without arguments."*
@@ -157,6 +206,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q8 — Personal variant of a shared skill → **B**
 
+> Your team shares a `/review` skill in `.claude/skills/`. You want a personal variant with a stricter checklist, without changing what your teammates get. What should you do?
+>
+> - **A.** Edit `.claude/skills/review/SKILL.md` and add a conditional branch for your username
+> - **B.** Create a variant under `~/.claude/skills/` with a different name
+> - **C.** Add your stricter checklist to `~/.claude/CLAUDE.md` so it layers on top of the shared skill
+> - **D.** Fork the repository and maintain your version on a personal branch
+
 **B.** A variant under `~/.claude/skills/` **with a different name**.
 
 **Why B wins.** User-scoped skills aren't version-controlled, so teammates are unaffected. The **different name** is part of the guide's own phrasing, and the reason is precedence rather than ambiguity: personal skills **override** project skills, so a same-named variant would silently shadow the team's version *for you* — you'd lose access to the shared skill without noticing.
@@ -172,6 +228,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q9 — One-line null-date fix with a clear stack trace → **C**
+
+> A production bug produces a clear stack trace pointing at a single function that fails to handle a null date. The fix is one conditional. Which approach is appropriate?
+>
+> - **A.** Plan mode, so the change is explored and designed before any edit is made
+> - **B.** Plan mode for investigation, then direct execution for the one-line change
+> - **C.** Direct execution — the scope is clear and well-understood
+> - **D.** Spawn an `Explore` subagent to trace the null's origin before deciding
 
 **C.** Direct execution.
 
@@ -191,6 +254,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 ---
 
 ## Q10 — Prose keeps being interpreted inconsistently → **C**
+
+> You've described a data-transformation requirement in prose three times, and each time Claude produces a slightly different interpretation of the edge cases. The requirement itself is stable — your description of it isn't landing. What is the most effective next step?
+>
+> - **A.** Restate the requirement more precisely and add "be careful with edge cases"
+> - **B.** Move the requirement into `CLAUDE.md` so it is always loaded
+> - **C.** Provide 2–3 concrete input/output example pairs showing the expected transformation
+> - **D.** Ask Claude to write a specification first, then implement against its own specification
 
 **C.** Provide 2–3 concrete input/output example pairs.
 

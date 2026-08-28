@@ -13,7 +13,7 @@ status: done
 [← New Mock Exam index](../README.md) · [Questions](../Questions.md)
 
 > [!NOTE] Scope
-> The **15** questions tagged `research_pipeline` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q5` here is `Question 5` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**.
+> The **15** questions tagged `research_pipeline` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q5` here is `Question 5` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**. Each entry now reproduces its question stem verbatim from [Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 **Answers:** **Q5** C · **Q17** B · **Q24** B · **Q25** C · **Q28** B · **Q29** D · **Q32** C · **Q34** B · **Q43** A · **Q47** B · **Q48** C · **Q52** C · **Q53** B · **Q55** C · **Q60** C
 
@@ -24,6 +24,8 @@ _Twelve items were upgraded 📘/🤔 → ✅ on 2026-08-24 when the [Timed Mock
 ---
 
 ### Q5 — research_pipeline
+
+> Three sub-agents searched overlapping territory and several findings repeat across their reports. Before synthesis, the coordinator should:
 
 **Correct: C — "Merge the reports, collapse duplicate findings, and keep one cited instance of each."**
 
@@ -41,6 +43,8 @@ De-duplication is the coordinator's job precisely because it is the only compone
 
 ### Q17 — research_pipeline
 
+> A research agent must gather facts from eight independent web sources and produce one synthesis. None of the sources depend on each other. Which dispatch pattern stays fast without flooding the coordinator context?
+
 **Correct: B — "Dispatch eight sub-agents in parallel, each returning a short structured summary with citations, then synthesize from the summaries."**
 
 The sources are independent, so fan-out is free latency-wise, and each sub-agent absorbs the raw page in its *own* context. The coordinator only ever sees eight compact cited summaries — fast and context-light at the same time.
@@ -56,6 +60,8 @@ The sources are independent, so fan-out is free latency-wise, and each sub-agent
 ---
 
 ### Q24 — research_pipeline
+
+> You are designing how sub-agents report findings so the final research output can be audited later. Each finding should travel with:
 
 **Correct: B — "The claim plus a reference to its source (URL or document id and location)."**
 
@@ -73,6 +79,10 @@ Auditability means a reader can trace any claim back to where it came from. Pair
 
 ### Q25 — research_pipeline
 
+> A user is expanding the research system beyond its single web search agent by adding specialized data sources. They add a financial API agent that returns structured JSON with revenue, margins, and growth rates; a news monitoring agent that returns prose summaries of recent developments; and a patent analysis agent that returns structured lists of technology areas. The synthesis agent combines these into executive briefings. Currently, it converts everything to bullet points, causing financial comparisons to lose tabular clarity and news summaries to lose narrative flow.
+>
+> What change would most improve briefing quality?
+
 **Correct: C — "Update the synthesis agent to render each content type appropriately—financial data as tables, news as prose."**
 
 Different content has different natural form. Financial comparisons need tabular alignment; news needs narrative. Fix the *rendering* stage — the one place that knows it's producing an executive briefing — rather than flattening everything upstream.
@@ -88,6 +98,10 @@ Different content has different natural form. Financial comparisons need tabular
 ---
 
 ### Q28 — research_pipeline
+
+> In production, final reports frequently contain claims without proper source attribution. Investigation shows that while the web search and document analysis agents correctly attach citations to their outputs, the synthesis agent loses track of which sources support which conclusions when combining findings.
+>
+> What's the most effective architectural change?
 
 **Correct: B — "Require all subagents to output structured claim-source mappings that the synthesis agent must preserve and merge when combining findings."**
 
@@ -105,6 +119,10 @@ Attribution is lost at the merge step, so bind claims to sources in a structure 
 
 ### Q29 — research_pipeline
 
+> The coordinator provides detailed step-by-step instructions to the web search subagent, specifying exact search queries, source priorities, and date filters. Production monitoring reveals three issues: (1) the subagent reports "insufficient results" rather than trying alternative approaches when pre-specified searches fail, (2) research quality drops for emerging topics that don't match expected patterns, and (3) the subagent rarely surfaces valuable tangential sources.
+>
+> What's the most effective way to improve subagent adaptability?
+
 **Correct: D — "Specify research goals and quality criteria (coverage breadth, source diversity, recency) rather than procedural steps, letting the subagent determine its search strategy."**
 
 All three symptoms trace to over-specification: the sub-agent executes your queries rather than pursuing your objective, so it has no mandate to adapt when the queries miss. Delegate the *goal* plus measurable quality criteria and the sub-agent can reformulate, handle emerging topics, and follow promising tangents — because those now serve the brief instead of violating it.
@@ -120,6 +138,10 @@ All three symptoms trace to over-specification: the sub-agent executes your quer
 ---
 
 ### Q32 — research_pipeline
+
+> In production, you observe that simple fact-checking queries (e.g., "What year was the Paris Climate Agreement signed?") traverse all four subagents sequentially, consuming 40+ seconds and significant tokens per query. Complex comparative research benefits from the full pipeline. Your query distribution is diverse and evolving as users discover new applications.
+>
+> What's the most effective approach to optimize for varying query complexity?
 
 **Correct: C — "Have the coordinator analyze each query and dynamically decide which subagents to invoke based on its assessment of query requirements."**
 
@@ -137,6 +159,8 @@ The query distribution is "diverse and evolving," which rules out anything that 
 
 ### Q34 — research_pipeline
 
+> A research agent keeps spawning follow-up searches and the run is not converging. The most reliable way to prevent an endless loop is to:
+
 **Correct: B — "Give the task an explicit budget and a coverage check, and stop once the questions are answered or the budget is spent."**
 
 Two independent stopping conditions: a *semantic* one (the research questions are answered) that ends the run when the work is genuinely done, and a *resource* one (the budget) that guarantees termination even when it isn't. That combination is what makes non-convergence impossible rather than merely unlikely.
@@ -152,6 +176,10 @@ Two independent stopping conditions: a *semantic* one (the research questions ar
 ---
 
 ### Q43 — research_pipeline
+
+> When researching "renewable energy adoption," the web search agent returns recent statistics (2024: 35% adoption) while the document analysis agent extracts data from internal reports (2022: 18% adoption). The synthesis agent incorrectly flags these as contradictory sources rather than recognizing the data shows growth over time.
+>
+> What change would best enable the synthesis agent to correctly interpret such temporal differences?
 
 **Correct: A — "Require subagents to include publication or data collection dates in their structured outputs."**
 
@@ -169,6 +197,10 @@ The 35% and 18% figures aren't contradictory — they're a time series, and the 
 
 ### Q47 — research_pipeline
 
+> After the web search agent and document analysis agent complete their tasks, the coordinator invokes the synthesis agent. However, the synthesis agent responds that it cannot complete the task because no research findings were provided.
+>
+> What is the most likely cause of this issue?
+
 **Correct: B — "The coordinator did not include the outputs from the previous agents in the synthesis agent's prompt."**
 
 Sub-agents don't share context. Each invocation sees only what the coordinator puts in its prompt, so if the findings aren't in there, the synthesis agent genuinely has nothing — and reports exactly that.
@@ -184,6 +216,10 @@ Sub-agents don't share context. Each invocation sees only what the coordinator p
 ---
 
 ### Q48 — research_pipeline
+
+> Production reviews reveal inconsistent handling of uncertainty in final reports. Sometimes conflicting subagent findings are synthesized into a single confident statement (losing nuance), while other times reports over-hedge with excessive qualifications (becoming unhelpful). When the web search agent returns "industry analysts estimate $50B market size (methodology varies)" and the document analysis agent returns "peer-reviewed study estimates 35B(±7B, 95% CI)," the coordinator either picks one arbitrarily or produces vague statements like "the market may be 35B−50B depending on factors."
+>
+> What systematic approach best addresses this?
 
 **Correct: C — "Instruct the synthesis agent to structure reports with explicit sections distinguishing well-established findings from contested ones, preserving original source characterizations and methodological context."**
 
@@ -201,6 +237,8 @@ The two failure modes — false confidence and mush — are both consequences of
 
 ### Q52 — research_pipeline
 
+> Two sub-agents return conflicting figures for the same metric, each with moderate confidence. Before the coordinator writes the final answer, the best move is to:
+
 **Correct: C — "Run a focused check that re-fetches the metric from the primary source and resolves the conflict before synthesizing."**
 
 Two moderate-confidence figures for one metric means at least one is wrong, and the answer is knowable — go back to the primary source. A single targeted fetch is cheap relative to publishing a wrong number.
@@ -216,6 +254,10 @@ Two moderate-confidence figures for one metric means at least one is wrong, and 
 ---
 
 ### Q53 — research_pipeline
+
+> Production monitoring shows that follow-up queries like "summarize what we learned about market trends" consistently take 40+ seconds. Investigation reveals the coordinator spawns the synthesis subagent for each summarization request, passing 80K+ tokens of accumulated findings. The coordinator already has these findings in its context from orchestrating the research.
+>
+> What's the most effective way to improve response time for these follow-up summaries?
 
 **Correct: B — "Have the coordinator handle straightforward summarization requests directly using its existing context, reserving subagent spawning for complex analysis."**
 
@@ -233,6 +275,10 @@ The coordinator already holds the findings. Spawning a sub-agent means re-transf
 
 ### Q55 — research_pipeline
 
+> When analyzing complex legal cases that cite multiple precedents, the document analysis subagent processes each sequentially. A landmark case citing 12 precedents takes over 3 minutes to analyze completely.
+>
+> What's the most effective way to reduce this latency while preserving the coordinator's ability to monitor and debug the system?
+
 **Correct: C — "Have the coordinator spawn parallel document analysis subagents, each handling a subset of precedents, then aggregate results before synthesis."**
 
 The 12 precedents are independent, so parallel fan-out attacks the latency directly. Crucially, the coordinator stays the single hub — it spawned every sub-agent and receives every result, which is what preserves the monitoring and debugging the question explicitly requires.
@@ -248,6 +294,10 @@ The 12 precedents are independent, so parallel fan-out attacks the latency direc
 ---
 
 ### Q60 — research_pipeline
+
+> The web search agent has gathered several relevant sources for a research topic. The document analysis agent now needs to examine these sources.
+>
+> How does information typically flow between these two specialized subagents?
 
 **Correct: C — "The coordinator agent receives the web search agent's output and includes relevant findings in the prompt when invoking the document analysis agent."**
 

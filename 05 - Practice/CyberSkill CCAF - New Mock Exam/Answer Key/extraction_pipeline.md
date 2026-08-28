@@ -13,7 +13,7 @@ status: done
 [← New Mock Exam index](../README.md) · [Questions](../Questions.md)
 
 > [!NOTE] Scope
-> The **16** questions tagged `extraction_pipeline` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q3` here is `Question 3` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**.
+> The **16** questions tagged `extraction_pipeline` in [Questions.md](../Questions.md). Numbers are the **sitting's original numbering**, so they interleave with the other three domains and are not contiguous — `Q3` here is `Question 3` there. All `[[#Q…]]` cross-references in this file point to other entries **within this file**. Each entry now reproduces its question stem verbatim from [Questions.md](../Questions.md) above the answer, so you can read this file without switching.
 
 **Answers:** **Q3** B · **Q4** B · **Q13** C · **Q18** C · **Q19** D · **Q21** B · **Q22** B · **Q27** B · **Q33** D · **Q35** D · **Q36** B · **Q46** B · **Q49** D · **Q51** A · **Q56** A · **Q57** D
 
@@ -24,6 +24,8 @@ _Twelve items were upgraded 📘/🤔 → ✅ on 2026-08-24 when the [Timed Mock
 ---
 
 ### Q3 — extraction_pipeline
+
+> An extractor pulls line items and an invoice total from a receipt. The strongest integrity check before accepting the output is to:
 
 **Correct: B — "Verify that the line items sum to the extracted total, and on a mismatch retry or flag the record."**
 
@@ -41,6 +43,10 @@ The document carries its own redundancy — the parts must sum to the whole. Cro
 
 ### Q4 — extraction_pipeline
 
+> After your daily batch of 10,000 documents completes, 300 documents (3%) failed with "`context_length_exceeded`" errors. The results file identifies each failure by `custom_id`.
+>
+> What's the most cost-effective approach to process these failures?
+
 **Correct: B — "Resubmit only the 300 failed documents after chunking them into smaller pieces, then combine the partial extractions."**
 
 `custom_id` exists so you can correlate each result back to its source request. Only the 300 oversized documents failed, and their failure cause is real — they exceed the context window — so chunking is the actual fix. Reprocessing only the failures is 3% of the cost of a full re-run.
@@ -56,6 +62,10 @@ The document carries its own redundancy — the parts must sum to the whole. Cro
 ---
 
 ### Q13 — extraction_pipeline
+
+> Your pipeline uses a tool called `extract_metadata` with a JSON schema for paper details. You've also defined `lookup_citations` and `verify_doi` tools for enrichment. During testing, you notice that when users include requests like "extract the metadata and tell me how cited it is," Claude sometimes calls `lookup_citations` first, which fails because it needs the DOI that `extract_metadata` would provide.
+>
+> What's the most effective way to ensure structured metadata extraction happens first?
 
 **Correct: C — "Set `tool_choice` to {\"type\": \"tool\", \"name\": \"`extract_metadata`\"} and process the enrichment requests in subsequent turns after receiving the extracted metadata."**
 
@@ -73,6 +83,10 @@ There's a real data dependency: `lookup_citations` needs the DOI that `extract_m
 
 ### Q18 — extraction_pipeline
 
+> Documents arrive continuously throughout business hours and need structured data extracted. To reduce costs, you want to use the `Message Batches API` (50% discount, up-to-24-hour processing window). Your SLA specifies that extraction results must be available within 30 hours of document arrival with 99.9% reliability.
+>
+> Which batching strategy is most appropriate?
+
 **Correct: C — "Submit batches every 4 hours containing documents from that window"**
 
 Do the arithmetic against the SLA. A document arriving at the *start* of a window waits the full window before submission, then up to 24 hours for the batch. 4-hour windows: 4 + 24 = **28 hours**, inside the 30-hour SLA with 2 hours of headroom for the 99.9% reliability requirement.
@@ -88,6 +102,10 @@ Do the arithmetic against the SLA. A document arriving at the *start* of a windo
 ---
 
 ### Q19 — extraction_pipeline
+
+> Your extraction system processes two document types: standard monthly reports (archived after processing) and urgent exception reports (must trigger business alerts within 30 minutes of receipt). Both use the same JSON schema. You want to minimize API costs while meeting latency requirements.
+>
+> How should you architect the processing pipeline?
 
 **Correct: D — "Route standard reports to the `Batch API` for 50% cost savings, and route urgent exception reports to the real-time Messages API."**
 
@@ -105,6 +123,10 @@ Segment traffic by latency requirement. The monthly reports are archived and hav
 
 ### Q21 — extraction_pipeline
 
+> Your extraction uses tool use with a JSON schema where `property_type` is defined as an enum: ['house', 'apartment', 'condo', 'townhouse']. After deployment, 8% of extractions fail schema validation. Investigation reveals listings mention many uncommon property types—"studio", "loft", "duplex", "mobile home", "tiny house", "converted warehouse"—and new types continue appearing regularly.
+>
+> What's the most effective long-term solution?
+
 **Correct: B — "Add an 'other' value to your enum with a separate `property_type_detail` string field for specifics when 'other' is selected."**
 
 The escape-hatch pattern. The enum keeps its clean, queryable values for the common cases, `"other"` gives the model a valid choice when nothing fits — so validation stops failing — and `property_type_detail` preserves the actual text so you don't lose information and can mine it for the next enum value.
@@ -120,6 +142,8 @@ The escape-hatch pattern. The enum keeps its clean, queryable values for the com
 ---
 
 ### Q22 — extraction_pipeline
+
+> A contract is too long to fit in one context window, and you need fields from across the whole document. The dependable approach is to:
 
 **Correct: B — "Chunk the document with slight overlap, extract per chunk, then merge and reconcile the fields."**
 
@@ -137,6 +161,10 @@ You need fields from across the whole contract, so every part must be read. Chun
 
 ### Q27 — extraction_pipeline
 
+> Your system extracts event metadata (date, location, organizer, `attendee_count`) from news articles using a JSON schema with all nullable fields. During evaluation, you observe the model frequently generates plausible but incorrect values for fields not mentioned in the article—for example, outputting "500" for `attendee_count` when the source contains no attendance information.
+>
+> What's the most effective way to reduce these false extractions?
+
 **Correct: B — "Add prompt instructions to return null for any field where information is not directly stated in the source."**
 
 The schema already permits `null`; the model just wasn't told that `null` is the *preferred* answer over a plausible guess. Making "don't know" an explicitly sanctioned output is the direct fix for grounding failures.
@@ -152,6 +180,10 @@ The schema already permits `null`; the model just wasn't told that `null` is the
 ---
 
 ### Q33 — extraction_pipeline
+
+> Your extraction pipeline processes restaurant menus and must output structured JSON with fields for item names, descriptions, prices, and dietary tags. Some menus use inconsistent formatting—prices as "$12" vs "12.00", dietary info as icons vs text.
+>
+> What's the most reliable approach?
 
 **Correct: D — "Define a strict output schema and include format normalization rules in your prompt."**
 
@@ -169,6 +201,10 @@ The two levers work together: the schema fixes the output *shape* (which fields,
 
 ### Q35 — extraction_pipeline
 
+> After implementing tool use with strict schema definitions, JSON syntax errors are eliminated, but 5% of extractions still have valid JSON with empty arrays or null values for required fields like citations and methodology. Spot-checking reveals that source documents contain this information, but in varied formats—inline citations vs. bibliographies, methodology sections vs. details embedded in introductions.
+>
+> What's the most effective way to address these failures?
+
 **Correct: D — "Add few-shot examples demonstrating extractions from documents with varied structures—showing how to identify citations in different formats and locate methodology details across section types."**
 
 The information is present; the model just doesn't recognise it in unfamiliar arrangements. That's a *recognition* gap, and diverse few-shot examples are the direct remedy — show an inline-citation document and a bibliography document, a methodology section and a methodology buried in the introduction.
@@ -184,6 +220,8 @@ The information is present; the model just doesn't recognise it in unfamiliar ar
 ---
 
 ### Q36 — extraction_pipeline
+
+> An invoice extractor reads dates like 03/04/2025 that could be March 4 or April 3. The design that avoids silent errors is to:
 
 **Correct: B — "Require an ISO date in the output schema, and when the input is ambiguous, flag the field for review instead of guessing."**
 
@@ -201,6 +239,8 @@ The information is present; the model just doesn't recognise it in unfamiliar ar
 
 ### Q46 — extraction_pipeline
 
+> A field the schema expects is simply not present in the source document. The extractor should:
+
 **Correct: B — "Return null for that field and mark it as not found, leaving the rest of the extraction intact."**
 
 `null` is the accurate representation of absent information, and marking it as not-found distinguishes "the document didn't say" from "the extractor missed it." The other fields were extracted correctly, so there's no reason to lose them.
@@ -216,6 +256,10 @@ The information is present; the model just doesn't recognise it in unfamiliar ar
 ---
 
 ### Q49 — extraction_pipeline
+
+> Your extraction system implements automatic retries when validation fails. On each retry, the specific validation error is appended to the prompt. This retry-with-error-feedback approach resolves most failures within 2-3 attempts.
+>
+> For which failure pattern would additional retries be LEAST effective?
 
 **Correct: D — "The model extracts 'et al.' for co-authors when the full list exists only in an external document not in the input"**
 
@@ -233,6 +277,10 @@ Retry-with-error-feedback works when the model *has* the information and formatt
 
 ### Q51 — extraction_pipeline
 
+> After deployment, you find that 12% of extractions contain semantic errors that pass JSON schema validation (e.g., a duration like "30 minutes" incorrectly placed in an ingredient quantity field). Human reviewers have capacity to check only 20% of extractions.
+>
+> Which approach most effectively allocates reviewer attention?
+
 **Correct: A — "Have the model output field-level confidence scores, then calibrate review thresholds using a labeled validation set."**
 
 Reviewer capacity is the scarce resource, so it should go to the extractions most likely to be wrong. Field-level confidence gives a per-extraction risk signal, and calibrating it against labelled data is what turns a raw score into a defensible 20% cutoff rather than a guess.
@@ -249,6 +297,8 @@ Reviewer capacity is the scarce resource, so it should go to the extractions mos
 
 ### Q56 — extraction_pipeline
 
+> Your system has been operating with 100% human review for 3 months. Analysis shows that extractions with model confidence >90% have 97% accuracy overall. To reduce reviewer workload, you plan to automate high-confidence extractions. Before deploying, what validation step is most critical?
+
 **Correct: A — "Analyze accuracy by document type and field to verify high-confidence extractions perform consistently across all segments, not just in aggregate."**
 
 97% is an average, and averages hide segments. If one document type or one field sits at 80% inside that high-confidence bucket, automating the bucket ships those errors straight through. Segment analysis is the check that must happen *before* you rely on the aggregate at all.
@@ -264,6 +314,10 @@ Reviewer capacity is the scarce resource, so it should go to the extractions mos
 ---
 
 ### Q57 — extraction_pipeline
+
+> Your extraction system parses e-commerce product descriptions to extract specifications like dimensions, weight, and materials into JSON. Despite having a well-defined schema, the model inconsistently extracts the "materials" field—sometimes returning "cotton blend", other times "Cotton/Polyester mix", and occasionally omitting the field when material information is clearly present in the source.
+>
+> What's the most effective way to improve extraction consistency?
 
 **Correct: D — "Add few-shot examples showing 2-3 complete input-output pairs with standardized material description formats"**
 
