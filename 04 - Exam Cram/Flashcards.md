@@ -226,10 +226,25 @@ A: For complex tasks with multiple valid approaches, large-scale/multi-file chan
 A: `-p` / `--print`. Without it, Claude Code waits for interactive input and hangs in an automated pipeline.
 
 **Q: How do you get machine-parseable structured output from a CI-invoked Claude Code run?**
-A: `--output-format json` combined with `--json-schema <schema-file>` to enforce a specific JSON structure.
+A: `--output-format json` combined with `--json-schema '<inline schema>'`. Both flags are **print mode only**.
+
+**Q: Your schema lives in `review-schema.json`. Is `--json-schema review-schema.json` correct?**
+A: ❌ **No** — `--json-schema` takes an **inline JSON Schema string, not a file path**. Interpolate it yourself: ✅ `--json-schema "$(cat review-schema.json)"`. A bare filename isn't valid JSON Schema, so the command errors out. ([docs](https://code.claude.com/docs/en/cli-reference), verified against CLI v2.1.238)
+
+**Q: Your CI gate reads `jq -r '.result'` and gets text instead of your schema. Why?**
+A: `result` holds the model's **text** response; the schema-validated object arrives in a **separate `structured_output`** field. Gate on `.structured_output` instead.
 
 **Q: Why is self-review in the same session unreliable, and what's the fix?**
 A: The model retains its own generation reasoning context, making it less likely to question its prior decisions. Fix: spin up an independent Claude Code instance with no prior reasoning context to review.
+
+**Q: Your CI review bot re-posts the same comments on every push after developers fix things. What's the fix?**
+A: Pass the **prior review findings in context** and instruct Claude to report only **new or still-unaddressed** issues — not pipeline-side comment deduplication.
+
+**Q: Your CI test-generation job keeps producing tests that duplicate existing coverage. What's the most effective change?**
+A: Provide the **existing test files in context** so generation can see what's already covered. Telling the prompt to "avoid duplicates" without that context doesn't work.
+
+**Q: Where do repo-wide testing standards and fixture conventions belong so a CI-invoked Claude Code run picks them up?**
+A: In `CLAUDE.md` as project context. Path-scoped `.claude/rules/` is for conventions that attach to specific file globs; repo-wide judgments about what's worth testing don't.
 
 **Q: When should you use path-scoped `.claude/rules/` files instead of a subdirectory CLAUDE.md?**
 A: When conventions apply to files spread across multiple directories (e.g., all `*.test.tsx` files anywhere) — a single `paths:`-scoped rule file targets by pattern regardless of location.

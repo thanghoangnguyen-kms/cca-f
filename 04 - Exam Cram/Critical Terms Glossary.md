@@ -30,7 +30,7 @@ status: done
 | Prefill removal | Fundamentals | Last-assistant-turn prefills return **400** on **Claude 4.6 and later** — Fable 5, Mythos 5, Opus 5, Opus 4.6-4.8, Sonnet 4.6/5. Use structured outputs or system-prompt instructions instead. ([docs](https://platform.claude.com/docs/en/about-claude/models/migration-guide), checked 2026-08-24) |
 | `cache_control: {type:"ephemeral"}` | Fundamentals / D5 | Marks a content block as cacheable. Prefix match — any byte change earlier in the prefix invalidates everything after it. Default TTL 5 min (extended TTL: 1h, explicit). ~0.1x read cost, ~1.25x write cost. Verify with `usage.cache_read_input_tokens`. |
 | `--print` / `-p` | Fundamentals / D3 | CLI flag for non-interactive mode; required in CI/automated pipelines — without it Claude Code waits for input and hangs. |
-| `--output-format json` | Fundamentals / D3 | CLI flag for machine-parseable JSON output; combine with `--json-schema <file>` to enforce structure in CI. |
+| `--output-format json` | Fundamentals / D3 | CLI flag for machine-parseable JSON output; combine with `--json-schema '<inline schema>'` to enforce structure in CI. The flag takes an **inline JSON Schema string, never a file path**; the validated object arrives in `structured_output`, not `result`. |
 | `--resume <session-name>` | Fundamentals / D1 / D3 | Resume a named session from the CLI. `--continue` resumes the most recent session. |
 | `/compact` | Fundamentals / D5 | Slash command that summarizes the conversation to reduce token usage while preserving key info. Skill descriptions are **not** re-injected after `/compact` — only skills actually invoked persist. |
 | `/init` | Fundamentals / D3 | Slash command that generates a starter `CLAUDE.md` from the project structure. |
@@ -90,7 +90,7 @@ status: done
 | Path-scoped rules (`.claude/rules/`) | D3 | Rules with `paths:` frontmatter that load only for matching files — preferred over subdirectory `CLAUDE.md` when instructions should apply narrowly rather than always-on-demand. |
 | Plan mode | D3 | Claude Code mode for proposing a plan before executing — used for higher-risk or exploratory changes. |
 | `-p` / `--print` | D3 / Fundamentals | Non-interactive CLI flag; required for CI (prevents hanging on input prompts). |
-| `--output-format json` | D3 / Fundamentals | Machine-parseable CLI output; pair with `--json-schema <file>` for enforced structure in pipelines. |
+| `--output-format json` | D3 / Fundamentals | Machine-parseable CLI output; pair with `--json-schema '<inline schema>'` for enforced structure in pipelines — **inline JSON string, never a file path**; validated object lands in `structured_output`. |
 | AGENTS.md vs CLAUDE.md | D3 | Claude Code reads `CLAUDE.md`, **not** `AGENTS.md`. To reuse an existing `AGENTS.md`, reference it from `CLAUDE.md` or symlink `CLAUDE.md → AGENTS.md`. |
 
 ---

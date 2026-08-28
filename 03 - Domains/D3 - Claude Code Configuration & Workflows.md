@@ -347,11 +347,24 @@ claude -p "Review src/" --output-format json --json-schema '{"type":"object","pr
 | Flag | Purpose |
 |------|---------|
 | `-p` / `--print` | Non-interactive mode; exits after completing. **Required for CI** (prevents hanging on input prompts) |
-| `--output-format json` | Machine-parseable JSON output |
-| `--json-schema <schema>` | Enforce a specific JSON structure on output |
+| `--output-format json` | Machine-parseable JSON envelope. **Print mode only** |
+| `--json-schema <schema>` | Enforce a specific JSON structure on output. **Print mode only**; the validated payload arrives in `structured_output` |
 
 > [!WARNING] Exam Trap: `--json-schema` Takes Inline JSON, Not a File Path
 > `--json-schema` accepts an **inline JSON Schema string**, not a file path — `--json-schema schema.json` does not load a file. Pass the schema directly, e.g. `--json-schema '{"type":"object", ...}'`. Source: `code.claude.com/docs/en/cli-reference`.
+>
+> ❌ `--json-schema review-schema.json` · ✅ `--json-schema "$(cat review-schema.json)"`
+
+> [!IMPORTANT] The Validated Payload Lands in `structured_output`, Not `result`
+> With `--output-format json` the envelope carries session metadata (`session_id`, `usage`, `total_cost_usd`) plus the model's **text** response in `result`. Add `--json-schema` and the schema-validated object arrives in a **separate `structured_output`** field — it does not replace `result`.
+>
+> A pipeline that gates on `jq -r '.result'` reads a string, not your schema. Gate on `.structured_output`:
+>
+> ```bash
+> jq -e '.structured_output.issues | length == 0' findings.json || exit 1
+> ```
+>
+> Verified against Claude Code v2.1.238 — a run with the schema above returns `"result":"{\"color\":\"blue\"}"` alongside `"structured_output":{"color":"blue"}`.
 
 > [!WARNING] Exam Trap: CI Flag Name
 > The flag is `-p` or `--print` (not `--non-interactive`). Without it, Claude Code waits for input and **hangs in CI**.
@@ -410,6 +423,8 @@ To avoid generating duplicate test cases:
 - [ ] Know when to use plan mode vs direct execution
 - [ ] Know the `-p` / `--print` flag for CI and why it's required
 - [ ] Know `--output-format json` + `--json-schema` for structured CI output
+- [ ] Know `--json-schema` takes inline JSON, never a file path
+- [ ] Know the validated payload lands in `structured_output`, not `result`
 - [ ] Know self-review limitation and the independent instance solution
 
 ---
@@ -432,7 +447,7 @@ A: When conventions apply to files spread across multiple directories (e.g., all
 A: `-p` or `--print`. Without it, Claude Code waits for user input and hangs in automated pipelines.
 
 **Q: How do you produce machine-parseable structured output from Claude Code in CI?**
-A: Use `--output-format json` with `--json-schema '<inline schema>'` — the flag takes an inline JSON Schema string, not a file path.
+A: Use `--output-format json` with `--json-schema '<inline schema>'` — the flag takes an inline JSON Schema string, not a file path. The schema-validated object lands in `structured_output`; `result` holds the text response.
 
 **Q: Why is an independent Claude Code instance better than self-review for catching bugs?**
 A: A model retains its generation reasoning context within the same session, making it less likely to question its own decisions. An independent instance with no prior context catches more subtle issues.
