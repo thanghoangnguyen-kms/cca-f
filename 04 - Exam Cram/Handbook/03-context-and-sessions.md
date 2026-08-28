@@ -112,5 +112,5 @@ just-in-time exploration, and Edit vs Write. (Mock Q16–Q30; concept chapters 1
 
 ## Sources
 - Effective context engineering for AI agents — https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
-- Best practices for Claude Code — https://www.anthropic.com/engineering/claude-code-best-practices
-- Work with sessions — https://docs.claude.com/en/docs/agent-sdk/sessions
+- Best practices for Claude Code — https://code.claude.com/docs/en/best-practices
+- Work with sessions — https://code.claude.com/docs/en/agent-sdk/sessions

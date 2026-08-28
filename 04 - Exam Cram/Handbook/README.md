@@ -52,11 +52,12 @@ words "compliance", "cannot be left to model discretion", "guaranteed", or
 - [`06-claude-code-operations.md`](06-claude-code-operations.md) — CLAUDE.md, CI/CD, plan mode, `--bare`, skills
 - [`07-anti-patterns-catalog.md`](07-anti-patterns-catalog.md) — the "instantly wrong" answer list
 - [`08-quick-reference-tables.md`](08-quick-reference-tables.md) — every cheat table in one place
+- [`09-cli-flags.md`](09-cli-flags.md) — every CLI flag: blueprint-named, real, fabricated
 
 ## Sources
 
 Grounded in official Anthropic material: *Building effective agents*, *How we
 built our multi-agent research system*, *Effective context engineering for AI
-agents*, *Claude Code best practices*, and docs.claude.com (tool use, context
+agents*, *Claude Code best practices*, and platform.claude.com (tool use, context
 windows, batch processing, reduce hallucinations, customer-support use-case).
 Full URLs are cited inside each domain file.

@@ -147,7 +147,7 @@ concept chapters 3, 13.)
 "prune to task-relevant fields."
 
 ## Sources
-- Customer support use-case guide — https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
-- Context windows (statelessness, compaction) — https://docs.claude.com/en/docs/build-with-claude/context-windows
-- Tool use — handling errors — https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors
+- Customer support use-case guide — https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
+- Context windows (statelessness, compaction) — https://platform.claude.com/docs/en/build-with-claude/context-windows
+- Tool use — handling errors — https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
 - Building effective agents — https://www.anthropic.com/engineering/building-effective-agents

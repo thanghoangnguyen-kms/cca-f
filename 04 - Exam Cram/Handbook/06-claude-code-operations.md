@@ -55,6 +55,9 @@ mode, `--bare`, skills, and default tool selection. (Concept chapters 6, 7, 8, 9
   - **Keychain reads**
   - **CLAUDE.md auto-discovery** (project + user files not auto-loaded)
 
+> Full flag reference — the docs' wording of `--bare`, `--bare` vs
+> `--safe-mode`, and the fabricated flags: [`09-cli-flags.md`](09-cli-flags.md).
+
 ### Skills frontmatter
 | Field | Meaning |
 |---|---|
@@ -125,5 +128,5 @@ omitted (main conversation)" ·
 "Edit vs Write vs Grep vs Glob."
 
 ## Sources
-- Best practices for Claude Code — https://www.anthropic.com/engineering/claude-code-best-practices
-- Claude Code CLI reference — https://docs.anthropic.com/en/docs/claude-code/cli-reference
+- Best practices for Claude Code — https://code.claude.com/docs/en/best-practices
+- Claude Code CLI reference — https://code.claude.com/docs/en/cli-reference

@@ -17,9 +17,9 @@ domain: 4 of 5
 
 **Back to:** [[CCA-F Study Roadmap]]
 **Key resources:**
-- https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-prompting-best-practices
-- https://docs.anthropic.com/en/docs/build-with-claude/structured-outputs
-- https://docs.anthropic.com/en/docs/build-with-claude/batch-processing
+- https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
+- https://platform.claude.com/docs/en/build-with-claude/structured-outputs
+- https://platform.claude.com/docs/en/build-with-claude/batch-processing
 
 ---
 

@@ -33,8 +33,8 @@ status: done
 **Key takeaway:** Segment your traffic by latency requirement: batch the cost-sensitive bulk, use the synchronous API only for the truly latency-bound minority.
 
 **Sources:**
-- [1] Batch processing — https://docs.claude.com/en/docs/build-with-claude/batch-processing
-- [2] Models / API overview — https://docs.claude.com/en/docs/about-claude/models/overview
+- [1] Batch processing — https://platform.claude.com/docs/en/build-with-claude/batch-processing
+- [2] Models / API overview — https://platform.claude.com/docs/en/models/overview
 
 ---
 
@@ -53,7 +53,7 @@ status: done
 **Key takeaway:** When extraction inconsistency is about *interpretation* (what to include, how to split), demonstrate the rule with diverse few-shot examples rather than bolting on caps or post-processing.
 
 **Sources:**
-- [1] Use examples (multishot prompting) — https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting
+- [1] Use examples (multishot prompting) — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#use-examples-effectively
 
 ---
 
@@ -91,8 +91,8 @@ status: done
 **Key takeaway:** When the source legitimately carries multiple valid values, fix the *schema* to represent versioning (value + location + effective date) instead of forcing the model to choose one.
 
 **Sources:**
-- [1] Reduce hallucinations (direct-quote grounding) — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-- [2] Define tools / tool-use best practices — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
+- [1] Reduce hallucinations (direct-quote grounding) — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [2] Define tools / tool-use best practices — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -111,8 +111,8 @@ status: done
 **Key takeaway:** Feedback-retry corrects *formatting and shape* errors; it cannot supply information absent from the input. Distinguish "model formatted it wrong" from "the data isn't there."
 
 **Sources:**
-- [1] Reduce hallucinations — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-- [2] Define tools / output schemas — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
+- [1] Reduce hallucinations — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [2] Define tools / output schemas — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -131,8 +131,8 @@ status: done
 **Key takeaway:** Let the model normalize during extraction — strict schema + explicit format rules in the prompt — rather than post-processing a raw blob.
 
 **Sources:**
-- [1] Define tools / output schemas & best practices — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
-- [2] Use examples (multishot) — https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting
+- [1] Define tools / output schemas & best practices — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
+- [2] Use examples (multishot) — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#use-examples-effectively
 
 ---
 
@@ -151,7 +151,7 @@ status: done
 **Key takeaway:** For nullable schemas, explicitly instruct the model to emit null when the source doesn't state a value — grounding by policy beats post-hoc verification.
 
 **Sources:**
-- [1] Reduce hallucinations — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [1] Reduce hallucinations — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
 
 ---
 
@@ -170,8 +170,8 @@ status: done
 **Key takeaway:** Schema strictness fixes format, not recall. To capture information that appears in varied locations/formats, teach recognition with diverse few-shot examples.
 
 **Sources:**
-- [1] Use examples (multishot) — https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting
-- [2] Reduce hallucinations (direct-quote grounding) — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [1] Use examples (multishot) — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#use-examples-effectively
+- [2] Reduce hallucinations (direct-quote grounding) — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
 
 ---
 
@@ -190,8 +190,8 @@ status: done
 **Key takeaway:** For numeric consistency, extract both the computed and the stated value and surface the mismatch as a reviewable signal — never auto-correct financial figures silently.
 
 **Sources:**
-- [1] Reduce hallucinations — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-- [2] Define tools / output schemas — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
+- [1] Reduce hallucinations — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [2] Define tools / output schemas — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -210,7 +210,7 @@ status: done
 **Key takeaway:** To guarantee a specific tool runs first, force it with `tool_choice:{"type":"tool","name":...}` on turn one, then return to `auto` so dependent tools can follow.
 
 **Sources:**
-- [1] Define tools — tool_choice options (auto/any/tool/none) — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
+- [1] Define tools — tool_choice options (auto/any/tool/none) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -229,7 +229,7 @@ status: done
 **Key takeaway:** When a closed enum meets an open-ended real world, add an `"other"` value plus a detail field — you keep validation and joins while preserving the long tail.
 
 **Sources:**
-- [1] Define tools — enum in input_schema — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
+- [1] Define tools — enum in input_schema — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -248,7 +248,7 @@ status: done
 **Key takeaway:** To standardize a free-text field's format and lift recall, show the model the exact canonical shape with a few input→output examples.
 
 **Sources:**
-- [1] Use examples (multishot) — https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting
+- [1] Use examples (multishot) — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#use-examples-effectively
 
 ---
 
@@ -267,7 +267,7 @@ status: done
 **Key takeaway:** Batch SLA math = (max queue wait before submission) + (24h batch ceiling). Size your batching interval so the sum sits comfortably under the SLA with margin, not exactly on it.
 
 **Sources:**
-- [1] Batch processing — 24-hour window, 50% pricing, expiry — https://docs.claude.com/en/docs/build-with-claude/batch-processing
+- [1] Batch processing — 24-hour window, 50% pricing, expiry — https://platform.claude.com/docs/en/build-with-claude/batch-processing
 
 ---
 
@@ -287,7 +287,7 @@ status: done
 
 **Sources:**
 - [1] Building a multi-agent research system — evaluation / calibration — https://www.anthropic.com/engineering/multi-agent-research-system
-- [2] Reduce hallucinations — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [2] Reduce hallucinations — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
 
 ---
 
@@ -306,8 +306,8 @@ status: done
 **Key takeaway:** Use `custom_id` to retry only the failed records, and fix `context_length_exceeded` by chunking the input — not by enlarging output limits or reprocessing the whole batch.
 
 **Sources:**
-- [1] Batch processing — custom_id matching & result types — https://docs.claude.com/en/docs/build-with-claude/batch-processing
-- [2] Models overview / context windows — https://docs.claude.com/en/docs/about-claude/models/overview
+- [1] Batch processing — custom_id matching & result types — https://platform.claude.com/docs/en/build-with-claude/batch-processing
+- [2] Models overview / context windows — https://platform.claude.com/docs/en/models/overview
 
 ---
 

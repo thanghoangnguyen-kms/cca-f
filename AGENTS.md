@@ -49,7 +49,7 @@ CCA-F/
 ├── 04 - Exam Cram/
 │   ├── Flashcards.md                ← vault-wide deck, grouped by domain
 │   ├── Critical Terms Glossary.md
-│   └── Handbook/                    ← scenario-based cram (00–08, plain MD links)
+│   └── Handbook/                    ← scenario-based cram (00–09, plain MD links)
 ├── 05 - Practice/                   ← one folder per exam set, `<source> - <set>`; notes at the root
 │   ├── README.md                    ← index; overlap matrix for the six sets
 │   ├── Weak Areas Deep Dive.md      ← personal mistake log
@@ -234,7 +234,7 @@ When generating or expanding content, prioritize these authoritative sources:
 | https://code.claude.com/docs/en/overview | Claude Code — CLI, config, hooks, skills |
 | https://code.claude.com/docs/en/agent-sdk/ | **Agent SDK** — `AgentDefinition`, subagents, sessions, tools |
 | https://code.claude.com/docs/llms.txt | Full doc index — find specific pages |
-| https://platform.claude.com/docs/en/api/ | Claude API, models, `stop_reason`, tool use |
+| https://platform.claude.com/docs/en/api/overview | Claude API, models, `stop_reason`, tool use |
 | https://anthropic.skilljar.com | Official Anthropic courses |
 | **Official CCA-F Exam Guide** (Anthropic Partner Academy PDF, v1.0 · July 2026) | **The blueprint itself** — domain weights, all 30 task statements, the 6 scenarios, in-scope/out-of-scope lists, 12 sample questions. Transcribed into [[Official Exam Blueprint]] |
 | https://www.certsafari.com/anthropic/claude-certified-architect | Practice questions (614). **Not** authoritative for exam structure — the official guide is |

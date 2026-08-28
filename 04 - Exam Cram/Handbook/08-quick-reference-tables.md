@@ -158,6 +158,8 @@ commands/args.
 - **Plan mode** → unfamiliar codebase / high-risk / needs review / align architecture.
 - **`--bare`** skips: hooks, LSP, plugin sync, attribution, auto-memory,
   background prefetch, keychain reads, CLAUDE.md auto-discovery.
+- Fabricated flags → `--headless` · `--ci` · `--batch` · `--non-interactive`.
+  Full three-tier flag table: [`09-cli-flags.md`](09-cli-flags.md).
 
 ## 19. Skills frontmatter
 `name` · `description` (when to use) · `context` (`fork` = separate subagent;

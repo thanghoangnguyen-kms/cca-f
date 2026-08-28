@@ -30,7 +30,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Stale `tool_result` blocks poison reasoning; for returning users, prefer a clean session + structured summary + fresh fetches over editing the middle of a transcript.
 
-**Sources:** [1] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat · [2] https://docs.claude.com/en/docs/build-with-claude/context-windows · [3] https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat · [2] https://platform.claude.com/docs/en/build-with-claude/context-windows · [3] https://code.claude.com/docs/en/best-practices
 
 ---
 
@@ -48,7 +48,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Codify hard compliance limits in code, but route genuinely judgment-based decisions (like "needs a human") through clear natural-language criteria the model can reason over.
 
-**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [4] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
+**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [4] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
 
 ---
 
@@ -84,7 +84,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Compliance-grade rules belong in deterministic code (hooks/interceptors), not prompts—prompts influence probability, code guarantees outcome.
 
-**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [6] https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+**Sources:** [1] https://www.anthropic.com/engineering/building-effective-agents · [6] https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
 
 ---
 
@@ -102,7 +102,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** On partial failure, degrade gracefully—deliver the value you can, be honest about what failed, and let the customer choose the next step.
 
-**Sources:** [4] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
+**Sources:** [4] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
 
 ---
 
@@ -120,7 +120,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** When you can resolve instantly, acknowledge the feeling, state the fast path, and keep the choice with the customer—don't queue and don't override.
 
-**Sources:** [4] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
+**Sources:** [4] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
 
 ---
 
@@ -138,7 +138,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** The API is stateless—if the agent "forgets," you almost certainly aren't re-sending the full conversation history each request.
 
-**Sources:** [1] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat · [2] https://docs.claude.com/en/docs/build-with-claude/context-windows
+**Sources:** [1] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat · [2] https://platform.claude.com/docs/en/build-with-claude/context-windows
 
 ---
 
@@ -156,7 +156,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Give the model structured, machine-actionable error metadata (category + retryable + cause) instead of opaque strings—and put it in the tool's own response.
 
-**Sources:** [4] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat · [7] https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors
+**Sources:** [4] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat · [7] https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
 
 ---
 
@@ -174,7 +174,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** The agentic loop = append `tool_result` to the messages, re-run the model, let it choose the next action. Tool selection is model-driven, per turn.
 
-**Sources:** [1] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat · [2] https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use
+**Sources:** [1] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat · [2] https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -192,7 +192,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** With no context yet, one empathetic, targeted question beats both immediate escalation and silent investigation—respect the feeling while attempting fast resolution.
 
-**Sources:** [4] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
+**Sources:** [4] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
 
 ---
 
@@ -228,7 +228,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** For long multi-topic sessions, compact resolved threads into summaries and keep the active thread verbatim—don't blindly slide a fixed window.
 
-**Sources:** [2] https://docs.claude.com/en/docs/build-with-claude/context-windows
+**Sources:** [2] https://platform.claude.com/docs/en/build-with-claude/context-windows
 
 ---
 
@@ -246,7 +246,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Surface tool errors via the error flag + a readable message in the content block—never via empty results, exceptions, or non-standard status fields.
 
-**Sources:** [7] https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors
+**Sources:** [7] https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
 
 ---
 
@@ -264,7 +264,7 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** Encode retryability and a customer-ready message in the structured error response—fix wasted retries and reply quality at the source, not with prompt parsing.
 
-**Sources:** [4] https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat · [7] https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors
+**Sources:** [4] https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat · [7] https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
 
 ---
 
@@ -282,15 +282,15 @@ This guide covers the 15 `customer_support` questions (Q31–Q45) from the CCAF 
 
 **Key takeaway:** When verbose tool outputs dominate context, prune to the task-relevant fields (structured, lossless) before issuing more calls—don't paraphrase and don't bolt on a vector store.
 
-**Sources:** [2] https://docs.claude.com/en/docs/build-with-claude/context-windows
+**Sources:** [2] https://platform.claude.com/docs/en/build-with-claude/context-windows
 
 ---
 
 ## Source index
 - [1] Building effective agents — https://www.anthropic.com/engineering/building-effective-agents
-- [2] Context windows (statelessness, compaction, context editing) — https://docs.claude.com/en/docs/build-with-claude/context-windows
-- [3] Claude Code best practices (compaction/summarization) — https://www.anthropic.com/engineering/claude-code-best-practices
-- [4] Customer support agent use-case guide — https://docs.claude.com/en/docs/about-claude/use-case-guides/customer-support-chat
+- [2] Context windows (statelessness, compaction, context editing) — https://platform.claude.com/docs/en/build-with-claude/context-windows
+- [3] Claude Code best practices (compaction/summarization) — https://code.claude.com/docs/en/best-practices
+- [4] Customer support agent use-case guide — https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
 - [5] How we built our multi-agent research system (delegation/handoff) — https://www.anthropic.com/engineering/multi-agent-research-system
-- [6] Reduce hallucinations / strengthen guardrails — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-- [7] Tool use — handling errors (is_error pattern) — https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors
+- [6] Reduce hallucinations / strengthen guardrails — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- [7] Tool use — handling errors (is_error pattern) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls

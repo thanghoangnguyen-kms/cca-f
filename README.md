@@ -36,7 +36,7 @@ Agent/authoring conventions live in [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](C
 
 - **Two link styles coexist — match the file you're editing.** All notes use Obsidian-flavored Markdown with `[[wikilinks]]`, `> [!TYPE]` callouts, YAML frontmatter, and tags — **except** `04 - Exam Cram/Handbook/`, which uses plain GitHub Markdown with standard `[link](file.md)` relative links (keep that folder intact as a unit).
 - Exam terms are code-formatted: CLI flags (`--resume`), API fields (`stop_reason`), hook names (`PreToolUse`), config files (`CLAUDE.md`, `.mcp.json`), SDK objects (`AgentDefinition`).
-- Model/API facts are verified against official sources: [code.claude.com/docs](https://code.claude.com/docs), [docs.claude.com](https://docs.claude.com), and the Anthropic engineering blog. Anything unverified is flagged inline with a `> [!WARNING] Unverified` callout.
+- Model/API facts are verified against official sources: [code.claude.com/docs](https://code.claude.com/docs), [platform.claude.com/docs](https://platform.claude.com/docs/en/home), and the Anthropic engineering blog. Anything unverified is flagged inline with a `> [!WARNING] Unverified` callout.
 
 ## How to use it
 

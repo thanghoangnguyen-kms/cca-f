@@ -142,7 +142,7 @@ And the strongest combination for an extraction boundary pairs it with §3.4's f
 > [!IMPORTANT] Forced tool use suppresses the model's prose — expansion
 > There is a documented side effect the lecture never mentions, and it explains *why* the fake-tool output is so clean: *"when you have `tool_choice` as `any` or `tool`, the API prefills the assistant message to force a tool to be used. This means that the models will not emit a natural language response or explanation before `tool_use` content blocks, even if explicitly asked to do so."*
 > So forcing extraction is not merely a guarantee — it is a **trade**. You get a `tool_use` block with nothing around it, and you give up any commentary, caveat, or "I could not find the vendor name" note the model might otherwise have written. If your pipeline wants both the payload *and* an explanation, use `{"type": "auto"}` and ask for the tool in the user turn instead.
-> Source: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use
+> Source: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 **In your own words:** `required` alone is a strong hint. `strict: true` plus `additionalProperties: false` is the guarantee — and forcing a tool call also silences the model's prose, which is a trade, not a free win.
 
@@ -348,7 +348,7 @@ No — and this is the second correction, because a half-wired feedback turn pro
 > The lecture describes only half the round trip: *"append it to the assistant response so it will maintain the conversation integrity… role is assistant, content is response content."* Echoing the assistant turn is correct and necessary — it preserves the `tool_use` block. But it is **step one of two**.
 > Officially, a tool call is answered by a **`user` message containing a `tool_result` block** whose `tool_use_id` matches the `tool_use` block being answered. A failure is reported on that block with `is_error: true` and the error text as its content. And the constraint that makes this non-optional: **every `tool_use` block must have a matching `tool_result`** — a follow-up request that leaves one unanswered is rejected.
 > **Exam answer: append the error to the conversation and re-run** — the loop concept is what's tested, and the lecture has that right. **Real code: two appends, assistant then user/`tool_result`/`is_error: true`.**
-> Source: https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use · consistent with [[D4 - Prompt Engineering & Structured Output]] § 4.4
+> Source: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools · consistent with [[D4 - Prompt Engineering & Structured Output]] § 4.4
 
 The corrected turn, with the targeted message from §3.9 as the payload:
 

@@ -388,7 +388,7 @@ graph LR
 | Agent Loop Docs | https://code.claude.com/docs/en/agent-sdk/agent-loop.md |
 | Hooks Docs | https://code.claude.com/docs/en/agent-sdk/hooks.md |
 | MCP Integration | https://code.claude.com/docs/en/agent-sdk/mcp.md |
-| Anthropic API Docs | https://docs.anthropic.com |
+| Anthropic API Docs | https://platform.claude.com/docs/en/home |
 | Anthropic SkillJar (all courses) | https://anthropic.skilljar.com |
 | Claude Cookbooks | https://github.com/anthropics/claude-cookbooks |
 | Ultimate Guide (FlorianBruniaux) | https://github.com/FlorianBruniaux/claude-code-ultimate-guide |

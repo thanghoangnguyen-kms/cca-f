@@ -151,7 +151,7 @@ tool_choice ordering, enums, confidence routing & segment evals, `custom_id`.
 "disaggregate by segment / stratified sampling."
 
 ## Sources
-- Batch processing — https://docs.claude.com/en/docs/build-with-claude/batch-processing
-- Use examples (multishot prompting) — https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting
-- Reduce hallucinations — https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-- Define tools / output schemas — https://docs.claude.com/en/docs/build-with-claude/tool-use/implement-tool-use
+- Batch processing — https://platform.claude.com/docs/en/build-with-claude/batch-processing
+- Use examples (multishot prompting) — https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#use-examples-effectively
+- Reduce hallucinations — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+- Define tools / output schemas — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools

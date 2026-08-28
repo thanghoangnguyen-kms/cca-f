@@ -134,7 +134,7 @@ status: done
 > [!IMPORTANT] Use EXACT model ID strings; never append date suffixes to aliases.
 
 > [!WARNING] Verify this table before exam day
-> This is the fastest-rotting section in the vault — it has already crossed one model launch. Re-check against [the models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing) rather than trusting the values below.
+> This is the fastest-rotting section in the vault — it has already crossed one model launch. Re-check against [the models overview](https://platform.claude.com/docs/en/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing) rather than trusting the values below.
 
 **Current models**
 
@@ -160,7 +160,7 @@ status: done
 - **Sonnet 5 is $2 / $10 flat.** The $3 / $15 increase once scheduled for 2026-09-01 **will not occur** — the introductory price became the standard price. Any answer implying a September price rise is wrong.
 - Max output figures are for the synchronous Messages API. On the Batch API, Opus 5 / 4.8 / 4.7 / 4.6 and Sonnet 5 / 4.6 reach **300K** output tokens via the `output-300k-2026-03-24` beta header.
 
-*Sources: [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) · [pricing](https://platform.claude.com/docs/en/about-claude/pricing), checked 2026-08-24. Corrected from a stale 2026-07 lineup that omitted Opus 5, named `claude-opus-4-8` as the default, and carried the cancelled Sonnet 5 price rise.*
+*Sources: [models overview](https://platform.claude.com/docs/en/models/overview) · [pricing](https://platform.claude.com/docs/en/about-claude/pricing), checked 2026-08-24. Corrected from a stale 2026-07 lineup that omitted Opus 5, named `claude-opus-4-8` as the default, and carried the cancelled Sonnet 5 price rise.*
 
 ---
 

@@ -440,7 +440,7 @@ Anthropic runs the loop, hosts a per-session sandbox, and gives each subagent it
 
 > [!WARNING] Unverified for exam purposes — confirm against the official study guide
 > The CCA-F blueprint predates Managed Agents, and no published exam objective references `multiagent` rosters or session threads. Treat §3.9 as engineering context, not exam content. If a question asks how a coordinator spawns a subagent, the answer remains **the `Task` tool**.
-> Source: [Managed Agents multi-agent](https://platform.claude.com/docs/en/managed-agents/multi-agent) · [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)
+> Source: [Managed Agents multi-agent](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration) · [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)
 
 **In your own words:** The Tool Runner kills the hand-written loop; Managed Agents adds a real coordinator to the platform. Neither changes what the exam asks.
 

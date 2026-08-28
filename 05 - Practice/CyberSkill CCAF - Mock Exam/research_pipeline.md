@@ -70,7 +70,7 @@ status: done
 
 **Sources:**
 - [1] Anthropic — "Building effective agents" (agent-computer interface / tool design matters as much as prompts), https://www.anthropic.com/engineering/building-effective-agents
-- [2] Claude API Docs — "Define tools / Implement tool use" (extremely detailed descriptions; clear tool boundaries are the most important factor), https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use
+- [2] Claude API Docs — "Define tools / Implement tool use" (extremely detailed descriptions; clear tool boundaries are the most important factor), https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
 ---
 
@@ -307,4 +307,4 @@ status: done
 **Key takeaway:** An agent can only *do* what its **allowed tools** permit — to delegate, the coordinator must have the `Task` (subagent-spawn) tool enabled.
 
 **Sources:**
-- [1] Claude API Docs — "Define tools / Implement tool use" (the API builds the tool system prompt from tool definitions; only enabled tools are callable; forced/unavailable tools change emitted blocks), https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use
+- [1] Claude API Docs — "Define tools / Implement tool use" (the API builds the tool system prompt from tool definitions; only enabled tools are callable; forced/unavailable tools change emitted blocks), https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools

@@ -28,7 +28,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** The model selects tools by reading their descriptions; a specialized tool with a thin description will lose to a built-in with a rich one. Invest in detailed, behavior-specific tool descriptions before adding routing logic or removing tools.
 
-**Sources:** [1] Tool use with Claude — Best practices for tool definitions: https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview
+**Sources:** [1] Tool use with Claude — Best practices for tool definitions: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
 
 ---
 
@@ -46,7 +46,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Before deleting code, enumerate every name a symbol is exposed under (read the wrappers/re-exports), then grep for each alias. Search must be grounded in the real code, not one assumed name.
 
-**Sources:** [1] Effective context engineering for AI agents — Context retrieval and agentic search: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code: https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] Effective context engineering for AI agents — Context retrieval and agentic search: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code: https://code.claude.com/docs/en/best-practices
 
 ---
 
@@ -82,7 +82,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** `--continue` = the most recent session in this directory; `--resume` = pick a specific prior session (by name/ID). Use `--resume` when the target isn't the most recent.
 
-**Sources:** [1] CLI reference — resume/continue flags: https://docs.claude.com/en/docs/claude-code/cli-reference — [2] Work with sessions: https://docs.claude.com/en/docs/agent-sdk/sessions
+**Sources:** [1] CLI reference — resume/continue flags: https://code.claude.com/docs/en/cli-reference — [2] Work with sessions: https://code.claude.com/docs/en/agent-sdk/sessions
 
 ---
 
@@ -100,7 +100,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** When context degrades mid-exploration, compact what you've learned into a summary and seed a fresh subagent with it — preserve the signal, escape the polluted context.
 
-**Sources:** [1] Effective context engineering — long-horizon tasks (compaction + multi-agent): https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — subagents: https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] Effective context engineering — long-horizon tasks (compaction + multi-agent): https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — subagents: https://code.claude.com/docs/en/best-practices
 
 ---
 
@@ -118,7 +118,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Resume to preserve accumulated context, then tell the agent the precise delta (which files changed) so it re-reads only what's stale — not everything, not nothing.
 
-**Sources:** [1] Work with sessions — resuming restores full prior context: https://docs.claude.com/en/docs/agent-sdk/sessions
+**Sources:** [1] Work with sessions — resuming restores full prior context: https://code.claude.com/docs/en/agent-sdk/sessions
 
 ---
 
@@ -136,7 +136,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** To explore mutually exclusive alternatives from a shared baseline, `fork_session` gives each its own clean branch — independent contexts, identical starting point, original preserved.
 
-**Sources:** [1] Work with sessions — fork creates a new session from a copy of history, original unchanged: https://docs.claude.com/en/docs/agent-sdk/sessions
+**Sources:** [1] Work with sessions — fork creates a new session from a copy of history, original unchanged: https://code.claude.com/docs/en/agent-sdk/sessions
 
 ---
 
@@ -154,7 +154,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Explore from the architectural root outward (interface → relevant implementations) following real imports, retrieving files just-in-time — not by bulk-reading or by file size.
 
-**Sources:** [1] Effective context engineering — agentic search with glob/grep: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — scoping exploration: https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] Effective context engineering — agentic search with glob/grep: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — scoping exploration: https://code.claude.com/docs/en/best-practices
 
 ---
 
@@ -172,7 +172,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** When exploration outgrows one context window, delegate well-scoped sub-investigations to subagents (fresh contexts) while the lead agent retains the overview — the multi-agent pattern for scaling.
 
-**Sources:** [1] Effective context engineering — multi-agent architectures: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — use subagents to investigate: https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] Effective context engineering — multi-agent architectures: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — use subagents to investigate: https://code.claude.com/docs/en/best-practices
 
 ---
 
@@ -208,7 +208,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Resume to keep deep accumulated understanding, then hand the agent a precise delta (the renames) rather than restarting or silently resuming on stale names.
 
-**Sources:** [1] Work with sessions — resuming restores prior context: https://docs.claude.com/en/docs/agent-sdk/sessions
+**Sources:** [1] Work with sessions — resuming restores prior context: https://code.claude.com/docs/en/agent-sdk/sessions
 
 ---
 
@@ -226,7 +226,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Specialized tools win adoption through detailed descriptions that state when to prefer them and their exact I/O — not through classifiers or by crippling general tools.
 
-**Sources:** [1] Tool use with Claude — Best practices for tool definitions (descriptions are the most important factor): https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview
+**Sources:** [1] Tool use with Claude — Best practices for tool definitions (descriptions are the most important factor): https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
 
 ---
 
@@ -244,7 +244,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** Compare alternatives from a shared analysis baseline by forking — each branch is isolated, starts identically, and avoids re-reading the codebase. (Same principle as Q22.)
 
-**Sources:** [1] Work with sessions — fork from a copy of history, original unchanged: https://docs.claude.com/en/docs/agent-sdk/sessions
+**Sources:** [1] Work with sessions — fork from a copy of history, original unchanged: https://code.claude.com/docs/en/agent-sdk/sessions
 
 ---
 
@@ -262,7 +262,7 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** When Edit's unique-match contract can't be met in a repetitive file, fall back to Read → modify in memory at the target line → Write the full file back.
 
-**Sources:** [1] Best practices for Claude Code — file editing tools (Edit/Write) and exact-match behavior: https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] Best practices for Claude Code — file editing tools (Edit/Write) and exact-match behavior: https://code.claude.com/docs/en/best-practices
 
 ---
 
@@ -280,4 +280,4 @@ This guide covers the 15 `code_exploration` questions (Q16–Q30) from the CCAF 
 
 **Key takeaway:** In a large unfamiliar codebase, start at concrete entry points via grep, then trace real imports/calls outward incrementally — grounded just-in-time retrieval beats keyword dragnets or blind fan-out.
 
-**Sources:** [1] Effective context engineering — hybrid agentic search with glob/grep: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — scoping exploration, avoiding infinite exploration: https://www.anthropic.com/engineering/claude-code-best-practices
+**Sources:** [1] Effective context engineering — hybrid agentic search with glob/grep: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents — [2] Best practices for Claude Code — scoping exploration, avoiding infinite exploration: https://code.claude.com/docs/en/best-practices

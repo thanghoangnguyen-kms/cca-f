@@ -64,7 +64,7 @@ A: **Deploying and hosting them** — infrastructure, networking, container orch
 ## Fundamentals
 
 **Q: Name the five current Claude models and their API IDs.**
-A: Claude Fable 5 (`claude-fable-5`), Claude Mythos 5 (`claude-mythos-5`, Project Glasswing only), Claude Opus 5 (`claude-opus-5`), Claude Sonnet 5 (`claude-sonnet-5`), Claude Haiku 4.5 (`claude-haiku-4-5`). ([docs](https://platform.claude.com/docs/en/about-claude/models/overview), checked 2026-08-24)
+A: Claude Fable 5 (`claude-fable-5`), Claude Mythos 5 (`claude-mythos-5`, Project Glasswing only), Claude Opus 5 (`claude-opus-5`), Claude Sonnet 5 (`claude-sonnet-5`), Claude Haiku 4.5 (`claude-haiku-4-5`). ([docs](https://platform.claude.com/docs/en/models/overview), checked 2026-08-24)
 
 **Q: Which Claude models are now legacy rather than current?**
 A: The whole Opus 4.x line — Opus 4.8 (`claude-opus-4-8`), 4.7 (`claude-opus-4-7`), 4.6 (`claude-opus-4-6`), 4.5 — plus Sonnet 4.6 (`claude-sonnet-4-6`) and Sonnet 4.5. Still available, no longer recommended for new work.

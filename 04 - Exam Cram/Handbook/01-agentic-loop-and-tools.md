@@ -45,7 +45,7 @@ tool distribution, and structured output. (Maps to concept chapters 1, 4, 5, 6, 
 
 Only `tool_use` and `pause_turn` require another API call. A loop that stops on
 everything except `end_turn` silently truncates on `pause_turn`.
-Source: <https://platform.claude.com/docs/en/api/handling-stop-reasons> (checked 2026-08-24)
+Source: <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons> (checked 2026-08-24)
 
 **Exam scope (added 2026-08-25).** The official exam guide names only **two**
 `stop_reason` values — `tool_use` and `end_turn` — in task statement 1.1 and in
@@ -142,4 +142,4 @@ important factor" · "isError / is_error" · "tool_choice" · "input_schema" ·
 
 ## Sources
 - Building effective agents — https://www.anthropic.com/engineering/building-effective-agents
-- Tool use (define tools, best practices, errors) — https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use · https://docs.claude.com/en/docs/agents-and-tools/tool-use/handling-errors
+- Tool use (define tools, best practices, errors) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools · https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
