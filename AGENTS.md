@@ -62,13 +62,19 @@ CCA-F/
 │   │   └── Answer Key/<domain>.md   ← 4 scenario domains
 │   ├── CyberSkill CCAF - Timed Mock 2026-08-24/  ← 3rd sitting; stems only (no options),
 │   │   └── README.md · Questions.md             all 60 answers grader-authoritative
-│   ├── CyberSkill CCAF - Mock Exam/     ← key only; 2nd sitting of the SAME bank (40/60
+│   ├── CyberSkill CCAF - Mock Exam/     ← key only; 2nd sitting of the SAME bank (42/60
 │   │   └── README.md · <domain>.md        overlap) — kept separate, do NOT merge
-│   └── CCA-F Question Bank/         ← certificationpractice.com; questions only, no key
-│       └── README.md · CCA-F-practice-exam-questions.md
-│   # the THREE answer-key folders share the same 4 domain filenames, so they link
-│   # with relative MD, not [[wikilinks]] — from anywhere, not just inside a set
-│   # folder (Answer Patterns Index sits at the root and does the same). Keep intact
+│   ├── CCA-F Question Bank/         ← certificationpractice.com; questions only, no key
+│   │   └── README.md · CCA-F-practice-exam-questions.md
+│   └── CyberSkill CCAF - Unified Bank/  ← DERIVED: the 3 sittings above deduplicated;
+│       ├── README.md                      80 distinct items (U1–U80) + the crosswalk
+│       ├── Questions.md                   U1–U60 full MCQ · U61–U80 open-response
+│       └── Answer Key/unified-<domain>.md  ← prefixed, so NOT part of the collision
+│   # the THREE original answer-key folders share the same 4 domain filenames, so they
+│   # link with relative MD, not [[wikilinks]] — from anywhere, not just inside a set
+│   # folder (Answer Patterns Index sits at the root and does the same). Keep intact.
+│   # The Unified Bank prefixes its four `unified-` precisely to stay out of that
+│   # collision, so its keys CAN be wikilinked: [[unified-research_pipeline]]
 ├── 06 - Youtube Course/             ← per-episode notes from the Peace Of Code course
 │   └── EP<NN> - <Title>/            ← one folder per episode (pre-created)
 │       ├── EP<NN> - <Title>.md      ← study guide (filename repeats folder name)

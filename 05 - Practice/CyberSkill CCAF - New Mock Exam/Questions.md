@@ -14,7 +14,7 @@ status: not-started
 > Domain mix: `code_exploration` 15 · `customer_support` 14 · `extraction_pipeline` 16 · `research_pipeline` 15. Each question's domain line links to the answer file that covers it — **don't click through until you've committed to an answer.**
 
 > [!WARNING] Independently numbered
-> `Q1`–`Q60` here are **this sitting's** numbering. They do **not** line up with the sibling `CyberSkill CCAF - Mock Exam/` sitting (same bank, 40/60 of these questions recur there under different numbers) or with the unrelated [[CCA-F-practice-exam-questions]] bank. Never carry a question number between sets.
+> `Q1`–`Q60` here are **this sitting's** numbering. They do **not** line up with the sibling `CyberSkill CCAF - Mock Exam/` sitting (same bank, 42/60 of these questions recur there under different numbers) or with the unrelated [[CCA-F-practice-exam-questions]] bank. Never carry a question number between sets.
 
 ---
 

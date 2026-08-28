@@ -68,7 +68,7 @@ The **three still-open items** were not redrawn by either later sitting:
 >
 > | Sibling | Sat | Overlap with this folder | Has questions? |
 > |---|---|---|---|
-> | [../CyberSkill CCAF - Mock Exam/](../CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | earlier | **40 / 60** | ❌ answers only |
+> | [../CyberSkill CCAF - Mock Exam/](../CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | earlier | **42 / 60** | ❌ answers only |
 > | [../CyberSkill CCAF - Timed Mock 2026-08-24/](../CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) | 2026-08-24 | **48 / 60** | ⚠️ stems only, no options |
 >
 > All three are **not merged and should not be merged**: each sitting has its own internally consistent `Q1`–`Q60`, and the bank re-draws and re-orders on every sitting. `Q7` here is not `Q7` in either sibling. Expect to meet the same question under three different numbers — that repetition is useful revision, and it is what allowed 57 of these 60 answers to be independently confirmed.

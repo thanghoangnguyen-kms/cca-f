@@ -8,7 +8,7 @@ status: in-progress
 
 # 05 - Practice — Index
 
-Six exam sets — the **official** sample questions, three sittings of one CyberSkill bank, an unrelated bank, and a vault-authored set closing the Claude Code gap — plus your personal mistake log.
+Six exam sets — the **official** sample questions, three sittings of one CyberSkill bank, an unrelated bank, and a vault-authored set closing the Claude Code gap — plus your personal mistake log, and one **derived** folder that deduplicates the three overlapping CyberSkill sittings.
 
 > [!IMPORTANT] The organizing rule
 > **One folder per exam set, named `<source> - <set>`; standalone notes at the root.** Every set folder owns a `README.md`. Links *within* a set folder are relative Markdown so the folder stays portable as a unit; everything else in the vault uses `[[wikilinks]]`.
@@ -32,6 +32,17 @@ Six exam sets — the **official** sample questions, three sittings of one Cyber
 > [!TIP] Which folder to reach for
 > **Drilling as multiple choice** → `New Mock Exam` or `CCA-F Question Bank` (the two sets quoting all four options). **Settling what the right answer is** → `Timed Mock 2026-08-24` (every answer is the site's own `correct_key`). **Your own scored performance** → `Timed Mock 2026-08-24`; it is the only sitting whose result is recorded.
 
+## The derived set
+
+| Folder | Source | Questions | Answer key |
+|---|---|---|---|
+| [CyberSkill CCAF - Unified Bank/](CyberSkill%20CCAF%20-%20Unified%20Bank/README.md) | **Derived** — the three CyberSkill sittings, deduplicated | ✅ **80 distinct**, unmarked · 60 with all 4 options, 20 open-response | ✅ worked, 4 domains · **69/80 grader-verified** |
+
+> [!IMPORTANT] Derived, not a fourth sitting — and it does not replace the three
+> The three sittings above stay exactly as they are, for exactly the reasons given below: each preserves a real 60-question run with its own internally consistent numbering, and meeting one question under three numbers is useful revision. The Unified Bank answers a different question — *"which items have I actually never seen?"* — by resolving all 180 slots into the **80 distinct items** behind them, each once, merged with the best stem and the best-attested answer.
+>
+> **Reach for it for coverage without repetition. Reach for a sitting for a timed 60-question run.** Its `U1`–`U80` numbering exists only in that folder; never carry it anywhere else.
+
 Plus two standalone notes at the root:
 
 - [[Weak Areas Deep Dive]] — your mistake log. Start and end there.
@@ -43,12 +54,15 @@ Measured question overlap, every pairing:
 
 | Pairing | Overlap |
 |---|---|
-| New Mock Exam ↔ Mock Exam | **40 / 60** — same CyberSkill bank |
+| New Mock Exam ↔ Mock Exam | **42 / 60** — same CyberSkill bank, measured item-by-item |
 | New Mock Exam ↔ Timed Mock 2026-08-24 | **48 / 60** — same CyberSkill bank |
 | Mock Exam ↔ Timed Mock 2026-08-24 | **42 / 60** — measured by mapping all 60 stems against that folder's `**Question:**` paraphrases; the 18 non-matches are exactly the Timed Mock's short-form items |
 | Question Bank ↔ Mock Exam | 0 / 60 |
 | Question Bank ↔ New Mock Exam | 1 / 60 (a single coincidental topic match) |
 | Question Bank ↔ Timed Mock 2026-08-24 | 0 / 60 — one shared tool name (`extract_metadata`), two unrelated questions |
+
+> [!TIP] The pairings above are now resolved item-by-item
+> [CyberSkill CCAF - Unified Bank/](CyberSkill%20CCAF%20-%20Unified%20Bank/README.md) records which question equals which, across all three sittings — 180 slots → **80 distinct items, 20 per domain exactly**. That crosswalk is what corrected the `New Mock ↔ Mock Exam` row from 40 to 42.
 
 **Only two items appear nowhere else in the vault:** the 2026-08-24 sitting's Q4 and Q10. Ten of its twelve items absent from `New Mock Exam` turn up in the `Mock Exam` key instead — and **all ten agree with that key's answers**, which is ten unrecorded independent confirmations of it.
 

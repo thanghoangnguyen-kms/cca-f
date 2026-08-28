@@ -29,7 +29,9 @@ status: done
 | **G-Q##** | [Exam Guide - Sample Questions](Exam%20Guide%20-%20Sample%20Questions/README.md) | 12 | stems + all four options + **the exam author's own rationale**. Not part of the 180 read sideways below — cited here because it **outranks** every row in this note |
 
 > [!WARNING] Numbers never cross sets
-> `N-Q7`, `O-Q7` and `T-Q7` are different questions. The three sittings draw from the same bank (**N↔O 40/60 · N↔T 48/60 · O↔T 42/60**) but renumber and reorder every time. This note groups by **principle**, not by item identity — where the same principle appears in both sets, expect that some pairs are literally the same item under two numbers and others are two different questions teaching one rule. Don't try to pair them off.
+> `N-Q7`, `O-Q7` and `T-Q7` are different questions. The three sittings draw from the same bank (**N↔O 42/60 · N↔T 48/60 · O↔T 42/60**) but renumber and reorder every time. This note groups by **principle**, not by item identity — where the same principle appears in both sets, expect that some pairs are literally the same item under two numbers and others are two different questions teaching one rule.
+>
+> **The pairing now exists.** As of 2026-08-28 the item-level crosswalk is recorded in [CyberSkill CCAF - Unified Bank/README.md](CyberSkill%20CCAF%20-%20Unified%20Bank/README.md#the-crosswalk) — all 180 slots resolved into the **80 distinct items** behind them. Use it when you want to know whether two entries in this note are one item or two. It does not change any grouping below: this note still reads by principle, and hit counts still count *appearances*, not distinct items.
 
 > [!WARNING] What `T-Q` items can and cannot be used for
 > ✅ They **count toward hit frequency** in Parts 1 and 2, and they drill well as **open response** — read the stem, state the principle, compare against the keyed answer.
