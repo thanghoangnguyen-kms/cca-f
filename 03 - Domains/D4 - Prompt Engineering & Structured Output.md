@@ -332,15 +332,80 @@ When individual requests fail:
 
 ### SLA Calculation Pattern
 
-Compute **max wait before submission + 24h ≤ SLA**, then check that a failed or expired batch could still be resubmitted inside the SLA. **Both** conditions must hold.
+**The SLA is your promise, not Anthropic's.** No batch latency is documented at
+all — the only number you can build on is the 24-hour expiry, and that is a
+*worst case*, not an estimate. So the SLA is a business constraint you impose on
+yourself, and the single knob you control is **how often you submit**.
 
-Example: 30-hour SLA + 24-hour batch limit → `30 − 24 = 6`, so 6 hours is the *absolute* ceiling on pre-submission delay. **Do not submit on a 6-hour cadence** — it lands exactly on the SLA with zero margin, so a single expired batch breaches it. Batch every **4 hours** (4 + 24 = 28h, 2h of headroom for one resubmission).
+#### Where the 24 hours starts
+
+The window is anchored to **batch creation** and stamped on the batch object the
+moment it is created:
+
+```json
+"created_at": "2024-09-24T18:37:24Z",
+"expires_at": "2024-09-25T18:37:24Z"    // created_at + 24h, exactly
+```
+
+Not from document arrival. Not from when Claude picks up an individual request.
+**Every batch gets its own clock** — they are never shared.
+
+#### What happens at `expires_at`
+
+Expiry is **per request**, not all-or-nothing — `request_counts` buckets them:
+
+| Bucket | Meaning |
+|--------|---------|
+| `succeeded` | Finished in time; results downloadable for **29 days** after creation |
+| `expired` | Did not finish — **no output at all**. Not late, not partial: it never ran |
+
+Resubmit only the failed/`expired` `custom_id`s. But that resubmission is a
+**new batch with a new `created_at`**, so it opens a **fresh 24-hour window from
+zero**. The clock does not resume — it resets. That one fact is why a cadence
+with zero margin is fatal.
+
+#### The arithmetic
+
+Two conditions, and **both** must hold:
+1. `max wait before submission + 24h ≤ SLA`
+2. A failed or expired batch can still be resubmitted inside the SLA
+
+Example — 30-hour SLA: `30 − 24 = 6`, so 6 hours is the *absolute* ceiling on
+pre-submission delay. **Do not submit on a 6-hour cadence** — the worst case
+lands exactly on 30 with zero margin, so a single expired batch breaches it.
+Batch every **4 hours** instead. The budget then splits into three fixed pieces:
+
+| Piece | Hours | Why it is fixed |
+|-------|-------|-----------------|
+| Worst-case queue wait | **4** | Capped by your own cadence — a document arriving one second after a flush waits the full 4h and no longer. There is no unluckier document |
+| Batch window | **24** | Anthropic's, non-negotiable |
+| **Retry budget** | **2** | Whatever is left over |
+
+> [!IMPORTANT] The leftover is retry budget — **not** extra queue room
+> Waiting is already paid for by the cadence, so nothing competes for those 2
+> hours. They exist so a resubmission — which starts its *own* 24-hour clock —
+> can still finish inside the SLA. Most batches complete in under an hour, so 2
+> hours realistically covers one retry.
+> ❌ Reading the margin as slack for "documents that arrive late" — every
+> arrival is already inside the 4-hour cap.
+> ✅ Reading it as: how long you have left to redo work that came back `expired`.
+
+> [!WARNING] The margin is a bet, not a proof
+> Surviving a worst-case expiry *plus* a second full window would need
+> `cadence + 48 ≤ SLA` — impossible at 30 hours for any positive cadence. The 2
+> hours covers a retry that completes at *typical* speed (~1h), not one that runs
+> to the limit again.
+
+> [!IMPORTANT] If the SLA is ≤ 24 hours, batch is disqualified outright
+> No cadence rescues it — the window alone consumes the whole budget. That is a
+> **synchronous Messages API** question wearing a batching costume.
 
 > [!IMPORTANT] 24 hours is an expiration, not a worst-case latency
 > Most batches finish within an hour, but requests still incomplete at 24 hours return with result type `expired` and must be resubmitted from scratch — they do not merely arrive late. No SLA is documented: "processing may be slowed down based on current demand and your request volume." A reliability target such as 99.9% therefore makes retry headroom **mandatory**, not merely prudent. Resubmit only the failed `custom_id`s.
-> Source: <https://platform.claude.com/docs/en/build-with-claude/batch-processing> · checked 2026-08-24
+> Source: <https://platform.claude.com/docs/en/build-with-claude/batch-processing> · checked 2026-08-28
 >
 > Corrected 2026-08-24: this section previously prescribed 6-hour windows, contradicting [[00-golden-rules-cheatsheet]] and [[05-extraction-pipeline]], which correctly teach 4h with a 2h buffer.
+> Expanded 2026-08-28: added the `created_at`/`expires_at` anchor, per-request expiry semantics, the clock-resets-on-retry rule, the three-way budget split, and the ≤ 24h disqualification — the gaps that made this section hard to follow.
 
 ### Optimize Before Batch Submission
 
@@ -463,6 +528,7 @@ For 20k+ token inputs:
 - [ ] Know Batch API: 50% cost, 24h window, no latency SLA; multi-turn conversations & tool use ARE supported (same agentic loop as sync Messages)
 - [ ] Know the `custom_id` format and purpose
 - [ ] Know when to use batch vs synchronous API
+- [ ] Know the batch SLA math: `expires_at` = `created_at` + 24h, a retry opens a **new** clock, and an SLA of ≤ 24h disqualifies batch outright
 - [ ] Know the self-review limitation and independent instance solution
 - [ ] Know the per-file pass + cross-file integration pass architecture
 
@@ -493,6 +559,15 @@ A: When the required information simply doesn't exist in the source document. Re
 
 **Q: What are the Batch API's three key characteristics?**
 A: 50% cost savings, up to 24-hour processing window, no guaranteed latency SLA.
+
+**Q: Where does the Batch API's 24-hour window start counting from?**
+A: `created_at` — the moment the batch is created; `expires_at` is stamped as exactly `created_at` + 24h. **Not** from document arrival, and not from when Claude picks up a given request. Every batch carries its own clock, and a resubmission is a *new* batch whose clock starts again at zero.
+
+**Q: Under a 30-hour SLA you batch every 4 hours, leaving 2 hours spare. What is that spare time for?**
+A: The **retry budget** — nothing else. Queue wait is already capped at 4 hours by the cadence itself, so no arrival can compete for it. The 2 hours is room for a resubmission (which opens its own fresh 24-hour window) to still land inside the SLA.
+
+**Q: Your SLA is 20 hours. Which batching cadence meets it?**
+A: None — batch is disqualified whenever the SLA is ≤ 24 hours, because the window alone consumes the entire budget. That is a **synchronous Messages API** question.
 
 **Q: Can you do multi-turn conversations and tool use within a single Batch API request?**
 A: Yes — batch runs the same server-side agentic loop as the synchronous Messages API, so multi-turn conversations and tool use (including server-side tools) are supported. What's not possible is an interactive, client-executed tool round-trip mid-request — but that's true of any single Messages call, not something specific to batch.
