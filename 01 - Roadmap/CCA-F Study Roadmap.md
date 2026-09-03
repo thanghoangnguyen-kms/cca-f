@@ -294,7 +294,7 @@ graph LR
 > **Goal:** Measure readiness on **unseen** items under real time pressure, then close what that measurement exposes.
 
 > [!IMPORTANT] Readiness is first-pass accuracy on unseen items at under 2 minutes each
-> Every bank in this vault is *worked* — the keys were written here — so re-answering one measures recall of your own key, not architectural judgment. Do not set a target like "95% on a bank I have already keyed"; that number is near-guaranteed and predicts nothing. A passer who drove Anthropic's own practice exam from the 700s to 930 across three runs described the climb as "memorization wearing the costume of mastery," then found the real exam shared **no questions** with it.
+> Every bank in this vault is *worked* — the keys were written here — so re-answering one measures recall of your own key, not architectural judgment. Do not set a target like "95% on a bank I have already keyed"; that number is near-guaranteed and predicts nothing. A passer who drove the *then*-official practice exam from the 700s to 930 across three runs described the climb as "memorization wearing the costume of mastery," then found the real exam shared **no questions** with it. (That exam has since been retired — see Step 1 — but the trap is identical for any bank you re-sit.)
 
 > [!WARNING] Two failure modes reported by people who passed
 > - **Wording, not concepts, is the gap.** Real stems bury the disqualifying qualifier mid-sentence. "On the mock I could move fast, but on the real exam reading carefully was the whole game." Drill dense phrasing, not more facts.
@@ -305,14 +305,18 @@ graph LR
 > [!NOTE] 🔒 marks material kept out of the shared repo
 > Personal sitting records and mistake notes are `.gitignore`d and exist **only in your local clone**. Teammates who clone this vault will not have them, and the links to them below will not resolve on their machines.
 
-#### Step 1 — Cold diagnostic, official material only
+#### Step 1 — Cold diagnostic
+
+> [!IMPORTANT] There is no official practice exam any more
+> It was **retired on 2026-06-30** when delivery moved to Pearson VUE. Anthropic's certification FAQ: *"The practice exam available on the previous platform was retired in the move to Pearson. The exam guide includes sample questions that show the format and style of what's on the exam."* The **12 sample questions in § 9 of the guide are now the only official practice material**, and this vault already has them.
+> Any blog or guide that tells you to grind an official mock to 900/1000 predates that change — those accounts are from May and June 2026. Source: [Anthropic certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications).
+
+> [!WARNING] Unseen questions are now your scarcest resource — ration them
+> With no official mock, nothing you can sit is both high-fidelity *and* renewable. Every third-party item you read is spent: once seen, it can never measure you again. So **reserve two blocks of 60 unseen items before you start drilling** — one for this step, one for Step 6 — and do not touch them in between.
 
 - [ ] **Official sample questions:** `05 - Practice/Exam Guide - Sample Questions/` — 12 items from § 9 of the exam guide, with Anthropic's own rationales rebutting every distractor. **The only officially-sourced questions in the vault — sit these first**, they calibrate you to the real house style.
-- [ ] **Official Anthropic practice exam — run 1.** Sit it **cold**, full 120 minutes, without studying for it. It grades each item the moment you answer and explains why the key is the key, and the score report breaks down by domain — that breakdown is what drives Steps 3 and 4. It is retakeable, but it **reuses a fixed question pool**, so budget exactly **two runs** and hold the second for Step 6.
-  - Certification track entry: https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request
-
-> [!WARNING] Unverified
-> The practice exam is delivered inside the certification track rather than at a standalone public URL, so the link above is the track entry point, not the exam itself. Confirm the exact location when you register.
+- [ ] **Reserved cold block A — 60 unseen items, 120 minutes, timed.** Build it *before* you drill anything: take 60 consecutive questions from a source you have never opened (CertSafari by domain, or the Connectry MCP's practice-exam tool) and sit them like the real thing. Score by domain. **That domain breakdown is what drives Steps 3 and 4** — it is the substitute for the score report the retired official mock used to give you.
+- [ ] Register and confirm logistics while you still have time to fix problems: Partner Academy → Pearson VUE account, photo ID name matching **exactly**, accommodations approved *before* booking. See [[Official Exam Blueprint]] § Logistics that bite.
 
 #### Step 2 — Spaced repetition, daily from day 1 (runs in parallel with every step below)
 
@@ -350,12 +354,14 @@ graph LR
 
 #### Step 6 — Final week: the honesty check
 
-- [ ] **Official Anthropic practice exam — run 2.** Cold and timed, held back since Step 1. Everything else you have drilled is warm by now, so this is the only reading that still means anything. Watch the clock from question 1: 60 items in 120 minutes is under two minutes each, and the scenarios are dense.
+- [ ] **Reserved cold block B — 60 unseen items, 120 minutes, timed.** Held back untouched since Step 1. Everything else you have drilled is warm by now, so this is the only reading that still means anything. Watch the clock from question 1: under two minutes each, and the scenarios are dense. Compare its domain split against block A — the delta, not the absolute score, is your evidence that the drilling worked.
 - [ ] Rehearse the mechanics: four blocks of fifteen questions, each on its own production scenario, drawn from **four of the six** official scenarios at random. Flag and move rather than grinding — one passer flagged 7 of the first 10 and still passed, changing about half of those answers on the second read.
 - [ ] **YouTube course wrap-up:** [[Bonus - Exam Questions Solved & Exam Traps]] (folder 06)
 
-> [!WARNING] The stakes are asymmetric
-> Fail and you cannot retake for **six months**. Pass and the credential expires **six months** later anyway. Over-preparing on unseen items is cheap; being fooled by a warm bank is not.
+> [!WARNING] Know the real retake and validity policy
+> Retakes follow a ladder: **14 days** after the 1st fail, **30** after the 2nd, **90** after the 3rd, max **4 attempts per rolling 12 months**, fee each time. The credential is valid **12 months**, renewable by a free non-proctored assessment on the Partner Academy *while it is still valid* — let it lapse and it is the full exam at full fee. See [[Official Exam Blueprint]] § Logistics; confirmed against [Pearson VUE](https://www.pearsonvue.com/us/en/anthropic.html).
+>
+> A failed attempt costs two weeks and another $125, not half a year — but over-preparing on unseen items is still cheap, and being fooled by a warm bank is not.
 
 ---
 
