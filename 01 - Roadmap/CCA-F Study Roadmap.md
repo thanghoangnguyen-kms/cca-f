@@ -291,25 +291,71 @@ graph LR
 
 ### Week 6 — Review & Exam Simulation
 
-> **Goal:** Identify weak spots, drill practice questions, simulate exam conditions.
+> **Goal:** Measure readiness on **unseen** items under real time pressure, then close what that measurement exposes.
 
+> [!IMPORTANT] Readiness is first-pass accuracy on unseen items at under 2 minutes each
+> Every bank in this vault is *worked* — the keys were written here — so re-answering one measures recall of your own key, not architectural judgment. Do not set a target like "95% on a bank I have already keyed"; that number is near-guaranteed and predicts nothing. A passer who drove Anthropic's own practice exam from the 700s to 930 across three runs described the climb as "memorization wearing the costume of mastery," then found the real exam shared **no questions** with it.
+
+> [!WARNING] Two failure modes reported by people who passed
+> - **Wording, not concepts, is the gap.** Real stems bury the disqualifying qualifier mid-sentence. "On the mock I could move fast, but on the real exam reading carefully was the whole game." Drill dense phrasing, not more facts.
+> - **D3 is where points leak.** One passer's score report flagged **Claude Code Configuration & Workflows as their weakest domain at 69%** despite using Claude Code daily; another found "quite a few questions on git pipeline commands, more than I expected from the mock." Daily use produces fluency with the parts you reach for and blind spots around the rest — which is exactly what this vault's own [[Answer Patterns Index]] already records about the CyberSkill sittings.
+>
+> Sources: [Very Good Ventures — 738](https://verygood.ventures/blog/passing-the-claude-certified-architect-exam/) · [re:cinq — study guide and how I passed](https://re-cinq.com/blog/claude-certified-architect-foundations-exam) · [Udacity — explained by someone who passed](https://www.udacity.com/blog/the-claude-certified-architect-exam-explained-by-someone-who-passed-it/)
+
+> [!NOTE] 🔒 marks material kept out of the shared repo
+> Personal sitting records and mistake notes are `.gitignore`d and exist **only in your local clone**. Teammates who clone this vault will not have them, and the links to them below will not resolve on their machines.
+
+#### Step 1 — Cold diagnostic, official material only
+
+- [ ] **Official sample questions:** `05 - Practice/Exam Guide - Sample Questions/` — 12 items from § 9 of the exam guide, with Anthropic's own rationales rebutting every distractor. **The only officially-sourced questions in the vault — sit these first**, they calibrate you to the real house style.
+- [ ] **Official Anthropic practice exam — run 1.** Sit it **cold**, full 120 minutes, without studying for it. It grades each item the moment you answer and explains why the key is the key, and the score report breaks down by domain — that breakdown is what drives Steps 3 and 4. It is retakeable, but it **reuses a fixed question pool**, so budget exactly **two runs** and hold the second for Step 6.
+  - Certification track entry: https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request
+
+> [!WARNING] Unverified
+> The practice exam is delivered inside the certification track rather than at a standalone public URL, so the link above is the track entry point, not the exam itself. Confirm the exact location when you register.
+
+#### Step 2 — Spaced repetition, daily from day 1 (runs in parallel with every step below)
+
+- [ ] **`paullarionov/claude-certified-architect` Anki decks** — 15–20 min/day, starting immediately. Spaced repetition only works spread across weeks; saved for the final block it degrades into just another question bank.
+  - https://github.com/paullarionov/claude-certified-architect
 - [ ] [[Flashcards]] and [[Critical Terms Glossary]]
   - Key CLI flags: `--resume`, `--print`, `--output-format json`, `--json-schema`
   - Key commands: `/memory`, `/compact`
   - Key patterns: `stop_reason`, `isError`, `tool_choice`, `custom_id`, `AgentDefinition`, `PostToolUse`, `fork_session`
-- [ ] **Official sample questions:** `05 - Practice/Exam Guide - Sample Questions/` — 12 items from § 9 of the exam guide, with Anthropic's own rationales rebutting every distractor. **The only officially-sourced questions in the vault — sit these first**, they calibrate you to the real house style.
+
+#### Step 3 — Close D3 first, driven by Step 1's weak domains
+
+- [ ] **Connectry `architect-cert` MCP** — `npm install -g connectry-architect-mcp`, then register it with your MCP client. 390 scenario questions mapped to **all 30 task statements**, which makes it the only source indexed the same way [[Official Exam Blueprint]] is — so it can prove D3 coverage rather than assert it. Runs locally, MIT, no account.
+  - https://github.com/Connectry-io/connectrylab-architect-cert-mcp
 - [ ] **Claude Code scenario drills:** `05 - Practice/Vault-authored - Claude Code Scenario Drills/` — 20 items covering official **scenarios 2 and 5**, the two Claude-Code frames no sourced bank tests (~93% chance at least one appears). Vault-authored: exam-accurate topics, uncalibrated difficulty.
-- [ ] **In-vault New Mock Exam:** `05 - Practice/CyberSkill CCAF - New Mock Exam/` — 60 Qs **with** a matched worked key by scenario domain (**57/60** verified against the source grader). The one complete set; do this first.
-- [x] **In-vault timed mock, sat 2026-08-24:** `05 - Practice/CyberSkill CCAF - Timed Mock 2026-08-24/` — **scored 43/60 (71.67%), one mark below CyberSkill's 72% bar** (the site's threshold — the exam scores 720 scaled on 100–1,000, see [[Official Exam Blueprint]] § 1). All 60 answers are grader-authoritative; stems captured but not the options. Third sitting of the same bank (48/60 overlap with New Mock Exam). Weakest domain `customer_support` at 8/14.
-- [ ] **In-vault mock exam:** `05 - Practice/CyberSkill CCAF - Mock Exam/` — worked answers by scenario, question file never captured. A second sitting of the *same* bank as New Mock Exam (42/60 overlap, different numbering).
-- [ ] **In-vault unified bank:** `05 - Practice/CyberSkill CCAF - Unified Bank/` — the three CyberSkill sittings **deduplicated**: 180 question-slots resolved into the **80 distinct items** behind them, 20 per domain exactly. `U1`–`U60` are full multiple choice, `U61`–`U80` open-response (no options survive anywhere). **69/80 grader-verified.** Use this for *coverage without repetition* once you've sat at least one of the three above as a timed run.
-- [ ] **In-vault question bank:** [[CCA-F-practice-exam-questions]] (60 Qs, certificationpractice.com) — ✅ **worked answer key added 2026-08-25** (vault-reasoned, not grader-confirmed). **A quarter of it is D3** — the best sourced Claude Code drilling in the vault
-- [ ] **CertSafari practice:** Do all 614 questions by domain
-  - https://www.certsafari.com/anthropic/claude-certified-architect
+- [ ] **In-vault question bank:** [[CCA-F-practice-exam-questions]] (60 Qs, certificationpractice.com) — ✅ worked answer key added 2026-08-25 (vault-reasoned, not grader-confirmed). **A quarter of it is D3** — the best sourced Claude Code drilling in the vault.
+
+#### Step 4 — Volume on unfamiliar phrasing
+
+- [ ] **CertSafari practice:** do all 614 questions by domain — https://www.certsafari.com/anthropic/claude-certified-architect
 - [ ] **Preporato practice tests:** https://preporato.com/exams/cca-f
 - [ ] **FlorianBruniaux 271-question quiz:** https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/quiz
+
+#### Step 5 — Review the CyberSkill material, do not re-answer it (timebox ~2h)
+
+> [!TIP] Read these sideways, not front-to-back
+> The signal in the three CyberSkill sittings has already been extracted into the two notes below. Re-sitting them to chase a percentage spends hours to confirm something you know.
+
+- [ ] [[Answer Patterns Index]] — 180 explanations grouped into recurring principles, each tied to a trigger row in [[00-golden-rules-cheatsheet]].
+- [ ] 🔒 [[Weak Areas Deep Dive]] — notes from practice-test mistakes. **Local only.**
+- [ ] **In-vault unified bank:** `05 - Practice/CyberSkill CCAF - Unified Bank/` — the three CyberSkill sittings **deduplicated**: 180 question-slots resolved into the **80 distinct items** behind them, 20 per domain exactly. `U1`–`U60` are full multiple choice, `U61`–`U80` open-response. **69/80 grader-verified.** Use this for *coverage without repetition* — it is the only CyberSkill folder in the shared repo.
+- [x] 🔒 **Timed mock, sat 2026-08-24:** `05 - Practice/CyberSkill CCAF - Timed Mock 2026-08-24/` — **scored 43/60 (71.67%), one mark below CyberSkill's 72% bar** (the site's threshold — the exam scores 720 scaled on 100–1,000, see [[Official Exam Blueprint]] § 1). All 60 answers grader-authoritative; stems captured but not the options. **Local only.**
+- [ ] 🔒 **New Mock Exam:** `05 - Practice/CyberSkill CCAF - New Mock Exam/` — 60 Qs with a matched worked key by scenario domain (**57/60** verified against the source grader). The one complete set. **Local only.**
+- [ ] 🔒 **Mock Exam:** `05 - Practice/CyberSkill CCAF - Mock Exam/` — worked answers by scenario, question file never captured. A second sitting of the *same* bank as New Mock Exam (42/60 overlap, different numbering). **Local only.**
+
+#### Step 6 — Final week: the honesty check
+
+- [ ] **Official Anthropic practice exam — run 2.** Cold and timed, held back since Step 1. Everything else you have drilled is warm by now, so this is the only reading that still means anything. Watch the clock from question 1: 60 items in 120 minutes is under two minutes each, and the scenarios are dense.
+- [ ] Rehearse the mechanics: four blocks of fifteen questions, each on its own production scenario, drawn from **four of the six** official scenarios at random. Flag and move rather than grinding — one passer flagged 7 of the first 10 and still passed, changing about half of those answers on the second read.
 - [ ] **YouTube course wrap-up:** [[Bonus - Exam Questions Solved & Exam Traps]] (folder 06)
-- [ ] [[Weak Areas Deep Dive]] — notes from practice test mistakes
+
+> [!WARNING] The stakes are asymmetric
+> Fail and you cannot retake for **six months**. Pass and the credential expires **six months** later anyway. Over-preparing on unseen items is cheap; being fooled by a warm bank is not.
 
 ---
 
