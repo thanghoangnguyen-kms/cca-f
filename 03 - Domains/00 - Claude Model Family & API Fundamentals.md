@@ -72,12 +72,6 @@ flowchart TD
 - **Mythos 5**: Limited availability — invitation-only via Project Glasswing
 - **Mythos Preview**: Offered only for defensive cybersecurity workflows (invitation-only)
 
-### Tokenizer Change (Important!)
-> [!WARNING] Tokenizer Shift from Claude Opus 4.7+
-> Starting with Claude Opus 4.7 (including Fable 5, Mythos 5, **and Sonnet 5**), the tokenizer changed.
-> The **same text produces ~30% MORE tokens** compared to models before Opus 4.7.
-> This affects cost estimates and context window calculations.
-
 ---
 
 ## API Request Anatomy
@@ -429,14 +423,8 @@ A: MCP tool calls. `acceptEdits` auto-approves file edits and filesystem command
 **Q: What is required to run Claude Code non-interactively in CI?**
 A: The `-p` or `--print` flag. Without it, Claude Code waits for interactive input and hangs.
 
-**Q: What is the context window for Haiku 4.5 vs the Sonnet/Opus/Fable tiers?**
-A: Haiku 4.5: **200k tokens** (64k max output). Sonnet 5, Sonnet 4.6, Opus 4.7/4.8, and Fable 5: **1M tokens** (128k max output).
-
 **Q: Which built-in subagent model is Explore? What does it skip?**
 A: Explore uses **Haiku** (fast, low-cost). It skips CLAUDE.md files and parent session git status to keep exploration lightweight.
-
-**Q: What changed about the tokenizer in Claude Opus 4.7+?**
-A: Same text produces ~30% **more tokens** compared to pre-4.7 models. This affects cost estimates and context window usage calculations.
 
 ---
 

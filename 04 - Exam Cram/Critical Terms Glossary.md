@@ -28,7 +28,6 @@ status: done
 | `output_config` | Fundamentals / D4 | Request field controlling both output format and thinking effort. `output_config.format` replaces the deprecated top-level `output_format`. `output_config.effort` (`low`\|`medium`\|`high`\|`xhigh`\|`max`) controls thinking depth (default `high`; `xhigh` best for coding/agentic work). |
 | Adaptive thinking (`thinking: {type:"adaptive"}`) | Fundamentals | Current thinking mode. **Learn the rule, not the model list:** the old `thinking: {type:"enabled", budget_tokens:N}` is *deprecated* on the **4.6** models (requests still succeed) and **rejected with 400 on Claude 4.7 and later** — which includes Fable 5, Mythos 5, Opus 5, Opus 4.7/4.8, Sonnet 5. Haiku 4.5 still supports it. ([docs](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting), checked 2026-08-24) |
 | Prefill removal | Fundamentals | Last-assistant-turn prefills return **400** on **Claude 4.6 and later** — Fable 5, Mythos 5, Opus 5, Opus 4.6-4.8, Sonnet 4.6/5. Use structured outputs or system-prompt instructions instead. ([docs](https://platform.claude.com/docs/en/about-claude/models/migration-guide), checked 2026-08-24) |
-| `cache_control: {type:"ephemeral"}` | Fundamentals / D5 | Marks a content block as cacheable. Prefix match — any byte change earlier in the prefix invalidates everything after it. Default TTL 5 min (extended TTL: 1h, explicit). ~0.1x read cost, ~1.25x write cost. Verify with `usage.cache_read_input_tokens`. |
 | `--print` / `-p` | Fundamentals / D3 | CLI flag for non-interactive mode; required in CI/automated pipelines — without it Claude Code waits for input and hangs. |
 | `--output-format json` | Fundamentals / D3 | CLI flag for machine-parseable JSON output; combine with `--json-schema '<inline schema>'` to enforce structure in CI. The flag takes an **inline JSON Schema string, never a file path**; the validated object arrives in `structured_output`, not `result`. |
 | `--resume <session-name>` | Fundamentals / D1 / D3 | Resume a named session from the CLI. `--continue` resumes the most recent session. |
@@ -119,7 +118,6 @@ status: done
 | `/usage` | D5 | Slash command that reports current token/context usage. |
 | `/rename` | D5 | Slash command that renames the current session. |
 | `PreCompact` hook | D5 / D1 | Fires before context compaction — used to archive the full transcript before it's summarized away. |
-| `cache_control` | D5 / Fundamentals | (See Fundamentals row.) Prefix-match caching; any earlier-byte change invalidates the cache for everything after it — order cacheable content so it's stable and comes first. |
 | Escalation | D5 | Pattern of routing a task to a stronger model or to human review when confidence is low or stakes are high, rather than silently guessing. |
 | Error propagation | D5 | Discipline of surfacing tool/subagent errors up the chain (not swallowing them) so failures are visible and actionable rather than silently corrupting downstream state. |
 | Provenance | D5 | Tracking where a piece of information/data came from (source URLs, document IDs, page numbers) so outputs can be traced back and verified. |
@@ -133,34 +131,36 @@ status: done
 
 > [!IMPORTANT] Use EXACT model ID strings; never append date suffixes to aliases.
 
+> [!NOTE] Pricing removed — out of scope
+> The per-model input/output prices that used to sit in these tables are gone: *"rate limiting, quotas, or API pricing calculations"* and *"performance benchmarking or model comparison metrics"* are both on the official out-of-scope list ([[Official Exam Blueprint]] § 6). Model IDs and context windows stay — they're load-bearing for D5 context management and are referenced throughout the vault. Look prices up in [the docs](https://platform.claude.com/docs/en/about-claude/pricing) when you need them for real work.
+
 > [!WARNING] Verify this table before exam day
-> This is the fastest-rotting section in the vault — it has already crossed one model launch. Re-check against [the models overview](https://platform.claude.com/docs/en/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing) rather than trusting the values below.
+> This is the fastest-rotting section in the vault — it has already crossed one model launch. Re-check against [the models overview](https://platform.claude.com/docs/en/models/overview) rather than trusting the values below.
 
 **Current models**
 
-| Model | Model ID | Context | Max output | Input $/1M | Output $/1M |
-|---|---|---|---|---|---|
-| Claude Fable 5 | `claude-fable-5` | 1M | 128K | $10.00 | $50.00 |
-| Claude Mythos 5 (Project Glasswing only) | `claude-mythos-5` | 1M | 128K | $10.00 | $50.00 |
-| Claude Opus 5 | `claude-opus-5` | 1M | 128K | $5.00 | $25.00 |
-| Claude Sonnet 5 | `claude-sonnet-5` | 1M | 128K | $2.00 | $10.00 |
-| Claude Haiku 4.5 | `claude-haiku-4-5` | 200K | 64K | $1.00 | $5.00 |
+| Model | Model ID | Context | Max output |
+|---|---|---|---|
+| Claude Fable 5 | `claude-fable-5` | 1M | 128K |
+| Claude Mythos 5 (Project Glasswing only) | `claude-mythos-5` | 1M | 128K |
+| Claude Opus 5 | `claude-opus-5` | 1M | 128K |
+| Claude Sonnet 5 | `claude-sonnet-5` | 1M | 128K |
+| Claude Haiku 4.5 | `claude-haiku-4-5` | 200K | 64K |
 
 **Legacy models** — still available, no longer recommended for new work
 
-| Model | Model ID | Context | Max output | Input $/1M | Output $/1M |
-|---|---|---|---|---|---|
-| Claude Opus 4.8 | `claude-opus-4-8` | 1M | 128K | $5.00 | $25.00 |
-| Claude Opus 4.7 | `claude-opus-4-7` | 1M | 128K | $5.00 | $25.00 |
-| Claude Opus 4.6 | `claude-opus-4-6` | 1M | 128K | $5.00 | $25.00 |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | 1M | 128K | $3.00 | $15.00 |
+| Model | Model ID | Context | Max output |
+|---|---|---|---|
+| Claude Opus 4.8 | `claude-opus-4-8` | 1M | 128K |
+| Claude Opus 4.7 | `claude-opus-4-7` | 1M | 128K |
+| Claude Opus 4.6 | `claude-opus-4-6` | 1M | 128K |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | 1M | 128K |
 
 - **Default / most-used model:** `claude-opus-5` — docs: "If you're unsure which model to use, start with Claude Opus 5 for complex agentic coding and enterprise work." **Most capable:** `claude-fable-5` ("Anthropic's most capable widely released model").
 - Current generation: Fable 5, Mythos 5, Opus 5, Sonnet 5, Haiku 4.5. The Opus 4.x line and Sonnet 4.6 are now **legacy**.
-- **Sonnet 5 is $2 / $10 flat.** The $3 / $15 increase once scheduled for 2026-09-01 **will not occur** — the introductory price became the standard price. Any answer implying a September price rise is wrong.
 - Max output figures are for the synchronous Messages API. On the Batch API, Opus 5 / 4.8 / 4.7 / 4.6 and Sonnet 5 / 4.6 reach **300K** output tokens via the `output-300k-2026-03-24` beta header.
 
-*Sources: [models overview](https://platform.claude.com/docs/en/models/overview) · [pricing](https://platform.claude.com/docs/en/about-claude/pricing), checked 2026-08-24. Corrected from a stale 2026-07 lineup that omitted Opus 5, named `claude-opus-4-8` as the default, and carried the cancelled Sonnet 5 price rise.*
+*Source: [models overview](https://platform.claude.com/docs/en/models/overview), checked 2026-08-24. Corrected from a stale 2026-07 lineup that omitted Opus 5 and named `claude-opus-4-8` as the default.*
 
 ---
 
