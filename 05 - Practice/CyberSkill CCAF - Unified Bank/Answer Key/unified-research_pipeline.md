@@ -17,8 +17,8 @@ status: done
 
 **Answers:** **U5** C · **U17** B · **U24** B · **U25** C · **U28** B · **U29** D · **U32** C · **U34** B · **U43** A · **U47** B · **U48** C · **U52** C · **U53** B · **U55** C · **U60** C · **U62** C · **U69** A · **U70** A · **U71** C · **U73** B
 
-**Authority:** U5 🥇 · U17 🥇 · U24 🥇 · U25 🥇 · U28 🥇 · U29 🥇 · U32 🥈 · U34 🥇 · U43 🥇 · U47 🥈 · U48 🥇 · U52 🥇 · U53 🥈 · U55 📘 · U60 🥇 · U62 🥇 · U69 🥇 · U70 🥇 · U71 🥇 · U73 📘
-_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only_
+**Authority:** U5 🥇 · U17 🥇 · U24 🥇 · U25 🥇 · U28 🥇 · U29 🥇 · U32 🥈 · U34 🥇 · U43 🥇 · U47 🥈📘 · U48 🥇 · U52 🥇 · U53 🥈 · U55 📘 · U60 🥇📘 · U62 🥇 · U69 🥇 · U70 🥇 · U71 🥇 · U73 📘
+_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only · 🏛 **also** named in the [[Official Exam Blueprint]] — outranks all four_
 
 ---
 
@@ -241,7 +241,7 @@ The 35% and 18% figures aren't contradictory — they're a time series, and the 
 ### U47 — research_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q47` · `O-Q10` — **2 sittings, all agreeing**  
-**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting
+**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting · 📘 Now doc-confirmed as well (2026-09-02)
 
 > After the web search agent and document analysis agent complete their tasks, the coordinator invokes the synthesis agent. However, the synthesis agent responds that it cannot complete the task because no research findings were provided. What is the most likely cause of this issue?
 
@@ -370,7 +370,7 @@ The 12 precedents are independent, so parallel fan-out attacks the latency direc
 ### U60 — research_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q60` · `O-Q4` · `T-Q32` — **3 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 📘 Now doc-confirmed as well (2026-09-02)
 
 > The web search agent has gathered several relevant sources for a research topic. The document analysis agent now needs to examine these sources. How does information typically flow between these two specialized subagents?
 
@@ -406,23 +406,23 @@ Hub-and-spoke. Sub-agents are context-isolated and never talk to each other; the
 
 **Correct: C — "The coordinator's `allowedTools` configuration doesn't include "`Task`", so while it can reason about delegation, it cannot invoke the tool required to spawn subagents."**
 
-**Why it's correct:** Subagents are spawned via the `Task` tool; if `Task` isn't in `allowedTools`, the model can narrate intent but has no callable mechanism to act on it — producing the exact "reasons about it, no execution, no errors" symptom. A tool the model can't call simply never appears as an executable `tool_use`, so nothing runs and nothing errors [1].
+**Why it's correct:** C is the only option that touches **delegation-tool availability** at all, and that is genuinely the fault class: a coordinator with no callable spawn tool can narrate intent and never act on it, which is exactly the *"reasons about it, no execution, no errors"* symptom. The other three each name a mechanism that would either surface in logs or govern something other than whether a spawn can happen. **The option's own causal story is imprecise, though** — omission from `allowedTools` is not the silent path. See the warning below for which omission actually fails silently; the letter is unaffected [1].
 
 **Why the others are wrong:**
 - **A:** A `max_tokens` truncation would show in logs and leave partial `tool_use` blocks, not a silent no-op.
 - **B:** Tool/agent schemas are surfaced to the model automatically from the tool definitions — you don't re-list them in the system prompt for the model to "see" them [1].
 - **D:** Context isolation is real but governs what a subagent sees *once spawned* — not whether the coordinator can spawn it at all.
 
-**Key takeaway:** An agent can only *do* what its **allowed tools** permit — to delegate, the coordinator must have the `Task` (subagent-spawn) tool enabled.
+**Key takeaway:** A coordinator can only *do* what it has a **callable tool** for — to delegate, the spawn tool (`Agent`, formerly `Task`) must be in its tool set. Be precise about *which* omission bites: missing from `AgentDefinition.tools` fails **silently**; missing from `allowedTools` fails **loudly**, as a permission prompt or a denial.
 
 **Sources**
 
 - [1] Claude API Docs — "Define tools / Implement tool use" (the API builds the tool system prompt from tool definitions; only enabled tools are callable; forced/unavailable tools change emitted blocks), https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 
-> [!WARNING] This option's terminology is wrong, and its failure mode is the *other* one — verified against official docs
-> **Field name.** The keyed answer says `allowedTools`. The `AgentDefinition` inner field is **`tools`**; `allowedTools` is CLI/SDK permission vocabulary, not an `AgentDefinition` field. The vault records this in [[D1 - Agentic Architecture & Orchestration]] and `AGENTS.md` § Known corrections.
+> [!WARNING] This option names the wrong failure mode — verified against official docs
+> **Field name — and why the usual objection doesn't land here.** The vault's standing correction is that the `AgentDefinition` inner field is **`tools`**, not `allowedTools` ([[D1 - Agentic Architecture & Orchestration]], `AGENTS.md` § Known corrections). That correction is right, but it does **not** convict this option: the stem says *"the **coordinator's** `allowedTools` configuration"*, and `allowedTools` **is** the correct top-level query option for the coordinator — the docs' own subagent examples pass `allowedTools: ["Read", "Grep", "Glob", "Agent"]`. So the terminology is fine as written. Save the `tools`-vs-`allowedTools` correction for items that really do name an `AgentDefinition` field.
 >
-> **Which omission is silent.** This matters more than the name. Omitting `Agent` from the top-level `allowedTools` does **not** fail silently — the call routes to your `canUseTool` callback, or is denied in `dontAsk` mode. Either way it surfaces. The genuinely silent failure is omission from **`AgentDefinition.tools`**: a tool left out isn't in the subagent's session at all, so Claude simply works without it, with no prompt and no error. The stem's *"logs show no errors"* fits that mechanism, not the `allowedTools` one. [[Answer Patterns Index]] § Tier 3 already draws this distinction correctly.
+> **Which omission is silent — this is the actual defect.** This matters more than the name. Omitting `Agent` from the top-level `allowedTools` does **not** fail silently — the call routes to your `canUseTool` callback, or is denied in `dontAsk` mode. Either way it surfaces. The genuinely silent failure is omission from **`AgentDefinition.tools`**: a tool left out isn't in the subagent's session at all, so Claude simply works without it, with no prompt and no error. The stem's *"logs show no errors"* fits that mechanism, not the `allowedTools` one. [[Answer Patterns Index]] § Tier 3 already draws this distinction correctly.
 >
 > **The rename.** `Task` → `Agent` in Claude Code v2.1.63, and the alias is narrower than "still valid" suggests: the current tools reference lists only `Agent`; `Task` survives in the SDK's `system:init` tools list and in `result.permission_denials[].tool_name`. `Task` remains the exam-safe answer. Beware a name collision — `TaskCreate`/`TaskGet`/`TaskList`/`TaskUpdate` in the tools reference are **task-list** tools, unrelated to spawning.
 >

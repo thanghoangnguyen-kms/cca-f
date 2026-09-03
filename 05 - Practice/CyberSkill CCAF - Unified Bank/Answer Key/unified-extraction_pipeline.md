@@ -17,15 +17,15 @@ status: done
 
 **Answers:** **U3** B · **U4** B · **U13** C · **U18** C · **U19** D · **U21** B · **U22** B · **U27** B · **U33** D · **U35** D · **U36** B · **U46** B · **U49** D · **U51** A · **U56** A · **U57** D · **U63** B · **U64** A · **U79** A · **U80** A
 
-**Authority:** U3 🥇 · U4 🥈 · U13 🥇 · U18 🥇 · U19 🥇 · U21 🥇 · U22 🥇 · U27 🥇 · U33 🥇 · U35 🥇 · U36 🥈 · U46 🥇 · U49 🥇 · U51 🥇 · U56 🥈 · U57 🥇 · U63 🥇 · U64 🥇 · U79 📘 · U80 📘
-_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only_
+**Authority:** U3 🥇🏛 · U4 🥈🏛 · U13 🥇 · U18 🥇 · U19 🥇 · U21 🥇🏛 · U22 🥇 · U27 🥇 · U33 🥇 · U35 🥇🏛 · U36 🥈 · U46 🥇🏛 · U49 🥇 · U51 🥇🏛 · U56 🥈🏛 · U57 🥇 · U63 🥇 · U64 🥇🏛 · U79 📘 · U80 📘
+_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only · 🏛 **also** named in the [[Official Exam Blueprint]] — outranks all four_
 
 ---
 
 ### U3 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q3` · `T-Q17` — **2 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > An extractor pulls line items and an invoice total from a receipt. The strongest integrity check before accepting the output is to:
 
@@ -46,7 +46,7 @@ The document carries its own redundancy — the parts must sum to the whole. Cro
 ### U4 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q4` · `O-Q60` — **2 sittings, all agreeing**  
-**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting
+**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > After your daily batch of 10,000 documents completes, 300 documents (3%) failed with "`context_length_exceeded`" errors. The results file identifies each failure by `custom_id`. What's the most cost-effective approach to process these failures?
 
@@ -148,7 +148,7 @@ Segment traffic by latency requirement. The monthly reports are archived and hav
 ### U21 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q21` · `O-Q56` · `T-Q59` — **3 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Your extraction uses tool use with a JSON schema where `property_type` is defined as an enum: ['house', 'apartment', 'condo', 'townhouse']. After deployment, 8% of extractions fail schema validation. Investigation reveals listings mention many uncommon property types—"studio", "loft", "duplex", "mobile home", "tiny house", "converted warehouse"—and new types continue appearing regularly. What's the most effective long-term solution?
 
@@ -204,11 +204,15 @@ The schema already permits `null`; the model just wasn't told that `null` is the
 
 **Wrong answers**
 
-- **A. "Add a post-processing step using a second LLM call to verify each extracted value exists in the source document."** — Doubles cost and latency to catch an error you can prevent at extraction time, and the verifier inherits the same hallucination risk it's meant to police.
+- **A. "Add a post-processing step using a second LLM call to verify each extracted value exists in the source document."** — Loses on **cost and timing**, not on soundness: it doubles cost and latency to catch an error you can prevent at extraction time. Resist the tempting second argument that *"the verifier inherits the same hallucination risk"* — the docs recommend precisely this technique (*"have Claude verify each claim by finding a supporting quote after it generates a response. If it can't find a quote, it must retract the claim"*). A is a real, documented method that is simply more expensive than B [1].
 - **C. "Make all schema fields required (non-nullable) with strict validation rules to ensure the model only outputs verifiable data."** — Exactly backwards. Removing `null` *forces* the model to invent a value for every absent field; you'd take the fabrication rate up, not down.
 - **D. "Upgrade to a more capable model tier with improved instruction-following to reduce hallucination tendencies."** — There is no instruction to follow better. Fix the prompt before you pay for a bigger model.
 
 **Takeaway:** Explicitly license "not found." An unstated permission to say nothing reads as a requirement to say something.
+
+> [!TIP] Both A and B are documented anti-hallucination techniques — the discriminator is cost, not validity
+> The docs list *"allow Claude to say 'I don't know'"* as a **basic** strategy and citation-based self-verification as an **advanced** one. So this item is not "right answer vs broken answer"; it is *cheapest sufficient fix first*. The blueprint backs B independently: scenario 3 names *"nullable fields — verify the model returns `null` instead of fabricating."* Where a stem rules out prompt changes, A becomes the answer.
+> Source: <https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations> · verified 2026-09-02
 
 **Sources** _(carried over from `O-Q52` — the Mock Exam key cites docs on every entry; the New Mock key cites none)_
 
@@ -245,7 +249,7 @@ The two levers work together: the schema fixes the output *shape* (which fields,
 ### U35 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q35` · `O-Q53` · `T-Q14` — **3 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > After implementing tool use with strict schema definitions, JSON syntax errors are eliminated, but 5% of extractions still have valid JSON with empty arrays or null values for required fields like citations and methodology. Spot-checking reveals that source documents contain this information, but in varied formats—inline citations vs. bibliographies, methodology sections vs. details embedded in introductions. What's the most effective way to address these failures?
 
@@ -303,7 +307,7 @@ The information is present; the model just doesn't recognise it in unfamiliar ar
 ### U46 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q46` · `T-Q24` — **2 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > A field the schema expects is simply not present in the source document. The extractor should:
 
@@ -350,7 +354,7 @@ Retry-with-error-feedback works when the model *has* the information and formatt
 ### U51 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q51` · `O-Q59` · `T-Q42` — **3 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > After deployment, you find that 12% of extractions contain semantic errors that pass JSON schema validation (e.g., a duration like "30 minutes" incorrectly placed in an ingredient quantity field). Human reviewers have capacity to check only 20% of extractions. Which approach most effectively allocates reviewer attention?
 
@@ -381,7 +385,7 @@ Reviewer capacity is the scarce resource, so it should go to the extractions mos
 ### U56 — extraction_pipeline
 
 🅰 full MCQ · **Seen as:** `N-Q56` · `O-Q48` — **2 sittings, all agreeing**  
-**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting
+**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Your system has been operating with 100% human review for 3 months. Analysis shows that extractions with model confidence >90% have 97% accuracy overall. To reduce reviewer workload, you plan to automate high-confidence extractions. Before deploying, what validation step is most critical?
 
@@ -444,7 +448,7 @@ Two symptoms, one cause: the model has no reference for what a "good" materials 
 ### U64 — extraction_pipeline
 
 ✍️ open-response · **Seen as:** `O-Q54` · `T-Q13` — **2 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Your extraction pipeline processes invoices and extracts line items, subtotals, tax amounts, and grand totals. During evaluation, you discover that in 18% of extractions, the sum of extracted line item amounts doesn't match the extracted grand total—sometimes due to OCR errors in the source document, sometimes due to extraction mistakes by the model. Downstream accounting systems reject records with mismatched totals. What's the most effective approach to improve extraction reliability?
 

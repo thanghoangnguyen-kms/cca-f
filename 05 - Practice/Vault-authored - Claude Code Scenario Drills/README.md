@@ -44,6 +44,14 @@ All 240 third-party questions in `05 - Practice/` map to the *other* four scenar
 > **What that buys you:** every question maps to a real task statement, so the *topics* are exam-accurate.
 > **What it does not buy you:** the phrasing, difficulty calibration, and distractor craft of a real item. Do not read a score here as a predicted exam score. For calibrated difficulty use the [official sample questions](../Exam%20Guide%20-%20Sample%20Questions/README.md) — twelve items, but genuinely Anthropic-authored.
 
+> [!WARNING] Third review pass, 2026-09-02 — **two stems were reworded**
+> A full re-derivation of all 20 items against live docs changed **no keyed letter**, but it found that the earlier docs-drift callouts, while correct, had been bolted onto two stems that were still broken underneath:
+>
+> - **Q7** asserted *"you want Claude Code to prompt them for the parameter at invocation time."* No frontmatter field does that — so the item had **no answer that was correct on the merits**, only one the guide names. The stem now asks which field the guide names for *signalling* the parameter, scoping it the way Q2 and Q6 already were. Its rebuttal of option B was also repaired: it claimed a skill body *"cannot surface anything at invocation time"*, which the item's own callout contradicts (a body can validate and ask, e.g. via `AskUserQuestion`).
+> - **Q2** asked for the command that verifies *"which memory files are loaded"* — option C's own wording, so the item was answerable without knowing anything. Worse, *loaded* is precisely what `/context` reports, so the giveaway phrasing leaned toward the wrong option. The stem now quotes the other half of the guide's bullet, *"diagnose inconsistent behavior across sessions."*
+>
+> The lesson generalises: a **drift callout rescues a rationale, not a stem.** When the guide and the docs disagree, scope the question to what the guide *names* — don't assert the mechanism.
+
 Where a fact is true in current docs but **beyond the exam guide** (`--bare` is the standing example), the key says so rather than testing it as if it were on the syllabus.
 
 ---
@@ -55,7 +63,7 @@ Where a fact is true in current docs but **beyond the exam guide** (`--bare` is 
 | Q | Task statement | Tests |
 |---|---|---|
 | 1 | 3.1 | Hierarchy diagnosis — user-level config isn't shared |
-| 2 | 3.1 | `/memory` for verifying which memory files loaded |
+| 2 | 3.1 | `/memory` as the guide's named diagnostic for inconsistent behavior across sessions |
 | 3 | 3.1 | `@import` for modular per-package standards |
 | 4 | 3.1 | Splitting a monolithic `CLAUDE.md` into `.claude/rules/` |
 | 5 | 3.2 | `context: fork` for verbose skill output |

@@ -18,7 +18,7 @@ status: done
 **Answers:** **U1** C · **U7** B · **U9** B · **U10** B · **U11** B · **U12** D · **U14** B · **U20** C · **U31** D · **U37** D · **U38** B · **U39** D · **U42** C · **U44** A · **U50** D · **U61** B · **U66** D · **U72** B · **U74** A · **U75** B
 
 **Authority:** U1 🥇 · U7 🥇 · U9 🥇 · U10 🥇 · U11 🥇 · U12 🥈 · U14 🥇 · U20 🥇 · U31 🥇 · U37 🥈 · U38 🥇 · U39 🥇 · U42 🥇 · U44 🥇 · U50 🥇 · U61 🥇 · U66 🥇 · U72 🥇 · U74 📘 · U75 📘
-_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only_
+_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only · 🏛 **also** named in the [[Official Exam Blueprint]] — outranks all four_
 
 ---
 
@@ -372,10 +372,14 @@ Preserve the 47 files of accumulated analysis and patch the one thing that chang
 
 **Why the others are wrong:**
 - **A:** Starting fresh and re-reading discards the 2 hours of accumulated context — the entire value of session persistence [2].
-- **B:** Using `--session-id` with the UUID works but is cumbersome; she'd have to hunt for the UUID in transcript files when she already has the memorable session name [1].
+- **B:** **Wrong flag, not merely a clumsy one.** `--session-id` *assigns* an ID to a conversation ("use a specific session ID for the conversation — must be a valid UUID"); nothing documents it as a way back into an existing session. The documented resume-by-ID form is `--resume <session-id>`. Rejecting B as "cumbersome" implies it would work; it wouldn't [1].
 - **C:** `--continue` resumes the *most recent* session in the current directory; since she's worked on three other codebases since, the most recent is not "auth-deep-dive" [1].
 
-**Key takeaway:** `--continue` = the most recent session in this directory; `--resume` = pick a specific prior session (by name/ID). Use `--resume` when the target isn't the most recent.
+**Key takeaway:** `--continue` = the most recent session in this directory; `--resume` = pick a specific prior session, **by name or by ID**. Use `--resume` when the target isn't the most recent. `--session-id` is a *different* flag that names a **new** conversation — it is not a resume path at all.
+
+> [!WARNING] The detail that kills `--continue` is the three other codebases — not the name
+> Session-name lookup resolves across the current repository and its worktrees, so the name would have been found regardless. What *"she's worked on three other codebases since"* defeats is `--continue`, which takes the most recent session **in the current directory**. Read the stem's stray details as flag-eliminators; each one is usually there to kill exactly one option.
+> Source: <https://code.claude.com/docs/en/cli-reference> · verified 2026-09-02
 
 **Sources:** [1] CLI reference — resume/continue flags: https://code.claude.com/docs/en/cli-reference — [2] Work with sessions: https://code.claude.com/docs/en/agent-sdk/sessions
 

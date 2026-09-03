@@ -17,8 +17,8 @@ status: done
 
 **Answers:** **U2** A · **U6** C · **U8** B · **U15** A · **U16** A · **U23** B · **U26** B · **U30** C · **U40** B · **U41** C · **U45** B · **U54** A · **U58** B · **U59** B · **U65** B · **U67** A · **U68** C · **U76** C · **U77** A · **U78** B
 
-**Authority:** U2 🥇 · U6 🥇 · U8 🥇 · U15 🥇 · U16 📘 · U23 🥇 · U26 🥇 · U30 🥇 · U40 🥇 · U41 🥈 · U45 🤔 · U54 🥇 · U58 🥇 · U59 🥇 · U65 🥇 · U67 🥇 · U68 🥇 · U76 📘 · U77 📘 · U78 📘
-_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only_
+**Authority:** U2 🥇 · U6 🥇 · U8 🥇 · U15 🥇🏛 · U16 📘🏛 · U23 🥇 · U26 🥇 · U30 🥇 · U40 🥇 · U41 🥈🏛 · U45 🤔 · U54 🥇 · U58 🥇 · U59 🥇 · U65 🥇 · U67 🥇 · U68 🥇 · U76 🤔 · U77 🤔 · U78 📘
+_🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only · 🏛 **also** named in the [[Official Exam Blueprint]] — outranks all four_
 
 ---
 
@@ -91,7 +91,7 @@ This is the defined tool-result error contract. The error stays *inside* the con
 ### U15 — customer_support
 
 🅰 full MCQ · **Seen as:** `N-Q15` · `O-Q38` · `T-Q20` — **3 sittings, all agreeing**  
-**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
+**Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Production logs reveal inconsistent error handling: when `lookup_order` fails, the agent sometimes retries 5+ times (wasteful when the order ID doesn't exist), sometimes escalates immediately (premature for temporary network issues), and sometimes asks users for clarification (inappropriate when the issue is a backend permission error). Investigation shows your MCP tool returns uniform error responses: {"isError": true, "content": [{"type": "text", "text": "Operation failed"}]}. The agent cannot distinguish between error types. What's the most effective improvement?
 
@@ -112,7 +112,7 @@ All three misbehaviours share one root cause: `"Operation failed"` carries no in
 ### U16 — customer_support
 
 🅰 full MCQ · **Seen as:** `N-Q16` · `O-Q44` — **2 sittings, all agreeing**  
-**Authority:** 📘 doc-verified — no grader ever saw it; two sittings agree and the reasoning is doc-cited
+**Authority:** 📘 doc-verified — no grader ever saw it; two sittings agree and the reasoning is doc-cited · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Your `process_refund` tool returns two types of errors: technical errors ("503 Service Unavailable", "Connection timeout") that are transient (5% of calls), and business errors ("Order exceeds 30-day return window", "Item already refunded") that are permanent (12% of calls). Monitoring shows the agent wastes 3-4 turns retrying business errors that can never succeed. Currently, both error types return only a plain text message to Claude. What's the most effective way to reduce wasted retries while improving customer-facing response quality?
 
@@ -217,7 +217,7 @@ Two sources disagree and the agent can't yet tell which is right. Being transpar
 ### U41 — customer_support
 
 🅰 full MCQ · **Seen as:** `N-Q41` · `O-Q34` — **2 sittings, all agreeing**  
-**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting
+**Authority:** 🥈 grader-confirmed — marked correct by the practice site's grader on the 2026-08-23 sitting · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Compliance requires that refunds exceeding $500 must automatically escalate to a human agent—this rule cannot be left to model discretion. Despite clear system prompt instructions, production logs show the agent occasionally processes high-value refunds directly (3% failure rate). How should you achieve guaranteed compliance?
 
@@ -396,7 +396,7 @@ Three failed attempts is the "cannot make meaningful progress" trigger. The part
 ### U76 — customer_support
 
 ✍️ open-response · **Seen as:** `O-Q35` — **one sitting only**  
-**Authority:** 📘 doc-verified — from the docs-cited Mock Exam key; no grader confirmation
+**Authority:** 🤔 reasoned only — no grader, and the Mock Exam key's citation does not cover the point. **Downgraded from 📘 on 2026-09-02:** the cited customer-support use-case guide was read in full and contains no guidance on partial tool failure or graceful degradation. The action is still correct; its real support is the blueprint (scenario 1's *"local recovery before escalation"* and the 80%+ first-contact target), not that page
 
 > During a billing dispute, `get_customer` and `lookup_order` succeed but `process_refund` returns a timeout. The agent can explain charges and verify eligibility but can't process the refund. What best balances first-contact resolution with error handling?
 
@@ -418,7 +418,7 @@ Three failed attempts is the "cannot make meaningful progress" trigger. The part
 ### U77 — customer_support
 
 ✍️ open-response · **Seen as:** `O-Q36` — **one sitting only**  
-**Authority:** 📘 doc-verified — from the docs-cited Mock Exam key; no grader confirmation
+**Authority:** 🤔 reasoned only — no grader, and the Mock Exam key's citation does not cover the point. **Downgraded from 📘 on 2026-09-02:** same defect as U76. The cited guide says nothing about a customer demanding a human or honouring stated preferences. The real anchor is the blueprint §5.2, which names *"honoring customer preferences"* directly
 
 > A customer says they've been going "back and forth for days" and "just want to speak to someone who can actually help." `lookup_order` confirms the return is within policy and immediately processable. What should the agent do?
 

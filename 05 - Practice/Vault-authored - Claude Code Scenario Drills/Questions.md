@@ -33,7 +33,7 @@ A new engineer joins the team. Everyone else's Claude Code sessions consistently
 
 ### Q2
 
-Claude Code behaves inconsistently between two of your projects — in one it follows your personal commit-message convention, in the other it ignores it. Before changing any configuration, which command does the exam guide name for verifying **which memory files are loaded** across the two projects?
+Claude Code behaves inconsistently between two of your projects — in one it follows your personal commit-message convention, in the other it ignores it. Before changing any configuration, which command does the exam guide name for diagnosing **inconsistent behavior across sessions**?
 
 - **A.** Run `/context` to see the token breakdown of the current session
 - **B.** Run `/compact` to reset accumulated context, then re-test the behavior
@@ -78,7 +78,7 @@ A team skill automates a database-migration workflow. During review, someone poi
 
 ### Q7
 
-Developers keep invoking your `/scaffold` skill with no arguments, then getting a generic result because the skill doesn't know which component type to scaffold. You want Claude Code to prompt them for the parameter at invocation time. What do you add?
+Developers keep invoking your `/scaffold` skill with no arguments, then getting a generic result because the skill doesn't know which component type to scaffold. Which frontmatter field does the exam guide name for signalling the expected parameter at invocation time?
 
 - **A.** `argument-hint` frontmatter naming the expected parameter
 - **B.** A required-parameters section in the skill body

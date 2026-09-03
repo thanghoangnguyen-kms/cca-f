@@ -23,7 +23,7 @@ A 60-question CCA-F practice bank captured from **certificationpractice.com, pra
 > [!IMPORTANT] The key is vault-reasoned, not grader-confirmed
 > The source publishes no answers, so unlike the three CyberSkill keys there is **no `correct_key` behind any of these 60**. Every answer is derived from the [[Official Exam Blueprint]], official Anthropic docs, and the `D1`–`D5` notes, cross-checked against the officially-authored [Exam Guide answer key](../Exam%20Guide%20-%20Sample%20Questions/Answer%20Key.md). Treat a disagreement with a grader-authoritative key as **this key losing**.
 >
-> **Five items are flagged 🔶** — Q14, Q16, Q21, Q51, Q55 — where the bank's own wording is technically wrong even though the intended answer is clear. Read those rebuttals before memorizing anything from them.
+> **Seven items are flagged 🔶** — Q14, Q16, Q21, Q49, Q51, Q55, Q60 — where the bank's own wording is technically wrong even though the intended answer is clear. Read those rebuttals before memorizing anything from them.
 >
 > **Verified 2026-08-25** in four independent adversarial passes against current official docs, the blueprint, and the official Exam Guide key. **No keyed letter changed**; the pass corrected cross-references, rebuilt both index tables, and fixed five rationale defects.
 

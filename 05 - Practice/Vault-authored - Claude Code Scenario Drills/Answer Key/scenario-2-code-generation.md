@@ -46,7 +46,7 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q2 — Diagnosing inconsistent behavior across projects → **C**
 
-> Claude Code behaves inconsistently between two of your projects — in one it follows your personal commit-message convention, in the other it ignores it. Before changing any configuration, which command does the exam guide name for verifying **which memory files are loaded** across the two projects?
+> Claude Code behaves inconsistently between two of your projects — in one it follows your personal commit-message convention, in the other it ignores it. Before changing any configuration, which command does the exam guide name for diagnosing **inconsistent behavior across sessions**?
 >
 > - **A.** Run `/context` to see the token breakdown of the current session
 > - **B.** Run `/compact` to reset accumulated context, then re-test the behavior
@@ -67,6 +67,9 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 > The exam guide (2026-07) names **`/memory`** for verifying loaded memory files, and `/context` appears nowhere in it. Current Claude Code docs prescribe **`/context`** for exactly this check — the memory page says to run it and read the **Memory files** list, including under its *"Claude isn't following my CLAUDE.md"* troubleshooting entry. It also bounds `/memory` the other way: `/memory` lists memory file *locations* including files that don't exist yet, while `/context` shows what actually **loaded into this session**.
 > **Exam answer: `/memory`.** Real debugging: reach for `/context`.
 > Source: https://code.claude.com/docs/en/memory · checked 2026-08-25
+
+> [!TIP] Stem reworded 2026-09-02
+> The earlier stem asked for the command that verifies *"which memory files are loaded"* — option C's own wording, so the item could be answered without knowing anything. It also leaned the wrong way on the facts, since *loaded* is precisely what `/context` reports. The stem now quotes the other half of the guide's bullet (*"diagnose inconsistent behavior across sessions"*), which discriminates without giving the answer away.
 
 **Takeaway.** For the exam: `/memory` = the named diagnostic. `/compact` = shrink what is loaded. In production, `/context` is the one that tells you what actually loaded. See [[D3 - Claude Code Configuration & Workflows]] §3.1.
 
@@ -178,7 +181,7 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 ## Q7 — Skill invoked without required parameters → **A**
 
-> Developers keep invoking your `/scaffold` skill with no arguments, then getting a generic result because the skill doesn't know which component type to scaffold. You want Claude Code to prompt them for the parameter at invocation time. What do you add?
+> Developers keep invoking your `/scaffold` skill with no arguments, then getting a generic result because the skill doesn't know which component type to scaffold. Which frontmatter field does the exam guide name for signalling the expected parameter at invocation time?
 >
 > - **A.** `argument-hint` frontmatter naming the expected parameter
 > - **B.** A required-parameters section in the skill body
@@ -191,13 +194,13 @@ Primary domains per the official guide: **D3 (Claude Code Configuration & Workfl
 
 | Distractor | Why it fails |
 |---|---|
-| **B** required-parameters section in the body | The body is read **after** invocation, so it cannot surface anything at invocation time |
+| **B** required-parameters section in the body | Not a **frontmatter field**, which is what the stem asks for — and it lives in the body, the layer the stem is trying to move off. Don't over-rebut it: a skill body genuinely *can* validate and ask (see the callout). What it isn't is declarative configuration |
 | **C** `context: fork` | Isolation, not parameter collection |
 | **D** `PreToolUse` hook | Hooks *are* declarable in skill frontmatter (see Q6), and a `PreToolUse` hook matching `Skill` can even fire when Claude auto-invokes a skill. The decisive objection is **registration order**: a skill's own frontmatter hooks are registered *at* invocation, so they cannot gate the invocation that registers them. Blocking is also disproportionate to a missing argument |
 
 > [!WARNING] Guide-current vs docs-current — `argument-hint` displays, it does not prompt
 > Current docs define it as a *"hint shown during autocomplete to indicate expected arguments"* (e.g. `[issue-number]`). It does not prompt, block, or make an argument required — **no frontmatter field does**. A skill *body* can still ask (validate and fail loudly, or use `AskUserQuestion`); what doesn't exist is a declarative way to require an argument.
-> **Exam answer: `argument-hint` (A).** In real skills, validate arguments in the body and fail loudly.
+> **Exam answer: `argument-hint` (A)** — and note the stem now asks what the guide *names for signalling* the parameter, not what *prompts* for it. **Reworded 2026-09-02:** the earlier stem said *"you want Claude Code to prompt them for the parameter at invocation time"*, which asserts a capability no field has — the item had no answer that was correct on the merits. In real skills, validate arguments in the body and fail loudly.
 > Source: https://code.claude.com/docs/en/skills · checked 2026-08-25
 
 **Takeaway.** See [[D3 - Claude Code Configuration & Workflows]] §3.2.

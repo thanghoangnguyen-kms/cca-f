@@ -14,6 +14,8 @@ status: done
 
 > [!IMPORTANT] Highest-authority key in the vault
 > The **Why X wins** lines and distractor rebuttals below are the exam author's own reasoning, condensed. Anything in a **Takeaway**, a `[!TIP]` or a `[!WARNING]` is the vault's commentary — useful, but not the author's. A handful of rebuttal cells add a vault gloss in parentheses; those are marked *(vault)*.
+>
+> **One exception to that rule, flagged 2026-09-02.** Four commentary blocks — Q7's `[!IMPORTANT]`, Q8's and Q9's Takeaways, and Q12's `[!WARNING]` — **quote the exam guide as the author** rather than commenting in the vault's voice. Those quotations cannot be checked from inside this repository: [[Official Exam Blueprint]] deliberately transcribes task-statement titles only, and the source PDF is not committed. So treat text in those four blocks that is presented as the guide's wording as **unverified-but-probably-authorial**, not as vault opinion to be discounted. Q1's callout is the pattern the others should follow — it separates the guide's half of the claim from the vault's explicitly.
 > Where a CyberSkill key disagrees with this one, **this one wins** — and that disagreement is worth logging in [[Weak Areas Deep Dive]].
 
 ---
@@ -110,9 +112,13 @@ status: done
 
 ### Q6 — Conventions for test files scattered across directories → **A**
 
-**A.** `.claude/rules/` files with YAML frontmatter glob patterns.
+**A.** `.claude/rules/` files with YAML frontmatter glob patterns — the frontmatter key is **`paths`**.
 
 **Why A wins.** Globs (`**/*.test.tsx`) apply conventions **by file path regardless of directory location** — essential when test files are spread throughout the codebase.
+
+> [!IMPORTANT] The field is `paths:` — learn the token, not just the mechanism
+> Docs: *"Rules can be scoped to specific files using YAML frontmatter with the `paths` field."* The blueprint names it the same way. It is **not** `globs:` — a plausible-looking wrong spelling that [CCA-F Question Bank](../CCA-F%20Question%20Bank/Answer%20Key.md) Q55 flags 🔶 for exactly this reason. A rule file with no `paths:` frontmatter still loads, at launch, with the same priority as `.claude/CLAUDE.md`.
+> Source: <https://code.claude.com/docs/en/memory> · verified 2026-09-02
 
 | Distractor | Why it fails |
 |---|---|
@@ -120,7 +126,7 @@ status: done
 | **C** skills per code type | Requires manual invocation or Claude *choosing* to load them; contradicts the need for **automatic**, path-driven application |
 | **D** per-subdirectory `CLAUDE.md` | `CLAUDE.md` files are **directory-bound** — they can't handle files spread across many directories |
 
-**Takeaway.** The stem plants the discriminator twice: *"spread throughout"* and *"automatically"*. Directory-bound loses to glob-bound; loaded-on-demand loses to always-conditional. See [[D3 - Claude Code Configuration & Workflows]] §3.3 · [[EP10 - CLAUDE.md Hierarchy & Config Rules]].
+**Takeaway.** The stem plants the discriminator twice: *"spread throughout"* and *"automatically"*. Directory-bound loses to glob-bound, and **model-discretionary loses to deterministic**. *(Corrected 2026-09-02: this line previously read "loaded-on-demand loses to always-conditional," which misstates the mechanism — path-scoped rules are **also** loaded on demand. Docs: "Path-scoped rules trigger when Claude reads files matching the pattern, not on every tool use." Both A and C load conditionally; the real axis is **who decides** — a glob match the client evaluates, versus Claude choosing to load a skill.)* See [[D3 - Claude Code Configuration & Workflows]] §3.3 · [[EP10 - CLAUDE.md Hierarchy & Config Rules]].
 
 ---
 

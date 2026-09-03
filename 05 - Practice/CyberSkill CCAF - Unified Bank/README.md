@@ -71,10 +71,19 @@ Every cluster with two or more sittings gives 132 cross-sitting answer compariso
 |---|---|---:|
 | 🥇 | **Grader-authoritative** — the site's own `correct_key`, read off the 2026-08-24 review page | 60 |
 | 🥈 | **Grader-confirmed** — marked correct by the site's grader on the 2026-08-23 sitting | 9 |
-| 📘 | **Doc-verified** — no grader ever saw it; reasoning cites official docs | 10 |
-| 🤔 | **Reasoned only** — one sitting, no grader, no second opinion | 1 |
+| 📘 | **Doc-verified** — no grader ever saw it; reasoning cites official docs | 8 |
+| 🤔 | **Reasoned only** — no grader, and no doc that actually covers the point | 3 |
+| 🏛 | **Blueprint-named** *(additional mark)* — the pattern is named in the [[Official Exam Blueprint]] itself. Outranks every row above | 11 |
 
-**69 of 80 (86%) carry a grader's verdict.**
+**69 of 80 (86%) carry a grader's verdict**, and 11 carry the blueprint's.
+
+> [!NOTE] Revised 2026-09-02 after a full re-verification pass
+> All 80 answers were independently re-derived against live official docs. **No keyed letter changed.** Three things did:
+> - **U76 and U77 moved 📘 → 🤔.** Their cited page (the customer-support use-case guide) was read in full and contains nothing on partial tool failure, graceful degradation, or honouring a request for a human. The actions are still right; the citation was decorative.
+> - **Eleven items gained 🏛** — `U3` `U4` `U15` `U16` `U21` `U35` `U41` `U46` `U51` `U56` `U64`. The blueprint names their pattern almost verbatim (scenario 1 line 242, scenario 3 line 244, §5.5 line 185), which is stronger evidence than a third-party grader.
+> - **`U47` and `U60` gained 📘** alongside their grader marks: the subagents page confirms the exact mechanism both turn on — a subagent receives only the `Agent` tool's prompt string, never the parent's history or tool results.
+>
+> **Three rationale defects were corrected** — `U27` (post-hoc citation verification is a *documented* technique, so it loses on cost, not soundness), `U62` (`allowedTools` omission is not the silent-failure path, and the usual `tools`-vs-`allowedTools` objection doesn't apply to this stem), and `U66` (`--session-id` assigns an ID; it is not a resume path). `U69`'s existing "don't generalise to always split tools" warning was re-checked and **confirmed correct** — leave it as the standing caution it is. See each entry.
 
 And by fidelity:
 
@@ -93,8 +102,8 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 |---|---|:--:|:--:|:--:|:--:|:--:|:--:|
 | **U1** | `code_exploration` | C | 🅰 | 🥇 | `N-Q1` | `O-Q20` | `T-Q40` |
 | **U2** | `customer_support` | A | 🅰 | 🥇 | `N-Q2` | `O-Q32` | `T-Q38` |
-| **U3** | `extraction_pipeline` | B | 🅰 | 🥇 | `N-Q3` | — | `T-Q17` |
-| **U4** | `extraction_pipeline` | B | 🅰 | 🥈 | `N-Q4` | `O-Q60` | — |
+| **U3** | `extraction_pipeline` | B | 🅰 | 🥇🏛 | `N-Q3` | — | `T-Q17` |
+| **U4** | `extraction_pipeline` | B | 🅰 | 🥈🏛 | `N-Q4` | `O-Q60` | — |
 | **U5** | `research_pipeline` | C | 🅰 | 🥇 | `N-Q5` | — | `T-Q48` |
 | **U6** | `customer_support` | C | 🅰 | 🥇 | `N-Q6` | `O-Q39` | `T-Q18` |
 | **U7** | `code_exploration` | B | 🅰 | 🥇 | `N-Q7` | — | `T-Q57` |
@@ -105,13 +114,13 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 | **U12** | `code_exploration` | D | 🅰 | 🥈 | `N-Q12` | `O-Q27` | — |
 | **U13** | `extraction_pipeline` | C | 🅰 | 🥇 | `N-Q13` | `O-Q55` | `T-Q6` |
 | **U14** | `code_exploration` | B | 🅰 | 🥇 | `N-Q14` | — | `T-Q28` |
-| **U15** | `customer_support` | A | 🅰 | 🥇 | `N-Q15` | `O-Q38` | `T-Q20` |
-| **U16** | `customer_support` | A | 🅰 | 📘 | `N-Q16` | `O-Q44` | — |
+| **U15** | `customer_support` | A | 🅰 | 🥇🏛 | `N-Q15` | `O-Q38` | `T-Q20` |
+| **U16** | `customer_support` | A | 🅰 | 📘🏛 | `N-Q16` | `O-Q44` | — |
 | **U17** | `research_pipeline` | B | 🅰 | 🥇 | `N-Q17` | — | `T-Q44` |
 | **U18** | `extraction_pipeline` | C | 🅰 | 🥇 | `N-Q18` | `O-Q58` | `T-Q27` |
 | **U19** | `extraction_pipeline` | D | 🅰 | 🥇 | `N-Q19` | `O-Q46` | `T-Q7` |
 | **U20** | `code_exploration` | C | 🅰 | 🥇 | `N-Q20` | `O-Q30` | `T-Q55` |
-| **U21** | `extraction_pipeline` | B | 🅰 | 🥇 | `N-Q21` | `O-Q56` | `T-Q59` |
+| **U21** | `extraction_pipeline` | B | 🅰 | 🥇🏛 | `N-Q21` | `O-Q56` | `T-Q59` |
 | **U22** | `extraction_pipeline` | B | 🅰 | 🥇 | `N-Q22` | — | `T-Q12` |
 | **U23** | `customer_support` | B | 🅰 | 🥇 | `N-Q23` | — | `T-Q3` |
 | **U24** | `research_pipeline` | B | 🅰 | 🥇 | `N-Q24` | — | `T-Q53` |
@@ -125,28 +134,28 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 | **U32** | `research_pipeline` | C | 🅰 | 🥈 | `N-Q32` | `O-Q5` | — |
 | **U33** | `extraction_pipeline` | D | 🅰 | 🥇 | `N-Q33` | `O-Q51` | `T-Q2` |
 | **U34** | `research_pipeline` | B | 🅰 | 🥇 | `N-Q34` | — | `T-Q35` |
-| **U35** | `extraction_pipeline` | D | 🅰 | 🥇 | `N-Q35` | `O-Q53` | `T-Q14` |
+| **U35** | `extraction_pipeline` | D | 🅰 | 🥇🏛 | `N-Q35` | `O-Q53` | `T-Q14` |
 | **U36** | `extraction_pipeline` | B | 🅰 | 🥈 | `N-Q36` | — | — |
 | **U37** | `code_exploration` | D | 🅰 | 🥈 | `N-Q37` | `O-Q16` | — |
 | **U38** | `code_exploration` | B | 🅰 | 🥇 | `N-Q38` | `O-Q23` | `T-Q52` |
 | **U39** | `code_exploration` | D | 🅰 | 🥇 | `N-Q39` | `O-Q29` | `T-Q9` |
 | **U40** | `customer_support` | B | 🅰 | 🥇 | `N-Q40` | — | `T-Q1` |
-| **U41** | `customer_support` | C | 🅰 | 🥈 | `N-Q41` | `O-Q34` | — |
+| **U41** | `customer_support` | C | 🅰 | 🥈🏛 | `N-Q41` | `O-Q34` | — |
 | **U42** | `code_exploration` | C | 🅰 | 🥇 | `N-Q42` | `O-Q21` | `T-Q39` |
 | **U43** | `research_pipeline` | A | 🅰 | 🥇 | `N-Q43` | `O-Q6` | `T-Q47` |
 | **U44** | `code_exploration` | A | 🅰 | 🥇 | `N-Q44` | `O-Q18` | `T-Q58` |
 | **U45** | `customer_support` | B | 🅰 | 🤔 | `N-Q45` | — | — |
-| **U46** | `extraction_pipeline` | B | 🅰 | 🥇 | `N-Q46` | — | `T-Q24` |
+| **U46** | `extraction_pipeline` | B | 🅰 | 🥇🏛 | `N-Q46` | — | `T-Q24` |
 | **U47** | `research_pipeline` | B | 🅰 | 🥈 | `N-Q47` | `O-Q10` | — |
 | **U48** | `research_pipeline` | C | 🅰 | 🥇 | `N-Q48` | `O-Q8` | `T-Q21` |
 | **U49** | `extraction_pipeline` | D | 🅰 | 🥇 | `N-Q49` | `O-Q50` | `T-Q5` |
 | **U50** | `code_exploration` | D | 🅰 | 🥇 | `N-Q50` | `O-Q26` | `T-Q45` |
-| **U51** | `extraction_pipeline` | A | 🅰 | 🥇 | `N-Q51` | `O-Q59` | `T-Q42` |
+| **U51** | `extraction_pipeline` | A | 🅰 | 🥇🏛 | `N-Q51` | `O-Q59` | `T-Q42` |
 | **U52** | `research_pipeline` | C | 🅰 | 🥇 | `N-Q52` | — | `T-Q30` |
 | **U53** | `research_pipeline` | B | 🅰 | 🥈 | `N-Q53` | `O-Q13` | — |
 | **U54** | `customer_support` | A | 🅰 | 🥇 | `N-Q54` | `O-Q45` | `T-Q33` |
 | **U55** | `research_pipeline` | C | 🅰 | 📘 | `N-Q55` | `O-Q14` | — |
-| **U56** | `extraction_pipeline` | A | 🅰 | 🥈 | `N-Q56` | `O-Q48` | — |
+| **U56** | `extraction_pipeline` | A | 🅰 | 🥈🏛 | `N-Q56` | `O-Q48` | — |
 | **U57** | `extraction_pipeline` | D | 🅰 | 🥇 | `N-Q57` | `O-Q57` | `T-Q31` |
 | **U58** | `customer_support` | B | 🅰 | 🥇 | `N-Q58` | — | `T-Q19` |
 | **U59** | `customer_support` | B | 🅰 | 🥇 | `N-Q59` | — | `T-Q36` |
@@ -154,7 +163,7 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 | **U61** | `code_exploration` | B | ✍️ | 🥇 | — | — | `T-Q4` |
 | **U62** | `research_pipeline` | C | ✍️ | 🥇 | — | `O-Q15` | `T-Q8` |
 | **U63** | `extraction_pipeline` | B | ✍️ | 🥇 | — | — | `T-Q10` |
-| **U64** | `extraction_pipeline` | A | ✍️ | 🥇 | — | `O-Q54` | `T-Q13` |
+| **U64** | `extraction_pipeline` | A | ✍️ | 🥇🏛 | — | `O-Q54` | `T-Q13` |
 | **U65** | `customer_support` | B | ✍️ | 🥇 | — | `O-Q33` | `T-Q16` |
 | **U66** | `code_exploration` | D | ✍️ | 🥇 | — | `O-Q19` | `T-Q22` |
 | **U67** | `customer_support` | A | ✍️ | 🥇 | — | `O-Q40` | `T-Q23` |
@@ -166,8 +175,8 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 | **U73** | `research_pipeline` | B | ✍️ | 📘 | — | `O-Q2` | — |
 | **U74** | `code_exploration` | A | ✍️ | 📘 | — | `O-Q17` | — |
 | **U75** | `code_exploration` | B | ✍️ | 📘 | — | `O-Q28` | — |
-| **U76** | `customer_support` | C | ✍️ | 📘 | — | `O-Q35` | — |
-| **U77** | `customer_support` | A | ✍️ | 📘 | — | `O-Q36` | — |
+| **U76** | `customer_support` | C | ✍️ | 🤔 | — | `O-Q35` | — |
+| **U77** | `customer_support` | A | ✍️ | 🤔 | — | `O-Q36` | — |
 | **U78** | `customer_support` | B | ✍️ | 📘 | — | `O-Q41` | — |
 | **U79** | `extraction_pipeline` | A | ✍️ | 📘 | — | `O-Q47` | — |
 | **U80** | `extraction_pipeline` | A | ✍️ | 📘 | — | `O-Q49` | — |

@@ -16,9 +16,11 @@ status: done
 >
 > Confidence is high — 55 of the 60 restate a principle the vault already has a sourced answer for — but treat a disagreement between this key and a grader-authoritative one as **this key losing**, and log it in [[Weak Areas Deep Dive]].
 >
-> **Five items are flagged 🔶** where the bank's own wording is technically wrong even though the intended answer is clear: Q14, Q16, Q21, Q51, Q55. Read those rebuttals — the exam will not phrase them that way.
+> **Seven items are flagged 🔶** where the bank's own wording is technically wrong even though the intended answer is clear: Q14, Q16, Q21, Q49, Q51, Q55, Q60. Read those rebuttals — the exam will not phrase them that way.
 >
 > **Verification pass, 2026-08-25.** All 60 answers were re-checked in four independent adversarial passes against current official docs, the blueprint, and the official Exam Guide key. **No keyed letter changed.** The pass corrected ~31 section cross-references, rebuilt the domain and pattern tables, and fixed five rationale defects — most importantly the `allowedTools` identifier in Q16, an over-absolute claim in Q42, and an undocumented "documented fallback" in Q60.
+>
+> **Fifth pass, 2026-09-02.** All 60 re-derived again, independently, against live docs. **No keyed letter changed** — and both 2026-08-25 repairs (Q42, Q60) were confirmed correct. Four rationale defects were fixed this time: the `pattern`-is-only-validation claim in **Q6**, the inverted routing in **Q14**, the `validation`-vs-`business` category in **Q49**, and a non-durable objection in Q60's option B. **Q49 and Q60 gained 🔶 flags**, taking the flagged set from five to seven.
 
 ---
 
@@ -34,8 +36,8 @@ status: done
 | 6 | **C** | 16 | **B** 🔶 | 26 | **A** | 36 | **C** | 46 | **B** | 56 | **C** |
 | 7 | **B** | 17 | **A** | 27 | **D** | 37 | **C** | 47 | **C** | 57 | **D** |
 | 8 | **D** | 18 | **D** | 28 | **D** | 38 | **A** | 48 | **B** | 58 | **C** |
-| 9 | **C** | 19 | **B** | 29 | **A** | 39 | **D** | 49 | **D** | 59 | **D** |
-| 10 | **B** | 20 | **D** | 30 | **D** | 40 | **D** | 50 | **C** | 60 | **D** |
+| 9 | **C** | 19 | **B** | 29 | **A** | 39 | **D** | 49 | **D** 🔶 | 59 | **D** |
+| 10 | **B** | 20 | **D** | 30 | **D** | 40 | **D** | 50 | **C** | 60 | **D** 🔶 |
 
 **Distribution:** A ×13 · B ×11 · C ×15 · D ×21.
 
@@ -150,11 +152,15 @@ Assignments follow the vault's own `## N.M` subdomain headings, which mirror the
 
 | Distractor | Why it fails |
 |---|---|
-| **A** regex constraint on the field | Still only validation. It rejects bad output without ever telling the model how to produce good output |
+| **A** regex `pattern` on the field | The mechanism is real, not "validation only" — `pattern` **is** supported under structured outputs and strict tool use, applied by grammar-constrained sampling, so it *prevents* a non-ISO token from being generated rather than rejecting one afterwards. A loses because **C contains it**: schema enforcement plus the conversion rules a regex cannot teach |
 | **B** a schema per vendor | Doesn't scale, and breaks on the first vendor whose format you haven't seen |
 | **D** validation-retry loop only | A legitimate reliability layer, but retrying an unchanged prompt just re-rolls the same dice. Fix the prompt first |
 
-**Takeaway.** Schema constrains, prompt instructs — normalization needs both. See [[D4 - Prompt Engineering & Structured Output]] §4.3.
+> [!IMPORTANT] `pattern` is enforced during generation; `minimum`/`maximum` are stripped
+> Structured outputs document regex `pattern` support explicitly, and strict tool use applies it while sampling — it constrains what the model *can emit*, not merely what you accept afterwards. The keywords that really do get dropped are the **numeric and length** ones: `minimum`, `maximum`, `multipleOf`, `minLength`, `maxLength`. That distinction is the whole answer to **Q27** — so don't flatten both into "schemas only validate."
+> Source: <https://platform.claude.com/docs/en/build-with-claude/structured-outputs> · verified 2026-09-02
+
+**Takeaway.** Schema constrains, prompt instructs — normalization needs both. A regex `pattern` genuinely constrains generation, but it still can't *teach* the conversion, which is why C beats A. See [[D4 - Prompt Engineering & Structured Output]] §4.3 · contrast **Q27**.
 
 ---
 
@@ -285,13 +291,15 @@ Assignments follow the vault's own `## N.M` subdomain headings, which mirror the
 
 | Distractor | Why it fails |
 |---|---|
-| **B** filter by security-critical directory | Path is a poor proxy for actionability — high-value findings outside those paths are dropped entirely |
+| **B** filter by security-critical directory | Path is a poor proxy for actionability — high-value findings outside those paths are dropped entirely. *It is the strongest distractor here*: routing by path is a real bandwidth-triage strategy, and the blueprint's own §5.5 checklist names accuracy segmentation by document type and field. It still loses because it never ranks by whether a finding is **correct** |
 | **C** one example per category | Reduces *volume*, not *noise*. You lose 90% of real findings to save reviewer time |
 | **D** rank by lines of code touched | Surface area has no relationship to whether a finding is correct or worth acting on |
 
 > [!WARNING] 🔶 The bank's phrasing is loose here — and the exam's will not be
 > A says the model **self-reports** a confidence score. Raw self-reported confidence is **poorly calibrated** — which is exactly why **Q10-D** is wrong and **Q25-B** is right. A survives only because the other three options are worse proxies, and because it wraps the score in a *verification pass* and a *threshold*.
 > The complete answer, and the one the official items key, is **calibrate the thresholds against a labeled validation set** before trusting them. If an exam item offers both self-reported and calibrated confidence, **calibrated wins every time.**
+>
+> **And A's routing is worded backwards.** The stem asks for the findings *"most likely to be actionable"*; A routes **uncertain** findings to reviewers first — the opposite selection. Read literally, it spends the scarce bandwidth on the findings least likely to be worth acting on. The charitable reading is that a threshold *partitions* the queue and reviewers take the high-confidence side, but the option never says so. **A survives by elimination, not on its own wording** — treat it as the least-wrong option, not a model answer.
 
 **Takeaway.** Confidence-based routing is right; *uncalibrated* confidence is not. See [[D5 - Context Management & Reliability]] §5.5 · pairs with **Q25**.
 
@@ -893,11 +901,11 @@ Assignments follow the vault's own `## N.M` subdomain headings, which mirror the
 
 ---
 
-## Q49 — Refund exceeds the order total → **D**
+## Q49 — 🔶 Refund exceeds the order total → **D**
 
 **D.** `errorCategory: "validation"`, `isRetryable: false`, description explaining the amount exceeds the order total.
 
-**Why D wins.** All three fields have to be right together. The failure is a **validation** error — the input is invalid against a business rule. It is **not retryable**: the same parameters will fail identically forever. And the description must carry the *reason*, because the agent's job now is to explain the situation to the customer, not to try again.
+**Why D wins.** All three fields have to be right together. It is **not retryable** — the same parameters will fail identically forever — and the description must carry the *reason*, because the agent's job now is to explain the situation to the customer rather than try again. D is the only option that pairs a non-success error with `isRetryable: false` and a reason-bearing description, so it wins on those two fields alone. **Its category label is the wrong one, and the bank never offers the right one** — see the flag below.
 
 | Distractor | Why it fails |
 |---|---|
@@ -908,7 +916,13 @@ Assignments follow the vault's own `## N.M` subdomain headings, which mirror the
 > [!TIP] Read all three fields before choosing
 > Error-response items on this exam vary **category**, **`isRetryable`**, and **description** independently. An option with the right category and the wrong `isRetryable` is still wrong. Check every field.
 
-**Takeaway.** Business-rule failure ⇒ `validation` + `isRetryable: false` + an explanatory description. See [[D2 - Tool Design & MCP Integration]] §2.2 · pairs with **Q35**.
+> [!WARNING] 🔶 The category in option D is wrong — a refund cap is a **business** error, not `validation`
+> The vault's own four-category table separates **Validation** (*"invalid input format or value"*) from **Business** (*"policy violation — e.g. refund limit exceeded"*). Q49's stem **is** that example, word for word: the amount is a well-formed number that a policy forbids. `"validation"` is what you use when the input is malformed.
+>
+> The bank's option set never offers `business`, so D still wins by elimination on `isRetryable` and the description. But note that this key calls the structurally identical failure at **Q35** a *"business-rule violation"* and then labels this one `validation` — **Q35 has it right.** On an exam item offering both categories, **`business` wins.**
+> Source: [[D2 - Tool Design & MCP Integration]] §2.2 · verified 2026-09-02
+
+**Takeaway.** Policy violation ⇒ **`business`** category (not `validation`) + `isRetryable: false` + an explanatory description. Here `validation` is only the best label on offer. See [[D2 - Tool Design & MCP Integration]] §2.2 · pairs with **Q35**, which labels it correctly.
 
 ---
 
@@ -1090,7 +1104,7 @@ Assignments follow the vault's own `## N.M` subdomain headings, which mirror the
 
 ---
 
-## Q60 — `Edit` fails because the target text isn't unique → **D**
+## Q60 — 🔶 `Edit` fails because the target text isn't unique → **D**
 
 **D.** `Read` the full file, apply the modification, and `Write` the complete updated file.
 
@@ -1099,7 +1113,7 @@ Assignments follow the vault's own `## N.M` subdomain headings, which mirror the
 | Distractor | Why it fails |
 |---|---|
 | **A** split the file so sections become unique | Restructures the project to work around a tool constraint |
-| **B** `sed` on a line number | Line numbers shift with every prior edit, and `Bash` text surgery bypasses the tools' safety checks |
+| **B** `sed` on a line number | `Bash` text surgery bypasses the tools' safety checks and their edit history. (The often-cited "line numbers shift" objection doesn't bite on a *single* targeted replacement — lean on the safety-bypass argument, which always holds) |
 | **C** retry with "a larger context window setting" | Fabricated — `Edit` has no such setting, and context size was never the issue |
 
 > [!WARNING] Don't over-generalize into "`Edit` fails ⇒ rewrite the file"
@@ -1145,7 +1159,7 @@ Read the key sideways and the 60 items collapse into about twenty rules. **Every
 1. **Sit the 60 closed-book first.** Record your answers before opening this file — the grid at the top is deliberately the first thing you'd see, so scroll past it.
 2. **Grade against the grid**, then read the worked answer for every item you missed **and every item you got right by elimination**.
 3. **Log misses in [[Weak Areas Deep Dive]]** by *rule*, using the table above — not by question number. This bank's numbering corresponds to nothing else in the vault.
-4. **Read the five 🔶 items regardless of your answer.** Q14, Q16, Q21, Q51, and Q55 each contain a technical inaccuracy in the bank's own wording. Memorizing them as written would cost you marks.
+4. **Read the seven 🔶 items regardless of your answer.** Q14, Q16, Q21, Q49, Q51, Q55, and Q60 each contain a technical inaccuracy in the bank's own wording. Memorizing them as written would cost you marks.
 5. **Then drill the Claude Code material.** Thirteen items (≈22%) cover configuration, workflow, and built-in tools — what the three CyberSkill sittings barely reach, and the subject of two of the six official scenarios.
 
 ---
