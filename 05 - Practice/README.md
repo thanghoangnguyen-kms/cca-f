@@ -98,15 +98,39 @@ All three use the same four scenario domains, and all three use the same four fi
 > [!IMPORTANT] What the official blueprint says about this gap
 > The exam draws **4 scenarios from a bank of 6**, and two of the six — *Code Generation with Claude Code* and *Claude Code for Continuous Integration* — are exactly the D3 material these banks skip. **P(at least one appears) ≈ 93%.** See [[Official Exam Blueprint]] § 3.
 
-## Suggested loop
+## The loop — interrogate options, don't recognise answers
+
+> [!IMPORTANT] This replaced "capture why the right answer is right"
+> That older instruction trained the wrong habit. Justifying a known-correct
+> option is a different skill from eliminating the other three, and the exam only
+> ever tests the second. Every item hands you options that are each defensible in
+> isolation and asks which is **most appropriate for this scenario** — a
+> discrimination task, not a recall task. Steps 2 and 4 below are where that
+> skill is actually built; everything else is scaffolding.
 
 0. **Sit the [official sample questions](Exam%20Guide%20-%20Sample%20Questions/README.md) first** — twelve items, but they calibrate you to the real house style before third-party phrasing sets bad habits.
 1. Work a set from its questions file **without** the key open.
-2. Grade against the domain answer files.
-3. Log every miss in [[Weak Areas Deep Dive]] — capture *why* the right answer is right.
-4. Look the miss up in [[Answer Patterns Index]] and drill its whole pattern — the other 4–10 questions testing the same rule, across both sittings.
-5. Follow the takeaways back into [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[D3 - Claude Code Configuration & Workflows]] · [[D4 - Prompt Engineering & Structured Output]] · [[D5 - Context Management & Reliability]].
+2. **Before grading, write the interrogation.** Per item, on paper or in a scratch note — four lines, not four paragraphs:
+   - **Requirements.** Which sentences in the stem state a requirement or a constraint? Underline the qualifiers — a buried *"this must never happen"* or *"the context window isn't full yet"* eliminates a whole category of options before you read them.
+   - **Per option: what problem does it actually solve?** Name the mechanism and its effect, not "it improves things."
+   - **Per option: which stated requirement does it address?** If you cannot point at a sentence, the option is out — however correct it is in general.
+   - **Per rejected option: which distractor family?** `DF1`–`DF7` in [[07-anti-patterns-catalog]]. Naming the family is what makes the elimination fast and repeatable.
+3. Grade against the domain answer files.
+4. **Log two kinds of item, not one**, in [[Weak Areas Deep Dive]]:
+   - **Misses** — the option you chose, what made it attractive, its distractor family, and the requirement it failed to address.
+   - **Right for the wrong reason** — you picked it but your step 2 notes are thin, absent, or wrong. These are the dangerous ones: they inflate your score and hide the gap. A warm bank will never surface them; only your own written reasoning will.
+5. Look the miss up in [[Answer Patterns Index]] and drill its whole pattern — the other 4–10 questions testing the same rule, across both sittings.
+6. Follow the takeaways back into [[D1 - Agentic Architecture & Orchestration]] · [[D2 - Tool Design & MCP Integration]] · [[D3 - Claude Code Configuration & Workflows]] · [[D4 - Prompt Engineering & Structured Output]] · [[D5 - Context Management & Reliability]].
 
-6. Where a CyberSkill key disagrees with the [official key](Exam%20Guide%20-%20Sample%20Questions/Answer%20Key.md), **the official key wins** — and that disagreement belongs in [[Weak Areas Deep Dive]].
+7. Where a CyberSkill key disagrees with the [official key](Exam%20Guide%20-%20Sample%20Questions/Answer%20Key.md), **the official key wins** — and that disagreement belongs in [[Weak Areas Deep Dive]].
+
+> [!TIP] Fewer items, worked harder
+> Step 2 costs perhaps four minutes an item at first, against forty seconds to
+> read a key. That is the trade you want: with the official practice exam retired
+> (see [[CCA-F Study Roadmap]] § Week 6), unseen questions are the scarce
+> resource, and reading one carelessly spends it permanently. Twenty items
+> interrogated beats a hundred skimmed. Speed comes later and on its own — one
+> passer went from 4–5 minutes an item to under 2 by exam day purely through
+> deliberate practice on dense scenarios.
 
 **Back to:** [[00 - START HERE]] · [[CCA-F Study Roadmap]] · [[Official Exam Blueprint]]
