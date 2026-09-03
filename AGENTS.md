@@ -47,6 +47,8 @@ CCA-F/
 │   ├── 00 - Claude Model Family & API Fundamentals.md
 │   └── D1 … D5 - <Topic>.md         ← the 5 exam-domain deep dives
 ├── 04 - Exam Cram/
+│   ├── Scenarios/                   ← one note per official scenario (6) + Scenario Index
+│   │                                  requirements → mechanism → trade-offs → distractors
 │   ├── Flashcards.md                ← vault-wide deck, grouped by domain
 │   ├── Critical Terms Glossary.md
 │   └── Handbook/                    ← scenario-based cram (00–09, plain MD links)

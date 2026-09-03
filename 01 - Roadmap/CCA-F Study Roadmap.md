@@ -329,6 +329,8 @@ graph LR
 
 #### Step 3 — Close D3 first, driven by Step 1's weak domains
 
+- [ ] **Work the scenario notes for whichever domains block A exposed** — [[Scenario Index]]. The exam serves 4 blocks of 15, each on one scenario; these six notes are the only material in the vault organised that way. Scenarios **2** and **5** are the Claude Code frames no third-party bank tests.
+
 - [ ] **Connectry `architect-cert` MCP** — `npm install -g connectry-architect-mcp`, then register it with your MCP client. 390 scenario questions mapped to **all 30 task statements**, which makes it the only source indexed the same way [[Official Exam Blueprint]] is — so it can prove D3 coverage rather than assert it. Runs locally, MIT, no account.
   - https://github.com/Connectry-io/connectrylab-architect-cert-mcp
 - [ ] **Claude Code scenario drills:** `05 - Practice/Vault-authored - Claude Code Scenario Drills/` — 20 items covering official **scenarios 2 and 5**, the two Claude-Code frames no sourced bank tests (~93% chance at least one appears). Vault-authored: exam-accurate topics, uncalibrated difficulty.

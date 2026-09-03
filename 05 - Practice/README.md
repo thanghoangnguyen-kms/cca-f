@@ -114,7 +114,7 @@ All three use the same four scenario domains, and all three use the same four fi
    - **Requirements.** Which sentences in the stem state a requirement or a constraint? Underline the qualifiers — a buried *"this must never happen"* or *"the context window isn't full yet"* eliminates a whole category of options before you read them.
    - **Per option: what problem does it actually solve?** Name the mechanism and its effect, not "it improves things."
    - **Per option: which stated requirement does it address?** If you cannot point at a sentence, the option is out — however correct it is in general.
-   - **Per rejected option: which distractor family?** `DF1`–`DF7` in [[07-anti-patterns-catalog]]. Naming the family is what makes the elimination fast and repeatable.
+   - **Per rejected option: which distractor family?** `DF1`–`DF7` in [[07-anti-patterns-catalog]]. Naming the family is what makes the elimination fast and repeatable. For the distractors a *particular* scenario attracts, see its note in [[Scenario Index]].
 3. Grade against the domain answer files.
 4. **Log two kinds of item, not one**, in [[Weak Areas Deep Dive]]:
    - **Misses** — the option you chose, what made it attractive, its distractor family, and the requirement it failed to address.
