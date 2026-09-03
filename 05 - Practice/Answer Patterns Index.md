@@ -23,9 +23,9 @@ status: done
 
 | Tag | Set | Questions | Fidelity |
 |---|---|---|---|
-| **N-Q##** | [CyberSkill CCAF - New Mock Exam](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) | 60 | stems + **all four options**; 57/60 grader-confirmed |
-| **O-Q##** | [CyberSkill CCAF - Mock Exam](CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | 60 | answers only, stems paraphrased; every entry cites a docs URL |
-| **T-Q##** | [CyberSkill CCAF - Timed Mock 2026-08-24](CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) | 60 | stems only, **no options**; 60/60 grader-authoritative |
+| **N-Q##** | 🔒 `CyberSkill CCAF - New Mock Exam/` | 60 | stems + **all four options**; 57/60 grader-confirmed |
+| **O-Q##** | 🔒 `CyberSkill CCAF - Mock Exam/` | 60 | answers only, stems paraphrased; every entry cites a docs URL |
+| **T-Q##** | 🔒 `CyberSkill CCAF - Timed Mock 2026-08-24/` | 60 | stems only, **no options**; 60/60 grader-authoritative |
 | **G-Q##** | [Exam Guide - Sample Questions](Exam%20Guide%20-%20Sample%20Questions/README.md) | 12 | stems + all four options + **the exam author's own rationale**. Not part of the 180 read sideways below — cited here because it **outranks** every row in this note |
 
 > [!WARNING] Numbers never cross sets
@@ -160,14 +160,17 @@ Do each set back to back in one sitting, then write the shared rule from memory 
 
 | # | Set | Questions | Where |
 |---|---|---|---|
-| 1 | Provenance | N-Q24, 28, 25, 43, 48 | [research_pipeline.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/research_pipeline.md) |
-| 2 | Escalation | N-Q2, 23, 45, 58, 59 | [customer_support.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/customer_support.md) |
-| 3 | Grounding / null | N-Q27, 46, 36, 49, 21, 3 | [extraction_pipeline.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/extraction_pipeline.md) |
-| 4 | Exploration order | N-Q7, 20, 38, 14, 9, 10 | [code_exploration.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/code_exploration.md) |
-| 5 | Coordinator hub | N-Q47, 55, 60, 5, 17 | [research_pipeline.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/research_pipeline.md) |
-| 6 | Context isolation | N-Q1, 11, 53, 44 | [code_exploration.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/code_exploration.md) |
-| 7 | Sessions | N-Q31, 42, 50 **+ O-Q19, 22, 28** | [code_exploration.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/code_exploration.md) · [O](CyberSkill%20CCAF%20-%20Mock%20Exam/code_exploration.md) |
-| 8 | Errors | N-Q8, 15, 16 **+ O-Q43** | [customer_support.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Answer%20Key/customer_support.md) · [O](CyberSkill%20CCAF%20-%20Mock%20Exam/customer_support.md) |
+> [!NOTE] Drill links point at the Unified Bank
+> The `N-Q##` / `O-Q##` numbering in this table belongs to the raw sittings, which are 🔒 local only. The linked keys are the Unified Bank's `unified-<domain>.md` — same worked answers, renumbered `U1`–`U80`. Use the crosswalk in [CyberSkill CCAF - Unified Bank/README.md](CyberSkill%20CCAF%20-%20Unified%20Bank/README.md#the-crosswalk) to map any `N-Q##` / `O-Q##` / `T-Q##` to its `U#`.
+
+| 1 | Provenance | N-Q24, 28, 25, 43, 48 | [research_pipeline.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-research_pipeline.md) |
+| 2 | Escalation | N-Q2, 23, 45, 58, 59 | [customer_support.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-customer_support.md) |
+| 3 | Grounding / null | N-Q27, 46, 36, 49, 21, 3 | [extraction_pipeline.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-extraction_pipeline.md) |
+| 4 | Exploration order | N-Q7, 20, 38, 14, 9, 10 | [code_exploration.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-code_exploration.md) |
+| 5 | Coordinator hub | N-Q47, 55, 60, 5, 17 | [research_pipeline.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-research_pipeline.md) |
+| 6 | Context isolation | N-Q1, 11, 53, 44 | [code_exploration.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-code_exploration.md) |
+| 7 | Sessions | N-Q31, 42, 50 **+ O-Q19, 22, 28** | [code_exploration.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-code_exploration.md) · [O](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-code_exploration.md) |
+| 8 | Errors | N-Q8, 15, 16 **+ O-Q43** | [customer_support.md](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-customer_support.md) · [O](CyberSkill%20CCAF%20-%20Unified%20Bank/Answer%20Key/unified-customer_support.md) |
 
 > [!TIP] Why set 7 and 8 reach into the old sitting
 > The old key cites a **docs URL on all 60 entries**; the new key doesn't. When a principle needs grounding rather than another example, go read the old sitting's version of it — `O-Q19` is the cleanest `--resume` vs `--continue` statement in the vault, with the source attached.

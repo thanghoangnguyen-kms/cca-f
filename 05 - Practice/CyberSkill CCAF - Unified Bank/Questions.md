@@ -11,7 +11,7 @@ status: not-started
 The **80 distinct questions** behind the three CyberSkill sittings, each appearing exactly once. Answers are deliberately **not** marked here — work the file, then grade against the four domain keys listed in [README.md](README.md#the-answer-key).
 
 > [!IMPORTANT] A derived view, not a fourth sitting
-> Every question below is reproduced from `CyberSkill CCAF - New Mock Exam/`, `CyberSkill CCAF - Mock Exam/` or `CyberSkill CCAF - Timed Mock 2026-08-24/`. Those three folders are unchanged and remain the source of truth. **`U1`–`U80` is a numbering that exists only in this folder** — the crosswalk in [README.md](README.md#the-crosswalk) maps every item back to the sittings it came from.
+> Every question below is reproduced from `CyberSkill CCAF - New Mock Exam/`, `CyberSkill CCAF - Mock Exam/` or `CyberSkill CCAF - Timed Mock 2026-08-24/`. Those three folders are unchanged, and remain the source of truth for anyone who has them — but they are 🔒 personal records, `.gitignore`d, and absent from a fresh clone. **This folder is the shared form of that material.** **`U1`–`U80` is a numbering that exists only in this folder** — the crosswalk in [README.md](README.md#the-crosswalk) maps every item back to the sittings it came from.
 
 > [!NOTE] Two parts, split by fidelity
 > **Part 1 (`U1`–`U60`) 🅰 full MCQ** — all four options quoted; drill as multiple choice.

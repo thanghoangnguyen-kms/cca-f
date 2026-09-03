@@ -51,7 +51,7 @@ A perfectly even 20/20/20/20 split is a strong signal the underlying bank is exa
 > [!WARNING] Correction applied vault-wide on 2026-08-28
 > The overlap matrix in [../README.md](../README.md) recorded **40 / 60**. Item-level matching finds **42**. The two extra pairs are `N-Q48` ≡ `O-Q8` (the $50B/$35B uncertainty item) and `N-Q2` ≡ `O-Q32` (the `escalate_to_human` trigger item) — both genuine matches the earlier count missed, because the Mock Exam key paraphrases those two stems unusually tersely and they read as different questions at a glance.
 >
-> Every note carrying the old figure has been updated: [../README.md](../README.md), [../Answer Patterns Index.md](../Answer%20Patterns%20Index.md), [../CyberSkill CCAF - New Mock Exam/README.md](../CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) and its `Questions.md`, [[CCA-F Study Roadmap]], `AGENTS.md` and `CLAUDE.md`. **`.github/copilot-instructions.md` still says 40/60** — that file is managed separately and must not be edited from here.
+> Every note carrying the old figure has been updated: [../README.md](../README.md), [../Answer Patterns Index.md](../Answer%20Patterns%20Index.md), 🔒 `../CyberSkill CCAF - New Mock Exam/README.md` and its `Questions.md`, [[CCA-F Study Roadmap]], `AGENTS.md` and `CLAUDE.md`. **`.github/copilot-instructions.md` still says 40/60** — that file is managed separately and must not be edited from here.
 > 
 > The other two pairings reproduce exactly: `N↔T` **48/60** ✅ and `O↔T` **42/60** ✅. So does every downstream claim — 12 Timed items absent from New Mock, 10 of them present in Mock Exam, and `T-Q4` / `T-Q10` as the only two items unique to one sitting.
 
@@ -223,7 +223,7 @@ Built by matching all 180 stems pairwise (TF-IDF cosine over content words, doma
 
 **Merge rules.** Stem: New Mock verbatim → else Timed Mock verbatim → else the Mock Exam paraphrase. Options: New Mock only (no other source quotes them). Answer: Timed Mock's `correct_key` → else New Mock's grader-confirmed letter → else the Mock Exam key. Explanation: New Mock's worked entry (it rebuts every distractor), plus the Mock Exam's **Sources** block where one exists, plus the Timed Mock's warning callouts. Every explanation is transplanted from an already-verified key — none was rewritten for this folder.
 
-Two small repairs were applied. `U48`'s stem had lost its `$` symbols in the original text extraction (`35B` → `$35B`), restored here from the Mock Exam sibling and matching the precedent set in [../CyberSkill CCAF - Timed Mock 2026-08-24/Questions.md](../CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/Questions.md). And cross-references inside transplanted explanations originally pointed at their own sitting's numbering; all 42 were remapped to `U#`.
+Two small repairs were applied. `U48`'s stem had lost its `$` symbols in the original text extraction (`35B` → `$35B`), restored here from the Mock Exam sibling and matching the precedent set in 🔒 `../CyberSkill CCAF - Timed Mock 2026-08-24/Questions.md`. And cross-references inside transplanted explanations originally pointed at their own sitting's numbering; all 42 were remapped to `U#`.
 
 **Answer-letter distribution:** A 16 · B 33 · C 19 · D 12 — across 80 items.
 

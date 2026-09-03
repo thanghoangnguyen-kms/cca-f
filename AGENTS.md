@@ -52,17 +52,17 @@ CCA-F/
 │   └── Handbook/                    ← scenario-based cram (00–09, plain MD links)
 ├── 05 - Practice/                   ← one folder per exam set, `<source> - <set>`; notes at the root
 │   ├── README.md                    ← index; overlap matrix for the six sets
-│   ├── Weak Areas Deep Dive.md      ← personal mistake log
+│   ├── Weak Areas Deep Dive.md      ← 🔒 personal mistake log — gitignored, not in the repo
 │   ├── Exam Guide - Sample Questions/    ← OFFICIAL (guide § 9); highest-authority key
 │   │   └── README.md · Questions.md · Answer Key.md
 │   ├── Vault-authored - Claude Code Scenario Drills/  ← official scenarios 2 & 5; written
 │   │   └── README.md · Questions.md · Answer Key/     for this vault, NOT from a bank
-│   ├── CyberSkill CCAF - New Mock Exam/   ← questions + matched key
+│   ├── CyberSkill CCAF - New Mock Exam/   ← 🔒 local only; questions + matched key
 │   │   ├── README.md · Questions.md
 │   │   └── Answer Key/<domain>.md   ← 4 scenario domains
-│   ├── CyberSkill CCAF - Timed Mock 2026-08-24/  ← 3rd sitting; stems only (no options),
+│   ├── CyberSkill CCAF - Timed Mock 2026-08-24/  ← 🔒 local only; 3rd sitting, stems only,
 │   │   └── README.md · Questions.md             all 60 answers grader-authoritative
-│   ├── CyberSkill CCAF - Mock Exam/     ← key only; 2nd sitting of the SAME bank (42/60
+│   ├── CyberSkill CCAF - Mock Exam/     ← 🔒 local only; key only, 2nd sitting, SAME bank (42/60
 │   │   └── README.md · <domain>.md        overlap) — kept separate, do NOT merge
 │   ├── CCA-F Question Bank/         ← certificationpractice.com; questions only, no key
 │   │   └── README.md · CCA-F-practice-exam-questions.md

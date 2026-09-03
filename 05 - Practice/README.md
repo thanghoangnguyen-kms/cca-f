@@ -22,11 +22,15 @@ Six exam sets — the **official** sample questions, three sittings of one Cyber
 
 ## The four third-party sets
 
+> [!NOTE] 🔒 = kept local, not in this repo
+> The three raw CyberSkill sittings are personal records and are `.gitignore`d. What is shared is [CyberSkill CCAF - Unified Bank/](CyberSkill%20CCAF%20-%20Unified%20Bank/README.md) — the same 180 question-slots deduplicated into the **80 distinct items** behind them, which is the form worth reading anyway. Rows below are kept for provenance; on a fresh clone those folders will not exist.
+> `Weak Areas Deep Dive.md` is also local — it is *your own* mistake log, so create your own rather than expecting one in the repo.
+
 | Folder | Source | Questions | Answer key |
 |---|---|---|---|
-| [CyberSkill CCAF - New Mock Exam/](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/README.md) | CyberSkill CCAF, sitting 2026-08-23 | ✅ 60, unmarked, **all 4 options each** | ✅ worked, 4 domains · **57/60 grader-confirmed** |
-| [CyberSkill CCAF - Mock Exam/](CyberSkill%20CCAF%20-%20Mock%20Exam/README.md) | CyberSkill CCAF, earlier sitting | ❌ never captured | ✅ worked, 4 domains |
-| [CyberSkill CCAF - Timed Mock 2026-08-24/](CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/README.md) | CyberSkill CCAF, **timed** sitting 2026-08-24 | ⚠️ 60 stems, **no options** | ✅ **60/60 grader-authoritative** |
+| 🔒 `CyberSkill CCAF - New Mock Exam/` | CyberSkill CCAF, sitting 2026-08-23 | ✅ 60, unmarked, **all 4 options each** | ✅ worked, 4 domains · **57/60 grader-confirmed** |
+| 🔒 `CyberSkill CCAF - Mock Exam/` | CyberSkill CCAF, earlier sitting | ❌ never captured | ✅ worked, 4 domains |
+| 🔒 `CyberSkill CCAF - Timed Mock 2026-08-24/` | CyberSkill CCAF, **timed** sitting 2026-08-24 | ⚠️ 60 stems, **no options** | ✅ **60/60 grader-authoritative** |
 | [CCA-F Question Bank/](CCA-F%20Question%20Bank/README.md) | certificationpractice.com #2564 | ✅ 60, unmarked, **all 4 options each** | ⚠️ [worked, one file](CCA-F%20Question%20Bank/Answer%20Key.md) · **vault-reasoned, no grader** |
 
 > [!TIP] Which folder to reach for
@@ -45,7 +49,7 @@ Six exam sets — the **official** sample questions, three sittings of one Cyber
 
 Plus two standalone notes at the root:
 
-- [[Weak Areas Deep Dive]] — your mistake log. Start and end there.
+- [[Weak Areas Deep Dive]] — your mistake log. Start and end there. 🔒 Local to each clone: it is personal, `.gitignore`d, and you create your own.
 - [[Answer Patterns Index]] — all three CyberSkill keys read *sideways*: 180 explanations grouped into recurring principles, each tied to a trigger row in [[00-golden-rules-cheatsheet]], with drill sets and the rules no sitting tests. The 2026-08-24 items drill as open-response only.
 
 ## How they relate
@@ -79,7 +83,7 @@ All three use the same four scenario domains, and all three use the same four fi
 |---|---|---|---|
 | Numbering | Sitting order — domains **interleave** (Q1 code, Q2 support…) | Blocked — Q1–15 research, Q16–30 code, Q31–45 support, Q46–60 extraction | Sitting order — domains **interleave** (Q1 support, Q2 extraction…) |
 | Domain split | research 15 · code 15 · support 14 · extraction 16 | research 15 · code 15 · support 15 · extraction 15 | research 15 · code 16 · support 14 · extraction 15 |
-| Question file | [Questions.md](CyberSkill%20CCAF%20-%20New%20Mock%20Exam/Questions.md), same folder | Not in the vault | [Questions.md](CyberSkill%20CCAF%20-%20Timed%20Mock%202026-08-24/Questions.md) — **stems only** |
+| Question file | 🔒 `Questions.md`, same folder | Not in the vault | 🔒 `Questions.md` — **stems only** |
 | Wrong options | Quoted in full in each entry | Referenced as bare `A:`/`B:` — lower fidelity | ❌ **not recoverable** — the site never sends them |
 | Verification | **57/60** confirmed against the site's grader | Verified against official Anthropic docs | **60/60** — the grader's own `correct_key` |
 | Your score recorded | ❌ | ❌ | ✅ **43/60 (71.67%)** |
