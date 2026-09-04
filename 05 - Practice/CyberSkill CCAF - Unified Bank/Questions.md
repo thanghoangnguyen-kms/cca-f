@@ -8,7 +8,7 @@ status: not-started
 
 # CyberSkill CCAF Unified Bank — Questions
 
-The **80 distinct questions** behind the three CyberSkill sittings, each appearing exactly once. Answers are deliberately **not** marked here — work the file, then grade against the four domain keys listed in [README.md](README.md#the-answer-key).
+The **80 distinct questions** behind the three CyberSkill sittings, each appearing exactly once. Answers are deliberately **not** marked here — work the file, then grade item by item: each question ends with an **Answer:** link that jumps straight to that item's worked entry in its domain key, so there is no manual lookup. The four keys are listed in [README.md](README.md#the-answer-key).
 
 > [!IMPORTANT] A derived view, not a fourth sitting
 > Every question below is reproduced from `CyberSkill CCAF - New Mock Exam/`, `CyberSkill CCAF - Mock Exam/` or `CyberSkill CCAF - Timed Mock 2026-08-24/`. Those three folders are unchanged, and remain the source of truth for anyone who has them — but they are 🔒 personal records, `.gitignore`d, and absent from a fresh clone. **This folder is the shared form of that material.** **`U1`–`U80` is a numbering that exists only in this folder** — the crosswalk in [README.md](README.md#the-crosswalk) maps every item back to the sittings it came from.
@@ -32,6 +32,8 @@ Your agent has spent 25 minutes exploring a game engine's rendering subsystem—
 - **C.** Summarize key rendering findings, then spawn a sub-agent for physics exploration with that summary in its initial context.
 - **D.** Use /clear to reset context completely, then start fresh with physics exploration using file paths from the project's CLAUDE.md.
 
+**Answer:** [[unified-code_exploration#U1 — code_exploration|↳ U1 — code_exploration key]]
+
 ---
 
 ## U2 · 🅰
@@ -44,6 +46,8 @@ You're implementing the escalation logic for when the agent should call `escalat
 - **B.** Configure the agent to escalate after three consecutive tool calls that fail to resolve the customer's stated issue, ensuring a reasonable attempt before involving a human.
 - **C.** Implement sentiment analysis that monitors for frustration indicators (negative language, repeated questions, exclamation marks) and trigger escalation when the frustration score exceeds a configured threshold.
 - **D.** Build a rules engine that maps specific issue types, customer segments, and product categories to escalation decisions, removing the need for model judgment calls.
+
+**Answer:** [[unified-customer_support#U2 — customer_support|↳ U2 — customer_support key]]
 
 ---
 
@@ -58,6 +62,8 @@ An extractor pulls line items and an invoice total from a receipt. The strongest
 - **C.** Check only that the total is a number.
 - **D.** Accept the first extraction without checking.
 
+**Answer:** [[unified-extraction_pipeline#U3 — extraction_pipeline|↳ U3 — extraction_pipeline key]]
+
 ---
 
 ## U4 · 🅰
@@ -70,6 +76,8 @@ After your daily batch of 10,000 documents completes, 300 documents (3%) failed 
 - **B.** Resubmit only the 300 failed documents after chunking them into smaller pieces, then combine the partial extractions
 - **C.** Resubmit the entire 10,000 document batch using a model tier with a larger context window
 - **D.** Increase the `max_tokens` parameter for the 300 failed documents and resubmit them in a new batch
+
+**Answer:** [[unified-extraction_pipeline#U4 — extraction_pipeline|↳ U4 — extraction_pipeline key]]
 
 ---
 
@@ -84,6 +92,8 @@ Three sub-agents searched overlapping territory and several findings repeat acro
 - **C.** Merge the reports, collapse duplicate findings, and keep one cited instance of each.
 - **D.** Ask the user to remove the duplicates.
 
+**Answer:** [[unified-research_pipeline#U5 — research_pipeline|↳ U5 — research_pipeline key]]
+
 ---
 
 ## U6 · 🅰
@@ -96,6 +106,8 @@ When the agent calls `lookup_order` and receives order details showing the item 
 - **B.** The agent follows a pre-configured decision tree mapping order attributes to specific tool calls.
 - **C.** The order details are added to the conversation and the model reasons about which action to take.
 - **D.** The agent executes the remaining steps in a tool sequence planned at the start of the request.
+
+**Answer:** [[unified-customer_support#U6 — customer_support|↳ U6 — customer_support key]]
 
 ---
 
@@ -110,6 +122,8 @@ An agent is dropped into an unfamiliar repository and asked to add a feature. Th
 - **C.** Start editing the first file that looks related.
 - **D.** Ask the user to explain every file.
 
+**Answer:** [[unified-code_exploration#U7 — code_exploration|↳ U7 — code_exploration key]]
+
 ---
 
 ## U8 · 🅰
@@ -122,6 +136,8 @@ When implementing your `lookup_order` MCP tool, the backend sometimes returns er
 - **B.** Return the error message in the tool result content with the isError flag set to true
 - **C.** Throw an exception from the tool handler so the agent framework can catch and log it
 - **D.** Return a success response with a "status" field indicating the error type
+
+**Answer:** [[unified-customer_support#U8 — customer_support|↳ U8 — customer_support key]]
 
 ---
 
@@ -136,6 +152,8 @@ A README says the auth check happens in one module, but the agent must be sure b
 - **C.** Search the commit history for the original author and ask them.
 - **D.** Assume the check moved and search at random.
 
+**Answer:** [[unified-code_exploration#U9 — code_exploration|↳ U9 — code_exploration key]]
+
 ---
 
 ## U10 · 🅰
@@ -148,6 +166,8 @@ Before renaming a widely used function, an agent needs to know what a change wou
 - **B.** Search the codebase for all references first, then plan the change across the call sites.
 - **C.** Rename only the definition and assume callers will adapt.
 - **D.** Add a second function and leave the old one untouched.
+
+**Answer:** [[unified-code_exploration#U10 — code_exploration|↳ U10 — code_exploration key]]
 
 ---
 
@@ -162,6 +182,8 @@ An engineer asks your agent to identify untested code paths in a legacy payment 
 - **C.** Clear context with /clear, then selectively re-read only the most critical files discovered so far, writing key findings to a scratchpad file that persists between context resets.
 - **D.** Switch to using Grep to search for specific function names instead of reading full files, reducing the content loaded into context for remaining exploration.
 
+**Answer:** [[unified-code_exploration#U11 — code_exploration|↳ U11 — code_exploration key]]
+
 ---
 
 ## U12 · 🅰
@@ -174,6 +196,8 @@ After adding an MCP server with specialized code refactoring tools (`extract_fun
 - **B.** Remove the Write tool from the agent's configuration for refactoring sessions so it must use the MCP tools for code modifications.
 - **C.** Accept this as expected behavior since simpler tools like sed are more predictable than specialized refactoring tools.
 - **D.** Enhance the MCP tool descriptions to explain when each tool is preferable to text manipulation and clarify expected inputs and outputs.
+
+**Answer:** [[unified-code_exploration#U12 — code_exploration|↳ U12 — code_exploration key]]
 
 ---
 
@@ -188,6 +212,8 @@ Your pipeline uses a tool called `extract_metadata` with a JSON schema for paper
 - **C.** Set `tool_choice` to {"type": "tool", "name": "`extract_metadata`"} and process the enrichment requests in subsequent turns after receiving the extracted metadata.
 - **D.** Set `tool_choice` to {"type": "tool", "name": "`extract_metadata`"} for every API call in the pipeline, ensuring Claude always extracts metadata before any enrichment can occur.
 
+**Answer:** [[unified-extraction_pipeline#U13 — extraction_pipeline|↳ U13 — extraction_pipeline key]]
+
 ---
 
 ## U14 · 🅰
@@ -200,6 +226,8 @@ A single source file is thousands of lines long and the agent needs one function
 - **B.** Search within the file for the function and read only that region and its immediate dependencies.
 - **C.** Read the first few hundred lines and stop.
 - **D.** Reformat the file so it is easier to scan.
+
+**Answer:** [[unified-code_exploration#U14 — code_exploration|↳ U14 — code_exploration key]]
 
 ---
 
@@ -214,11 +242,13 @@ Production logs reveal inconsistent error handling: when `lookup_order` fails, t
 - **C.** Implement retry logic with exponential backoff in your MCP server for all errors, returning to the agent only after retries are exhausted.
 - **D.** Add few-shot examples to the system prompt demonstrating how to interpret error message patterns and select appropriate responses for each.
 
+**Answer:** [[unified-customer_support#U15 — customer_support|↳ U15 — customer_support key]]
+
 ---
 
 ## U16 · 🅰
 
-_Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _Seen as: `N-Q16` · `O-Q44`_
+_Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _Seen as: `N-Q16` · `O-Q44`_ · _re-confirmed by sitting `c169819a`_
 
 Your `process_refund` tool returns two types of errors: technical errors ("503 Service Unavailable", "Connection timeout") that are transient (5% of calls), and business errors ("Order exceeds 30-day return window", "Item already refunded") that are permanent (12% of calls). Monitoring shows the agent wastes 3-4 turns retrying business errors that can never succeed. Currently, both error types return only a plain text message to Claude. What's the most effective way to reduce wasted retries while improving customer-facing response quality?
 
@@ -226,6 +256,8 @@ Your `process_refund` tool returns two types of errors: technical errors ("503 S
 - **B.** Add few-shot examples showing how to distinguish retryable from non-retryable errors by parsing error message text.
 - **C.** Add a `check_refund_eligibility` tool that must be called before `process_refund` to prevent business rule violations.
 - **D.** Implement automatic retry logic at the tool level for technical errors only, passing business errors to Claude without retries.
+
+**Answer:** [[unified-customer_support#U16 — customer_support|↳ U16 — customer_support key]]
 
 ---
 
@@ -240,6 +272,8 @@ A research agent must gather facts from eight independent web sources and produc
 - **C.** Process the sources one at a time in a single agent, appending each full page to the running prompt.
 - **D.** Pick the two sources that look most promising and ignore the rest to save tokens.
 
+**Answer:** [[unified-research_pipeline#U17 — research_pipeline|↳ U17 — research_pipeline key]]
+
 ---
 
 ## U18 · 🅰
@@ -252,6 +286,8 @@ Documents arrive continuously throughout business hours and need structured data
 - **B.** Submit a single batch at end of day containing all documents from that day
 - **C.** Submit batches every 4 hours containing documents from that window
 - **D.** Use the real-time API for all documents instead of batch processing
+
+**Answer:** [[unified-extraction_pipeline#U18 — extraction_pipeline|↳ U18 — extraction_pipeline key]]
 
 ---
 
@@ -266,6 +302,8 @@ Your extraction system processes two document types: standard monthly reports (a
 - **C.** Queue all documents and submit hourly batches, flagging urgent documents for expedited handling when batch results return.
 - **D.** Route standard reports to the `Batch API` for 50% cost savings, and route urgent exception reports to the real-time Messages API.
 
+**Answer:** [[unified-extraction_pipeline#U19 — extraction_pipeline|↳ U19 — extraction_pipeline key]]
+
 ---
 
 ## U20 · 🅰
@@ -278,6 +316,8 @@ An engineer who just joined the team asks the agent to help them understand the 
 - **B.** Launch parallel subagents to explore different services simultaneously, then synthesize their findings into an architectural overview.
 - **C.** Use Grep to find authentication entry points, read those files, then follow imports and function calls to map the auth flow incrementally.
 - **D.** Read all files containing "auth", "login", "permission", or "token" in their content or filename.
+
+**Answer:** [[unified-code_exploration#U20 — code_exploration|↳ U20 — code_exploration key]]
 
 ---
 
@@ -292,6 +332,8 @@ Your extraction uses tool use with a JSON schema where `property_type` is define
 - **C.** Change `property_type` from an enum to a free-form string and implement a normalization step in post-processing.
 - **D.** Add few-shot examples to your prompt demonstrating how to map unexpected property types to the closest existing enum value.
 
+**Answer:** [[unified-extraction_pipeline#U21 — extraction_pipeline|↳ U21 — extraction_pipeline key]]
+
 ---
 
 ## U22 · 🅰
@@ -304,6 +346,8 @@ A contract is too long to fit in one context window, and you need fields from ac
 - **B.** Chunk the document with slight overlap, extract per chunk, then merge and reconcile the fields.
 - **C.** Summarize the document first, then extract from the summary.
 - **D.** Raise the temperature so the model fills in the missing parts.
+
+**Answer:** [[unified-extraction_pipeline#U22 — extraction_pipeline|↳ U22 — extraction_pipeline key]]
 
 ---
 
@@ -318,6 +362,8 @@ A customer asks a simple question that the agent can answer directly from the kn
 - **C.** Ask the customer to confirm three times before answering.
 - **D.** Give a long disclaimer and avoid answering.
 
+**Answer:** [[unified-customer_support#U23 — customer_support|↳ U23 — customer_support key]]
+
 ---
 
 ## U24 · 🅰
@@ -330,6 +376,8 @@ You are designing how sub-agents report findings so the final research output ca
 - **B.** The claim plus a reference to its source (URL or document id and location).
 - **C.** The full raw page the claim came from, inline in every message.
 - **D.** A confidence score and nothing else.
+
+**Answer:** [[unified-research_pipeline#U24 — research_pipeline|↳ U24 — research_pipeline key]]
 
 ---
 
@@ -344,6 +392,8 @@ A user is expanding the research system beyond its single web search agent by ad
 - **C.** Update the synthesis agent to render each content type appropriately—financial data as tables, news as prose.
 - **D.** Standardize all subagent outputs to JSON with fields for claim, evidence, source, and confidence.
 
+**Answer:** [[unified-research_pipeline#U25 — research_pipeline|↳ U25 — research_pipeline key]]
+
 ---
 
 ## U26 · 🅰
@@ -356,6 +406,8 @@ A customer returns 4 hours after their initial session about the same billing di
 - **B.** Start a new session, inject a structured summary of the previous interaction (issue type, actions taken, resolution status), then make fresh tool calls before engaging.
 - **C.** Resume with full history and add a system prompt instruction telling the agent to always prefer the most recent tool results when multiple calls to the same tool exist in context.
 - **D.** Resume with full history and configure the agent to automatically re-call all previously-used tools at session start to ensure data freshness.
+
+**Answer:** [[unified-customer_support#U26 — customer_support|↳ U26 — customer_support key]]
 
 ---
 
@@ -370,6 +422,8 @@ Your system extracts event metadata (date, location, organizer, `attendee_count`
 - **C.** Make all schema fields required (non-nullable) with strict validation rules to ensure the model only outputs verifiable data.
 - **D.** Upgrade to a more capable model tier with improved instruction-following to reduce hallucination tendencies.
 
+**Answer:** [[unified-extraction_pipeline#U27 — extraction_pipeline|↳ U27 — extraction_pipeline key]]
+
 ---
 
 ## U28 · 🅰
@@ -382,6 +436,8 @@ In production, final reports frequently contain claims without proper source att
 - **B.** Require all subagents to output structured claim-source mappings that the synthesis agent must preserve and merge when combining findings from multiple sources.
 - **C.** Add a verification step where the report generator uses semantic similarity matching against original sources to reconstruct which claims came from which documents.
 - **D.** Have the coordinator inject source identifier prefixes into text before each handoff, then parse these prefixes at report generation to reconstruct citations.
+
+**Answer:** [[unified-research_pipeline#U28 — research_pipeline|↳ U28 — research_pipeline key]]
 
 ---
 
@@ -396,6 +452,8 @@ The coordinator provides detailed step-by-step instructions to the web search su
 - **C.** Implement a topic classification step where the coordinator categorizes requests as "well-defined" or "exploratory" and uses different instruction styles for each category.
 - **D.** Specify research goals and quality criteria (coverage breadth, source diversity, recency) rather than procedural steps, letting the subagent determine its search strategy.
 
+**Answer:** [[unified-research_pipeline#U29 — research_pipeline|↳ U29 — research_pipeline key]]
+
 ---
 
 ## U30 · 🅰
@@ -408,6 +466,8 @@ The agent verifies customer identity through a multi-step process before resetti
 - **B.** The prompt lacks instructions telling Claude to remember information across multiple exchanges.
 - **C.** The conversation history isn't being passed in subsequent API requests.
 - **D.** Claude's memory retention is limited to two conversational turns by default, requiring explicit configuration to extend it.
+
+**Answer:** [[unified-customer_support#U30 — customer_support|↳ U30 — customer_support key]]
 
 ---
 
@@ -422,6 +482,8 @@ An engineer used the agent yesterday to analyze a legacy authentication module, 
 - **C.** Resume yesterday's session and explore both approaches sequentially within the same conversation thread.
 - **D.** Use `fork_session` to create two branches from yesterday's analysis, exploring one approach in each fork.
 
+**Answer:** [[unified-code_exploration#U31 — code_exploration|↳ U31 — code_exploration key]]
+
 ---
 
 ## U32 · 🅰
@@ -434,6 +496,8 @@ In production, you observe that simple fact-checking queries (e.g., "What year w
 - **B.** Create a fast-path for factual questions that bypasses subagents entirely, routing all other queries through the complete pipeline to ensure research thoroughness.
 - **C.** Have the coordinator analyze each query and dynamically decide which subagents to invoke based on its assessment of query requirements.
 - **D.** Train a query complexity classifier on labeled historical data to predict optimal subagent combinations, retraining periodically as query patterns evolve.
+
+**Answer:** [[unified-research_pipeline#U32 — research_pipeline|↳ U32 — research_pipeline key]]
 
 ---
 
@@ -448,6 +512,8 @@ Your extraction pipeline processes restaurant menus and must output structured J
 - **C.** Request multiple extraction attempts per document and select the most common format.
 - **D.** Define a strict output schema and include format normalization rules in your prompt.
 
+**Answer:** [[unified-extraction_pipeline#U33 — extraction_pipeline|↳ U33 — extraction_pipeline key]]
+
 ---
 
 ## U34 · 🅰
@@ -460,6 +526,8 @@ A research agent keeps spawning follow-up searches and the run is not converging
 - **B.** Give the task an explicit budget and a coverage check, and stop once the questions are answered or the budget is spent.
 - **C.** Cut the run off at a random time.
 - **D.** Add more sub-agents so it finishes sooner.
+
+**Answer:** [[unified-research_pipeline#U34 — research_pipeline|↳ U34 — research_pipeline key]]
 
 ---
 
@@ -474,6 +542,8 @@ After implementing tool use with strict schema definitions, JSON syntax errors a
 - **C.** Modify your schema to make citations and methodology optional, and flag incomplete records for manual review rather than failing validation.
 - **D.** Add few-shot examples demonstrating extractions from documents with varied structures—showing how to identify citations in different formats and locate methodology details across section types.
 
+**Answer:** [[unified-extraction_pipeline#U35 — extraction_pipeline|↳ U35 — extraction_pipeline key]]
+
 ---
 
 ## U36 · 🅰
@@ -486,6 +556,8 @@ An invoice extractor reads dates like 03/04/2025 that could be March 4 or April 
 - **B.** Require an ISO date in the output schema, and when the input is ambiguous, flag the field for review instead of guessing.
 - **C.** Store the date as the raw string and sort it out later.
 - **D.** Drop any date that is ambiguous.
+
+**Answer:** [[unified-extraction_pipeline#U36 — extraction_pipeline|↳ U36 — extraction_pipeline key]]
 
 ---
 
@@ -500,6 +572,8 @@ After integrating a local MCP server providing code analysis tools (`analyze_dep
 - **C.** Split `analyze_dependencies` into granular tools (`list_imports`, `resolve_transitive_deps`, `detect_circular_deps`) so each has a focused purpose less likely to overlap with Grep.
 - **D.** Expand MCP tool descriptions to detail capabilities and outputs—e.g., "Builds dependency graph showing direct imports, transitive dependencies, and cycles."
 
+**Answer:** [[unified-code_exploration#U37 — code_exploration|↳ U37 — code_exploration key]]
+
 ---
 
 ## U38 · 🅰
@@ -512,6 +586,8 @@ An engineer asks the agent to understand how the caching layer works before addi
 - **B.** Analyze imports and class hierarchies to identify the base cache class, Read that file to understand the interface, then trace specific invalidation implementations.
 - **C.** Use Grep to search for "invalidate" and "expire" patterns across all files, then Read only those specific line ranges with minimal surrounding context.
 - **D.** Use Glob to find files matching common caching patterns (cache.py, caching/), prioritize the largest files by reading them first, then check smaller files for gaps.
+
+**Answer:** [[unified-code_exploration#U38 — code_exploration|↳ U38 — code_exploration key]]
 
 ---
 
@@ -526,6 +602,8 @@ Your agent needs to insert a new helper function into the middle of a 150-line u
 - **C.** Use Bash to append the function definition to the end of the file using heredoc syntax
 - **D.** Use Read to load the file, add the function at the appropriate location, then Write the updated file
 
+**Answer:** [[unified-code_exploration#U39 — code_exploration|↳ U39 — code_exploration key]]
+
 ---
 
 ## U40 · 🅰
@@ -538,6 +616,8 @@ A support agent order-status tool returns data that looks stale and contradicts 
 - **B.** Tell the customer the system shows a possibly outdated status, and verify or escalate before committing to it.
 - **C.** Side with whatever the customer says without checking.
 - **D.** Keep retrying the tool silently until it agrees with the customer.
+
+**Answer:** [[unified-customer_support#U40 — customer_support|↳ U40 — customer_support key]]
 
 ---
 
@@ -552,6 +632,8 @@ Compliance requires that refunds exceeding $500 must automatically escalate to a
 - **C.** Implement a hook to intercept tool calls; when the refund process amount exceeds $500, block it and invoke human escalation.
 - **D.** Strengthen the system prompt with emphatic language: "CRITICAL POLICY: Refunds over $500 MUST trigger human escalation. NEVER process these directly."
 
+**Answer:** [[unified-customer_support#U41 — customer_support|↳ U41 — customer_support key]]
+
 ---
 
 ## U42 · 🅰
@@ -565,11 +647,13 @@ Your codebase exploration tool stores session IDs to allow engineers to continue
 - **C.** Resume the session and inform the agent which specific files changed for targeted re-analysis
 - **D.** Resume the session and immediately have the agent re-read all 12 previously analyzed files
 
+**Answer:** [[unified-code_exploration#U42 — code_exploration|↳ U42 — code_exploration key]]
+
 ---
 
 ## U43 · 🅰
 
-_Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `N-Q43` · `O-Q6` · `T-Q47`_
+_Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `N-Q43` · `O-Q6` · `T-Q47`_ · _re-confirmed by sitting `c169819a`_
 
 When researching "renewable energy adoption," the web search agent returns recent statistics (2024: 35% adoption) while the document analysis agent extracts data from internal reports (2022: 18% adoption). The synthesis agent incorrectly flags these as contradictory sources rather than recognizing the data shows growth over time. What change would best enable the synthesis agent to correctly interpret such temporal differences?
 
@@ -577,6 +661,8 @@ When researching "renewable energy adoption," the web search agent returns recen
 - **B.** Add a conflict resolution agent that automatically discards older data when newer data exists for the same metric.
 - **C.** Configure the web search agent to only return results from the past 6 months.
 - **D.** Instruct the synthesis agent to always treat the most recent data as authoritative and place older findings in a separate historical appendix.
+
+**Answer:** [[unified-research_pipeline#U43 — research_pipeline|↳ U43 — research_pipeline key]]
 
 ---
 
@@ -591,6 +677,8 @@ During testing, you observe that in extended exploration sessions (30+ minutes),
 - **C.** Implement automatic context clearing every 15 minutes to ensure the agent starts with fresh, uncontaminated context.
 - **D.** Create summaries of all source files before exploration begins, loading only these compressed representations into context.
 
+**Answer:** [[unified-code_exploration#U44 — code_exploration|↳ U44 — code_exploration key]]
+
 ---
 
 ## U45 · 🅰
@@ -603,6 +691,8 @@ A frustrated customer demands a refund that the policy does not allow. The best 
 - **B.** Acknowledge the frustration, state the policy plainly, and offer the options that do exist.
 - **C.** Restate the policy firmly and end the conversation.
 - **D.** Promise to escalate without intending to.
+
+**Answer:** [[unified-customer_support#U45 — customer_support|↳ U45 — customer_support key]]
 
 ---
 
@@ -617,6 +707,8 @@ A field the schema expects is simply not present in the source document. The ext
 - **C.** Fail the entire extraction because one field is missing.
 - **D.** Repeat the previous record value for that field.
 
+**Answer:** [[unified-extraction_pipeline#U46 — extraction_pipeline|↳ U46 — extraction_pipeline key]]
+
 ---
 
 ## U47 · 🅰
@@ -629,6 +721,8 @@ After the web search agent and document analysis agent complete their tasks, the
 - **B.** The coordinator did not include the outputs from the previous agents in the synthesis agent's prompt.
 - **C.** The subagents need to share a single API connection to enable automatic context sharing between invocations.
 - **D.** The synthesis agent needs tools that can fetch results directly from the other agents' conversation histories.
+
+**Answer:** [[unified-research_pipeline#U47 — research_pipeline|↳ U47 — research_pipeline key]]
 
 ---
 
@@ -643,6 +737,8 @@ Production reviews reveal inconsistent handling of uncertainty in final reports.
 - **C.** Instruct the synthesis agent to structure reports with explicit sections distinguishing well-established findings from contested ones, preserving original source characterizations and methodological context.
 - **D.** Add a verification subagent that cross-references findings across sources, only passing claims to synthesis that are corroborated by at least two independent sources.
 
+**Answer:** [[unified-research_pipeline#U48 — research_pipeline|↳ U48 — research_pipeline key]]
+
 ---
 
 ## U49 · 🅰
@@ -655,6 +751,8 @@ Your extraction system implements automatic retries when validation fails. On ea
 - **B.** The model extracts citation counts as locale-formatted strings ("1,234") when the schema requires integers
 - **C.** The model extracts dates as ISO 8601 datetime strings ("2023-03-15T00:00:00Z") when the schema requires only the date portion (YYYY-MM-DD)
 - **D.** The model extracts "et al." for co-authors when the full list exists only in an external document not in the input
+
+**Answer:** [[unified-extraction_pipeline#U49 — extraction_pipeline|↳ U49 — extraction_pipeline key]]
 
 ---
 
@@ -669,6 +767,8 @@ An engineer's exploration subagent spent 30 minutes analyzing a legacy payment s
 - **C.** Launch a fresh subagent with a summary of prior findings.
 - **D.** Resume the subagent from its previous transcript and inform it about the renamed functions.
 
+**Answer:** [[unified-code_exploration#U50 — code_exploration|↳ U50 — code_exploration key]]
+
 ---
 
 ## U51 · 🅰
@@ -682,11 +782,13 @@ After deployment, you find that 12% of extractions contain semantic errors that 
 - **C.** Prioritize review of all extractions where required fields are empty or explicitly marked as not found.
 - **D.** Review all extractions from documents with formatting anomalies such as unusual layouts or mixed content types.
 
+**Answer:** [[unified-extraction_pipeline#U51 — extraction_pipeline|↳ U51 — extraction_pipeline key]]
+
 ---
 
 ## U52 · 🅰
 
-_Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `N-Q52` · `T-Q30`_
+_Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `N-Q52` · `T-Q30`_ · _re-confirmed by sitting `c169819a`_
 
 Two sub-agents return conflicting figures for the same metric, each with moderate confidence. Before the coordinator writes the final answer, the best move is to:
 
@@ -694,6 +796,8 @@ Two sub-agents return conflicting figures for the same metric, each with moderat
 - **B.** Take whichever sub-agent answered first.
 - **C.** Run a focused check that re-fetches the metric from the primary source and resolves the conflict before synthesizing.
 - **D.** Include both numbers in the final answer and let the reader decide.
+
+**Answer:** [[unified-research_pipeline#U52 — research_pipeline|↳ U52 — research_pipeline key]]
 
 ---
 
@@ -708,6 +812,8 @@ Production monitoring shows that follow-up queries like "summarize what we learn
 - **C.** Enable prompt caching on the synthesis subagent to reduce the overhead of repeatedly transferring the same research findings.
 - **D.** Spawn the synthesis subagent with reduced context and have it request specific findings from the coordinator on-demand.
 
+**Answer:** [[unified-research_pipeline#U53 — research_pipeline|↳ U53 — research_pipeline key]]
+
 ---
 
 ## U54 · 🅰
@@ -720,6 +826,8 @@ Your agent has called `lookup_order` multiple times while investigating a custom
 - **B.** Have the model generate a natural language summary of each order's key details, replacing structured responses with prose descriptions
 - **C.** Move all tool responses to a vector database with semantic indexing, retrieving relevant portions as the conversation continues
 - **D.** Proceed with additional lookups without modifying the existing tool output context
+
+**Answer:** [[unified-customer_support#U54 — customer_support|↳ U54 — customer_support key]]
 
 ---
 
@@ -734,6 +842,8 @@ When analyzing complex legal cases that cite multiple precedents, the document a
 - **C.** Have the coordinator spawn parallel document analysis subagents, each handling a subset of precedents, then aggregate results before synthesis.
 - **D.** Enable the document analysis subagent to spawn its own specialized subagents dynamically when it encounters cases with many citations.
 
+**Answer:** [[unified-research_pipeline#U55 — research_pipeline|↳ U55 — research_pipeline key]]
+
 ---
 
 ## U56 · 🅰
@@ -746,6 +856,8 @@ Your system has been operating with 100% human review for 3 months. Analysis sho
 - **B.** Compare accuracy at different confidence thresholds (85%, 90%, 95%) to find the optimal cutoff that maximizes automation while minimizing errors.
 - **C.** Run a two-week pilot routing 25% of high-confidence extractions directly to downstream systems and monitor error reports.
 - **D.** Verify that 97% accuracy meets requirements for all downstream systems that consume the extracted data.
+
+**Answer:** [[unified-extraction_pipeline#U56 — extraction_pipeline|↳ U56 — extraction_pipeline key]]
 
 ---
 
@@ -760,6 +872,8 @@ Your extraction system parses e-commerce product descriptions to extract specifi
 - **C.** Set temperature to 0 to eliminate randomness and ensure deterministic outputs
 - **D.** Add few-shot examples showing 2-3 complete input-output pairs with standardized material description formats
 
+**Answer:** [[unified-extraction_pipeline#U57 — extraction_pipeline|↳ U57 — extraction_pipeline key]]
+
 ---
 
 ## U58 · 🅰
@@ -772,6 +886,8 @@ A user asks a support agent for specific legal advice about a contract dispute. 
 - **B.** Say plainly this is outside what support can advise on, and point the user to the right resource or a human.
 - **C.** Answer vaguely so the agent does not commit to anything.
 - **D.** Ignore the legal part and answer something easier.
+
+**Answer:** [[unified-customer_support#U58 — customer_support|↳ U58 — customer_support key]]
 
 ---
 
@@ -786,6 +902,8 @@ An agent has tried three times to resolve a billing issue and the customer is st
 - **C.** Tell the customer to open a new ticket.
 - **D.** Close the conversation as resolved.
 
+**Answer:** [[unified-customer_support#U59 — customer_support|↳ U59 — customer_support key]]
+
 ---
 
 ## U60 · 🅰
@@ -798,6 +916,8 @@ The web search agent has gathered several relevant sources for a research topic.
 - **B.** The web search agent directly invokes the document analysis agent, passing the discovered sources as parameters.
 - **C.** The coordinator agent receives the web search agent's output and includes relevant findings in the prompt when invoking the document analysis agent.
 - **D.** Both agents access a shared memory store where the web search agent writes findings and the document analysis agent reads them.
+
+**Answer:** [[unified-research_pipeline#U60 — research_pipeline|↳ U60 — research_pipeline key]]
 
 ---
 
@@ -812,6 +932,8 @@ _Domain: [`code_exploration`](Answer%20Key/unified-code_exploration.md)_ · _See
 
 An agent must find why a specific error message is thrown in a large service. The most context-efficient first step is to:
 
+**Answer:** [[unified-code_exploration#U61 — code_exploration|↳ U61 — code_exploration key]]
+
 ---
 
 ## U62 · ✍️
@@ -819,6 +941,8 @@ An agent must find why a specific error message is thrown in a large service. Th
 _Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `O-Q15` · `T-Q8`_
 
 The coordinator agent has `AgentDefinition`s configured for all four specialized subagents, each with appropriate descriptions, prompts, and tool restrictions. During testing, you notice the coordinator correctly reasons about when to delegate—it generates messages like "I'll ask the web search agent to find sources on this topic"—but no subagent execution ever occurs. The coordinator then proceeds as if the delegation happened and continues with incomplete information. Logs show no errors. What is the most likely cause?
+
+**Answer:** [[unified-research_pipeline#U62 — research_pipeline|↳ U62 — research_pipeline key]]
 
 ---
 
@@ -828,6 +952,8 @@ _Domain: [`extraction_pipeline`](Answer%20Key/unified-extraction_pipeline.md)_ �
 
 An extractor must label each support ticket with one of five priority levels. To stop the model from inventing new labels, you should:
 
+**Answer:** [[unified-extraction_pipeline#U63 — extraction_pipeline|↳ U63 — extraction_pipeline key]]
+
 ---
 
 ## U64 · ✍️
@@ -835,6 +961,8 @@ An extractor must label each support ticket with one of five priority levels. To
 _Domain: [`extraction_pipeline`](Answer%20Key/unified-extraction_pipeline.md)_ · _Seen as: `O-Q54` · `T-Q13`_
 
 Your extraction pipeline processes invoices and extracts line items, subtotals, tax amounts, and grand totals. During evaluation, you discover that in 18% of extractions, the sum of extracted line item amounts doesn't match the extracted grand total—sometimes due to OCR errors in the source document, sometimes due to extraction mistakes by the model. Downstream accounting systems reject records with mismatched totals. What's the most effective approach to improve extraction reliability?
+
+**Answer:** [[unified-extraction_pipeline#U64 — extraction_pipeline|↳ U64 — extraction_pipeline key]]
 
 ---
 
@@ -844,6 +972,8 @@ _Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _See
 
 After investigating a billing dispute over 25+ turns, you've identified that duplicate charges occurred due to a payment gateway timeout triggering retry logic. The required refund ($847) exceeds your $500 authorization limit. You need to call `escalate_to_human`, and the human agent won't have access to your conversation transcript. What context should you pass to enable effective resolution?
 
+**Answer:** [[unified-customer_support#U65 — customer_support|↳ U65 — customer_support key]]
+
 ---
 
 ## U66 · ✍️
@@ -851,6 +981,8 @@ After investigating a billing dispute over 25+ turns, you've identified that dup
 _Domain: [`code_exploration`](Answer%20Key/unified-code_exploration.md)_ · _Seen as: `O-Q19` · `T-Q22`_
 
 An engineer used `Claude Code` yesterday to investigate authentication flows in a legacy monolith, building up significant context over a 2-hour session. Today she wants to continue that specific investigation. She's worked on three other codebases since then and knows the session was named "auth-deep-dive". How should she resume?
+
+**Answer:** [[unified-code_exploration#U66 — code_exploration|↳ U66 — code_exploration key]]
 
 ---
 
@@ -860,6 +992,8 @@ _Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _See
 
 A customer sends: "This is frustrating. I've explained my issue twice and nothing is being resolved. I want to talk to a real person NOW." The agent has not yet called any tools to investigate their account. What should the agent do?
 
+**Answer:** [[unified-customer_support#U67 — customer_support|↳ U67 — customer_support key]]
+
 ---
 
 ## U68 · ✍️
@@ -868,13 +1002,17 @@ _Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _See
 
 A customer raises three separate issues during one session: a refund inquiry (turns 1-15), a subscription question (turns 16-30), and a payment method update (turns 31-45). At turn 48, the customer asks "What happened with my refund?" The conversation is approaching context limits. What strategy best maintains the agent's ability to address all issues throughout the session?
 
+**Answer:** [[unified-customer_support#U68 — customer_support|↳ U68 — customer_support key]]
+
 ---
 
 ## U69 · ✍️
 
-_Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `O-Q3` · `T-Q46`_
+_Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _Seen as: `O-Q3` · `T-Q46`_ · _re-confirmed by sitting `c169819a`_
 
 The document analysis agent has a single `analyze_document` tool that takes a document and a free-text instruction parameter. During evaluation, requests like "extract the key financial metrics" often return narrative summaries, while "summarize the methodology" sometimes returns raw data tables. The synthesis agent reports that 35% of analysis results require re-requests with clarified instructions. What's the most effective way to improve reliability?
+
+**Answer:** [[unified-research_pipeline#U69 — research_pipeline|↳ U69 — research_pipeline key]]
 
 ---
 
@@ -884,6 +1022,8 @@ _Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _S
 
 The synthesis agent receives summarized findings from the web search and document analysis agents, then passes a consolidated summary to the report generator. During testing, you discover the generated reports make factual claims without proper citations—the report generator cannot attribute statements to their original sources because that metadata was lost during the summarization steps. What's the most effective approach to ensure proper source attribution in the final reports?
 
+**Answer:** [[unified-research_pipeline#U70 — research_pipeline|↳ U70 — research_pipeline key]]
+
 ---
 
 ## U71 · ✍️
@@ -892,13 +1032,17 @@ _Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _S
 
 Your multi-agent research pipeline crashed after processing 12 of 28 documents. The web search agent had identified relevant sources, the document analysis agent had partially completed extraction, and the synthesizer had begun pattern identification. You need to resume processing without repeating work or losing fidelity of prior findings. What state management approach best balances information fidelity with context efficiency when restoring agent state?
 
+**Answer:** [[unified-research_pipeline#U71 — research_pipeline|↳ U71 — research_pipeline key]]
+
 ---
 
 ## U72 · ✍️
 
-_Domain: [`code_exploration`](Answer%20Key/unified-code_exploration.md)_ · _Seen as: `O-Q25` · `T-Q56`_
+_Domain: [`code_exploration`](Answer%20Key/unified-code_exploration.md)_ · _Seen as: `O-Q25` · `T-Q56`_ · _re-confirmed by sitting `c169819a`_
 
 A developer asks the agent to investigate why a specific API endpoint intermittently returns 500 errors. The codebase has 200+ files and the developer doesn't know which components are involved. The agent must trace the error through routing, middleware, business logic, and database layers. What task decomposition approach would be most effective?
+
+**Answer:** [[unified-code_exploration#U72 — code_exploration|↳ U72 — code_exploration key]]
 
 ---
 
@@ -908,6 +1052,8 @@ _Domain: [`research_pipeline`](Answer%20Key/unified-research_pipeline.md)_ · _S
 
 After web search (25 sources, 120K tokens raw), document analysis (15K tokens insights), and synthesis (3K-token draft), the coordinator must hand off to the report-generation agent so it can produce a final report with proper citations. Which context-passing strategy best balances completeness and efficiency?
 
+**Answer:** [[unified-research_pipeline#U73 — research_pipeline|↳ U73 — research_pipeline key]]
+
 ---
 
 ## U74 · ✍️
@@ -915,6 +1061,8 @@ After web search (25 sources, 120K tokens raw), document analysis (15K tokens in
 _Domain: [`code_exploration`](Answer%20Key/unified-code_exploration.md)_ · _Seen as: `O-Q17`_
 
 An engineer wants all callers of a function found before removal. The function lives in a core library but is re-exposed under renamed aliases by wrapper modules (e.g., `calculateTax` → `computeOrderTax`). What exploration strategy most reliably finds all callers?
+
+**Answer:** [[unified-code_exploration#U74 — code_exploration|↳ U74 — code_exploration key]]
 
 ---
 
@@ -924,6 +1072,8 @@ _Domain: [`code_exploration`](Answer%20Key/unified-code_exploration.md)_ · _See
 
 After analyzing a service module (23 files, request flows, error patterns), a developer wants to independently develop two testing strategies — E2E with mocked services vs. snapshot tests — to compare trade-offs. How should you manage the sessions?
 
+**Answer:** [[unified-code_exploration#U75 — code_exploration|↳ U75 — code_exploration key]]
+
 ---
 
 ## U76 · ✍️
@@ -931,6 +1081,8 @@ After analyzing a service module (23 files, request flows, error patterns), a de
 _Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _Seen as: `O-Q35`_
 
 During a billing dispute, `get_customer` and `lookup_order` succeed but `process_refund` returns a timeout. The agent can explain charges and verify eligibility but can't process the refund. What best balances first-contact resolution with error handling?
+
+**Answer:** [[unified-customer_support#U76 — customer_support|↳ U76 — customer_support key]]
 
 ---
 
@@ -940,6 +1092,8 @@ _Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _See
 
 A customer says they've been going "back and forth for days" and "just want to speak to someone who can actually help." `lookup_order` confirms the return is within policy and immediately processable. What should the agent do?
 
+**Answer:** [[unified-customer_support#U77 — customer_support|↳ U77 — customer_support key]]
+
 ---
 
 ## U78 · ✍️
@@ -947,6 +1101,8 @@ A customer says they've been going "back and forth for days" and "just want to s
 _Domain: [`customer_support`](Answer%20Key/unified-customer_support.md)_ · _Seen as: `O-Q41`_
 
 Mid-dispute, after `get_customer` and `lookup_order`, the agent finds a promotional-pricing error requiring manager approval—beyond its authorization. How should the workflow handle this mid-process escalation?
+
+**Answer:** [[unified-customer_support#U78 — customer_support|↳ U78 — customer_support key]]
 
 ---
 
@@ -956,13 +1112,19 @@ _Domain: [`extraction_pipeline`](Answer%20Key/unified-extraction_pipeline.md)_ �
 
 A `skills: string[]` field shows three problems: compound phrases ("Python and SQL") split inconsistently, implied-but-unstated skills appear, and array lengths vary wildly (5–10 vs 40+). The prompt only says "Extract all skills mentioned." Most effective fix?
 
+**Answer:** [[unified-extraction_pipeline#U79 — extraction_pipeline|↳ U79 — extraction_pipeline key]]
+
 ---
 
 ## U80 · ✍️
 
-_Domain: [`extraction_pipeline`](Answer%20Key/unified-extraction_pipeline.md)_ · _Seen as: `O-Q49`_
+_Domain: [`extraction_pipeline`](Answer%20Key/unified-extraction_pipeline.md)_ · _Seen as: `O-Q49`_ · _re-confirmed by sitting `c169819a`_
 
-Contracts include amendments (original "30-day payment terms" vs Amendment 1 "45 days"). The model inconsistently extracts one value with no indication of which applies. Most effective fix?
+Your extraction pipeline processes contracts that frequently include amendments. When a contract contains both original terms and later amendments (e.g., original clause specifies "30-day payment terms" while Amendment 1 changes this to "45 days"), the model inconsistently extracts one value or the other with no indication of which applies.
+
+What's the most effective approach to improve extraction accuracy for documents with amendments?
+
+**Answer:** [[unified-extraction_pipeline#U80 — extraction_pipeline|↳ U80 — extraction_pipeline key]]
 
 ---
 

@@ -69,13 +69,13 @@ Every cluster with two or more sittings gives 132 cross-sitting answer compariso
 
 | | Meaning | Items |
 |---|---|---:|
-| 🥇 | **Grader-authoritative** — the site's own `correct_key`, read off the 2026-08-24 review page | 60 |
+| 🥇 | **Grader-authoritative** — the site's own `correct_key`, read off a review page (2026-08-24 sitting, or the partial 2026-09-04 capture below) | 62 |
 | 🥈 | **Grader-confirmed** — marked correct by the site's grader on the 2026-08-23 sitting | 9 |
-| 📘 | **Doc-verified** — no grader ever saw it; reasoning cites official docs | 8 |
+| 📘 | **Doc-verified** — no grader ever saw it; reasoning cites official docs | 6 |
 | 🤔 | **Reasoned only** — no grader, and no doc that actually covers the point | 3 |
 | 🏛 | **Blueprint-named** *(additional mark)* — the pattern is named in the [[Official Exam Blueprint]] itself. Outranks every row above | 11 |
 
-**69 of 80 (86%) carry a grader's verdict**, and 11 carry the blueprint's.
+**71 of 80 (89%) carry a grader's verdict**, and 11 carry the blueprint's.
 
 > [!NOTE] Revised 2026-09-02 after a full re-verification pass
 > All 80 answers were independently re-derived against live official docs. **No keyed letter changed.** Three things did:
@@ -115,7 +115,7 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 | **U13** | `extraction_pipeline` | C | 🅰 | 🥇 | `N-Q13` | `O-Q55` | `T-Q6` |
 | **U14** | `code_exploration` | B | 🅰 | 🥇 | `N-Q14` | — | `T-Q28` |
 | **U15** | `customer_support` | A | 🅰 | 🥇🏛 | `N-Q15` | `O-Q38` | `T-Q20` |
-| **U16** | `customer_support` | A | 🅰 | 📘🏛 | `N-Q16` | `O-Q44` | — |
+| **U16** | `customer_support` | A | 🅰 | 🥇🏛 | `N-Q16` | `O-Q44` | — |
 | **U17** | `research_pipeline` | B | 🅰 | 🥇 | `N-Q17` | — | `T-Q44` |
 | **U18** | `extraction_pipeline` | C | 🅰 | 🥇 | `N-Q18` | `O-Q58` | `T-Q27` |
 | **U19** | `extraction_pipeline` | D | 🅰 | 🥇 | `N-Q19` | `O-Q46` | `T-Q7` |
@@ -179,7 +179,7 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 | **U77** | `customer_support` | A | ✍️ | 🤔 | — | `O-Q36` | — |
 | **U78** | `customer_support` | B | ✍️ | 📘 | — | `O-Q41` | — |
 | **U79** | `extraction_pipeline` | A | ✍️ | 📘 | — | `O-Q47` | — |
-| **U80** | `extraction_pipeline` | A | ✍️ | 📘 | — | `O-Q49` | — |
+| **U80** | `extraction_pipeline` | A | ✍️ | 🥇 | — | `O-Q49` | — |
 
 **Cluster shapes:** all three sittings 32 · New+Timed 16 · New+Mock 10 · Mock+Timed 10 · New only 2 · Mock only 8 · Timed only 2.
 
@@ -196,6 +196,54 @@ Every distinct item, with the sittings it appeared in. `—` means that sitting 
 **Timed Mock 2026-08-24** (`T-Q#` → `U#`)
 
 > 1→**40** · 2→**33** · 3→**23** · 4→**61** · 5→**49** · 6→**13** · 7→**19** · 8→**62** · 9→**39** · 10→**63** · 11→**11** · 12→**22** · 13→**64** · 14→**35** · 15→**28** · 16→**65** · 17→**3** · 18→**6** · 19→**58** · 20→**15** · 21→**48** · 22→**66** · 23→**67** · 24→**46** · 25→**27** · 26→**30** · 27→**18** · 28→**14** · 29→**9** · 30→**52** · 31→**57** · 32→**60** · 33→**54** · 34→**26** · 35→**34** · 36→**59** · 37→**31** · 38→**2** · 39→**42** · 40→**1** · 41→**68** · 42→**51** · 43→**10** · 44→**17** · 45→**50** · 46→**69** · 47→**43** · 48→**5** · 49→**70** · 50→**29** · 51→**71** · 52→**38** · 53→**24** · 54→**25** · 55→**20** · 56→**72** · 57→**7** · 58→**44** · 59→**21** · 60→**8**
+
+---
+
+## Fourth sitting — partial capture, 2026-09-04
+
+A fourth CyberSkill sitting (`c169819a-d3a8-475e-a20f-eb60f4c130b3`) was sat on **2026-09-04**. Only its **six missed items** have been transcribed so far, from the review page's per-item feedback. That is enough to reconcile those six against this folder and not enough to add a fourth crosswalk column.
+
+> [!IMPORTANT] Why there is no fourth column in the crosswalk yet
+> A column entry means one of two things — a question number, or `—` for *this sitting did not draw the item*. With 54 of 60 items untranscribed, every blank would mean **"unknown"** instead, which silently breaks what the table asserts. The six confirmations are therefore recorded on the items themselves (`· sitting c169819a` in each *Seen as* line) and summarised here. The column goes in when all 60 are captured.
+
+### All six agree — and two items got stronger
+
+| Site item | U# | Domain | Key | Sitting said | Effect on this folder |
+|---|---|---|---|:--:|---|
+| Contract amendments, versioned fields | **U80** | `extraction_pipeline` | A | **A** ✅ | **📘 → 🥇** · stem replaced with the verbatim wording |
+| Renewable-energy temporal conflict | **U43** | `research_pipeline` | A | **A** ✅ | 4th agreeing sitting |
+| Two subagents, conflicting figures | **U52** | `research_pipeline` | C | **C** ✅ | 3rd agreeing sitting |
+| `process_refund` retryable errors | **U16** | `customer_support` | A | **A** ✅ | **📘🏛 → 🥇🏛** |
+| `analyze_document` free-text contract | **U69** | `research_pipeline` | A | **A** ✅ | 3rd agreeing sitting |
+| Intermittent 500s across 200+ files | **U72** | `code_exploration` | B | **B** ✅ | 3rd agreeing sitting |
+
+**Zero conflicts.** Six more cross-sitting answer comparisons, six agreements — consistent with the 132 already on record.
+
+**Two attestation upgrades.** `U16` and `U80` were both 📘 — keyed on documentation and cross-sitting agreement, with *no grader having ever seen them*. This sitting's review page states the correct option outright for both, and both times it is the letter this folder already had. That drops the doc-only count from 8 to 6.
+
+**One stem repaired.** `U80`'s stem was the terse `Mock Exam` paraphrase, because the merge had no verbatim source for it — the only place in this folder where that fallback was visibly lossy. The 2026-09-04 page renders it in full, so it is now verbatim. `U80` stays ✍️: the review page shows only the selected and correct options, so two of four distractors remain uncaptured.
+
+> [!NOTE] No 81st item
+> All six fall inside the existing 80. Six further draws with nothing new is weak but real support for § 1 above — the bank is evenly stocked at 80 items, 20 per domain.
+
+### The pattern in the six misses
+
+> [!WARNING] All six answers given were option **D**
+> Five of the six correct answers are **A**; the sixth is **B**. More telling than the letter is the *shape*: every D chosen adds machinery downstream of the defect, and every correct answer fixes the contract upstream of it.
+>
+> | U# | The D that was chosen | The A/B that was correct |
+> |---|---|---|
+> | U80 | Pattern-match amendments, flag for manual review | Schema carries multiple values + source + effective date |
+> | U43 | Treat newest as authoritative, appendix the rest | Subagents emit publication/collection dates |
+> | U52 | Report both figures, let the reader decide | Re-fetch from the primary source and resolve |
+> | U16 | Retry logic at the tool level | Structured error with `retryable: false` + customer-facing text |
+> | U69 | More examples in the tool description | Split into tools with defined I/O contracts |
+> | U72 | Fan out four parallel workers | Generate subtasks adaptively from what is found |
+>
+> This is one failure mode six times, not six independent gaps: **preferring a downstream workaround over repairing the data or tool contract.** Drill the trigger — "am I adding machinery around a bad contract, or fixing the contract?" — rather than the six items.
+
+> [!TIP] Three of the six were already worked in full in this folder
+> `U16`, `U69` and `U72` each carry a complete distractor rebuttal here, and `U69`'s entry rebuts option **D** — the one chosen — explicitly. Missing those is a recognition failure, not a knowledge gap. `U69` also carries a standing caution that the portable rule is *specify the contract*, not *split the tool*, which is precisely the rule the other five turn on.
 
 ---
 

@@ -387,7 +387,7 @@ Preserve the 47 files of accumulated analysis and patch the one thing that chang
 
 ### U72 — code_exploration
 
-✍️ open-response · **Seen as:** `O-Q25` · `T-Q56` — **2 sittings, all agreeing**  
+✍️ open-response · **Seen as:** `O-Q25` · `T-Q56` · sitting `c169819a` — **3 sittings, all agreeing**  
 **Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
 
 > A developer asks the agent to investigate why a specific API endpoint intermittently returns 500 errors. The codebase has 200+ files and the developer doesn't know which components are involved. The agent must trace the error through routing, middleware, business logic, and database layers. What task decomposition approach would be most effective?

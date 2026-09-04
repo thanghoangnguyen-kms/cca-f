@@ -17,7 +17,7 @@ status: done
 
 **Answers:** **U2** A · **U6** C · **U8** B · **U15** A · **U16** A · **U23** B · **U26** B · **U30** C · **U40** B · **U41** C · **U45** B · **U54** A · **U58** B · **U59** B · **U65** B · **U67** A · **U68** C · **U76** C · **U77** A · **U78** B
 
-**Authority:** U2 🥇 · U6 🥇 · U8 🥇 · U15 🥇🏛 · U16 📘🏛 · U23 🥇 · U26 🥇 · U30 🥇 · U40 🥇 · U41 🥈🏛 · U45 🤔 · U54 🥇 · U58 🥇 · U59 🥇 · U65 🥇 · U67 🥇 · U68 🥇 · U76 🤔 · U77 🤔 · U78 📘
+**Authority:** U2 🥇 · U6 🥇 · U8 🥇 · U15 🥇🏛 · U16 🥇🏛 · U23 🥇 · U26 🥇 · U30 🥇 · U40 🥇 · U41 🥈🏛 · U45 🤔 · U54 🥇 · U58 🥇 · U59 🥇 · U65 🥇 · U67 🥇 · U68 🥇 · U76 🤔 · U77 🤔 · U78 📘
 _🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only · 🏛 **also** named in the [[Official Exam Blueprint]] — outranks all four_
 
 ---
@@ -111,8 +111,8 @@ All three misbehaviours share one root cause: `"Operation failed"` carries no in
 
 ### U16 — customer_support
 
-🅰 full MCQ · **Seen as:** `N-Q16` · `O-Q44` — **2 sittings, all agreeing**  
-**Authority:** 📘 doc-verified — no grader ever saw it; two sittings agree and the reasoning is doc-cited · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
+🅰 full MCQ · **Seen as:** `N-Q16` · `O-Q44` · sitting `c169819a` — **3 sittings, all agreeing**  
+**Authority:** 🥇 grader-authoritative — the site's own stated correct option, read off the sitting `c169819a` review page (reported 2026-09-04). **Upgraded from 📘** — no grader had previously seen it · 🏛 Also named in the [[Official Exam Blueprint]] — the strongest backing an item in this folder can carry
 
 > Your `process_refund` tool returns two types of errors: technical errors ("503 Service Unavailable", "Connection timeout") that are transient (5% of calls), and business errors ("Order exceeds 30-day return window", "Item already refunded") that are permanent (12% of calls). Monitoring shows the agent wastes 3-4 turns retrying business errors that can never succeed. Currently, both error types return only a plain text message to Claude. What's the most effective way to reduce wasted retries while improving customer-facing response quality?
 

@@ -214,7 +214,7 @@ Two independent stopping conditions: a *semantic* one (the research questions ar
 
 ### U43 — research_pipeline
 
-🅰 full MCQ · **Seen as:** `N-Q43` · `O-Q6` · `T-Q47` — **3 sittings, all agreeing**  
+🅰 full MCQ · **Seen as:** `N-Q43` · `O-Q6` · `T-Q47` · sitting `c169819a` — **4 sittings, all agreeing**  
 **Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
 
 > When researching "renewable energy adoption," the web search agent returns recent statistics (2024: 35% adoption) while the document analysis agent extracts data from internal reports (2022: 18% adoption). The synthesis agent incorrectly flags these as contradictory sources rather than recognizing the data shows growth over time. What change would best enable the synthesis agent to correctly interpret such temporal differences?
@@ -296,7 +296,7 @@ The two failure modes — false confidence and mush — are both consequences of
 
 ### U52 — research_pipeline
 
-🅰 full MCQ · **Seen as:** `N-Q52` · `T-Q30` — **2 sittings, all agreeing**  
+🅰 full MCQ · **Seen as:** `N-Q52` · `T-Q30` · sitting `c169819a` — **3 sittings, all agreeing**  
 **Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
 
 > Two sub-agents return conflicting figures for the same metric, each with moderate confidence. Before the coordinator writes the final answer, the best move is to:
@@ -432,7 +432,7 @@ Hub-and-spoke. Sub-agents are context-isolated and never talk to each other; the
 
 ### U69 — research_pipeline
 
-✍️ open-response · **Seen as:** `O-Q3` · `T-Q46` — **2 sittings, all agreeing**  
+✍️ open-response · **Seen as:** `O-Q3` · `T-Q46` · sitting `c169819a` — **3 sittings, all agreeing**  
 **Authority:** 🥇 grader-authoritative — the site's own `correct_key`, read off the 2026-08-24 review page
 
 > The document analysis agent has a single `analyze_document` tool that takes a document and a free-text instruction parameter. During evaluation, requests like "extract the key financial metrics" often return narrative summaries, while "summarize the methodology" sometimes returns raw data tables. The synthesis agent reports that 35% of analysis results require re-requests with clarified instructions. What's the most effective way to improve reliability?

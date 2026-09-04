@@ -10,7 +10,7 @@ status: done
 
 # Exam Guide — Sample Questions (unmarked)
 
-12 questions, four options each, **no answers here.** Key: [Answer Key.md](Answer%20Key.md) · index: [README.md](README.md)
+12 questions, four options each, **no answers here.** Each question ends with an **Answer:** link that jumps straight to its worked entry in the key — no manual lookup. Key: [Answer Key.md](Answer%20Key.md) · index: [README.md](README.md)
 
 Condensed restatements of § 9 of the official exam guide v1.0 (July 2026). Ignore letter positions — see the warning in [README.md](README.md).
 
@@ -29,6 +29,8 @@ Production data shows that in **12% of cases** the agent skips `get_customer` en
 - **C.** Add few-shot examples showing the agent always calling `get_customer` first, even when customers volunteer order details.
 - **D.** Implement a routing classifier that analyzes each request and enables only the subset of tools appropriate to that request type.
 
+**Answer:** [↳ Q1 in the answer key](Answer%20Key.md#Q1%20—%20Skipped%20verification%20before%20refunds%20→%20A)
+
 ### Q2
 
 Logs show the agent frequently calls `get_customer` when users ask about orders (*"check my order #12345"*) instead of `lookup_order`. Both tools have minimal descriptions — *"Retrieves customer information"* / *"Retrieves order details"* — and accept similar identifier formats. What is the most effective **first step**?
@@ -38,6 +40,8 @@ Logs show the agent frequently calls `get_customer` when users ask about orders 
 - **C.** Implement a routing layer that parses user input each turn and pre-selects a tool from detected keywords and identifier patterns.
 - **D.** Consolidate both into a single `lookup_entity` tool that accepts any identifier and internally decides which backend to query.
 
+**Answer:** [↳ Q2 in the answer key](Answer%20Key.md#Q2%20—%20Misrouting%20between%20two%20thin%20tool%20descriptions%20→%20B)
+
 ### Q3
 
 The agent achieves **55% first-contact resolution** against an 80% target. Logs show it escalates straightforward cases (standard damage replacements with photo evidence) while attempting to autonomously handle complex situations that require policy exceptions. What most effectively improves escalation calibration?
@@ -46,6 +50,8 @@ The agent achieves **55% first-contact resolution** against an 80% target. Logs 
 - **B.** Have the agent self-report a confidence score (1–10) before each response and route to humans below a threshold.
 - **C.** Deploy a separate classifier trained on historical tickets to predict which requests need escalation before the main agent starts.
 - **D.** Implement sentiment analysis and escalate automatically when negative sentiment exceeds a threshold.
+
+**Answer:** [↳ Q3 in the answer key](Answer%20Key.md#Q3%20—%20Escalation%20calibrated%20backwards%20→%20A)
 
 ---
 
@@ -62,6 +68,8 @@ You want a custom `/review` slash command running your team's standard review ch
 - **C.** In the `CLAUDE.md` file at the project root
 - **D.** In a `.claude/config.json` file with a `commands` array
 
+**Answer:** [↳ Q4 in the answer key](Answer%20Key.md#Q4%20—%20Where%20a%20team-wide%20slash%20command%20lives%20→%20A)
+
 ### Q5
 
 You must restructure a monolithic application into microservices — changes across dozens of files, plus decisions about service boundaries and module dependencies. Which approach?
@@ -71,6 +79,8 @@ You must restructure a monolithic application into microservices — changes acr
 - **C.** Use direct execution with comprehensive upfront instructions detailing exactly how each service should be structured.
 - **D.** Begin in direct execution and switch to plan mode only if unexpected complexity appears during implementation.
 
+**Answer:** [↳ Q5 in the answer key](Answer%20Key.md#Q5%20—%20Monolith%20→%20microservices%20→%20A)
+
 ### Q6
 
 Your codebase has distinct areas with different conventions: React components use functional style with hooks, API handlers use `async`/`await` with specific error handling, database models follow a repository pattern. **Test files sit next to the code they test** (`Button.test.tsx` beside `Button.tsx`) and all tests must follow the same conventions regardless of location. Most maintainable way to have Claude apply the correct conventions automatically?
@@ -79,6 +89,8 @@ Your codebase has distinct areas with different conventions: React components us
 - **B.** Consolidate all conventions in the root `CLAUDE.md` under a header per area, relying on Claude to infer which section applies
 - **C.** Create skills in `.claude/skills/` for each code type, with the relevant conventions in their `SKILL.md` files
 - **D.** Place a separate `CLAUDE.md` in each subdirectory containing that area's conventions
+
+**Answer:** [↳ Q6 in the answer key](Answer%20Key.md#Q6%20—%20Conventions%20for%20test%20files%20scattered%20across%20directories%20→%20A)
 
 ---
 
@@ -95,6 +107,8 @@ Running the system on *"impact of AI on creative industries"*, every subagent su
 - **C.** The web search agent's queries aren't comprehensive enough and need expanding to more creative-industry sectors.
 - **D.** The document analysis agent filters out non-visual sources due to overly restrictive relevance criteria.
 
+**Answer:** [↳ Q7 in the answer key](Answer%20Key.md#Q7%20—%20Reports%20cover%20only%20visual%20arts%20→%20B)
+
 ### Q8
 
 The web search subagent **times out** on a complex topic. How should that failure flow back to the coordinator to best enable intelligent recovery?
@@ -104,6 +118,8 @@ The web search subagent **times out** on a complex topic. How should that failur
 - **C.** Catch the timeout in the subagent and return an empty result set marked successful.
 - **D.** Propagate the timeout exception to a top-level handler that terminates the entire research workflow.
 
+**Answer:** [↳ Q8 in the answer key](Answer%20Key.md#Q8%20—%20Subagent%20timeout%20propagation%20→%20A)
+
 ### Q9
 
 The synthesis agent frequently needs to verify claims while combining findings. Today it returns control to the coordinator, which invokes the web search agent, then re-invokes synthesis — **2–3 extra round trips per task, +40% latency**. Evaluation shows **85%** of these verifications are simple fact-checks (dates, names, statistics) and **15%** need deeper investigation. Most effective way to cut overhead while keeping reliability?
@@ -112,6 +128,8 @@ The synthesis agent frequently needs to verify claims while combining findings. 
 - **B.** Have the synthesis agent accumulate all verification needs and return them as one batch to the coordinator at the end of its pass, which then sends them all to the web search agent at once.
 - **C.** Give the synthesis agent access to all web search tools so it can handle any verification need directly, without round-trips through the coordinator.
 - **D.** Have the web search agent proactively cache extra context around each source during initial research, anticipating what the synthesis agent might need to verify.
+
+**Answer:** [↳ Q9 in the answer key](Answer%20Key.md#Q9%20—%20Synthesis%20agent's%20verification%20round-trips%20→%20A)
 
 ---
 
@@ -128,6 +146,8 @@ Your pipeline script runs `claude "Analyze this pull request for security issues
 - **C.** Redirect stdin from `/dev/null`: `claude "Analyze this pull request for security issues" < /dev/null`
 - **D.** Add the `--batch` flag
 
+**Answer:** [↳ Q10 in the answer key](Answer%20Key.md#Q10%20—%20CI%20job%20hangs%20on%20interactive%20input%20→%20A)
+
 ### Q11
 
 Two workflows currently use real-time Claude calls: **(1)** a blocking pre-merge check developers wait on before merging, and **(2)** a technical-debt report generated overnight for review next morning. Your manager proposes moving both to the Message Batches API for its 50% cost saving. How do you evaluate this?
@@ -137,6 +157,8 @@ Two workflows currently use real-time Claude calls: **(1)** a blocking pre-merge
 - **C.** Keep real-time for both, to avoid batch result-ordering issues.
 - **D.** Switch both to batch with a timeout fallback to real-time if batches take too long.
 
+**Answer:** [↳ Q11 in the answer key](Answer%20Key.md#Q11%20—%20Batch%20API%20for%20both%20CI%20workflows?%20→%20A)
+
 ### Q12
 
 A PR modifies **14 files** across the stock-tracking module. Your single-pass review over all files together gives inconsistent results: detailed feedback on some files and superficial comments on others, obvious bugs missed, and **contradictory feedback** — flagging a pattern as problematic in one file while approving identical code elsewhere in the same PR. How should you restructure the review?
@@ -145,6 +167,8 @@ A PR modifies **14 files** across the stock-tracking module. Your single-pass re
 - **B.** Require developers to split large PRs into 3–4 file submissions before the automated review runs.
 - **C.** Switch to a higher-tier model with a larger context window so all 14 files get adequate attention in one pass.
 - **D.** Run three independent review passes on the full PR and flag only issues appearing in at least two of the three.
+
+**Answer:** [↳ Q12 in the answer key](Answer%20Key.md#Q12%20—%20Inconsistent%20single-pass%20review%20over%2014%20files%20→%20A)
 
 ---
 

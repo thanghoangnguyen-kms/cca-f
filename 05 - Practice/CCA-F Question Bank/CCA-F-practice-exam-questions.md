@@ -11,7 +11,9 @@ status: not-started
 _Source: certificationpractice.com — practice exam #2564. 60 of 60 questions captured. Answers not marked._
 
 > [!TIP] Sit these closed-book first
-> Worked answers live in [Answer Key.md](Answer%20Key.md) — it opens with a full answer grid, so record your 60 before you open it.
+> Worked answers live in [Answer Key.md](Answer%20Key.md) — it opens with a full answer grid, so record your 60 before you open it. Each question then ends with an **Answer:** link jumping straight to its worked entry, for grading one item at a time.
+>
+> One caveat on those links: the key's headings carry the answer letter (`## Q1 — … → **C**`), so each link's *target* contains it too. Rendered, you see only the link text — but in **source/edit mode the letter is visible in the URL**. Read this file in reading view while you sit it.
 
 ## Question 1
 
@@ -22,6 +24,7 @@ A CI pipeline needs to run Claude Code to analyze pull requests and produce mach
 - **C.** --output-format json combined with --json-schema
 - **D.** -p combined with --json-schema only
 
+**Answer:** [↳ Q1 in the answer key](Answer%20Key.md#Q1%20—%20CI%20flags%20for%20schema-conforming%20output%20→%20C)
 
 ## Question 2
 
@@ -32,6 +35,7 @@ After submitting 200 document extraction requests to the Message Batches API, yo
 - **C.** Parse the error response bodies to extract document filenames from the original prompt text
 - **D.** Query the batch status endpoint with the batch_id to retrieve an ordered index list of failed requests
 
+**Answer:** [↳ Q2 in the answer key](Answer%20Key.md#Q2%20—%20Correlating%2015%20batch%20failures%20back%20to%20source%20documents%20→%20A)
 
 ## Question 3
 
@@ -42,6 +46,7 @@ A document analysis subagent encounters a timeout when accessing one of three ex
 - **C.** Queue the failed query for background retry and block the coordinator from proceeding until the retry completes or times out
 - **D.** Attempt local recovery for the transient failure, and if unresolved, propagate structured error context with partial results to the coordinator
 
+**Answer:** [↳ Q3 in the answer key](Answer%20Key.md#Q3%20—%20Subagent%20times%20out%20on%201%20of%203%20sources%20→%20D)
 
 ## Question 4
 
@@ -52,6 +57,7 @@ A team added "only report high-confidence findings" to their CI code review prom
 - **C.** The CI pipeline's non-interactive mode prevents the model from processing system prompt instructions
 - **D.** The model always treats every finding as high-confidence because it cannot calibrate certainty without labeled training data
 
+**Answer:** [↳ Q4 in the answer key](Answer%20Key.md#Q4%20—%20"Only%20report%20high-confidence%20findings"%20didn't%20help%20→%20B)
 
 ## Question 5
 
@@ -62,6 +68,7 @@ Your team needs to connect Claude Code to both Jira for issue tracking and a pro
 - **C.** Use a community MCP server for Jira and build a custom MCP server only for the proprietary approval workflow
 - **D.** Build a single custom MCP server that consolidates both Jira and approval workflow interactions behind a unified interface
 
+**Answer:** [↳ Q5 in the answer key](Answer%20Key.md#Q5%20—%20Jira%20+%20a%20proprietary%20approval%20system%20→%20C)
 
 ## Question 6
 
@@ -72,6 +79,7 @@ Your invoice extraction pipeline processes documents from multiple international
 - **C.** Including explicit format normalization rules in the extraction prompt and also enforcing the ISO 8601 date format in the output/tool schema (e.g., using format: "date" or strict tool use) so the model both normalizes and is validated
 - **D.** Implementing a validation-retry loop that rejects extractions containing any non-ISO 8601 date
 
+**Answer:** [↳ Q6 in the answer key](Answer%20Key.md#Q6%20—%20Vendor%20dates%20still%20arriving%20unnormalized%20→%20C)
 
 ## Question 7
 
@@ -82,6 +90,7 @@ A team needs to integrate Claude's output with a downstream inventory management
 - **C.** Parsing the model's freeform text response with a JSON validator and requesting corrections when syntax errors are detected
 - **D.** Providing a detailed JSON template in the system prompt with instructions to replicate the exact structure
 
+**Answer:** [↳ Q7 in the answer key](Answer%20Key.md#Q7%20—%20Strongest%20guarantee%20of%20valid%20JSON%20→%20B)
 
 ## Question 8
 
@@ -92,6 +101,7 @@ A developer productivity agent has access to a generic fetch_url tool that can r
 - **C.** Set tool_choice to force fetch_url on every turn so the agent always uses the tool in a predictable manner
 - **D.** Replace fetch_url with a load_internal_docs tool that validates URLs against the internal documentation domain before making the request
 
+**Answer:** [↳ Q8 in the answer key](Answer%20Key.md#Q8%20—%20Generic%20`fetch_url`%20reaching%20the%20open%20internet%20→%20D)
 
 ## Question 9
 
@@ -102,6 +112,7 @@ During a prolonged codebase exploration session, an agent begins referencing "ty
 - **C.** Have the agent maintain a scratchpad file that records key findings such as class names, method signatures, and file paths, and reference it when answering subsequent questions
 - **D.** Increase the max_tokens parameter so the agent can generate longer, more detailed responses
 
+**Answer:** [↳ Q9 in the answer key](Answer%20Key.md#Q9%20—%20Exploration%20going%20vague%20after%20many%20turns%20→%20C)
 
 ## Question 10
 
@@ -112,6 +123,7 @@ Your customer support agent inconsistently decides when to escalate cases to hum
 - **C.** Require the agent to attempt autonomous resolution for at least three turns before allowing any escalation
 - **D.** Have the agent self-report a confidence score on each turn and escalate whenever it falls below 60%
 
+**Answer:** [↳ Q10 in the answer key](Answer%20Key.md#Q10%20—%20Inconsistent%20escalation,%20vague%20instructions%20didn't%20fix%20it%20→%20B)
 
 ## Question 11
 
@@ -122,6 +134,7 @@ Your support agent calls a lookup_order MCP tool that returns over 40 fields per
 - **C.** Trim the tool output to include only return-relevant fields before appending the result to conversation context
 - **D.** Switch to a model with a larger context window so verbose tool outputs can be accommodated without impacting quality
 
+**Answer:** [↳ Q11 in the answer key](Answer%20Key.md#Q11%20—%2040-field%20tool%20output,%20quality%20declining%20→%20C)
 
 ## Question 12
 
@@ -132,6 +145,7 @@ Your team's CI/CD pipeline is configured to run Claude Code for automated code r
 - **C.** The --output-format flag was not specified, preventing Claude Code from writing output to stdout
 - **D.** The CLAUDE.md file is missing review criteria, causing Claude Code to loop indefinitely while searching for instructions
 
+**Answer:** [↳ Q12 in the answer key](Answer%20Key.md#Q12%20—%20CI%20job%20hangs%20and%20times%20out%20with%20no%20output%20→%20B)
 
 ## Question 13
 
@@ -142,6 +156,7 @@ Your automated code review agent flags too many false positives when checking wh
 - **C.** Instructing the agent to "be conservative and avoid flagging minor comment issues"
 - **D.** Including a general instruction to "prioritize precision over recall when reviewing code comments"
 
+**Answer:** [↳ Q13 in the answer key](Answer%20Key.md#Q13%20—%20Reducing%20false%20positives%20on%20comment-accuracy%20checks%20→%20B)
 
 ## Question 14
 
@@ -152,6 +167,7 @@ Your team's automated code review pipeline generates hundreds of findings weekly
 - **C.** Aggregate all findings by category and present only one representative example per category to reduce total reviewer volume
 - **D.** Count the lines of code affected by each finding and prioritize findings with the largest code surface area for review
 
+**Answer:** [↳ Q14 in the answer key](Answer%20Key.md#Q14%20—%20🔶%20Prioritizing%20findings%20for%20scarce%20reviewer%20bandwidth%20→%20A)
 
 ## Question 15
 
@@ -162,6 +178,7 @@ Your CI code review system generates structured JSON findings for pull requests,
 - **C.** A confidence_score field with a numeric value so dismissed findings can be filtered by the model's self-reported certainty
 - **D.** A timestamp field recording when the finding was generated to correlate dismissals with time of day
 
+**Answer:** [↳ Q15 in the answer key](Answer%20Key.md#Q15%20—%2040%%20dismissal%20rate,%20no%20idea%20why%20→%20A)
 
 ## Question 16
 
@@ -172,6 +189,7 @@ In a multi-agent research system, the synthesis subagent is responsible for comb
 - **C.** Increase the amount of context provided to the synthesis agent so it has less reason to perform its own searches
 - **D.** Configure tool_choice: "any" so the synthesis agent is forced to call a tool rather than returning text, reducing off-task behavior
 
+**Answer:** [↳ Q16 in the answer key](Answer%20Key.md#Q16%20—%20🔶%20Synthesis%20subagent%20doing%20its%20own%20searches%20→%20B)
 
 ## Question 17
 
@@ -182,6 +200,7 @@ You are building an invoice extraction pipeline where Claude extracts line items
 - **C.** Include a "confidence_score" field for the total amount and reject any extraction where the confidence falls below 0.9
 - **D.** Require the model to extract the total amount in two separate fields and average the two values to improve accuracy
 
+**Answer:** [↳ Q17 in the answer key](Answer%20Key.md#Q17%20—%20Line%20items%20not%20summing%20to%20the%20stated%20total%20→%20A)
 
 ## Question 18
 
@@ -192,6 +211,7 @@ A customer-facing support agent built with the Claude Agent SDK handles multi-is
 - **C.** Limit multi-issue sessions to a maximum of two issues and require the customer to start new sessions for additional complaints
 - **D.** Extract structured issue data such as order IDs, amounts, and statuses into a persistent case facts block included in each prompt
 
+**Answer:** [↳ Q18 in the answer key](Answer%20Key.md#Q18%20—%20Refunds%20applied%20to%20the%20wrong%20order%20in%20multi-issue%20sessions%20→%20D)
 
 ## Question 19
 
@@ -202,6 +222,7 @@ A team provides four few-shot examples showing Claude how to distinguish accepta
 - **C.** The model defaulted to flagging the unfamiliar pattern because it did not match any known-acceptable examples
 - **D.** The model decomposed the novel pattern into exact sub-patterns that matched elements from the few-shot examples
 
+**Answer:** [↳ Q19 in the answer key](Answer%20Key.md#Q19%20—%20Few-shot%20examples%20generalizing%20to%20an%20unseen%20language%20→%20B)
 
 ## Question 20
 
@@ -212,6 +233,7 @@ A developer asks Claude to generate a complex recursive algorithm, and then with
 - **C.** The generated code consumed most of the context window, leaving insufficient tokens for a thorough review
 - **D.** The model retains its reasoning context from generation, making it less likely to question its own prior decisions in the same session
 
+**Answer:** [↳ Q20 in the answer key](Answer%20Key.md#Q20%20—%20Same-session%20self-review%20missed%20the%20bug%20→%20D)
 
 ## Question 21
 
@@ -222,6 +244,7 @@ Your document extraction pipeline uses a two-step process: first, it calls extra
 - **C.** The Message Batches API does not support multi-turn tool calling within a single request, so you cannot execute a tool and return its result mid-request for a second tool call
 - **D.** The Message Batches API limits each submission to a maximum of 100 requests per batch
 
+**Answer:** [↳ Q21 in the answer key](Answer%20Key.md#Q21%20—%20🔶%20Batch%20API%20limitation%20forcing%20a%20redesign%20→%20C)
 
 ## Question 22
 
@@ -232,6 +255,7 @@ Your multi-agent system queries a documentation database containing thousands of
 - **C.** Increase each agent's max_tokens allocation to accommodate the additional exploratory tool call results
 - **D.** Pre-load complete summaries of all documentation articles into the system prompt for every agent invocation
 
+**Answer:** [↳ Q22 in the answer key](Answer%20Key.md#Q22%20—%20Agents%20burning%20tokens%20on%20exploratory%20discovery%20calls%20→%20A)
 
 ## Question 23
 
@@ -242,6 +266,7 @@ Your multi-agent research system produces a synthesis report that combines findi
 - **C.** Omit the market size data point entirely to avoid presenting potentially inaccurate information
 - **D.** Select the statistic from the most authoritative source based on publication recency and discard the conflicting value
 
+**Answer:** [↳ Q23 in the answer key](Answer%20Key.md#Q23%20—%20Two%20credible%20sources,%20conflicting%20market-size%20figures%20→%20A)
 
 ## Question 24
 
@@ -252,6 +277,7 @@ A customer reaches your support agent and immediately says, "I would like to spe
 - **C.** Investigate the billing issue silently and then escalate, providing the human agent with a complete resolution summary
 - **D.** Acknowledge the customer's request and immediately escalate to a human agent
 
+**Answer:** [↳ Q24 in the answer key](Answer%20Key.md#Q24%20—%20"I%20would%20like%20to%20speak%20with%20a%20real%20person,%20please"%20→%20D)
 
 ## Question 25
 
@@ -262,6 +288,7 @@ Your extraction system has the model output field-level confidence scores to rou
 - **C.** Remove confidence scoring entirely and instead route all extractions from specific document types known to be error-prone to human review
 - **D.** Replace field-level confidence scores with a single document-level confidence score to simplify the routing logic
 
+**Answer:** [↳ Q25 in the answer key](Answer%20Key.md#Q25%20—%20Confidence%20scores%20that%20don't%20track%20accuracy%20→%20B)
 
 ## Question 26
 
@@ -272,6 +299,7 @@ Your customer service agent connects to fetch_customer and get_order through MCP
 - **C.** Add instructions to the system prompt telling the agent to mentally convert all dates to a single format before reasoning about timelines
 - **D.** Use few-shot examples in the prompt showing the agent how to correctly interpret both Unix timestamps and ISO 8601 dates
 
+**Answer:** [↳ Q26 in the answer key](Answer%20Key.md#Q26%20—%20Unix%20timestamps%20from%20one%20MCP%20tool,%20ISO%208601%20from%20another%20→%20A)
 
 ## Question 27
 
@@ -282,6 +310,7 @@ Your company policy requires that any refund exceeding $500 must be approved by 
 - **C.** Strengthen the system prompt by adding explicit instructions with bold emphasis: "NEVER issue refunds above $500 without human approval"
 - **D.** Implement a tool call interception hook that inspects the amount parameter on issue_refund calls, blocks those exceeding $500, and redirects the workflow to handoff_to_human
 
+**Answer:** [↳ Q27 in the answer key](Answer%20Key.md#Q27%20—%20Refunds%20over%20$500%20must%20never%20bypass%20a%20supervisor%20→%20D)
 
 ## Question 28
 
@@ -292,6 +321,7 @@ A customer contacts your agent with a vague complaint: "Something is wrong with 
 - **C.** A predefined decision tree that maps each keyword in the customer's message to a specific tool call sequence
 - **D.** Dynamic adaptive decomposition that investigates each concern based on what is discovered at each step, generating follow-up subtasks as findings emerge
 
+**Answer:** [↳ Q28 in the answer key](Answer%20Key.md#Q28%20—%20Vague%20multi-concern%20complaint,%20scope%20unknown%20up%20front%20→%20D)
 
 ## Question 29
 
@@ -302,6 +332,7 @@ Your team wants the customer service agent to audit the resolution quality of 50
 - **C.** Have the agent process tickets in pairs, comparing each pair for similarities before aggregating all pair comparisons at the end
 - **D.** Randomly sample five tickets, evaluate them in a single prompt, and extrapolate the findings to the remaining 45 tickets
 
+**Answer:** [↳ Q29 in the answer key](Answer%20Key.md#Q29%20—%20Auditing%2050%20tickets%20individually,%20then%20finding%20systemic%20patterns%20→%20A)
 
 ## Question 30
 
@@ -312,6 +343,7 @@ You spent yesterday investigating a bug in the customer service agent's refund f
 - **C.** claude --fork refund-trace
 - **D.** claude --resume refund-trace
 
+**Answer:** [↳ Q30 in the answer key](Answer%20Key.md#Q30%20—%20Resuming%20yesterday's%20named%20session%20→%20D)
 
 ## Question 31
 
@@ -322,6 +354,7 @@ After completing an initial analysis of your customer service agent's escalation
 - **C.** Use fork_session to create two independent branches from the shared analysis baseline, exploring each strategy in its own branch
 - **D.** Resume the original session with --resume and explore both approaches sequentially, using /compact between them to clear context
 
+**Answer:** [↳ Q31 in the answer key](Answer%20Key.md#Q31%20—%20Two%20alternative%20strategies%20from%20one%20shared%20baseline%20→%20C)
 
 ## Question 32
 
@@ -332,6 +365,7 @@ The agent in your customer service system has a single MCP tool called manage_ac
 - **C.** Implement a PostToolUse hook that validates the parameters after each manage_account call and retries with corrected parameters if the operation type was wrong
 - **D.** Split manage_account into purpose-specific tools such as update_profile, reset_password, change_subscription, and deactivate_account, each with clearly defined input/output contracts
 
+**Answer:** [↳ Q32 in the answer key](Answer%20Key.md#Q32%20—%20One%20`manage_account`%20tool%20doing%20four%20unrelated%20jobs%20→%20D)
 
 ## Question 33
 
@@ -342,6 +376,7 @@ Within your customer service system, the agent has four well-described MCP tools
 - **C.** The keyword-sensitive instruction in the system prompt creates an unintended association that overrides the tool descriptions, so the prompt should be revised to specify precise conditions requiring human involvement
 - **D.** The handoff_to_human tool description overlaps with issue_refund, so both tools should be renamed to more distinctive names
 
+**Answer:** [↳ Q33 in the answer key](Answer%20Key.md#Q33%20—%20Every%20mention%20of%20"refund"%20triggers%20`handoff_to_human`%20→%20C)
 
 ## Question 34
 
@@ -352,6 +387,7 @@ Currently, your customer service agent has access to fetch_customer and get_orde
 - **C.** The tool names are too similar in length, causing the model to confuse them regardless of their descriptions
 - **D.** Tool descriptions are the primary mechanism the model uses for tool selection, and the minimal descriptions do not provide enough information to differentiate when each tool should be used
 
+**Answer:** [↳ Q34 in the answer key](Answer%20Key.md#Q34%20—%20Thin%20one-line%20descriptions,%20agent%20alternates%20between%20two%20tools%20→%20D)
 
 ## Question 35
 
@@ -362,6 +398,7 @@ The get_order tool in your customer service agent sometimes fails in two distinc
 - **C.** The MCP protocol requires every tool error to include a specific error category before the agent is allowed to continue the conversation
 - **D.** Without structured metadata distinguishing transient errors from business rule violations, the agent cannot determine whether to retry the call or explain the policy to the customer, leading to wasted retries or poor customer communication
 
+**Answer:** [↳ Q35 in the answer key](Answer%20Key.md#Q35%20—%20Why%20structured%20error%20metadata%20matters%20for%20two%20failure%20kinds%20→%20D)
 
 ## Question 36
 
@@ -372,6 +409,7 @@ Your structured data extraction system processes real estate listing documents. 
 - **C.** Providing few-shot examples that demonstrate returning null for square footage when documents use informal descriptions, alongside examples that correctly extract explicit numeric measurements
 - **D.** Removing the square_footage field from the extraction schema entirely to eliminate the possibility of fabrication
 
+**Answer:** [↳ Q36 in the answer key](Answer%20Key.md#Q36%20—%20Fabricated%20square%20footage%20from%20"spacious"%20→%20C)
 
 ## Question 37
 
@@ -382,6 +420,7 @@ You need to locate all migration script files across a large monorepo. These fil
 - **C.** Glob, using a pattern like **/*_*.sql to match migration file paths across all directories
 - **D.** Read, loading each service directory to manually scan for migration files
 
+**Answer:** [↳ Q37 in the answer key](Answer%20Key.md#Q37%20—%20Finding%20`YYYYMMDD_description.sql`%20across%20a%20monorepo%20→%20C)
 
 ## Question 38
 
@@ -392,6 +431,7 @@ When a web search subagent in a multi-agent research pipeline encounters a datab
 - **C.** It causes all other subagents to halt their processing until the error is resolved
 - **D.** It forces the coordinator to retry the same query indefinitely until the service becomes available
 
+**Answer:** [↳ Q38 in the answer key](Answer%20Key.md#Q38%20—%20Subagent%20returns%20"search%20unavailable"%20to%20the%20coordinator%20→%20A)
 
 ## Question 39
 
@@ -402,6 +442,7 @@ While implementing the orchestrator agent's agentic loop for the research platfo
 - **C.** It causes the API to return an error because response text cannot be inspected until the full conversation is complete
 - **D.** It relies on parsing non-deterministic natural language output instead of using the reliable stop_reason field, which may produce inconsistent termination behavior
 
+**Answer:** [↳ Q39 in the answer key](Answer%20Key.md#Q39%20—%20Terminating%20the%20loop%20on%20the%20phrase%20"research%20complete"%20→%20D)
 
 ## Question 40
 
@@ -412,6 +453,7 @@ In the research automation platform, the orchestrator agent runs an agentic loop
 - **C.** The model includes a boolean "continue" field in its JSON response body that the loop evaluates after each iteration
 - **D.** The stop_reason field in the API response indicates "tool_use" when the model wants to call a tool and "end_turn" when it considers the task complete
 
+**Answer:** [↳ Q40 in the answer key](Answer%20Key.md#Q40%20—%20What%20the%20agentic%20loop%20actually%20checks%20→%20D)
 
 ## Question 41
 
@@ -422,6 +464,7 @@ After the web search agent executes a tool and receives results during its agent
 - **C.** To allow the API to deduplicate repeated tool calls and reduce unnecessary computation
 - **D.** To enable the model to incorporate the new information into its reasoning and determine the appropriate next action in the loop
 
+**Answer:** [↳ Q41 in the answer key](Answer%20Key.md#Q41%20—%20Why%20append%20tool%20results%20to%20the%20conversation%20→%20D)
 
 ## Question 42
 
@@ -432,6 +475,7 @@ Within the research automation platform, the web search agent discovers a set of
 - **C.** The web search agent writes URLs to a shared memory store that the document analysis agent reads concurrently during its own execution
 - **D.** Both agents independently poll a shared message queue where the web search agent deposits URLs for the document analysis agent to consume
 
+**Answer:** [↳ Q42 in the answer key](Answer%20Key.md#Q42%20—%20Hub-and-spoke%20handoff%20of%20discovered%20URLs%20→%20A)
 
 ## Question 43
 
@@ -442,6 +486,7 @@ After the coordinator collects web search results, it invokes the findings synth
 - **C.** The synthesis agent's system prompt contains an instruction that explicitly excludes externally sourced data
 - **D.** Subagents do not automatically inherit the coordinator's conversation history, so the search findings were never part of the synthesis agent's context
 
+**Answer:** [↳ Q43 in the answer key](Answer%20Key.md#Q43%20—%20Synthesis%20output%20oblivious%20to%20findings%20in%20the%20coordinator's%20history%20→%20D)
 
 ## Question 44
 
@@ -452,6 +497,7 @@ A user submits a simple factual question to the research automation platform tha
 - **C.** Always invoke the full pipeline of all four subagents to ensure consistent and thorough output regardless of query complexity
 - **D.** Analyze the query requirements and invoke only the web search agent, skipping document analysis, synthesis, and report generation when they are unnecessary
 
+**Answer:** [↳ Q44 in the answer key](Answer%20Key.md#Q44%20—%20Simple%20factual%20question%20hitting%20a%20four-agent%20pipeline%20→%20D)
 
 ## Question 45
 
@@ -462,6 +508,7 @@ The coordinator agent in the research platform is about to invoke the findings s
 - **C.** Store the findings in an external database and give the synthesis agent credentials to query the results on its own
 - **D.** Instruct the synthesis agent to re-invoke the web search and document analysis agents independently to collect the information it needs
 
+**Answer:** [↳ Q45 in the answer key](Answer%20Key.md#Q45%20—%20Getting%20prior%20findings%20into%20a%20stateless%20synthesis%20call%20→%20B)
 
 ## Question 46
 
@@ -472,6 +519,7 @@ The document analysis agent returns its findings as narrative text that blends s
 - **C.** Add a post-processing regular expression step that extracts citations from the narrative paragraphs after synthesis is complete
 - **D.** Increase the synthesis agent's context window budget so it can process longer narrative passages without losing citation details
 
+**Answer:** [↳ Q46 in the answer key](Answer%20Key.md#Q46%20—%20Citations%20misattributed%20after%20narrative%20handoff%20→%20B)
 
 ## Question 47
 
@@ -482,6 +530,7 @@ In the research platform, the report generation agent must only produce a final 
 - **C.** Programmatic prerequisite gates provide deterministic enforcement, whereas prompt-based instructions have a non-zero failure rate and cannot guarantee compliance
 - **D.** System prompts cannot reference other agents, so the report agent has no way to know the synthesis step exists
 
+**Answer:** [↳ Q47 in the answer key](Answer%20Key.md#Q47%20—%20Prompt-enforced%20ordering%20vs%20a%20programmatic%20gate%20→%20C)
 
 ## Question 48
 
@@ -492,6 +541,7 @@ A user sends a single request to the research platform asking it to investigate 
 - **C.** Route the full request to the synthesis agent, which determines what information it needs and delegates research accordingly
 - **D.** Ask the user to resubmit the request as three separate queries so each can be routed to the correct subagent independently
 
+**Answer:** [↳ Q48 in the answer key](Answer%20Key.md#Q48%20—%20One%20request,%20three%20distinct%20subtopics%20→%20B)
 
 ## Question 49
 
@@ -502,6 +552,7 @@ A customer support agent calls the process_refund MCP tool, which fails because 
 - **C.** Return an error with errorCategory: "permission", isRetryable: true, and a description indicating the operation requires supervisor-level access
 - **D.** Return an error with errorCategory: "validation", isRetryable: false, and a description explaining the refund amount exceeds the order total
 
+**Answer:** [↳ Q49 in the answer key](Answer%20Key.md#Q49%20—%20🔶%20Refund%20exceeds%20the%20order%20total%20→%20D)
 
 ## Question 50
 
@@ -512,6 +563,7 @@ Your team's project-level CLAUDE.md has grown to over 500 lines, covering testin
 - **C.** Split the content into focused topic-specific files in .claude/rules/, such as testing.md, api-conventions.md, and deployment.md
 - **D.** Consolidate all guidelines into the system prompt configuration of the project's MCP servers
 
+**Answer:** [↳ Q50 in the answer key](Answer%20Key.md#Q50%20—%20500-line%20`CLAUDE.md`%20nobody%20can%20maintain%20→%20C)
 
 ## Question 51
 
@@ -522,6 +574,7 @@ A new engineer on the team reports that Claude Code is not following the project
 - **C.** Ask the engineer to run the /memory command to verify which memory files are currently loaded in their session
 - **D.** Add the API naming conventions as inline comments in every source file so Claude Code reads them directly
 
+**Answer:** [↳ Q51 in the answer key](Answer%20Key.md#Q51%20—%20🔶%20One%20engineer's%20conventions%20not%20applying%20→%20C)
 
 ## Question 52
 
@@ -532,6 +585,7 @@ Your team wants to enforce a universal rule that all generated TypeScript code m
 - **C.** In a custom slash command stored in .claude/commands/ that developers must remember to call before each task
 - **D.** In a skill file under .claude/skills/ with a SKILL.md that engineers invoke on demand before writing code
 
+**Answer:** [↳ Q52 in the answer key](Answer%20Key.md#Q52%20—%20A%20TypeScript%20convention%20that%20must%20always%20apply%20→%20A)
 
 ## Question 53
 
@@ -542,6 +596,7 @@ One of your engineers creates a slash command that scaffolds a new REST API endp
 - **C.** Place the command file in ~/.claude/commands/ on the engineer's machine and share the file path in a wiki
 - **D.** Define the command inline within the root CLAUDE.md file using @import syntax
 
+**Answer:** [↳ Q53 in the answer key](Answer%20Key.md#Q53%20—%20Sharing%20a%20scaffolding%20slash%20command%20with%20the%20team%20→%20A)
 
 ## Question 54
 
@@ -552,6 +607,7 @@ Your project enforces specific conventions for all Jest test files, including fi
 - **C.** Add the testing conventions to the project-level CLAUDE.md so they are loaded during every interaction regardless of file type
 - **D.** Create a CLAUDE.md file inside each directory that contains test files, repeating the conventions in every location
 
+**Answer:** [↳ Q54 in the answer key](Answer%20Key.md#Q54%20—%20Jest%20conventions%20loading%20only%20when%20editing%20test%20files%20→%20A)
 
 ## Question 55
 
@@ -562,6 +618,7 @@ Your repository contains Python database migration files in three unrelated dire
 - **C.** Add all migration conventions to the root CLAUDE.md so they are always available, even when editing non-migration files
 - **D.** Create a single file in .claude/rules/ with a glob pattern like globs: ["**/migrations/**/*.py"] that matches migration files across all locations
 
+**Answer:** [↳ Q55 in the answer key](Answer%20Key.md#Q55%20—%20🔶%20Migration%20conventions%20in%20three%20unrelated%20directories%20→%20D)
 
 ## Question 56
 
@@ -572,6 +629,7 @@ Your team must replace the project's logging library across 60+ source files. Th
 - **C.** Start with plan mode to audit usage patterns and design the migration strategy, then switch to direct execution to apply the changes according to the plan
 - **D.** Use direct execution for the entire migration, processing each file one at a time without any upfront investigation
 
+**Answer:** [↳ Q56 in the answer key](Answer%20Key.md#Q56%20—%20Logging-library%20migration%20across%2060+%20files%20→%20C)
 
 ## Question 57
 
@@ -582,6 +640,7 @@ An engineer asks Claude Code to fix a bug where a single function throws an erro
 - **C.** Plan mode, because null handling requires evaluating multiple valid implementation strategies across the codebase
 - **D.** Direct execution, because the task is well-scoped with a clear fix in a single file and does not require architectural exploration
 
+**Answer:** [↳ Q57 in the answer key](Answer%20Key.md#Q57%20—%20One-line%20null%20check,%20stack%20trace%20already%20points%20at%20it%20→%20D)
 
 ## Question 58
 
@@ -592,6 +651,7 @@ Your team asks Claude Code to transform legacy configuration files from an INI f
 - **C.** Provide 2-3 concrete input/output examples showing the exact transformation from specific INI sections to the expected YAML output
 - **D.** Switch to plan mode and ask Claude Code to outline its transformation approach before applying any changes
 
+**Answer:** [↳ Q58 in the answer key](Answer%20Key.md#Q58%20—%20Inconsistent%20INI%20→%20YAML%20transformations%20→%20C)
 
 ## Question 59
 
@@ -602,6 +662,7 @@ Your team is using Claude Code to implement a new CSV parsing module that must h
 - **C.** Implement the module first without tests, then ask Claude Code to review its own output for issues in the same session
 - **D.** Write a comprehensive test suite covering expected behavior, edge cases, and malformed input handling first, then iterate by sharing test failures with Claude Code to guide corrections
 
+**Answer:** [↳ Q59 in the answer key](Answer%20Key.md#Q59%20—%20Iterative%20refinement%20of%20a%20CSV%20parser%20with%20many%20edge%20cases%20→%20D)
 
 ## Question 60
 
@@ -612,3 +673,4 @@ While updating a large configuration file, Claude Code's Edit tool fails with an
 - **C.** Retry the Edit tool with a larger context window setting to improve text matching precision
 - **D.** Use Read to load the full file contents, apply the modification, and then use Write to save the complete updated file
 
+**Answer:** [↳ Q60 in the answer key](Answer%20Key.md#Q60%20—%20🔶%20`Edit`%20fails%20because%20the%20target%20text%20isn't%20unique%20→%20D)

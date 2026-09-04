@@ -17,7 +17,7 @@ status: done
 
 **Answers:** **U3** B · **U4** B · **U13** C · **U18** C · **U19** D · **U21** B · **U22** B · **U27** B · **U33** D · **U35** D · **U36** B · **U46** B · **U49** D · **U51** A · **U56** A · **U57** D · **U63** B · **U64** A · **U79** A · **U80** A
 
-**Authority:** U3 🥇🏛 · U4 🥈🏛 · U13 🥇 · U18 🥇 · U19 🥇 · U21 🥇🏛 · U22 🥇 · U27 🥇 · U33 🥇 · U35 🥇🏛 · U36 🥈 · U46 🥇🏛 · U49 🥇 · U51 🥇🏛 · U56 🥈🏛 · U57 🥇 · U63 🥇 · U64 🥇🏛 · U79 📘 · U80 📘
+**Authority:** U3 🥇🏛 · U4 🥈🏛 · U13 🥇 · U18 🥇 · U19 🥇 · U21 🥇🏛 · U22 🥇 · U27 🥇 · U33 🥇 · U35 🥇🏛 · U36 🥈 · U46 🥇🏛 · U49 🥇 · U51 🥇🏛 · U56 🥈🏛 · U57 🥇 · U63 🥇 · U64 🥇🏛 · U79 📘 · U80 🥇
 _🥇 the site's own `correct_key` · 🥈 confirmed by the site's grader · 📘 doc-verified, no grader · 🤔 reasoned only · 🏛 **also** named in the [[Official Exam Blueprint]] — outranks all four_
 
 ---
@@ -496,10 +496,12 @@ Two symptoms, one cause: the model has no reference for what a "good" materials 
 
 ### U80 — extraction_pipeline
 
-✍️ open-response · **Seen as:** `O-Q49` — **one sitting only**  
-**Authority:** 📘 doc-verified — from the docs-cited Mock Exam key; no grader confirmation
+✍️ open-response · **Seen as:** `O-Q49` · sitting `c169819a` — **2 sittings, both agreeing**  
+**Authority:** 🥇 grader-authoritative — the site's own stated correct option, read off the sitting `c169819a` review page (reported 2026-09-04). **Upgraded from 📘** — no grader had ever seen this item
 
-> Contracts include amendments (original "30-day payment terms" vs Amendment 1 "45 days"). The model inconsistently extracts one value with no indication of which applies. Most effective fix?
+> Your extraction pipeline processes contracts that frequently include amendments. When a contract contains both original terms and later amendments (e.g., original clause specifies "30-day payment terms" while Amendment 1 changes this to "45 days"), the model inconsistently extracts one value or the other with no indication of which applies.
+>
+> What's the most effective approach to improve extraction accuracy for documents with amendments?
 
 **Correct: A — "Redesign the schema so amended fields capture multiple values, each with source location and effective date."**
 
